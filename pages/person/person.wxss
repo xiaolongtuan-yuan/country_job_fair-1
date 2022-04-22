@@ -1,0 +1,25 @@
+/* pages/person/person.wxss */
+.top{
+    background-color: antiquewhite;
+    display: flex;
+    padding: 30rpx 60rpx;
+    justify-content: space-between;
+}
+.touxiang{
+    height: 150rpx;
+    width: 150rpx;
+    border-radius: 75rpx;
+}
+.shujv{
+    background-color: aquamarine;
+    display: flex;
+}
+.font1{
+    margin: 60rpx;
+}
+.fabu{
+    background-color: bisque;
+    height: 100rpx;
+    width: 100rpx;
+    font-size:larger;
+}

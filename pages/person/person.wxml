@@ -1,0 +1,15 @@
+<!--pages/person/person.wxml-->
+<view class = 'top'>
+    <view class = 'name'>{{person_info}}</view>
+    <view>
+        <image  src="{{touxiang}}" class='touxiang' />
+    </view>
+</view>
+<view class="shujv">
+    <view class="font1">投递 </view>
+    <view class="font1">交流 </view>
+    <view class="font1">收藏 </view>
+</view>
+<view class = "fabu">+</view>
+<view >法律维权</view>
+<view >薪资参考</view>
