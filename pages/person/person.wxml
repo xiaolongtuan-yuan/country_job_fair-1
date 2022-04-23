@@ -1,15 +1,36 @@
 <!--pages/person/person.wxml-->
-<view class = 'top'>
-    <view class = 'name'>{{person_info}}</view>
-    <view>
-        <image  src="{{touxiang}}" class='touxiang' />
+<button wx:if="{{!user}}" bindtap="logup" class="button1">授权登录</button>
+<view wx:else>
+    <view class = 'top'>
+        <view class = 'name'>{{person_info}}</view>
+        <view>
+            <image  src="{{touxiang}}" class='touxiang' />
+        </view>
     </view>
-</view>
-<view class="shujv">
-    <view class="font1">投递 </view>
-    <view class="font1">交流 </view>
-    <view class="font1">收藏 </view>
+    <view class="shujv">
+        <view class="font1">投递 </view>
+        <view class="font1">交流 </view>
+        <view class="font1">收藏 </view>
+    </view>
 </view>
 <view class = "fabu">+</view>
 <view >法律维权</view>
 <view >薪资参考</view>
+<view class="yixiang">意向岗位
+    <view class="yxdidian">
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+            工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+        </picker>
+    </view>
+    <view class="yxsalary">
+        <view class="section__title">多列选择器</view>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+            当前选择：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+            </view>
+        </picker>
+    </view>
+    
+</view>

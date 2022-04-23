@@ -23,3 +23,12 @@
     width: 100rpx;
     font-size:larger;
 }
+.yixiang{
+    background-color:bisque;
+}
+.yxdidian{
+    background-color: aliceblue;
+}
+.yxxinchou{
+    background-color: aqua;
+}
