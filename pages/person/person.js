@@ -47,16 +47,6 @@ Page({
         })
         wx.setStorageSync('user', res.userInfo)
         console.log('缓存user')
-        // wx.cloud.database().collection('users')
-        // .add({
-        //   data:{
-        //   portrait: res.userInfo.avatarUrl,
-        //   nickname: res.userInfo.nickName
-        //   }
-        // })
-        // .then( x=>{
-        //   console.log('user添加成功',x)
-        // })
       }
     })
   },
@@ -97,7 +87,12 @@ Page({
         }
     } 
   },
-
+  tojianli(){
+    // console.log("跳转")
+    wx.navigateTo({  
+      url: '../zxjianli/zxjianli'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

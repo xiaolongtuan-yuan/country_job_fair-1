@@ -1,0 +1,36 @@
+
+<view class="top">在线简历</view>
+<view class = "text">姓名：</view>
+<input type="text" bindinput="input_name" />
+<view class="photo">照片
+    <button type = "default" bindtap = "photo_upload">上传</button>
+</view>
+
+<view class = "nianling">
+    <view class = "text">性别：</view>
+    <radio-group bindchange="sexChange">
+        <view>女
+            <radio value="f"/>
+        </view>
+        <view>男
+            <radio value="m"/>
+        </view>
+        
+    </radio-group>
+</view>
+<view class = "text">年龄：</view>
+<input type="number" bindinput="input_age" />
+<picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+            教育水平：{{array[index]}}
+            </view>
+</picker>
+<view class = "text">微信号：</view>
+<input type="number" bindinput="input_wxid" />
+<view class = "text">电话：</view>
+<input type="number" bindinput="input_tel" />
+<view class = "text">工作经历：</view>
+<input type="text" bindinput="input_workexp" />
+<view class = "text">资格证书：</view>
+<input type="text" bindinput="input_credential" />
+<button type="primary" bindtap = "upload">完成</button>

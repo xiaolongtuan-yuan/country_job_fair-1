@@ -14,8 +14,6 @@
     </view>
 </view>
 <view class = "fabu">+</view>
-<view >法律维权</view>
-<view >薪资参考</view>
 <view class="yixiang">意向岗位
     <view class="yxdidian">
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
@@ -25,12 +23,13 @@
         </picker>
     </view>
     <view class="yxsalary">
-        <view class="section__title">多列选择器</view>
         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
             <view class="picker">
-            当前选择：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+            意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
             </view>
         </picker>
     </view>
-    
 </view>
+<view class = "zxjianli" bindtap = "tojianli">在线简历</view>
+<view >法律维权</view>
+<view >薪资参考</view>

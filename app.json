@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/person/person",
-        "pages/boss/boss"
+        "pages/boss/boss",
+        "pages/zxjianli/zxjianli"
     ],
     "window": {
         "backgroundTextStyle": "light",

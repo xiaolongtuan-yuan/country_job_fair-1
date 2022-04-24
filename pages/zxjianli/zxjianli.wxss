@@ -1,0 +1,10 @@
+/* pages/zxjianli/zxjianli.wxss */
+.top{
+    text-align: center;
+}
+radio-group{
+    display: flex;
+}
+.photo{
+    display: flex;
+}
