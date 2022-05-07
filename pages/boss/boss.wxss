@@ -1,1 +1,15 @@
 /* pages/boss/boss.wxss */
+.center{
+    margin: auto;
+    width: 70%;
+}
+input{
+    border-color: black;
+    border-style: dotted;
+}
+.inputs{
+    display: flex;
+}
+button{
+    margin: 10px;
+}

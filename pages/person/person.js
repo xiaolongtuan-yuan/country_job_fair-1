@@ -182,6 +182,12 @@ Page({
       url: '../zxjianli/zxjianli'
     })
   },
+  findworker(){
+    console.log("招员工")
+    wx.navigateTo({
+      url:'../boss/boss'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

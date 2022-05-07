@@ -1,2 +1,33 @@
 <!--pages/boss/boss.wxml-->
-<view >boss</view>
+<view class="center">
+    <view class="inputs">
+        <view class="lebal">岗位名:</view>
+        <input bindinput="input_job_name"/>
+    </view>
+    <view class="inputs">
+        <view class="lebal">工作单位:</view>
+        <input bindinput="input_company"/>
+    </view>
+    <view class="yxdidian">
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+            工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+        </picker>
+    </view>
+    <view class="yxsalary">
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+            意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+            </view>
+        </picker>
+    </view>
+    <view wx:for="{{infoList}}">
+        <view class="inputs">
+            <view class="lebal">其他:</view>
+            <input bindinput="input_orders" data-index="{{index}}"/>
+        </view>
+    </view>
+    <button bindtap = "add_input">+</button>
+    <button bindtap = "upload">完成</button>
+</view>

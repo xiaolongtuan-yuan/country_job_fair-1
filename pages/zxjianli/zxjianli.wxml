@@ -3,7 +3,8 @@
 <view class = "text">姓名：</view>
 <input type="text" bindinput="input_name" />
 <view class="photo">照片
-    <button type = "default" bindtap = "photo_upload">上传</button>
+    <image  wx:if="{{photoID}}" mode="aspectFit" src="{{photoID}}"/>
+    <button type = "default" wx:else bindtap = "photo_upload">上传</button>
 </view>
 
 <view class = "nianling">

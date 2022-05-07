@@ -42,4 +42,5 @@
 <view class = "zxjianli" bindtap = "tojianli">在线简历</view>
 <view >法律维权</view>
 <view >薪资参考</view>
+<button class="boss" bindtap = "findworker">招员工</button>
 

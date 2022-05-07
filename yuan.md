@@ -18,3 +18,8 @@ worker（用于记录员工的基本信息）
 学历信息同样为一个数组，在info数组中只存了index对应关系如注释
 
 已有的三个关系表参考CMS内容模型
+
+注意在app.js新添加了三个全局变量
+
+5/7写好了boss发布招聘逻辑，新建了招聘信息数据表，请在CMS查看
+![](https://img-blog.csdnimg.cn/8c3f894d401d4c0cbe11c1ee7af0f262.png)

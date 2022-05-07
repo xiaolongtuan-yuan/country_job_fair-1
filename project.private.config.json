@@ -23,6 +23,13 @@
           "name": "",
           "pathName": "pages/zxjianli/zxjianli",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/boss/boss",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }
