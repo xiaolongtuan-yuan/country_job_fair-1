@@ -199,7 +199,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.slideupshow(this, 'slide_up1', -200, 1)
 
+    setTimeout(function () {
+      app.slideupshow(this, 'slide_up2', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      app.slideupshow(this, 'slide_up3', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      app.slideupshow(this, 'slide_up4', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      app.slideupshow(this, 'slide_up5', -200, 1)
+    }.bind(this), 200)
   },
 
   /**

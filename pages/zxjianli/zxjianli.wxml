@@ -1,14 +1,14 @@
 
 <view class="top">在线简历</view>
-<view class = "text">姓名：</view>
+<view class = "text" animation="{{slide_up1}}">姓名：</view>
 <input type="text" bindinput="input_name" />
-<view class="photo">照片
+<view class="photo" animation="{{slide_up2}}">照片
     <image  wx:if="{{photoID}}" mode="aspectFit" src="{{photoID}}"/>
-    <button type = "default" wx:else bindtap = "photo_upload">上传</button>
+    <button type = "default" wx:else bindtap = "photo_upload" >上传</button>
 </view>
 
-<view class = "nianling">
-    <view class = "text">性别：</view>
+<view class = "xinbie" animation="{{slide_up3}}">
+    <view>性别：</view>
     <radio-group bindchange="sexChange">
         <view>女
             <radio value="f"/>
@@ -19,19 +19,19 @@
         
     </radio-group>
 </view>
-<view class = "text">年龄：</view>
+<view class = "text" animation="{{slide_up4}}">年龄：</view>
 <input type="number" bindinput="input_age" />
-<picker mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+<picker class="jiaoyv" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" animation="{{slide_up5}}">
             <view class="picker">
             教育水平：{{array[index]}}
             </view>
 </picker>
-<view class = "text">微信号：</view>
+<view class = "text" animation="{{slide_up6}}">微信号：</view>
 <input type="number" bindinput="input_wxid" />
-<view class = "text">电话：</view>
+<view class = "text" animation="{{slide_up7}}">电话：</view>
 <input type="number" bindinput="input_tel" />
-<view class = "text">工作经历：</view>
+<view class = "text" animation="{{slide_up8}}">工作经历：</view>
 <input type="text" bindinput="input_workexp" />
-<view class = "text">资格证书：</view>
+<view class = "text" animation="{{slide_up9}}">资格证书：</view>
 <input type="text" bindinput="input_credential" />
-<button type="primary" bindtap = "upload">完成</button>
+<button class="finish" type="primary" bindtap = "upload" animation="{{slide_up10}}">完成</button>

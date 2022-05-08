@@ -9,7 +9,26 @@ input{
 }
 .inputs{
     display: flex;
+    position: relative;
+    top:200px
+}
+.yxdidian{
+    display: flex;
+    position: relative;
+    top:200px
+}
+.yxsalary{
+    display: flex;
+    position: relative;
+    top:200px
+}
+.list{
+    display: flex;
+    opacity: 0;
 }
 button{
-    margin: 10px;
+    margin: 10rpx;
+    display: flex;
+    position: relative;
+    top:200px
 }

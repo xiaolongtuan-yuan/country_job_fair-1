@@ -21,14 +21,12 @@
 .font1{
     margin: 60rpx;
 }
-.fabu{
-    background-color: bisque;
-    height: 100rpx;
-    width: 100rpx;
-    font-size:larger;
-}
+
 .yixiang{
     background-color:bisque;
+
+    position: relative;
+    top:200px
 }
 .yxdidian{
     background-color: aliceblue;
@@ -38,4 +36,17 @@
 }
 .zxjianli{
     background-color: aliceblue;
+    display: flex;
+    position: relative;
+    top:200px
+}
+.info{
+    display: flex;
+    position: relative;
+    top:200px
+}
+.boss{
+    display: flex;
+    position: relative;
+    top:200px
 }

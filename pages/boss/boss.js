@@ -5,30 +5,49 @@ Page({
    * 页面的初始数据
    */
   data: {
-    infoList:['其他'],
+    infoList:[],
     region: ['四川省', '广元市', '旺苍县'],
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
     multiIndex: [0, 0],
     job_name:'',
     orthers:[],
     Index:0,
-    company:''
+    company:'',
+    animationData:[],
+    animate:'',
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.infoList)
+    this.app = getApp()
   },
   add_input(){
     console.log("添加输入行")
+    this.set_animations()
     var a=this.data.infoList
     a.push('请输入信息')
     this.setData({
       infoList:a
     })
     this.onLoad()
+  },
+  set_animations(){
+    var animation = wx.createAnimation({
+      //持续时间800ms
+      duration: 800,
+      timingFunction: 'ease',
+    });
+    //var animation = this.animation
+    animation.opacity(1).step()
+    this.animationData = animation
+    // var ani = this.data.animationData
+    // ani[this.data.infoList.length] = this.animationData.export()
+    this.setData({
+      animate: this.animationData.export()
+    })
   },
   bindRegionChange: function (e) {
     console.log('picker发送选择改变,携带值为', e.detail.value)
@@ -99,6 +118,8 @@ Page({
     })
     .then(res=>{
       console.log('招聘发布成功',res)
+      wx.hideLoading(),
+      wx.navigateBack()
     })
   },
   /**
@@ -112,7 +133,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.app.slideupshow(this, 'slide_up1', -200, 1)
+
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up2', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up3', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up4', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up5', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up6', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up7', -200, 1)
+    }.bind(this), 200)
   },
 
   /**

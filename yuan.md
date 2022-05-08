@@ -21,5 +21,10 @@ worker（用于记录员工的基本信息）
 
 注意在app.js新添加了三个全局变量
 
-5/7写好了boss发布招聘逻辑，新建了招聘信息数据表，请在CMS查看
+# 5/7
+写好了boss发布招聘逻辑，新建了招聘信息数据表，请在CMS查看
 ![](https://img-blog.csdnimg.cn/8c3f894d401d4c0cbe11c1ee7af0f262.png)
+
+# 5/8
+实现一些动态效果，动画函数在app.js全局可用
+![](https://img-blog.csdnimg.cn/e353e9810c254f328b7a3a65207d3d0b.gif)
