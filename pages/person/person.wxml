@@ -22,8 +22,8 @@
         </view>
     </view>
 </view>
-<view class = "fabu">+</view>
-<view class="yixiang">意向岗位
+
+<view class="yixiang" animation="{{slide_up1}}">意向岗位
     <view class="yxdidian">
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
             <view class="picker">
@@ -39,8 +39,8 @@
         </picker>
     </view>
 </view>
-<view class = "zxjianli" bindtap = "tojianli">在线简历</view>
-<view >法律维权</view>
-<view >薪资参考</view>
-<button class="boss" bindtap = "findworker">招员工</button>
+<view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
+<view class = "info" animation="{{slide_up3}}">法律维权</view>
+<view class = "info" animation="{{slide_up4}}">薪资参考</view>
+<button class="boss" bindtap = "findworker" animation="{{slide_up5}}">招员工</button>
 

@@ -1,33 +1,37 @@
 <!--pages/boss/boss.wxml-->
 <view class="center">
-    <view class="inputs">
+    <view class="inputs" animation="{{slide_up1}}">
         <view class="lebal">岗位名:</view>
         <input bindinput="input_job_name"/>
     </view>
-    <view class="inputs">
+    <view class="inputs" animation="{{slide_up2}}">
         <view class="lebal">工作单位:</view>
         <input bindinput="input_company"/>
     </view>
-    <view class="yxdidian">
+    <view class="yxdidian" animation="{{slide_up3}}">
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
             <view class="picker">
             工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
             </view>
         </picker>
     </view>
-    <view class="yxsalary">
+    <view class="yxsalary" animation="{{slide_up4}}">
         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
             <view class="picker">
-            意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+            工资/月：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
             </view>
         </picker>
     </view>
+    <view class="inputs" animation="{{slide_up5}}">
+        <view class="lebal">其他:</view>
+            <input bindinput="input_orders" data-index="{{index}}"/>
+        </view>
     <view wx:for="{{infoList}}">
-        <view class="inputs">
+        <view class="list" animation="{{animate}}">
             <view class="lebal">其他:</view>
             <input bindinput="input_orders" data-index="{{index}}"/>
         </view>
     </view>
-    <button bindtap = "add_input">+</button>
-    <button bindtap = "upload">完成</button>
+    <button bindtap = "add_input" animation="{{slide_up6}}">+</button>
+    <button bindtap = "upload" animation="{{slide_up7}}">完成</button>
 </view>

@@ -18,6 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.app = getApp()
     this.setData({
       openID:wx.getStorageSync('openID')
     })
@@ -137,7 +138,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.app.slideupshow(this, 'slide_up1', -200, 1)
 
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up2', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up3', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up4', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up5', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up6', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up7', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up8', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up9', -200, 1)
+    }.bind(this), 200)
+    setTimeout(function () {
+      this.app.slideupshow(this, 'slide_up10', -200, 1)
+    }.bind(this), 200)
   },
 
   /**
