@@ -1,1 +1,48 @@
 /**index.wxss**/
+/* 1-1 swiper组件 */
+swiper {
+  height: 400rpx;
+}
+/* 1-2 swiper中的图片 */
+swiper image {
+  width: 100%;
+  height: 100%;
+}
+/* 2-1 招聘列表容器 */
+#jobs-list {
+  min-height: 600rpx;
+  padding: 15rpx;
+}
+/* 2-2 列表项目 */
+.list-item {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid gray;
+}
+/* 2-3 招聘信息图片 */
+.list-item image{
+  width: 230rpx;
+  height: 150rpx;
+  margin: 10rpx;
+}
+/* 2-4 招聘信息 */
+.jobs-ts{
+  display: flex;
+  flex-direction: column;
+}
+.jobs-title{
+  width: 100%;
+  display: block;
+  line-height: 60rpx;
+  font-size: 10pt;
+}
+.jobs-salary{
+  display: flex;
+  color: rgb(18, 174, 221);
+  font-size: 12pt;
+}
+.jobs-address{
+  width: 100%;
+  line-height: 60rpx;
+  font-size: 10pt;
+}
