@@ -1,0 +1,32 @@
+/* pages/detail/detail.wxss */
+.container{
+  padding: 15rpx;
+  text-align: center;
+}
+.title{
+  font-size: 14pt;
+  line-height: 80rpx;
+}
+/*图片*/ /*暂时显示不出来*/
+.poster{ /*原因就是poster后面不能加image*/
+  width: 100%;
+}
+/*正文*/
+.job_introduction{
+  text-align: left;
+  font-size: 12pt;
+  line-height: 60rpx;
+}
+/*职位提供者*/
+.job_provider{
+  font-size: 12pt;
+  text-align: right;
+  line-height: 30rpx;
+  margin-right: 25rpx;
+  margin-top: 20rpx;
+}
+.title{
+  font-size:15pt;
+  text-align: left;
+  margin-left: 10rpx;
+}

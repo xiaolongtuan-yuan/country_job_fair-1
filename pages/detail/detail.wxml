@@ -1,0 +1,10 @@
+<!--pages/detail/detail.wxml-->
+<view class='container'>
+  <view class='title'>{{jobs.address}}——{{jobs.job_name}} 招聘！</view>
+  <view class='poster'>
+    <image src="{{jobs.poster}}" mode="widthFix"></image>
+  </view>
+  <view class='title'>职位描述：</view>
+  <view class='job_introduction'>{{jobs.introduction}}</view>
+  <view class='job_provider'>职位提供者：{{jobs.company}}</view>
+</view>

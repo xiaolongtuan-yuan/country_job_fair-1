@@ -37,12 +37,19 @@ swiper image {
   font-size: 10pt;
 }
 .jobs-salary{
-  display: flex;
+  display: block;
   color: rgb(18, 174, 221);
   font-size: 12pt;
 }
 .jobs-address{
   width: 100%;
+  display: block;
+  line-height: 60rpx;
+  font-size: 10pt;
+}
+.jobs-others{
+  width: 100%;
+  display: block;
   line-height: 60rpx;
   font-size: 10pt;
 }

@@ -3,7 +3,8 @@
         "pages/index/index",
         "pages/person/person",
         "pages/boss/boss",
-        "pages/zxjianli/zxjianli"
+        "pages/zxjianli/zxjianli",
+        "pages/detail/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",

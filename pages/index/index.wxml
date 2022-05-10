@@ -8,32 +8,17 @@
 </swiper>
 <!--招聘列表-->
 <view id='jobs-list'>
-  <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs.id}}'>
+  <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
     <image src="{{jobs.poster}}"></image>
-    <!-- <view class="jobs-title">{{jobs.title}}</view>
-    <view class="jobs-salary">{{jobs.salary}}</view>
-    <view class="jobs-address">{{jobs.address}}</view>
-    <view class="jobs-pnum">{{jobs.pnum}}</view> -->
     <view class='jobs-ts'>
     <view>
-    <text class='jobs-title'> {{jobs.title}}</text>
-    <text class='jobs-salary'>{{jobs.salary}}</text>
+    <text class='jobs-title'>职务名称：{{jobs.job_name}}</text>
+    <text class='jobs-salary'>薪资：{{jobs.salary}}</text>
     </view>
     <view>
-    <text class='jobs-address'>{{jobs.address}}—北京</text>
+    <text class='jobs-address'>{{jobs.address}}</text>
+    <text class='jobs-others'>其他信息：{{jobs.orthers}}</text>
     </view>
     </view>
-    <!-- <view class="jobs-title">
-    <text>{{jobs.title}}</text>
-    </view>
-    <view class="jobs-salary">
-    <text>{{jobs.salary}}</text>
-    </view>
-    <view class="jobs-address">
-    <text>{{jobs.address}}</text>
-    </view>
-    <view class="jobs-pnum">
-    <text>{{jobs.pnum}}</text>
-    </view> -->
   </view>  
 </view>
