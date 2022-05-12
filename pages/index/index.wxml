@@ -9,7 +9,6 @@
 <!--招聘列表-->
 <view id='jobs-list'>
   <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-    <image src="{{jobs.poster}}"></image>
     <view class='jobs-ts'>
     <view>
     <text class='jobs-title'>职务名称：{{jobs.job_name}}</text>

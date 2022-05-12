@@ -7,4 +7,8 @@
   <view class='title'>职位描述：</view>
   <view class='job_introduction'>{{jobs.introduction}}</view>
   <view class='job_provider'>职位提供者：{{jobs.company}}</view>
+  <!-- <button bindtap="jj">提交简历</button> -->
+  <button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">已收藏</button>
+  <button class='favorite' wx:else plain bindtap="addFavorites">单击收藏</button>
 </view>
+

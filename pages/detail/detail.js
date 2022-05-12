@@ -10,9 +10,9 @@ Page({
     // }],
     jobs: {
 
-    }
+    },
+    // isAdd: false,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -38,6 +38,18 @@ Page({
     // if(result.code='200'){
     //   this.setData({infomation:result.jobs})
     // }
+    
+    // 收藏按钮
+    let id = options.id;
+    var article = wx.getStorageSync(id);
+    //已存在
+    if (article!='') {
+      this.setData({ isAdd: true })
+    }
+    //不存在
+    else {
+      this.setData({ isAdd: false })
+    }
   },
   //获取详情信息
   getDetail: function(job_id, jobsList) {
@@ -54,6 +66,19 @@ Page({
       }
     }
     return msg;
+  },
+
+  //添加到收藏夹
+  addFavorites: function(options) {
+    let article = this.data.jobs;
+    wx.setStorageSync(article._id, article);
+    this.setData({ isAdd: true });
+  },
+  //取消收藏
+  cancelFavorites: function(options) {
+    let article = this.data.jobs;
+    wx.removeStorageSync(article._id);
+    this.setData({ isAdd: false });
   },
   
   

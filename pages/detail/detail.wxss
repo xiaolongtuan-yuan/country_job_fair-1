@@ -30,3 +30,9 @@
   text-align: left;
   margin-left: 10rpx;
 }
+/* 收藏按钮 */
+.favorite{
+  width: 250rpx;
+  height: 100rpx;
+  margin: 20rpx auto;
+}
