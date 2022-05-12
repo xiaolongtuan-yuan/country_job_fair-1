@@ -20,7 +20,8 @@ Page({
     // canvasW: width * 0.8, //画布宽度
     canvasType: false,//是否出现海报bool
     ctx:'',//画布上下文
-    src:''//海报背景图片
+    src:'',//海报背景图片
+    id:''
   },
 
 
@@ -138,6 +139,9 @@ Page({
     .then(res=>{
       console.log('招聘发布成功',res)
       wx.hideLoading()
+      this.setData({
+        id:res._id
+      })
       this.drawCanvas2D()
     })
   },
@@ -198,7 +202,9 @@ Page({
         ctx.fillText(`${this.data.orthers[i]}`, 30, 200+i*30);
       }
 
-      await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 100/rpx, 430/rpx,100/rpx)
+      await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 100/rpx, 400/rpx,100/rpx)
+      this.setFontSizeByFont(ctx, 25 * rpx);
+      ctx.fillText('扫描二维码进入小程序查看详情', 60, 520);
       this.myCanvas = canvas
     })
 
@@ -232,10 +238,11 @@ Page({
   },//长全部充满canvas，保持图片比例不压缩，宽度从最左边截取
   getQrCode(){//生成二维码保存到本地
     return new Promise((resolve, reject) => {
+      var id = this.data.id
       wx.cloud.callFunction({
         name:'QrCode',
         data:{
-          url:"../index/index"
+          url:'../detail/detail?id='+id
         },
         success(res){
           console.log(res);
