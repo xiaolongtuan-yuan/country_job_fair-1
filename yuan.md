@@ -28,3 +28,7 @@ worker（用于记录员工的基本信息）
 # 5/8
 实现一些动态效果，动画函数在app.js全局可用
 ![](https://img-blog.csdnimg.cn/e353e9810c254f328b7a3a65207d3d0b.gif)
+
+# 5/12
+实现打工人与老板双页面切换，以及创建单独页面用于选择意向岗位
+![](https://img-blog.csdnimg.cn/98cda941038645229c2ec7d1bd668204.gif)
