@@ -14,6 +14,8 @@ Page({
     region: ['四川省', '广元市', '旺苍县'],//意向工作地点
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
     multiIndex: [0, 0],
+    post_classify:app.globalData.post_classify,
+    posts:app.globalData.post,
     post:[0,0]
   },
 
@@ -50,14 +52,16 @@ Page({
           var worker = {
             yx_address:['四川省','广元市','旺苍县'],//默认
             yx_salary:[0,5],
-            datas:[0,0,0]
+            datas:[0,0,0],
+            yx_post:[0,0]
           }
           db.collection('worker')
           .add({
             data:{
               yx_address:['四川省','广元市','旺苍县'],//默认
               yx_salary:[0,5],
-              datas:[0,0,0]
+              datas:[0,0,0],
+              yx_post:[0,0]
             }
           })
           app.globalData.worker = worker
@@ -187,6 +191,27 @@ Page({
       url: '../hangye/hangye'
     })
   },
+  set_post(){//意向岗位添加到数据库和全局变量中
+    var post = wx.getStorageSync('post')
+    
+    this.setData({
+      post:post
+    })
+
+    app.globalData.worker.yx_post = post
+    this.setData({
+      worker:app.globalData.worker
+    })
+    db.collection('worker')
+    .where({
+      _openid:this.data.openID
+    })
+    .update({
+      data:{
+        yx_post:post
+      }
+    })
+  },
   tojianli(){
     // console.log("跳转")
     wx.navigateTo({  
@@ -244,12 +269,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-    var post = wx.getStorageSync('post')
-    console.log("OnShow",post)
-    this.setData({
-      post:post
-    })
+    this.set_post()
+    console.log("OnShow")
     app.slideupshow(this, 'slide_up1', -200, 1)
 
     setTimeout(function () {

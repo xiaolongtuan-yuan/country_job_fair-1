@@ -24,7 +24,7 @@
         </view>
 
 
-        <view class="yixiang" animation="{{slide_up1}}">意向岗位
+        <view class="yixiang" animation="{{slide_up1}}">意向
             <view class="yxdidian">
                 <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
                     <view class="picker">
@@ -39,7 +39,9 @@
                     </view>
                 </picker>
             </view>
-            <view class="yxpost" bindtap="yxpost">意向岗位</view>
+            <view class="yxpost" bindtap="yxpost">意向岗位:
+                {{posts[post[0]][post[1]]}}
+            </view>
         </view>
         <view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
         <view class = "info" animation="{{slide_up3}}">法律维权</view>
@@ -69,5 +71,6 @@
         </view>
         <button class="boss" bindtap = "findworker" animation="{{slide_up1}}">发布招聘</button>
         <button class="boss" bindtap = "isboss" animation="{{slide_up2}}">找工作</button>
+        <button typy></button>
     </view>
 </view>
