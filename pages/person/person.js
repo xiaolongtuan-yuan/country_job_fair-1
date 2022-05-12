@@ -61,7 +61,10 @@ Page({
               yx_address:['四川省','广元市','旺苍县'],//默认
               yx_salary:[0,5],
               datas:[0,0,0],
-              yx_post:[0,0]
+              yx_post:[0,0],
+              worker_favor:[0],
+              boss_favor:[0],
+              worker_sended:[0],
             }
           })
           app.globalData.worker = worker

@@ -1,17 +1,18 @@
 // pages/detail/detail.js
+const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // jobsList: [{
-
     // }],
     jobs: {
 
     },
-    // isAdd: false,
+    isAdd: false,
+    openID: app.globalData.openID,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,18 +39,8 @@ Page({
     // if(result.code='200'){
     //   this.setData({infomation:result.jobs})
     // }
-    
-    // 收藏按钮
-    let id = options.id;
-    var article = wx.getStorageSync(id);
-    //已存在
-    if (article!='') {
-      this.setData({ isAdd: true })
-    }
-    //不存在
-    else {
-      this.setData({ isAdd: false })
-    }
+    this.setData({openID:wx.getStorageSync('openID')})
+    console.log(this.data.openID)
   },
   //获取详情信息
   getDetail: function(job_id, jobsList) {
@@ -70,10 +61,33 @@ Page({
 
   //添加到收藏夹
   addFavorites: function(options) {
-    let article = this.data.jobs;
-    wx.setStorageSync(article._id, article);
-    this.setData({ isAdd: true });
-  },
+    var that = this
+    console.log('1111111111')
+    db.collection('worker')
+    .where({
+      _openid:this.data.openID
+    })
+    .get({
+      success(res){
+        console.log("获取成功！",res.data)
+        if(res.data.length >0){
+          var favor = res.data[0].worker_favor
+          console.log(favor)
+          let len = favor.length
+          console.log(len)
+
+          
+          
+        }
+        else{
+          app.globalData.worker = worker
+        }
+      },
+      fail(err){
+        console.log("请求失败",err)
+      }
+    })
+},
   //取消收藏
   cancelFavorites: function(options) {
     let article = this.data.jobs;
