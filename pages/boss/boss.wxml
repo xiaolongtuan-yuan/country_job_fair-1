@@ -1,4 +1,10 @@
 <!--pages/boss/boss.wxml-->
+<view class="poster" wx:if="{{canvasType}}">
+    <view class="mask" catchtap="cancelPoster"></view>
+    <canvas class="canvas" id="myCanvas" canvas-id="myCanvas" type="2d"/>
+    <button class="saveImage" bindtap="saveImage" type="primary">保存图片</button>
+</view>
+
 <view class="center">
     <view class="inputs" animation="{{slide_up1}}">
         <view class="lebal">岗位名:</view>
@@ -23,15 +29,20 @@
         </picker>
     </view>
     <view class="inputs" animation="{{slide_up5}}">
-        <view class="lebal">其他:</view>
-            <input bindinput="input_orders" data-index="{{index}}"/>
-        </view>
+        <view class="lebal">岗位介绍:</view>
+        <input bindinput="input_intro" data-index="0"/>
+    </view>
+    <view class="inputs" animation="{{slide_up6}}">
+        <view class="lebal">详细地址:</view>
+        <input bindinput="input_address" data-index="0"/>
+    </view>
     <view wx:for="{{infoList}}">
-        <view class="list" animation="{{animate}}">
+        <view class="list" animation="{{animationData[index]}}">
             <view class="lebal">其他:</view>
-            <input bindinput="input_orders" data-index="{{index}}"/>
+            <input bindinput="input_orders" data-index="{{index+1}}"/>
         </view>
     </view>
-    <button bindtap = "add_input" animation="{{slide_up6}}">+</button>
-    <button bindtap = "upload" animation="{{slide_up7}}">完成</button>
+    <button bindtap = "add_input" animation="{{slide_up7}}">+</button>
+    <button bindtap = "upload" animation="{{slide_up8}}">完成</button>
+
 </view>

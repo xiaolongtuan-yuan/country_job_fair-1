@@ -4,7 +4,8 @@
         "pages/person/person",
         "pages/boss/boss",
         "pages/zxjianli/zxjianli",
-        "pages/detail/detail"
+        "pages/detail/detail",
+        "pages/hangye/hangye"
     ],
     "window": {
         "backgroundTextStyle": "light",

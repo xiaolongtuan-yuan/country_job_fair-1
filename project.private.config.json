@@ -39,6 +39,13 @@
           "query": "id=6d85a2b9627a5f1f02ef169c76e464f5",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/hangye/hangye",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

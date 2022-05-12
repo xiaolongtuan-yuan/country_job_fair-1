@@ -32,3 +32,54 @@ button{
     position: relative;
     top:200px
 }
+
+/* 海报弹窗 */
+.poster {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+}
+.poster .mask{
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+.poster .canvas{
+    /* position: absolute;
+    margin: 5%;
+    height: 1200rpx;
+    width: 90%;
+    background-color: #fff;
+    z-index: 3; */
+    position: absolute;
+    margin-top: 5%;
+    height: 550px;
+    width: 300px;
+    background-color: white;
+    border-radius: 20rpx;
+    z-index: 3;
+}
+
+.saveImage{
+    /* position: absolute;
+    bottom: 1500rpx;
+    width: 80rpx;
+    z-index: 3; */
+    position: absolute;
+    bottom: 50%;
+    z-index: 3;
+    height: 80rpx;
+    margin-top: 800rpx;
+    background-color: #41BDF9;
+}
+

@@ -34,6 +34,9 @@
 .yxxinchou{
     background-color: aqua;
 }
+.yxpost{
+    background-color:aquamarine;
+}
 .zxjianli{
     background-color: aliceblue;
     display: flex;
