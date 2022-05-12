@@ -1,46 +1,73 @@
 <!--pages/person/person.wxml-->
 <button wx:if="{{!user}}" bindtap="logup" class="button1">授权登录</button>
 <view wx:else>
-    <view class = 'top'>
-        <view class = 'name'>{{user.nickName}}</view>
-        <view>
-            <image  src="{{user.avatarUrl}}" class='touxiang' />
+    <view wx:if="{{!isboss}}">
+        <view class = 'top'>
+            <view class = 'name'>{{user.nickName}}</view>
+            <view>
+                <image  src="{{user.avatarUrl}}" class='touxiang' />
+            </view>
         </view>
+        <view class="shujv">
+            <view class="datas">
+                <view>投递 </view>
+                <view>{{worker.datas[0]}}</view>
+            </view>
+            <view class="datas">
+                <view>交流 </view>
+                <view>{{worker.datas[1]}}</view>
+            </view>
+            <view class="datas">
+                <view>收藏 </view>
+                <view>{{worker.datas[2]}}</view>
+            </view>
+        </view>
+
+
+        <view class="yixiang" animation="{{slide_up1}}">意向岗位
+            <view class="yxdidian">
+                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                    <view class="picker">
+                    工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
+                    </view>
+                </picker>
+            </view>
+            <view class="yxsalary">
+                <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view class="picker">
+                    意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+                    </view>
+                </picker>
+            </view>
+            <view class="yxpost" bindtap="yxpost">意向岗位</view>
+        </view>
+        <view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
+        <view class = "info" animation="{{slide_up3}}">法律维权</view>
+        <view class = "info" animation="{{slide_up4}}">薪资参考</view>
+        <button class="boss" bindtap = "isboss" animation="{{slide_up5}}">我是老板</button>
     </view>
-    <view class="shujv">
-        <view class="datas">
-            <view>投递 </view>
-            <view>{{worker.datas[0]}}</view>
+    <view wx:else>
+        <view class = 'top'>
+            <view class = 'name'>{{user.nickName}}</view>
+            <view>
+                <image  src="{{user.avatarUrl}}" class='touxiang' />
+            </view>
         </view>
-        <view class="datas">
-            <view>交流 </view>
-            <view>{{worker.datas[1]}}</view>
+        <view class="shujv">
+            <view class="datas">
+                <view>收到简历 </view>
+                <view>{{worker.datas[0]}}</view>
+            </view>
+            <view class="datas">
+                <view>交流 </view>
+                <view>{{worker.datas[1]}}</view>
+            </view>
+            <view class="datas">
+                <view>收藏 </view>
+                <view>{{worker.datas[2]}}</view>
+            </view>
         </view>
-        <view class="datas">
-            <view>收藏 </view>
-            <view>{{worker.datas[2]}}</view>
-        </view>
+        <button class="boss" bindtap = "findworker" animation="{{slide_up1}}">发布招聘</button>
+        <button class="boss" bindtap = "isboss" animation="{{slide_up2}}">找工作</button>
     </view>
 </view>
-
-<view class="yixiang" animation="{{slide_up1}}">意向岗位
-    <view class="yxdidian">
-        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-            <view class="picker">
-            工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
-            </view>
-        </picker>
-    </view>
-    <view class="yxsalary">
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="picker">
-            意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
-            </view>
-        </picker>
-    </view>
-</view>
-<view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
-<view class = "info" animation="{{slide_up3}}">法律维权</view>
-<view class = "info" animation="{{slide_up4}}">薪资参考</view>
-<button class="boss" bindtap = "findworker" animation="{{slide_up5}}">招员工</button>
-

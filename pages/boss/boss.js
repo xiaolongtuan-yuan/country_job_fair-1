@@ -138,7 +138,7 @@ Page({
     .then(res=>{
       console.log('招聘发布成功',res)
       wx.hideLoading()
-      wx.navigateBack()
+      this.drawCanvas2D()
     })
   },
 
@@ -256,11 +256,11 @@ Page({
       })
     })
   },
-  setFontSizeByFont(ctx, fontszie) {
+  setFontSizeByFont(ctx, fontszie) {//设置字体大小
     ctx.font = `normal ${fontszie}px Arial, Verdana, Tahoma, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif`;
   },
   
-  saveImage(){
+  saveImage(){//保存海报图片
     wx.canvasToTempFilePath({
       canvasId: 'myCanvas',
       canvas:this.myCanvas,
@@ -274,7 +274,7 @@ Page({
       fail: () => {}
     })
   },
-  checkAuthSetting(tempFilePath){
+  checkAuthSetting(tempFilePath){//检查用户授权保存图片之相册
     wx.getSetting({
       success:(res)=>{
       	//是否已授权
@@ -287,6 +287,7 @@ Page({
                 icon:'none',
                 title: "保存图片成功"
               })
+              wx.navigateBack()
             },
             fail:(err) => {
              console.log(err);
@@ -306,6 +307,7 @@ Page({
                     icon:'none',
                     title: "保存图片成功"
                   })
+                  wx.navigateBack()
                 },
                 fail:(err) => {
                  console.log(err);
@@ -333,6 +335,7 @@ Page({
                       icon:'none',
                       title: "保存图片成功"
                     })
+                    wx.navigateBack()
                   },
                   fail:(err) => {
                    console.log(err);

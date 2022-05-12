@@ -44,5 +44,5 @@
     </view>
     <button bindtap = "add_input" animation="{{slide_up7}}">+</button>
     <button bindtap = "upload" animation="{{slide_up8}}">完成</button>
-    <button bindtap = "drawCanvas2D" animation="{{slide_up9}}">生成海报</button>
+
 </view>

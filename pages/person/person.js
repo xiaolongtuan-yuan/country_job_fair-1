@@ -9,10 +9,12 @@ Page({
   data: {
     user:app.globalData.user,
     openID:app.globalData.openID,
+    isboss:app.globalData.isboss,
     worker:app.globalData.worker,
     region: ['四川省', '广元市', '旺苍县'],//意向工作地点
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
-    multiIndex: [0, 0]
+    multiIndex: [0, 0],
+    post:[0,0]
   },
 
   /**
@@ -21,10 +23,12 @@ Page({
   onLoad: function (options) {
     this.setData({
       user:wx.getStorageSync('user'),
-      openID:wx.getStorageSync('openID')
+      openID:wx.getStorageSync('openID'),
+      isboss:wx.getStorageSync('isboss')
     })
     app.globalData.user = wx.getStorageSync('user')
     app.globalData.openID = wx.getStorageSync('openID')
+    app.globalData.isboss = wx.getStorageSync('isboss')
     var that = this
     db.collection('worker')
     .where({
@@ -89,11 +93,13 @@ Page({
         })
         wx.setStorageSync('user', res.userInfo)
         console.log('缓存user')
+        wx.setStorageSync('isboss',false)
         wx.cloud.database().collection('users')
         .add({
           data:{
           touxiang: res.userInfo.avatarUrl,
-          name: res.userInfo.nickName
+          name: res.userInfo.nickName,
+          isboss: false
           }
         })
         .then( x=>{
@@ -176,11 +182,50 @@ Page({
         }
     } 
   },
+  yxpost(){
+    wx.navigateTo({
+      url: '../hangye/hangye'
+    })
+  },
   tojianli(){
     // console.log("跳转")
     wx.navigateTo({  
       url: '../zxjianli/zxjianli'
     })
+  },
+  isboss(){
+    if(!this.data.isboss){
+      this.setData({
+        isboss:true
+      })
+      app.globalData.isboss=true
+      wx.setStorageSync('isboss',true)
+      db.collection('users')
+      .where({
+        _openid:this.data.openID
+      })
+      .update({
+        data:{
+          isboss:true
+        }
+      })
+    }
+    else{
+      this.setData({
+        isboss:false
+      })
+      app.globalData.isboss=false
+      wx.setStorageSync('isboss',false)
+      db.collection('users')
+      .where({
+        _openid:this.data.openID
+      })
+      .update({
+        data:{
+          isboss:false
+        }
+      })
+    }
   },
   findworker(){
     console.log("招员工")
@@ -199,6 +244,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
+    var post = wx.getStorageSync('post')
+    console.log("OnShow",post)
+    this.setData({
+      post:post
+    })
     app.slideupshow(this, 'slide_up1', -200, 1)
 
     setTimeout(function () {
@@ -213,6 +264,7 @@ Page({
     setTimeout(function () {
       app.slideupshow(this, 'slide_up5', -200, 1)
     }.bind(this), 200)
+    
   },
 
   /**
