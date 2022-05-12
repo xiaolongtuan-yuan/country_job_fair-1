@@ -5,6 +5,16 @@
     padding: 30rpx 60rpx;
     justify-content: space-between;
 }
+.left{
+
+}
+.tuichu{
+    border-radius: 15rpx;
+    text-align: center;
+    margin-top: 60rpx;
+    color: white;
+    background-color: darkgreen;
+}
 .touxiang{
     height: 150rpx;
     width: 150rpx;

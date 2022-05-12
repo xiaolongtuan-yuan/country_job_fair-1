@@ -1,13 +1,17 @@
 <!--pages/person/person.wxml-->
 <button wx:if="{{!user}}" bindtap="logup" class="button1">授权登录</button>
 <view wx:else>
-    <view wx:if="{{!isboss}}">
-        <view class = 'top'>
+    <view class = 'top'>
+        <view class="left">
             <view class = 'name'>{{user.nickName}}</view>
-            <view>
-                <image  src="{{user.avatarUrl}}" class='touxiang' />
-            </view>
+            <view class="tuichu" bindtap="tuichu">退出登录</view>
         </view>
+        <view>
+            <image  src="{{user.avatarUrl}}" class='touxiang' />
+        </view>
+    </view>
+
+    <view wx:if="{{!isboss}}">    
         <view class="shujv">
             <view class="datas">
                 <view>投递 </view>
@@ -35,7 +39,7 @@
             <view class="yxsalary">
                 <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
                     <view class="picker">
-                    意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+                        意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
                     </view>
                 </picker>
             </view>
@@ -49,12 +53,6 @@
         <button class="boss" bindtap = "isboss" animation="{{slide_up5}}">我是老板</button>
     </view>
     <view wx:else>
-        <view class = 'top'>
-            <view class = 'name'>{{user.nickName}}</view>
-            <view>
-                <image  src="{{user.avatarUrl}}" class='touxiang' />
-            </view>
-        </view>
         <view class="shujv">
             <view class="datas">
                 <view>收到简历 </view>
@@ -71,6 +69,6 @@
         </view>
         <button class="boss" bindtap = "findworker" animation="{{slide_up1}}">发布招聘</button>
         <button class="boss" bindtap = "isboss" animation="{{slide_up2}}">找工作</button>
-        <button typy></button>
     </view>
 </view>
+

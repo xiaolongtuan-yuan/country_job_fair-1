@@ -31,7 +31,40 @@ Page({
     app.globalData.user = wx.getStorageSync('user')
     app.globalData.openID = wx.getStorageSync('openID')
     app.globalData.isboss = wx.getStorageSync('isboss')
-    var that = this
+    
+    wx.cloud.database().collection('users')
+      .where({
+        _openid:this.data.openID
+      })
+      .get()
+      .then(res3=>{
+        console.log('现有用户',res3.data.length)
+        if(res3.data.length == 0){
+          wx.cloud.database().collection('users')
+          .add({
+            data:{
+            touxiang: this.data.user.avatarUrl,
+            name: this.data.user.nickName,
+            isboss: false
+            }
+          })
+          .then( x=>{
+            console.log('user添加成功',x)
+          })
+          wx.cloud.database().collection('worker')
+          .add({
+            data:{
+            yx_address: this.data.region,
+            yx_salary: this.data.multiIndex,
+            datas:this.data.worker.datas
+            }
+          })
+          .then( x=>{
+            console.log('worker添加成功',x)
+          })
+        }
+        else{
+          var that = this
     db.collection('worker')
     .where({
       _openid:this.data.openID
@@ -74,6 +107,9 @@ Page({
         console.log("请求失败",err)
       }
     })
+        }
+      })
+    
   },
   logup(options) {
     console.log("点击登录")
@@ -83,7 +119,8 @@ Page({
         console.log("点击登录")
         console.log(res)
         this.setData({
-          user:res.userInfo
+          user:res.userInfo,
+          isboss:false
         })
         wx.cloud.callFunction({
           name:'getData',
@@ -94,39 +131,62 @@ Page({
             //   openID:res2.result.openid
             // })
             app.globalData.openID = res2.result.openid
+            this.setData({
+              openID:res2.result.openid
+            })
             wx.setStorageSync('openID',res2.result.openid)
             console.log('缓存openID')
+
+            wx.setStorageSync('user', res.userInfo)
+            console.log('缓存user')
+            wx.setStorageSync('isboss',false)
+            wx.cloud.database().collection('users')
+            .where({
+              _openid:this.data.openID
+            })
+            .get()
+            .then(res3=>{
+              console.log('现有用户',res3.data.length)
+              if(res3.data.length == 0){
+                wx.cloud.database().collection('users')
+                .add({
+                  data:{
+                  touxiang: res.userInfo.avatarUrl,
+                  name: res.userInfo.nickName,
+                  isboss: false
+                  }
+                })
+                .then( x=>{
+                  console.log('user添加成功',x)
+                })
+                wx.cloud.database().collection('worker')
+                .add({
+                  data:{
+                  yx_address: this.data.region,
+                  yx_salary: this.data.multiIndex,
+                  datas:this.data.worker.datas
+                  }
+                })
+                .then( x=>{
+                  console.log('worker添加成功',x)
+                })
+              }
+            })
           }
         })
-        wx.setStorageSync('user', res.userInfo)
-        console.log('缓存user')
-        wx.setStorageSync('isboss',false)
-        wx.cloud.database().collection('users')
-        .add({
-          data:{
-          touxiang: res.userInfo.avatarUrl,
-          name: res.userInfo.nickName,
-          isboss: false
-          }
-        })
-        .then( x=>{
-          console.log('user添加成功',x)
-        })
-        wx.cloud.database().collection('worker')
-        .add({
-          data:{
-          yx_address: this.data.region,
-          yx_salary: this.data.multiIndex,
-          datas:this.data.worker.datas
-          }
-        })
-        .then( x=>{
-          console.log('user添加成功',x)
-        })
+
       }
     })
   },
-
+  tuichu(){
+    wx.removeStorageSync('user')
+    wx.removeStorageSync('isboss')
+    wx.removeStorageSync('post')
+    wx.showToast({
+      title:"退出成功"
+    })
+    this.onLoad()
+  },
   bindRegionChange: function (e) {
     console.log('picker发送选择改变,携带值为', e.detail.value)
     this.setData({
