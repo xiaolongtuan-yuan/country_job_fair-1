@@ -371,28 +371,28 @@ Page({
 
     setTimeout(function () {
       this.app.slideupshow(this, 'slide_up2', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up3', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up4', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up5', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up6', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up7', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up8', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up9', -200, 1)
-    }.bind(this), 200)
+      setTimeout(function () {
+        this.app.slideupshow(this, 'slide_up3', -200, 1)
+        setTimeout(function () {
+          this.app.slideupshow(this, 'slide_up4', -200, 1)
+          setTimeout(function () {
+            this.app.slideupshow(this, 'slide_up5', -200, 1)
+            setTimeout(function () {
+              this.app.slideupshow(this, 'slide_up6', -200, 1)
+              setTimeout(function () {
+                this.app.slideupshow(this, 'slide_up7', -200, 1)
+                setTimeout(function () {
+                  this.app.slideupshow(this, 'slide_up8', -200, 1)
+                  setTimeout(function () {
+                    this.app.slideupshow(this, 'slide_up9', -200, 1)
+                  }.bind(this), 200)
+                }.bind(this), 160)
+              }.bind(this), 120)
+            }.bind(this), 80)
+          }.bind(this), 40)
+        }.bind(this), 30)
+      }.bind(this), 20)
+    }.bind(this), 10)  
   },
 
   onHide: function () {
