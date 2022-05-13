@@ -121,29 +121,37 @@ Page({
     })
   },
   upload(){
-    wx.showLoading({
-      title: '上传招聘中...',
-    })
-    wx.cloud.database().collection('jobs')
-    .add({
-      data:{
-        salary:this.data.multiIndex,
-        region:this.data.region,
-        job_name:this.data.job_name,
-        company:this.data.company,
-        introduction:this.data.intro,
-        address:this.data.address,
-        orthers:this.data.orthers
-      }
-    })
-    .then(res=>{
-      console.log('招聘发布成功',res)
-      wx.hideLoading()
-      this.setData({
-        id:res._id
+    if(this.data.job_name==''){
+      wx.showToast({
+        icon:"error",
+        title:"未输入岗位名！"
       })
-      this.drawCanvas2D()
-    })
+    }
+    else{
+      wx.showLoading({
+        title: '上传招聘中...',
+      })
+      wx.cloud.database().collection('jobs')
+      .add({
+        data:{
+          salary:this.data.multiIndex,
+          region:this.data.region,
+          job_name:this.data.job_name,
+          company:this.data.company,
+          introduction:this.data.intro,
+          address:this.data.address,
+          orthers:this.data.orthers
+        }
+      })
+      .then(res=>{
+        console.log('招聘发布成功',res)
+        wx.hideLoading()
+        this.setData({
+          id:res._id
+        })
+        this.drawCanvas2D()
+      })
+    }
   },
 
   cancelPoster() {

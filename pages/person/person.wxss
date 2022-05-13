@@ -38,6 +38,11 @@
     position: relative;
     top:200px
 }
+.boss_didian{
+    background-color:bisque;
+    position: relative;
+    top:200px
+}
 .yxdidian{
     background-color: aliceblue;
 }

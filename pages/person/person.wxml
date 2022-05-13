@@ -67,6 +67,13 @@
                 <view>{{worker.datas[2]}}</view>
             </view>
         </view>
+        <view class="boss_didian" animation="{{slide_up1}}">
+                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                    <view class="picker">
+                    工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
+                    </view>
+                </picker>
+            </view>
         <button class="boss" bindtap = "findworker" animation="{{slide_up1}}">发布招聘</button>
         <button class="boss" bindtap = "isboss" animation="{{slide_up2}}">找工作</button>
     </view>
