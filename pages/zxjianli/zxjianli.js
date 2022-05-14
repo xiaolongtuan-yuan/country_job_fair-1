@@ -8,10 +8,13 @@ Page({
   data: {
     openID:'',
     info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]微信号[5]电话[6]工作经历[7]资格证书
-  photoID:'',
+    photoID:'',
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     index:1,
-
+    sex:'',
+    jianli:'',
+    exist:false,
+    _id:''
   },
 
   /**
@@ -20,7 +23,34 @@ Page({
   onLoad: function (options) {
     this.app = getApp()
     this.setData({
-      openID:wx.getStorageSync('openID')
+      openID:this.app.globalData.openID
+    })
+    db.collection('zxjianli')
+    .where({
+      _openid:this.data.openID
+    })
+    .get()
+    .then(res=>{
+      console.log('已存在简历数',res.data)
+      if(res.data.length>0){
+        this.setData({
+          jianli: res.data[0],
+          photoID: res.data[0].photo,
+          index:res.data[0].info[3],
+          exist:true,
+          _id:res.data[0]._id
+        })
+        if(res.data[0].info[1]=='m'){
+          this.setData({
+            sex:true
+          })
+        }
+        else{
+          this.setData({
+            sex:true
+          })
+        }
+      }
     })
   },
   sexChange(e){
@@ -50,7 +80,7 @@ Page({
   bindPickerChange(e){
     
     var info = this.data.info
-    info[3] = this.data.array[e.detail.value]//存入index
+    info[3] = e.detail.value//存入index
     this.setData({
       info:info,
       index:e.detail.value
@@ -112,20 +142,46 @@ Page({
     })
   },
   upload(){//上传数据库
+    var i = 0
+    for(i;i<8;i++){
+      if(!this.data.info[i]){
+        wx.showToast({
+          title: '信息不能为空',
+          icon: 'error'
+        })
+        return
+      }
+    }
     wx.showLoading({
       title: '上传中...',
     })
-    db.collection('zxjianli')
-    .add({
-      data:{
-        info:this.data.info,
-        photo:this.data.photoID
-      }
-    })
-    .then(
+    if(this.data.exist){
+      db.collection('zxjianli')
+      .doc(this.data._id)
+      .update({
+        data:{
+          info:this.data.info,
+          photo:this.data.photoID
+        }
+      })
+      .then(
         wx.hideLoading(),
         wx.navigateBack()
-    )
+      )
+    }
+    else{
+      db.collection('zxjianli')
+      .add({
+        data:{
+          info:this.data.info,
+          photo:this.data.photoID
+        }
+      })
+      .then(
+          wx.hideLoading(),
+          wx.navigateBack()
+      )
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

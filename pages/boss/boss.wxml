@@ -1,14 +1,14 @@
 <!--pages/boss/boss.wxml-->
 <view class="poster" wx:if="{{canvasType}}">
     <view class="mask" catchtap="cancelPoster"></view>
-    <canvas class="canvas" id="myCanvas" canvas-id="myCanvas" type="2d"/>
+    <canvas style="position: absolute;margin-top: 5%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 3;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
     <view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</view>
 </view>
 
 <view class="center">
     <view class="inputs" animation="{{slide_up1}}">
         <view class="lebal">岗位名:</view>
-        <input bindinput="input_job_name"/>
+        <input placeholder="不能为空" bindinput="input_job_name"/>
     </view>
     <view class="inputs" animation="{{slide_up2}}">
         <view class="lebal">工作单位:</view>
@@ -17,7 +17,7 @@
     <view class="yxdidian" animation="{{slide_up3}}">
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
             <view class="picker">
-            工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
+            工作地区：{{region[0]}}，{{region[1]}}，{{region[2]}}
             </view>
         </picker>
     </view>
@@ -29,12 +29,12 @@
         </picker>
     </view>
     <view class="inputs" animation="{{slide_up5}}">
-        <view class="lebal">岗位介绍:</view>
-        <input bindinput="input_intro" data-index="0"/>
+        <view class="lebal">岗位简介:</view>
+        <input placeholder="最大29字" bindinput="input_intro" data-index="0"/>
     </view>
     <view class="inputs" animation="{{slide_up6}}">
         <view class="lebal">详细地址:</view>
-        <input bindinput="input_address" data-index="0"/>
+        <input placeholder="最大29字" bindinput="input_address" data-index="0"/>
     </view>
     <view wx:for="{{infoList}}">
         <view class="list" animation="{{animationData[index]}}">

@@ -112,6 +112,7 @@ Page({
         }
       })
     }
+    console.log("全局变量",app.globalData)
   },
   logup(options) {
     console.log("点击登录")
