@@ -7,8 +7,8 @@
   <view class='title'>职位描述：</view>
   <view class='job_introduction'>{{jobs.introduction}}</view>
   <view class='job_provider'>职位提供者：{{jobs.company}}</view>
-  <button class='resume' wx:if="{{re_isAdd}}"plain bindtap="sendResume">已提交</button>
-  <button class='resume' wx:else plain bindtap="deleteSendResume">提交简历</button>
+  <button class='resume' wx:if="{{re_isAdd}}" plain bindtap="deleteSendResume">已提交</button>
+  <button class='resume' wx:else plain bindtap="sendResume">提交简历</button>
   <button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">已收藏</button>
   <button class='favorite' wx:else plain bindtap="addFavorites">单击收藏</button>
 

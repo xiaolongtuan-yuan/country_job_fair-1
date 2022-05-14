@@ -53,6 +53,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "pages/boss_Resume_detail/boss_Resume_detail",
+          "pathName": "pages/boss_Resume_detail/boss_Resume_detail",
+          "query": "id=undefined",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

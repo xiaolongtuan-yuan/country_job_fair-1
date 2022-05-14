@@ -55,7 +55,7 @@
     <view wx:else>
         <view class="shujv">
             <view class="datas">
-                <view>收到简历 </view>
+                <view bindtap="goToworker_resume">收到简历</view>
                 <view>{{worker.datas[0]}}</view>
             </view>
             <view class="datas">

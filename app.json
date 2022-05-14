@@ -6,7 +6,8 @@
     "pages/zxjianli/zxjianli",
     "pages/detail/detail",
     "pages/hangye/hangye",
-    "pages/worker_resume/worker_resume"
+    "pages/worker_resume/worker_resume",
+    "pages/boss_Resume_detail/boss_Resume_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

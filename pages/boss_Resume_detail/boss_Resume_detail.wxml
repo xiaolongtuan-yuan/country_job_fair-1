@@ -1,0 +1,4 @@
+<!--pages/boss_Resume_detail/boss_Resume_detail.wxml-->
+<view wx:for="{{resume_received}}" wx:for-item="resume_list">
+    <view>{{resume_list.info[1]}}————{{resume_list.info[2]}}————{{resume_list.info[6]}}</view>
+  </view>

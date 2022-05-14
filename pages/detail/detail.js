@@ -26,29 +26,17 @@ Page({
     var that = this
     wx.cloud.database().collection('jobs').get()
       .then(res => {
-        // this.setData({
-        //   jobsList: res.data
-        // })
         let id=options.id
         let result=that.getDetail(id,res.data)
         if(result.code='200'){
           that.setData({jobs:result.jobs})
         }
-        // console.log(this.data.jobs)
-        // console.log(this.data)
       })
       .catch(err => {
         console.log('请求失败',err)
       })  
-    // let id=options.id;
-    // let result=this.getDetail(id)
-    // //获取到内容
-    // if(result.code='200'){
-    //   this.setData({infomation:result.jobs})
-    // }
-    
     this.setData({openID:wx.getStorageSync('openID')})
-    // console.log(this.data.openID)
+    console.log(this.data.openID)
     db.collection('worker')
     .where({
       _openid:that.data.openID
@@ -59,6 +47,7 @@ Page({
         // console.log(res.data)
         if(res.data.length >0){
           var favor = res.data[0].worker_favor
+          console.log(favor)
           let resume = res.data[0].worker_sended
           // console.log('111',favor)
           // console.log(favor)
@@ -158,9 +147,7 @@ Page({
   },
   
   sendResume: function(options) {
-    console.log(this.data.worker_sended);
     this.data.worker_sended.push(this.data.jobs._id);
-    console.log(this.data.worker_sended);
     this.setData({re_isAdd: true});
     var that = this;
     db.collection('worker')
