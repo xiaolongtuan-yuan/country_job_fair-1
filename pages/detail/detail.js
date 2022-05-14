@@ -12,6 +12,7 @@ Page({
 
     },
     isAdd: false,
+    re_isAdd: false,
     openID: app.globalData.openID,
     worker_favor: [],
     worker_sended: [],
@@ -55,12 +56,14 @@ Page({
     .get({
       success(res){
         console.log("获取成功！",res.data)
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.length >0){
           var favor = res.data[0].worker_favor
+          let resume = res.data[0].worker_sended
           // console.log('111',favor)
           // console.log(favor)
           let len = favor.length
+          let re_len = resume.length
           // console.log(len)
           // console.log(that.data.jobs)
           for(let i = 0; i < len; i++) {
@@ -70,6 +73,14 @@ Page({
           }
           that.setData({
             worker_favor: favor,
+          })
+          for(let i = 0; i < re_len; i++) {
+            if(resume[i] == that.data.jobs._id) {
+              that.setData({re_isAdd:true})
+            }
+          }
+          that.setData({
+            worker_sended: resume,
           })
           // console.log(111,that.data.worker_favor)
         }
@@ -100,9 +111,9 @@ Page({
 
   //添加到收藏夹
   addFavorites: function(options) {
-    console.log(this.data.worker_favor)
+    // console.log(this.data.worker_favor)
     this.data.worker_favor.push(this.data.jobs._id);
-    console.log(this.data.worker_favor)
+    // console.log(this.data.worker_favor)
     // console.log(favor);  
     this.setData({worker_favor:this.data.worker_favor}); 
     this.setData({ isAdd: true });
@@ -146,6 +157,52 @@ Page({
       })
   },
   
+  sendResume: function(options) {
+    console.log(this.data.worker_sended);
+    this.data.worker_sended.push(this.data.jobs._id);
+    console.log(this.data.worker_sended);
+    this.setData({re_isAdd: true});
+    var that = this;
+    db.collection('worker')
+      .where({
+        _openid: that.data.openID
+      })
+      .update({
+        data: {
+          worker_sended: that.data.worker_sended
+        }
+      })
+      .then(res =>{
+        console.log("修改成功", res)
+      })
+      .catch(res =>{
+        console.log("修改失败", res)
+      })
+
+  },
+
+  deleteSendResume: function(options) {
+    console.log(this.data.worker_sended);
+    this.data.worker_sended.pop();
+    console.log(this.data.worker_sended);
+    this.setData({re_isAdd: false});
+    var that = this;
+    db.collection('worker')
+      .where({
+        _openid: that.data.openID
+      })
+      .update({
+        data: {
+          worker_sended: that.data.worker_sended
+        }
+      })
+      .then(res =>{
+        console.log("修改成功", res)
+      })
+      .catch(res =>{
+        console.log("修改失败", res)
+      })
+  },
   
   
 

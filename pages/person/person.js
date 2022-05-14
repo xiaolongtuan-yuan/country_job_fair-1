@@ -345,6 +345,11 @@ Page({
       url:'../boss/boss'
     })
   },
+  goToworker_resume: function(options) {
+    wx.navigateTo({
+      url: '../worker_resume/worker_resume',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
