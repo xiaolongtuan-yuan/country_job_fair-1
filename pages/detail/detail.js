@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 const db = wx.cloud.database()
+const DB = wx.cloud.database().collection("users")
 const app = getApp()
 Page({
 
@@ -100,14 +101,20 @@ Page({
 
   //添加到收藏夹
   addFavorites: function(options) {
-    console.log(this.data.worker_favor)
-    this.data.worker_favor.push(this.data.jobs._id);
-    console.log(this.data.worker_favor)
-    // console.log(favor);  
-    this.setData({worker_favor:this.data.worker_favor}); 
-    this.setData({ isAdd: true });
-    var that = this
-    db.collection('worker')
+    if (app.globalData.openID.length === 0) {
+      wx.showToast({
+        title: '您未登录~',
+        image: '/images/icons/error.png'
+      })
+    }else{
+      console.log(this.data.worker_favor)
+      this.data.worker_favor.push(this.data.jobs._id);
+      console.log(this.data.worker_favor)
+      // console.log(favor);  
+      this.setData({worker_favor:this.data.worker_favor}); 
+      this.setData({ isAdd: true });
+      var that = this
+      db.collection('worker')
       .where({
         _openid:this.data.openID
       })
@@ -122,6 +129,7 @@ Page({
       .catch(res =>{
         console.log('修改失败', res)
       })
+    }
 },
   //取消收藏
   cancelFavorites: function(options) {
@@ -197,5 +205,84 @@ Page({
   onShareAppMessage() {
 
   },
-  
+
+  /**
+   * 
+   * 导航到招聘对应的聊天
+   */
+  newchat:function(e){
+    if (app.globalData.openID.length === 0) {
+      wx.showToast({
+        title: '您未登录~',
+        image: '/images/icons/error.png'
+      })
+    }else{
+      var target = this.data.jobs._openid
+      console.log("b inse",target, this.data.jobs._openid)
+      DB.where({
+        _openid:target
+      }).get({
+        success:res=>{
+          console.log("friends inse", res.data)
+          if(res.data[0].Friends.length === 0){
+            console.log("frid ")
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:app.globalData.openID,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == app.globalData.openID})
+            if(chat.length === 0){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:app.globalData.openID,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
+
+      DB.where({
+        _openid:app.globalData.openID
+      }).get({
+        success:res=>{
+          if(res.data[0].Friends.length === 0){
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:target,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == target})
+            if(chat.length === 0){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:target,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
+      
+      console.log("inse end", target)
+      wx.navigateTo({
+        url: "../messageDetail/messageDetail?target=" + target
+      })  
+    }
+  }
 })

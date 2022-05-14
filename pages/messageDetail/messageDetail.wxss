@@ -1,0 +1,143 @@
+/* pages/messageDetail/messageDetail.wxss */
+.ava {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 20rpx;
+  margin-top: 15rpx;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0rpx;
+  max-width: 70%;
+}
+
+.username {
+  color: gray;
+  font-size: 28rpx;
+  margin: auto 20rpx;
+}
+
+.content {
+  margin-top: 10rpx;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+  padding: 20rpx 20rpx;
+  background-color: #fff;
+  margin: 10rpx 20rpx;
+  word-break: break-all;
+  text-align: left;
+}
+
+.area {
+  width: 60%;
+}
+
+.showTime {
+  font-size: 28rpx;
+  margin: 20rpx auto;
+  padding: 5rpx 40rpx;
+  text-align: center;
+  color: #9d9f90;
+}
+
+/*加载部分*/
+
+.loading_view {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.loading {
+  margin-right: 10rpx;
+  width: 45rpx;
+  height: 45rpx;
+  animation: animation 1s linear infinite;
+}
+
+@keyframes animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.subtext {
+  color: gray;
+  font-size: 28rpx;
+}
+
+/* 发送信息 */
+
+.mycomment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment_input {
+  width: 80%;
+  font-size: 32rpx;
+  height: 40rpx;
+  padding: 20rpx;
+}
+
+.commit_btn {
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.comment_bottom {
+  background: #fff;
+  position: fixed;
+  left: 64rpx;
+  bottom: 40rpx;
+  width: 600rpx;
+  z-index: 9999;
+  padding: 10rpx;
+  box-shadow: 0 5px 5px 0 rgba(154, 160, 185, 0.05), 0 5px 30px 0 rgba(166, 173, 201, 0.22);
+  border-radius: 24rpx;
+}
+
+.system-msg {
+  text-align: center;
+  margin: 20rpx;
+}
+
+.system-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.system-content {
+  color: gray;
+  font-size: 28rpx;
+}
+
+.left-box {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 30rpx;
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.right-box {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 30rpx;
+  margin-top: 20rpx;
+  justify-content: flex-end;
+}
+
+.scroll-size{
+  max-height: 960rpx;
+}

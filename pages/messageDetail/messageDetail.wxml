@@ -1,0 +1,27 @@
+<!--pages/messageDetail/messageDetail.wxml-->
+<scroll-view bindscrolltoupper="onMsgRefresh" id="dialogList" scroll-y="{{true}}" scroll-with-animation="{{true}}" class="scroll-size" scroll-top="{{topValue}}">
+  <view wx:for="{{MessageDetail.data}}" wx:key="item.content">
+    <view wx:if="{{!item.self}}" class="left-box">
+      <image class="ava" src="{{targetUser.userInfo.avatarUrl}}"></image>
+      <view class="details">
+        <text class="username">{{targetUser.userInfo.nickName}}</text>
+        <text class="content">{{item.content}}</text>
+      </view>
+   </view>
+
+   <view wx:if="{{item.self}}" class="right-box">
+    <view class="details">
+      <text class="username">{{myself.userInfo.nickName}}</text>
+      <text class="content">{{item.content}}</text> 
+    </view>
+    <image class="ava" src="{{myself.userInfo.avatarUrl}}"></image>
+   </view>
+   
+  </view>
+</scroll-view>
+
+<!--发送信息-->
+<view class="mycomment comment_bottom">
+  <textarea class="comment_input" bindinput='replyInputChange' value="{{replyContent}}" cursor-spacing="40rpx"/>
+  <image class="commit_btn" src="../../images/icons/send.png" bindtap='submitRely'/>
+</view>
