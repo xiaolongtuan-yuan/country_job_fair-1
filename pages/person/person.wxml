@@ -14,7 +14,7 @@
     <view wx:if="{{!isboss}}">    
         <view class="shujv">
             <view class="datas">
-                <view>投递 </view>
+                <view bindtap="goToworker_resume">投递 </view>
                 <view>{{worker.datas[0]}}</view>
             </view>
             <view class="datas">

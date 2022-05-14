@@ -1,0 +1,9 @@
+<!--pages/worker_resume/worker_resume.wxml-->
+
+<view wx:if="{{isboss}}"class="resume_sended_list">
+  <text>已发送简历列表</text>
+</view>
+<view wx:else class="resume_got_list">
+  <text>已收到简历列表</text>
+  <!-- <view wx:for="{{jobs}}" wx:if="{{sended}}" ></view> -->
+</view>

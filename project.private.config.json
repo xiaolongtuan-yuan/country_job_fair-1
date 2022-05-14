@@ -46,6 +46,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "pages/worker_resume/worker_resume",
+          "pathName": "pages/worker_resume/worker_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
