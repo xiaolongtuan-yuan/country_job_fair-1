@@ -23,16 +23,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      user:wx.getStorageSync('user'),
-      openID:wx.getStorageSync('openID'),
-      isboss:wx.getStorageSync('isboss')
-    })
-    app.globalData.user = wx.getStorageSync('user')
-    app.globalData.openID = wx.getStorageSync('openID')
-    app.globalData.isboss = wx.getStorageSync('isboss')
-    
-    wx.cloud.database().collection('users')
+    var openid = wx.getStorageSync('openID')
+    if(openid!=''){//缓存中有数据
+      this.setData({//加载缓存并检查数据库中数据是否被删除
+        user:wx.getStorageSync('user'),
+        openID:openid,
+        isboss:wx.getStorageSync('isboss')
+      })
+      app.globalData.user = wx.getStorageSync('user')
+      app.globalData.openID = wx.getStorageSync('openID')
+      app.globalData.isboss = wx.getStorageSync('isboss')
+
+      wx.cloud.database().collection('users')
       .where({
         _openid:this.data.openID
       })
@@ -63,53 +65,53 @@ Page({
             console.log('worker添加成功',x)
           })
         }
-        else{
+        else{//数据库中有数据则加载到本地
           var that = this
-    db.collection('worker')
-    .where({
-      _openid:this.data.openID
-    })
-    .get({
-      success(res){
-        if(res.data.length >0){
-          that.setData({
-            worker:res.data[0],
-            region:res.data[0].yx_address,
-            multiIndex:res.data[0].yx_salary
-          })
-          app.globalData.worker = res.data[0]
-          console.log("获取成功！",res.data)
-        }
-        else{
-          console.log('添加worker')
-          var worker = {
-            yx_address:['四川省','广元市','旺苍县'],//默认
-            yx_salary:[0,5],
-            datas:[0,0,0],
-            yx_post:[0,0]
-          }
           db.collection('worker')
-          .add({
-            data:{
-              yx_address:['四川省','广元市','旺苍县'],//默认
-              yx_salary:[0,5],
-              datas:[0,0,0],
-              yx_post:[0,0],
-              worker_favor:[0],
-              boss_favor:[0],
-              worker_sended:[0],
+          .where({
+            _openid:this.data.openID
+          })
+          .get({
+            success(res){
+              if(res.data.length >0){
+                that.setData({
+                  worker:res.data[0],
+                  region:res.data[0].yx_address,
+                  multiIndex:res.data[0].yx_salary
+                })
+                app.globalData.worker = res.data[0]
+                console.log("获取成功！",res.data)
+              }
+              else{
+                console.log('添加worker')
+                var worker = {
+                  yx_address:['四川省','广元市','旺苍县'],//默认
+                  yx_salary:[0,5],
+                  datas:[0,0,0],
+                  yx_post:[0,0]
+                }
+                db.collection('worker')
+                .add({
+                  data:{
+                    yx_address:['四川省','广元市','旺苍县'],//默认
+                    yx_salary:[0,5],
+                    datas:[0,0,0],
+                    yx_post:[0,0],
+                    worker_favor:[0],
+                    boss_favor:[0],
+                    worker_sended:[0],
+                  }
+                })
+                app.globalData.worker = worker
+              }
+            },
+            fail(err){
+              console.log("请求失败",err)
             }
           })
-          app.globalData.worker = worker
-        }
-      },
-      fail(err){
-        console.log("请求失败",err)
-      }
-    })
         }
       })
-    
+    }
   },
   logup(options) {
     console.log("点击登录")
@@ -123,8 +125,9 @@ Page({
           isboss:false
         })
         wx.cloud.callFunction({
-          name:'getData',
-          success: res2=>{
+          name:'getData'
+        })
+        .then(res2=>{
             console.log("请求云函数成功",res2)
             console.log(res2.result.openid)
             // this.setData({
@@ -171,10 +174,31 @@ Page({
                   console.log('worker添加成功',x)
                 })
               }
+              else{//user有数据，检查worker
+                wx.cloud.database().collection('worker')
+                .where({
+                  _openid:this.data.openID
+                })
+                .get()
+                .then(res4=>{
+                  console.log('现有worker',res4.data.length)
+                  if(res3.data.length == 0){
+                    wx.cloud.database().collection('worker')
+                    .add({
+                      data:{
+                      yx_address: this.data.region,
+                      yx_salary: this.data.multiIndex,
+                      datas:this.data.worker.datas
+                      }
+                    })
+                    .then( x=>{
+                      console.log('worker添加成功',x)
+                    })
+                  }
+                })
+              }
             })
-          }
-        })
-
+          })
       }
     })
   },
