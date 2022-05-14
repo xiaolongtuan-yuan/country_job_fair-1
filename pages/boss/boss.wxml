@@ -2,7 +2,7 @@
 <view class="poster" wx:if="{{canvasType}}">
     <view class="mask" catchtap="cancelPoster"></view>
     <canvas class="canvas" id="myCanvas" canvas-id="myCanvas" type="2d"/>
-    <button class="saveImage" bindtap="saveImage" type="primary">保存图片</button>
+    <view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</view>
 </view>
 
 <view class="center">
@@ -44,5 +44,6 @@
     </view>
     <button bindtap = "add_input" animation="{{slide_up7}}">+</button>
     <button bindtap = "upload" animation="{{slide_up8}}">完成</button>
+    <button bindtap = "drawCanvas2D" animation="{{slide_up8}}">海报</button>
 
 </view>

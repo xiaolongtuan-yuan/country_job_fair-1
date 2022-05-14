@@ -75,11 +75,36 @@ button{
     bottom: 1500rpx;
     width: 80rpx;
     z-index: 3; */
+    text-align: center;
+    font-size: 45rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+    height: 100rpx;
+    width:250rpx;
+    border-radius: 30rpx;
+    font-family: inter;
+    color: white;
     position: absolute;
-    bottom: 50%;
+    bottom: 80px;
     z-index: 3;
     height: 80rpx;
     margin-top: 800rpx;
-    background-color: #41BDF9;
+    background-color: #17C3B2;
 }
-
+.saveImage-hover{
+    text-align: center;
+    font-size: 45rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+    height: 100rpx;
+    width:250rpx;
+    border-radius: 30rpx;
+    font-family: inter;
+    color: #17C3B2;
+    position: absolute;
+    bottom: 80px;
+    z-index: 3;
+    height: 80rpx;
+    margin-top: 800rpx;
+    background-color: white;
+}

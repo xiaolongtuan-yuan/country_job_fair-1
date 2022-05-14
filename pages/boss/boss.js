@@ -161,6 +161,13 @@ Page({
   },//退出海报
 
   drawCanvas2D() {
+    var text_interval = 30
+    var text_num = 0
+    var text_begin = 200
+    var line_interval = 25
+    var line_num = 0
+    var ecli_begin = 188
+    var ecli_interval = 27
     this.setData({
       canvasType:true
     })
@@ -187,34 +194,90 @@ Page({
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      await this.photo()
-      var src = this.data.src
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 1.png', 180, 100, 420/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/2.png', 150, 90, 55/rpx);
+      await this.drawImageByLoad(canvas, ctx, '../../images/1.png', 210, 30, 45/rpx);
 
-      await this.getQrCode()
+      ctx.fillStyle = '#000';
+      ctx.font = `bolder 25px inter`;
 
-      await this.drawImageByLoad(canvas, ctx, src, 0, 0, 550/rpx);
+      ctx.fillText(`${this.data.job_name}`, 30, 160);
+
+      ctx.font = `normal 15px inter`;
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      ctx.fillText(`工作单位：${this.data.company}`, 25, text_begin+(text_num++)*text_interval);
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      ctx.fillText(`工作区域：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 25, text_begin+(text_num++)*text_interval);
       
-      ctx.fillStyle = '#fff';
-      this.setFontSizeByFont(ctx, 50 * rpx);
-      ctx.fillText('工作招聘', 100, 70 * rpx);
-
-      this.setFontSizeByFont(ctx, 30 * rpx);
-      ctx.fillText(`岗位：${this.data.job_name}`, 30, 75);
-      ctx.fillText(`工作单位：${this.data.company}`, 30, 100);
-      ctx.fillText(`地区：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 30, 125);
-      ctx.fillText(`工作单位：${this.data.address}`, 30, 150);
-      ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 30, 175);
- 
-      var i = 0;
-      for(i=0;i<this.data.orthers.length;i++){
-        ctx.fillText(`${this.data.orthers[i]}`, 30, 200+i*30);
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      var str = this.data.address
+      if(str.length <= 12){
+        ctx.fillText(`工作地点：${str}`, 25, text_begin+(text_num++)*text_interval);
+      }
+      else{
+        ctx.fillText(`工作地点：${str.slice(0,11)}`, 25, text_begin+(text_num)*text_interval);
+        str = str.slice(12);
+        line_num++;
+        while(str.length > 17){
+          ctx.fillText(`${str.slice(0,16)}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
+          str = str.slice(17);
+        }
+        ctx.fillText(`${str}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
       }
 
-      await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 100/rpx, 400/rpx,100/rpx)
-      this.setFontSizeByFont(ctx, 25 * rpx);
-      ctx.fillText('扫描二维码进入小程序查看详情', 60, 520);
-      this.myCanvas = canvas
-    })
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx);
+      ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
+      
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
+      var str = this.data.address
+      if(str.length <= 12){
+        ctx.fillText(`工作简介：${str}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
+      }
+      else{
+        ctx.fillText(`工作简介：${str.slice(0,11)}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num));
+        str = str.slice(12);
+        line_num++;
+        while(str.length > 17){
+          ctx.fillText(`${str.slice(0,16)}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
+          str = str.slice(17);
+        }
+        ctx.fillText(`${str}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
+      }
+
+
+
+      ctx.fillText('扫描下方二维码了解详情', 130, 420);
+      await this.getQrCode()
+      await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 200/rpx, 430/rpx,100/rpx)
+      
+      
+      //   await this.photo()
+    //   var src = this.data.src
+
+    //   await this.getQrCode()
+
+    //   await this.drawImageByLoad(canvas, ctx, src, 0, 0, 550/rpx);
+      
+    //   ctx.fillStyle = '#fff';
+    //   this.setFontSizeByFont(ctx, 50 * rpx);
+
+    //   this.setFontSizeByFont(ctx, 30 * rpx);
+    //   
+    //   ctx.fillText(`工作单位：${this.data.company}`, 30, 100);
+    //   ctx.fillText(`地区：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 30, 125);
+    //   ctx.fillText(`工作单位：${this.data.address}`, 30, 150);
+    //   ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 30, 175);
+ 
+    //   var i = 0;
+    //   for(i=0;i<this.data.orthers.length;i++){
+    //     ctx.fillText(`${this.data.orthers[i]}`, 30, 200+i*30);
+    //   }
+
+    //   await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 100/rpx, 400/rpx,100/rpx)
+    //   this.setFontSizeByFont(ctx, 25 * rpx);
+    //   ctx.fillText('扫描二维码进入小程序查看详情', 60, 520);
+       this.myCanvas = canvas
+     })
 
   },
   photo(){
