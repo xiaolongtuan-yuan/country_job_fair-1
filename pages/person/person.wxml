@@ -120,26 +120,6 @@
                 <view class="button-tuichu" hover-class="button-tuichu-havor" bindtap="tuichu" >退出登录</view>
             </view>
         </view>
-<<<<<<< HEAD
-        <view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
-        <view class = "info" animation="{{slide_up3}}">法律维权</view>
-        <view class = "info" animation="{{slide_up4}}">薪资参考</view>
-        <button class="boss" bindtap = "isboss" animation="{{slide_up5}}">我是老板</button>
-    </view>
-    <view wx:else>
-        <view class="shujv">
-            <view class="datas">
-                <view bindtap="goToworker_resume">收到简历</view>
-                <view>{{worker.datas[0]}}</view>
-            </view>
-            <view class="datas">
-                <view>交流 </view>
-                <view>{{worker.datas[1]}}</view>
-            </view>
-            <view class="datas">
-                <view bindtap="goToboss_favorite">收藏 </view>
-                <view>{{worker.datas[2]}}</view>
-=======
     
         <view wx:else>
             <view class="top">
@@ -147,8 +127,8 @@
                 <view class="top-right">
                     <text class="top-right-name">{{user.nickName}}</text>
                     <view class="top-right-data">
-                        <text class="top-right-data-data1">收到简历{{worker.datas[0]}}</text>
-                        <text class="top-right-data-data2">收藏{{worker.datas[2]}}</text>
+                        <text class="top-right-data-data1" bindtap="goToworker_resume">收到简历{{worker.datas[0]}}</text>
+                        <text class="top-right-data-data2" bindtap="goToboss_favorite">收藏{{worker.datas[2]}}</text>
                     </view>
                 </view>
             </view>
@@ -169,7 +149,6 @@
                 
                 <view class="button-zhaoping" hover-class="button-zhaoping-havor" bindtap = "findworker">发布招聘</view>
                 <view class="button-gongzuo" hover-class="button-gongzuo-havor"bindtap = "isboss">找工作</view>
->>>>>>> 893d1b91a90e8105711317476a4846fce7261c24
             </view>
         </view>
     </view>
