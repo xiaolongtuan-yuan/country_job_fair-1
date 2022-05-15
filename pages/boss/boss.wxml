@@ -1,6 +1,6 @@
 <!--pages/boss/boss.wxml-->
 <view class="poster" wx:if="{{canvasType}}">
-    <view class="mask" catchtap="cancelPoster"></view>
+    <view class="mask"></view>
     <canvas style="position: absolute;margin-top: 5%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 3;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
     <view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</view>
 </view>
