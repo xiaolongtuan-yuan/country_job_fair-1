@@ -1,40 +1,48 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/person/person",
-    "pages/boss/boss",
-    "pages/zxjianli/zxjianli",
-    "pages/detail/detail",
-    "pages/hangye/hangye",
-    "pages/worker_resume/worker_resume",
-    "pages/boss_Resume_detail/boss_Resume_detail",
-    "pages/worker_favorite/worker_favorite",
-    "pages/boss_favorite/boss_favorite",
-    "pages/boss_Resume_detail_In/boss_Resume_detail_In"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#52884f",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/home2.png",
-        "selectedIconPath": "images/home.png"
-      },
-      {
-        "pagePath": "pages/person/person",
-        "text": "我的",
-        "iconPath": "images/wode2.png",
-        "selectedIconPath": "images/wode.png"
-      }
-    ]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/person/person",
+        "pages/boss/boss",
+        "pages/zxjianli/zxjianli",
+        "pages/detail/detail",
+        "pages/hangye/hangye",
+        "pages/dialog/dialog",
+        "pages/messageDetail/messageDetail",
+        "pages/Friends/Friends",
+        "pages/worker_resume/worker_resume",
+        "pages/boss_Resume_detail/boss_Resume_detail",
+        "pages/worker_favorite/worker_favorite",
+        "pages/boss_favorite/boss_favorite",
+        "pages/boss_Resume_detail_In/boss_Resume_detail_In"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color":"#52884f",
+        "list": [{
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath": "images/home2.png",
+          "selectedIconPath": "images/home.png"
+        },
+        {
+          "pagePath": "pages/Friends/Friends",
+          "text": "消息",
+          "iconPath": "images/messages.png",
+          "selectedIconPath":"images/messages2.png"
+        },
+        {
+          "pagePath": "pages/person/person",
+          "text": "我的",
+          "iconPath": "images/wode2.png",
+          "selectedIconPath":"images/wode.png"
+        } 
+      ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }
