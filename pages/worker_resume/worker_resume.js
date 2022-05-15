@@ -1,5 +1,6 @@
 // pages/worker_resume/worker_resume.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -9,6 +10,8 @@ Page({
     isboss: false,
     worker_resume: [],
     jobs: {},
+    openID:app.globalData.openID,
+    jobs_had: [],
   },
 
   /**
@@ -16,15 +19,17 @@ Page({
    */
   onLoad(options) {
     this.setData({isboss:wx.getStorageSync('isboss')})
+    this.setData({openID:wx.getStorageSync('openID')})
+    // this.setData({openID:app.globalData.openID})
     var that = this  
     db.collection('worker')
       .where({
-        _openid: this.data.openID
+        _openid: that.data.openID
       })
       .get({
         success(res) {
           if(res.data.length >0){
-            var worker_sended = that.res.data[0].worker_sended
+            var worker_sended = res.data[0].worker_sended
             if(!that.data.isboss){
               that.setData({worker_resume: worker_sended})
             }
@@ -38,8 +43,8 @@ Page({
         console.log(res.data)
         let result = that.getjobs(that.data.worker_resume, res.data)
         that.setData({jobs:result})
-        console.log(that.data.worker_resume)
-        console.log(that.data.jobs)
+        let result_boss = that.getjobs_had(res.data)
+        that.setData({jobs_had: result_boss})
       })
       .catch(err => {
         console.log('请求失败',err)
@@ -58,6 +63,23 @@ Page({
       }
     }
     return jobs;
+  },
+  getjobs_had: function(jobsList) {
+    let len = jobsList.length;
+    let jobs_had = [];
+    for(let i = 0; i < len; i++) {
+      if(jobsList[i]._openid == this.data.openID) {
+        jobs_had.push(jobsList[i]);
+      }
+    }
+    return jobs_had;
+  },
+  boss_goToResume: function(e) {
+    let id=e.currentTarget.dataset.id;
+    console.log('ID',e.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../boss_Resume_detail/boss_Resume_detail?id='+id
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

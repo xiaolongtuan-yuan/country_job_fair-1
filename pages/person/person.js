@@ -33,7 +33,7 @@ Page({
       app.globalData.user = wx.getStorageSync('user')
       app.globalData.openID = wx.getStorageSync('openID')
       app.globalData.isboss = wx.getStorageSync('isboss')
-
+      console.log('打印globalData', app.globalData)
       wx.cloud.database().collection('users')
       .where({
         _openid:this.data.openID
@@ -358,6 +358,16 @@ Page({
   goToworker_resume: function(options) {
     wx.navigateTo({
       url: '../worker_resume/worker_resume',
+    })
+  },
+  goToworker_favorite: function(options) {
+    wx.navigateTo({
+      url: '../worker_favorite/worker_favorite',
+    })
+  },
+  goToboss_favorite: function(options) {
+    wx.navigateTo({
+      url: '../boss_favorite/boss_favorite',
     })
   },
   /**
