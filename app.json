@@ -1,40 +1,48 @@
 {
-    "pages": [
-        "pages/person/person",
-        "pages/p/p",
-        "pages/index/index",
-        "pages/boss/boss",
-        "pages/zxjianli/zxjianli",
-        "pages/detail/detail",
-        "pages/hangye/hangye",
-        "pages/dialog/dialog",
-        "pages/messageDetail/messageDetail",
-        "pages/Friends/Friends",
-        "pages/worker_resume/worker_resume",
-        "pages/boss_Resume_detail/boss_Resume_detail",
-        "pages/worker_favorite/worker_favorite",
-        "pages/boss_favorite/boss_favorite",
-        "pages/boss_Resume_detail_In/boss_Resume_detail_In"
-    ],
-    "window": {
-        "navigationStyle": "custom"
-    },
-    "tabBar": {
-        "color":"#52884f",
-        "list": [{
+  "pages": [
+      "pages/index/index",
+      "pages/person/person",
+      "pages/boss/boss",
+      "pages/zxjianli/zxjianli",
+      "pages/detail/detail",
+      "pages/hangye/hangye",
+      "pages/dialog/dialog",
+      "pages/messageDetail/messageDetail",
+      "pages/Friends/Friends",
+      "pages/worker_resume/worker_resume",
+      "pages/boss_Resume_detail/boss_Resume_detail",
+      "pages/worker_favorite/worker_favorite",
+      "pages/boss_favorite/boss_favorite",
+      "pages/boss_Resume_detail_In/boss_Resume_detail_In"
+  ],
+  "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "Weixin",
+      "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+      "color":"#52884f",
+      "list": [{
           "pagePath": "pages/index/index",
           "text": "首页",
           "iconPath": "images/shouye.png",
           "selectedIconPath": "images/shouye1.png"
-        },
-        {
-          "pagePath": "pages/person/person",
+      },
+      {
+        "pagePath": "pages/Friends/Friends",
+        "text": "消息",
+        "iconPath": "images/messages.png",
+        "selectedIconPath":"images/messages2.png"
+      },
+      {
+        "pagePath": "pages/person/person",
             "text": "我的",
             "iconPath": "images/wode.png",
             "selectedIconPath":"images/wode1.png"
-        }
-      ]
-      },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+      } 
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }
