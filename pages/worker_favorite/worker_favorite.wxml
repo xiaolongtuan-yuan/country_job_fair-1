@@ -1,0 +1,16 @@
+<!--pages/worker_favorite/worker_favorite.wxml-->
+  <view id='favor_list'>
+    <text class='title'>我的收藏</text>
+    <view class='list-item' wx:for="{{jobs}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+      <view class='jobs-ts'>
+      <view>
+      <text class='jobs-title'>职务名称：{{jobs.job_name}}</text>
+      <text class='jobs-salary'>薪资：{{jobs.salary}}</text>
+      </view>
+      <view>
+      <text class='jobs-address'>{{jobs.address}}</text>
+      <text class='jobs-others'>其他信息：{{jobs.orthers}}</text>
+      </view>
+      </view>
+    </view>  
+</view>

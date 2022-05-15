@@ -7,7 +7,10 @@
     "pages/detail/detail",
     "pages/hangye/hangye",
     "pages/worker_resume/worker_resume",
-    "pages/boss_Resume_detail/boss_Resume_detail"
+    "pages/boss_Resume_detail/boss_Resume_detail",
+    "pages/worker_favorite/worker_favorite",
+    "pages/boss_favorite/boss_favorite",
+    "pages/boss_Resume_detail_In/boss_Resume_detail_In"
   ],
   "window": {
     "backgroundTextStyle": "light",

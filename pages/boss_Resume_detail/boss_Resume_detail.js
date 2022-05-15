@@ -59,6 +59,12 @@ Page({
     }
     return result;
   },
+  goToDetail: function(e) {
+    let id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../boss_Resume_detail_In/boss_Resume_detail_In?id='+id
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

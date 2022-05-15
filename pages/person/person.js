@@ -350,6 +350,16 @@ Page({
       url: '../worker_resume/worker_resume',
     })
   },
+  goToworker_favorite: function(options) {
+    wx.navigateTo({
+      url: '../worker_favorite/worker_favorite',
+    })
+  },
+  goToboss_favorite: function(options) {
+    wx.navigateTo({
+      url: '../boss_favorite/boss_favorite',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

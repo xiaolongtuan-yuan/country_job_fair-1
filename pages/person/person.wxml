@@ -22,7 +22,7 @@
                 <view>{{worker.datas[1]}}</view>
             </view>
             <view class="datas">
-                <view>收藏 </view>
+                <view bindtap="goToworker_favorite">收藏 </view>
                 <view>{{worker.datas[2]}}</view>
             </view>
         </view>
@@ -63,7 +63,7 @@
                 <view>{{worker.datas[1]}}</view>
             </view>
             <view class="datas">
-                <view>收藏 </view>
+                <view bindtap="goToboss_favorite">收藏 </view>
                 <view>{{worker.datas[2]}}</view>
             </view>
         </view>

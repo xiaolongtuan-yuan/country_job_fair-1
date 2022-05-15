@@ -1,0 +1,12 @@
+<!--pages/boss_Resume_detail_In/boss_Resume_detail_In.wxml-->
+<view class="worker_detail">
+  <text>简历详情信息</text>
+  <view>姓名：{{worker_detail[0].info[0]}}</view>
+  <view>性别：{{worker_detail[0].info[1]}}</view>
+  <view>年龄：{{worker_detail[0].info[2]}}</view>
+  <view>学历：{{worker_detail[0].info[3]}}</view>
+  <view>电话：{{worker_detail[0].info[5]}}</view>
+  <view>等等......</view>
+  <button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">已收藏</button>
+  <button class='favorite' wx:else plain bindtap="addFavorites">单击收藏</button>
+</view>

@@ -1,5 +1,5 @@
-<!--pages/boss_Resume_detail/boss_Resume_detail.wxml-->
-<view wx:for="{{resume_received}}" wx:for-item="resume_list" bindtap='goToDetail'
+<!--pages/boss_favorite/boss_favorite.wxml-->
+<view wx:for="{{resumes}}" wx:for-item="resume_list" bindtap='goToDetail'
  data-id='{{resume_list._openid}}'>
     <view>{{resume_list.info[0]}}————{{resume_list.info[1]}}————{{resume_list.info[2]}}</view>
-  </view>
+</view>
