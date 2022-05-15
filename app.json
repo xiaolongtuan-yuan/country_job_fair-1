@@ -12,10 +12,7 @@
         "pages/Friends/Friends"
     ],
     "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black"
+        "navigationStyle": "custom"
     },
     "tabBar": {
         "color":"#52884f",

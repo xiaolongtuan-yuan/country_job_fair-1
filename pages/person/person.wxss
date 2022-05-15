@@ -1,76 +1,4 @@
-/* pages/person/person.wxss */
-/* .top{
-    background-color: antiquewhite;
-    display: flex;
-    padding: 30rpx 60rpx;
-    justify-content: space-between;
-}
-.left{
-
-}
-.tuichu{
-    border-radius: 15rpx;
-    text-align: center;
-    margin-top: 60rpx;
-    color: white;
-    background-color: darkgreen;
-}
-.touxiang{
-    height: 150rpx;
-    width: 150rpx;
-    border-radius: 75rpx;
-}
-.shujv{
-    background-color: aquamarine;
-    display: flex;
-}
-.datas{
-    margin: 30rpx;
-    display: flex;
-}
-.font1{
-    margin: 60rpx;
-}
-
-.yixiang{
-    background-color:bisque;
-
-    position: relative;
-    top:200px
-}
-.boss_didian{
-    background-color:bisque;
-    position: relative;
-    top:200px
-}
-.yxdidian{
-    background-color: aliceblue;
-}
-.yxxinchou{
-    background-color: aqua;
-}
-.yxpost{
-    background-color:aquamarine;
-}
-.zxjianli{
-    background-color: aliceblue;
-    display: flex;
-    position: relative;
-    top:200px
-}
-.info{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.boss{
-    display: flex;
-    position: relative;
-    top:200px
-} */
-
 /* 调整 */
-/* pages/p/p.wxss */
 .entire{
     background-color: #E5E5E5;
     height: 100vh;
@@ -79,7 +7,7 @@
 .top{
     position: absolute;
     background-color: #17C3B2;
-    height: 380rpx;
+    height: 460rpx;
     width: 100%;
     border-bottom-left-radius: 100rpx;
     border-bottom-right-radius: 100rpx;
@@ -89,13 +17,13 @@
     height: 180rpx;
     width: 180rpx;
     border-radius: 90rpx;
-    margin-top: 150rpx;
+    margin-top: 192rpx;
     margin-left: 60rpx;
     background-color: white;
 }
 .top-right{
     color: #fff;
-    margin-top: 150rpx;
+    margin-top: 192rpx;
     margin-left: 60rpx;
     display: flex;
     flex-direction: column;
@@ -122,10 +50,10 @@
 }
 .yixiang{
     position: absolute;
-    top: 400rpx;
+    top: 492rpx;
     left: 56rpx;
     background-color: #fff;
-    height: 330rpx;
+    height: 346rpx;
     width: 640rpx;
     box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
     border-radius: 40rpx;
@@ -175,10 +103,10 @@
 }
 .gongneng{
     position: absolute;
-    top: 750rpx;
+    top: 870rpx;
     left: 56rpx;
     background-color: #fff;
-    height: 310rpx;
+    height: 320rpx;
     width: 640rpx;
     box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
     border-radius: 40rpx;
@@ -213,7 +141,7 @@
 }
 .gongneng-middle-falv-txt{
     font-size: 30rpx;
-    margin-top: 18rpx;
+    margin-top: 19rpx;
 }
 .gongneng-bottom-xinzi{
     display: flex;
@@ -239,7 +167,7 @@
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1080rpx;
+    top:1220rpx;
 }
 .button-boss-havor{
     background-color: white;
@@ -256,7 +184,7 @@
     color: #C2C2C2;
     border-radius: 80rpx;
     position: absolute;
-    top:1190rpx;
+    top:1344rpx;
 }
 .button-tuichu-havor{
     background-color: #C2C2C2;
@@ -266,7 +194,7 @@
 /* boss */
 .boss{
     position: absolute;
-    top: 400rpx;
+    top: 508rpx;
     left: 56rpx;
     background-color: #fff;
     height: 150rpx;
@@ -315,7 +243,7 @@
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1080rpx;
+    top:1220rpx;
 }
 .button-zhaoping-havor{
     background-color: white;
@@ -332,7 +260,7 @@
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1190rpx;
+    top:1344rpx;
 }
 .button-gongzuo-havor{
     background-color: white;
