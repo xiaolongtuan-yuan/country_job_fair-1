@@ -1,75 +1,3 @@
-/* pages/person/person.wxss */
-/* .top{
-    background-color: antiquewhite;
-    display: flex;
-    padding: 30rpx 60rpx;
-    justify-content: space-between;
-}
-.left{
-
-}
-.tuichu{
-    border-radius: 15rpx;
-    text-align: center;
-    margin-top: 60rpx;
-    color: white;
-    background-color: darkgreen;
-}
-.touxiang{
-    height: 150rpx;
-    width: 150rpx;
-    border-radius: 75rpx;
-}
-.shujv{
-    background-color: aquamarine;
-    display: flex;
-}
-.datas{
-    margin: 30rpx;
-    display: flex;
-}
-.font1{
-    margin: 60rpx;
-}
-
-.yixiang{
-    background-color:bisque;
-
-    position: relative;
-    top:200px
-}
-.boss_didian{
-    background-color:bisque;
-    position: relative;
-    top:200px
-}
-.yxdidian{
-    background-color: aliceblue;
-}
-.yxxinchou{
-    background-color: aqua;
-}
-.yxpost{
-    background-color:aquamarine;
-}
-.zxjianli{
-    background-color: aliceblue;
-    display: flex;
-    position: relative;
-    top:200px
-}
-.info{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.boss{
-    display: flex;
-    position: relative;
-    top:200px
-} */
-
-/* 调整 */
 /* pages/p/p.wxss */
 .entire{
     background-color: #E5E5E5;
@@ -199,6 +127,7 @@
 }
 .gongneng-bottom-jianli-txt{
     font-size: 30rpx;
+
 }
 
 .gongneng-middle-falv{
@@ -213,7 +142,7 @@
 }
 .gongneng-middle-falv-txt{
     font-size: 30rpx;
-    margin-top: 18rpx;
+    margin-top: 15rpx;
 }
 .gongneng-bottom-xinzi{
     display: flex;
@@ -226,8 +155,7 @@
     margin-top: 15rpx;
 }
 .gongneng-bottom-xinzi-txt{
-    margin-top: 12rpx;
-    font-size: 30rpx;
+    margin-top: 5rpx;
 }
 .button-boss{
     text-align: center;
@@ -263,6 +191,7 @@
     color: white;
 }
 
+
 /* boss */
 .boss{
     position: absolute;
@@ -280,10 +209,8 @@
     padding: 20rpx 0rpx 20rpx 0rpx;
     margin: 0rpx 40rpx 0rpx 40rpx;
     display: flex;
-    width: 100%;
     align-items:center;
     border: none;
- 
 }
 .boss-top-left{
     width: 10rpx;
@@ -293,9 +220,10 @@
     border-radius: 4rpx;
 }
 .boss-top-right{
-    width: 500rpx;
-    margin-left: 30rpx;
+    margin-left: 10rpx;
     display: flex;
+
+    align-items:center;
     justify-content:space-between;
 }
 .boss-region-text1{

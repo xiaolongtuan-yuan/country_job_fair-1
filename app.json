@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/person/person",
+        "pages/p/p",
+        "pages/index/index",
         "pages/boss/boss",
         "pages/zxjianli/zxjianli",
         "pages/detail/detail",
@@ -21,6 +22,7 @@
         "list": [{
           "pagePath": "pages/index/index",
           "text": "首页",
+<<<<<<< HEAD
           "iconPath": "images/home2.png",
           "selectedIconPath": "images/home.png"
         },
@@ -38,6 +40,19 @@
         } 
       ]
     },
+=======
+          "iconPath": "images/shouye.png",
+          "selectedIconPath": "images/shouye1.png"
+        },
+        {
+          "pagePath": "pages/person/person",
+            "text": "我的",
+            "iconPath": "images/wode.png",
+            "selectedIconPath":"images/wode1.png"
+        }
+      ]
+      },
+>>>>>>> yuan
     "style": "v2",
     "sitemapLocation": "sitemap.json"
 }

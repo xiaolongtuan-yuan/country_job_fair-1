@@ -9,25 +9,23 @@ radio-group{
     display: flex;
     display: flex;
     position: relative;
-    top:200px
+
 }
 .text{
     display: flex;
     position: relative;
-    top:200px
+
 }
 .xinbie{
     display: flex;
     position: relative;
-    top:200px
+
 }
 .jiaoyv{
     display: flex;
     position: relative;
-    top:200px
 }
 .finish{
     display: flex;
     position: relative;
-    top:200px
 }
