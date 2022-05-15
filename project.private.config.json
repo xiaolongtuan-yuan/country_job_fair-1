@@ -48,36 +48,8 @@
           "scene": null
         },
         {
-          "name": "pages/worker_resume/worker_resume",
-          "pathName": "pages/worker_resume/worker_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/boss_Resume_detail/boss_Resume_detail",
-          "pathName": "pages/boss_Resume_detail/boss_Resume_detail",
-          "query": "id=undefined",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/worker_favorite/worker_favorite",
-          "pathName": "pages/worker_favorite/worker_favorite",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/boss_Resume_detail_In/boss_Resume_detail_In",
-          "pathName": "pages/boss_Resume_detail_In/boss_Resume_detail_In",
-          "query": "id=oF9n75D0NqWVbUzXGmB8ygyD3a-Q",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/boss_favorite/boss_favorite",
-          "pathName": "pages/boss_favorite/boss_favorite",
+          "name": "",
+          "pathName": "pages/p/p",
           "query": "",
           "launchMode": "default",
           "scene": null
