@@ -1,7 +1,7 @@
 
 <view class="top">在线简历</view>
-<view class = "text" animation="{{slide_up1}}">姓名：</view>
-<input type="text" bindinput="input_name" />
+<view class = "text" animation="{{slide_up1}}" >姓名：</view>
+<input type="text" bindinput="input_name" value="{{jianli.info[0]}}"/>
 <view class="photo" animation="{{slide_up2}}">照片
     <image  wx:if="{{photoID}}" mode="aspectFit" src="{{photoID}}"/>
     <button type = "default" wx:else bindtap = "photo_upload" >上传</button>
@@ -11,27 +11,27 @@
     <view>性别：</view>
     <radio-group bindchange="sexChange">
         <view>女
-            <radio value="f"/>
+            <radio checked="{{sex}}" value="f"/>
         </view>
         <view>男
-            <radio value="m"/>
+            <radio checked="{{!sex}}" value="m"/>
         </view>
         
     </radio-group>
 </view>
 <view class = "text" animation="{{slide_up4}}">年龄：</view>
-<input type="number" bindinput="input_age" />
+<input type="number" bindinput="input_age" value="{{jianli.info[2]}}"/>
 <picker class="jiaoyv" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" animation="{{slide_up5}}">
             <view class="picker">
             教育水平：{{array[index]}}
             </view>
 </picker>
 <view class = "text" animation="{{slide_up6}}">微信号：</view>
-<input type="number" bindinput="input_wxid" />
+<input type="number" bindinput="input_wxid" value="{{jianli.info[4]}}"/>
 <view class = "text" animation="{{slide_up7}}">电话：</view>
-<input type="number" bindinput="input_tel" />
+<input type="number" bindinput="input_tel" value="{{jianli.info[5]}}"/>
 <view class = "text" animation="{{slide_up8}}">工作经历：</view>
-<input type="text" bindinput="input_workexp" />
+<input type="text" bindinput="input_workexp" value="{{jianli.info[6]}}" placeholder="没有填无"/>
 <view class = "text" animation="{{slide_up9}}">资格证书：</view>
-<input type="text" bindinput="input_credential" />
+<input type="text" bindinput="input_credential" value="{{jianli.info[7]}}" placeholder="没有填无"/>
 <button class="finish" type="primary" bindtap = "upload" animation="{{slide_up10}}">完成</button>

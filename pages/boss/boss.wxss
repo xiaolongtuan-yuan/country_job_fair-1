@@ -54,21 +54,7 @@ button{
     width: 100%;
     z-index: 2;
 }
-.poster .canvas{
-    /* position: absolute;
-    margin: 5%;
-    height: 1200rpx;
-    width: 90%;
-    background-color: #fff;
-    z-index: 3; */
-    position: absolute;
-    margin-top: 5%;
-    height: 550px;
-    width: 300px;
-    background-color: white;
-    border-radius: 20rpx;
-    z-index: 3;
-}
+
 
 .saveImage{
     /* position: absolute;
@@ -85,7 +71,7 @@ button{
     font-family: inter;
     color: white;
     position: absolute;
-    bottom: 80px;
+    bottom: 70rpx;
     z-index: 3;
     height: 80rpx;
     margin-top: 800rpx;
@@ -102,7 +88,7 @@ button{
     font-family: inter;
     color: #17C3B2;
     position: absolute;
-    bottom: 80px;
+    bottom: 70rpx;
     z-index: 3;
     height: 80rpx;
     margin-top: 800rpx;

@@ -41,12 +41,13 @@ Page({
       .get()
       .then(res3=>{
         console.log('现有用户',res3.data.length)
-        if(res3.data.length == 0){
+        if(res3.data.length === 0){
           wx.cloud.database().collection('users')
           .add({
             data:{
             touxiang: this.data.user.avatarUrl,
             name: this.data.user.nickName,
+            Friends:[],
             isboss: false
             }
           })
@@ -65,7 +66,10 @@ Page({
             console.log('worker添加成功',x)
           })
         }
-        else{//数据库中有数据则加载到本地
+        else{
+          app.globalData.Friends = res3.data[0].Friends
+          console.log("init")
+          console.log( res3.data[0], app.globalData.Friends)
           var that = this
           db.collection('worker')
           .where({
@@ -100,6 +104,7 @@ Page({
                     worker_favor:[0],
                     boss_favor:[0],
                     worker_sended:[0],
+
                   }
                 })
                 app.globalData.worker = worker
@@ -112,6 +117,7 @@ Page({
         }
       })
     }
+    console.log("全局变量",app.globalData)
   },
   logup(options) {
     console.log("点击登录")
@@ -154,9 +160,10 @@ Page({
                 wx.cloud.database().collection('users')
                 .add({
                   data:{
-                  touxiang: res.userInfo.avatarUrl,
-                  name: res.userInfo.nickName,
-                  isboss: false
+                    touxiang: res.userInfo.avatarUrl,
+                    name: res.userInfo.nickName,
+                    Friends:[],
+                    isboss: false
                   }
                 })
                 .then( x=>{
@@ -173,8 +180,11 @@ Page({
                 .then( x=>{
                   console.log('worker添加成功',x)
                 })
-              }
+              }      
               else{//user有数据，检查worker
+                app.globalData.Friends = res3.data[0].Friends
+                console.log("init")
+                console.log( res3.data[0], app.globalData.Friends)
                 wx.cloud.database().collection('worker')
                 .where({
                   _openid:this.data.openID

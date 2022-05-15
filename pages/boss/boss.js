@@ -127,6 +127,18 @@ Page({
         title:"未输入岗位名！"
       })
     }
+    if(this.data.address.length>29){
+      wx.showToast({
+        icon:"error",
+        title:"地址最多29字！"
+      })
+    }
+    if(this.data.intro.length>29){
+      wx.showToast({
+        icon:"error",
+        title:"简介最多29字！"
+      })
+    }
     else{
       wx.showLoading({
         title: '上传招聘中...',
@@ -229,7 +241,7 @@ Page({
       ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
       
       await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
-      var str = this.data.address
+      var str = this.data.intro
       if(str.length <= 12){
         ctx.fillText(`工作简介：${str}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
       }
