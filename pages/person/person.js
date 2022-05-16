@@ -212,6 +212,11 @@ Page({
       }
     })
   },
+  guangguang(){
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
   tuichu(){
     wx.removeStorageSync('user')
     wx.removeStorageSync('isboss')

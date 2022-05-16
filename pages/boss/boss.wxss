@@ -1,5 +1,5 @@
 /* pages/boss/boss.wxss */
-.center{
+/* .center{
     margin: auto;
     width: 70%;
 }
@@ -34,7 +34,7 @@ button{
 }
 
 /* 海报弹窗 */
-.poster {
+/* .poster {
     position: fixed;
     left: 0;
     top: 0;
@@ -57,10 +57,7 @@ button{
 
 
 .saveImage{
-    /* position: absolute;
-    bottom: 1500rpx;
-    width: 80rpx;
-    z-index: 3; */
+
     text-align: center;
     font-size: 45rpx;
     font-weight: bold;
@@ -93,4 +90,230 @@ button{
     height: 80rpx;
     margin-top: 800rpx;
     background-color: white;
+} */ 
+.poster {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1;
+}
+.poster .mask{
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+
+.saveImage{
+
+    text-align: center;
+    font-size: 45rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+    height: 100rpx;
+    width:250rpx;
+    border-radius: 30rpx;
+    font-family: inter;
+    color: white;
+    position: absolute;
+    bottom: 70rpx;
+    z-index: 3;
+    height: 80rpx;
+    margin-top: 800rpx;
+    background-color: #17C3B2;
+}
+.saveImage-hover{
+    text-align: center;
+    font-size: 45rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+    height: 100rpx;
+    width:250rpx;
+    border-radius: 30rpx;
+    font-family: inter;
+    color: #17C3B2;
+    position: absolute;
+    bottom: 70rpx;
+    z-index: 3;
+    height: 80rpx;
+    margin-top: 800rpx;
+    background-color: white;
+}
+
+
+.top{
+    width: 100vw;
+    height: 278rpx;
+    background: #17C3B2;
+}
+.top-back{
+    position: absolute;
+    left: 40rpx;
+    top: 108rpx;
+    display: flex;
+    align-items: center;
+}
+.top-back-vector{
+    width: 26rpx;
+    height: 42rpx;
+}
+.top-back-text{
+    margin-left: 30rpx;
+    width: 186rpx;
+    height: 56rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40rpx;
+    line-height: 56rpx;
+    color: white;
+}
+.bottom{
+    position: absolute;
+    width: 100vw;
+    height: 700px;
+    left: 0px;
+    top: 218rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: #FFFFFF;
+    border-radius: 80rpx;
+}
+.bottom-1{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 68rpx;
+    border: none;
+    display: flex;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.bottom-3{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 100rpx;
+    border: none;
+    display: flex;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.begin{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 120rpx;
+}
+.begin-2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 60rpx;
+}
+.begin-3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 90rpx;
+}
+.begin-4{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 80rpx;
+}
+.answer{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-2{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-3{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-left: 40rpx;
+}
+.answer-4{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+
+    width: 460rpx;
+    height: 85rpx;
+
+}
+.sex-group{
+    display: flex;
+}
+.bottom-2{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 320rpx;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.list{
+    display: flex;
+    opacity: 0;
+}
+
+.button-add{
+    text-align: center;
+    width: 500rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    font-size:large;
+    background-color: #118AB2;
+    color: white;
+    border-radius: 80rpx;
+    position: absolute;
+    top:1100rpx;
+}
+.button-add-havor{
+    background-color: white;
+    color: #118AB2;
+}
+.button-finish{
+    vertical-align: middle;
+    text-align: center;
+    width: 500rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    font-size:large;
+    background-color: #17C3B2;
+    color: white;
+    border-radius: 80rpx;
+    position: absolute;
+    top:1200rpx;
+}
+.button-finish-havor{
+    background-color: white;
+    color: #17C3B2;
 }

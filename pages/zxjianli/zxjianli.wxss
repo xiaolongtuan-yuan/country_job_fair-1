@@ -1,31 +1,144 @@
-/* pages/zxjianli/zxjianli.wxss */
+
 .top{
+    width: 100vw;
+    height: 278rpx;
+    background: #17C3B2;
+}
+.top-back{
+    position: absolute;
+    left: 40rpx;
+    top: 108rpx;
+    display: flex;
+    align-items: center;
+}
+.top-back-vector{
+    width: 26rpx;
+    height: 42rpx;
+}
+.top-back-text{
+    margin-left: 30rpx;
+    width: 186rpx;
+    height: 56rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40rpx;
+    line-height: 56rpx;
+    color: white;
+}
+.bottom{
+    position: absolute;
+    width: 100vw;
+    height: 700px;
+    left: 0px;
+    top: 218rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: #FFFFFF;
+    border-radius: 80rpx;
+}
+.bottom-1{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 68rpx;
+    border: none;
+    display: flex;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.bottom-3{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 136rpx;
+    border: none;
+    display: flex;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.begin{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 120rpx;
+}
+.begin-2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 60rpx;
+}
+.begin-3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 90rpx;
+}
+.answer{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-2{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-3{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-left: 40rpx;
+}
+.answer-4{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+
+    width: 460rpx;
+    height: 120rpx;
+}
+.sex-group{
+    display: flex;
+}
+.bottom-2{
+    margin-top: 30rpx;
+    width: 642rpx;
+    height: 320rpx;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.bottom-2-add{
+    margin-top: 10rpx;
+    margin-left: 60rpx;
+    width: 260rpx;
+    height: 260rpx;
+    border-radius: 20px;
+}
+.button-finish{
     text-align: center;
+    width: 500rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    font-size:large;
+    background-color: #17C3B2;
+    color: white;
+    border-radius: 80rpx;
+    margin-top: 30rpx;
 }
-radio-group{
-    display: flex;
-}
-.photo{
-    display: flex;
-    display: flex;
-    position: relative;
-
-}
-.text{
-    display: flex;
-    position: relative;
-
-}
-.xinbie{
-    display: flex;
-    position: relative;
-
-}
-.jiaoyv{
-    display: flex;
-    position: relative;
-}
-.finish{
-    display: flex;
-    position: relative;
+.button-finish-hover{
+    background-color: white;
+    color: #17C3B2;
 }

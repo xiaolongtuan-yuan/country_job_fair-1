@@ -53,6 +53,9 @@ Page({
       }
     })
   },
+  back(){
+    wx.navigateBack()
+  },
   sexChange(e){
     //console.log(e)
     var info = this.data.info

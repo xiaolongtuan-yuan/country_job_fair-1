@@ -121,23 +121,26 @@ Page({
     })
   },
   upload(){
-    if(this.data.job_name==''){
+    if(!this.data.job_name){
       wx.showToast({
         icon:"error",
         title:"未输入岗位名！"
       })
+      return
     }
     if(this.data.address.length>29){
       wx.showToast({
         icon:"error",
         title:"地址最多29字！"
       })
+      return
     }
     if(this.data.intro.length>29){
       wx.showToast({
         icon:"error",
         title:"简介最多29字！"
       })
+      return
     }
     else{
       wx.showLoading({
