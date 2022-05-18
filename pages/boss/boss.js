@@ -168,6 +168,9 @@ Page({
       })
     }
   },
+  back(){
+    wx.navigateBack()
+  },
 
   cancelPoster() {
     this.setData({
