@@ -1,4 +1,7 @@
 <!--幻灯片滚动-->
+<view class="top">
+  <text class="top-text">乡乡帮</text>
+</view>
 <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
   <block wx:for="{{swiperImg}}" wx:key='swiper{{index}}'>
     <swiper-item>
