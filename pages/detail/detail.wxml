@@ -3,15 +3,32 @@
 <text class="top_text">工作详情</text>
 </view>
 
-<text class='title'>{{jobs.job_name}}</text>
-<view class='salary'>{{jobs.salary}}</view>
-<text class='job_provider'>职位提供者：{{jobs.company}}</text>
-<text class='job_address'>地点：{{jobs.address}}</text>
+<view class='all_content'>
+  <text class='title'>{{jobs.job_name}}</text>
+  <view class='salary'>{{jobs.salary}}</view>
+  <text class='job_provider'>职位提供者：{{jobs.company}}</text>
+  <text class='job_address'>地点：{{jobs.address}}</text>
+  <text class='brief_introduction'><text class='bold'>岗位简介：</text></text>
+  <text class='require'><text class='bold'>任职要求：</text>要有C1驾照，要求技术熟练，不要资格证，全国户口均可，服从安排，吃苦耐劳。实际开车6个月以上，驾驶技术过关。</text>
+  <text class='content'><text class='bold'>工作内容：</text>{{jobs.introduction}}</text>
 
+</view>
+
+<view class='btn'>
+<button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">
+  <image class='is_favorImage' src='../../images/icons/nothing.png'></image>
+  <text>已收藏</text>
+</button>
+<button class='favorite' wx:else plain bindtap="addFavorites">
+  <image class='not_favorImage' src='../../images/icons/favor.png'> </image>
+  <text>单击收藏</text>
+</button>
+<button class='chat' bindtap="newchat">
+  <image class='chatImage' src='../../images/icons/message_0.png'></image>
+  <text>咨询</text>
+</button>
 <button class='resume' wx:if="{{re_isAdd}}" plain bindtap="deleteSendResume">已提交</button>
 <button class='resume' wx:else plain bindtap="sendResume">提交简历</button>
-<button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">已收藏</button>
-<button class='favorite' wx:else plain bindtap="addFavorites">单击收藏</button>
-<button bindtap="newchat">咨询</button>
+</view>
 
 
