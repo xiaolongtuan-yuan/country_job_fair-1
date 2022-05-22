@@ -2,7 +2,7 @@
 <view class="top">
   <text class="top-text">乡乡帮</text>
 </view>
-<swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
+<swiper 	indicator-active-color="rgb(255,255,255)" indicator-dots="true" autoplay="true" interval="5000" duration="500">
   <block wx:for="{{swiperImg}}" wx:key='swiper{{index}}'>
     <swiper-item>
       <image src="{{item.src}}" class="slide-image" />  
@@ -11,11 +11,27 @@
 </swiper>
 <!--招聘列表-->
 <text class="title">工作推荐</text>
-<view class="list" id='jobs-list'>
-  <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-    <text class='jobs-title'>{{jobs.job_name}}</text>
-    <text class='jobs-salary'>薪资：{{jobs.salary}}</text>
-    <text class='jobs-address'>{{jobs.address}}</text>
-    <text class='jobs-others'>其他信息：{{jobs.orthers}}</text>
-  </view>  
+<view class="list">
+  <view class="list1">
+    <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+      <text class='jobs-title'>{{jobs.job_name}}</text>
+      <text class='jobs-salary'>薪资：{{jobs.salary}}</text>
+      <text class='jobs-address'>{{jobs.address}}</text>
+      <view class="jobs-others" wx:for="{{jobs.orthers}}" wx:for-item="other">
+        <text class='other-item'>{{other}}</text>
+      </view>
+      <view class='null'> </view>
+    </view>  
+  </view>
+  <view class="list1">
+    <view class='list-item' wx:for="{{jobsList2}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+      <text class='jobs-title'>{{jobs.job_name}}</text>
+      <text class='jobs-salary'>薪资： {{jobs.salary}}</text>
+      <text class='jobs-address'>{{jobs.address}}</text>
+      <view class="jobs-others" wx:for="{{jobs.orthers}}" wx:for-item="other">
+        <view class='other-item'>{{other}}</view>
+      </view>
+      <view class='null'> </view>
+    </view>  
+  </view>
 </view>
