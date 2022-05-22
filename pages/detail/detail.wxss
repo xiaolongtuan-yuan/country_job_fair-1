@@ -1,35 +1,44 @@
 /* pages/detail/detail.wxss */
-.container{
-  padding: 15rpx;
+/*顶部框图与文字*/
+.top {
+  width: 100vw;
+  height: 176rpx;
+  background: #17C3B2;
+}
+.top_text {
+  position: absolute;
+  width: 186rpx;
+  height: 56rpx;
+  left: 58rpx;
+  top: 92rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 74rpx;
   text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
 }
-.title{
-  font-size: 14pt;
-  line-height: 80rpx;
+
+.title {
+  width: 266rpx;
+  height: 70rpx;
+  margin-left: 54rpx;
+  margin-top: 40rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46rpx;
+  line-height: 54rpx;
+  /* or 161% */
+
+
+  color: #000000;
 }
-/*图片*/ /*暂时显示不出来*/
-.poster{ /*原因就是poster后面不能加image*/
-  width: 100%;
-}
-/*正文*/
-.job_introduction{
-  text-align: left;
-  font-size: 12pt;
-  line-height: 60rpx;
-}
-/*职位提供者*/
-.job_provider{
-  font-size: 12pt;
-  text-align: right;
-  line-height: 30rpx;
-  margin-right: 25rpx;
-  margin-top: 20rpx;
-}
-.title{
-  font-size:15pt;
-  text-align: left;
-  margin-left: 10rpx;
-}
+
 /* 收藏按钮 */
 .favorite{
   width: 250rpx;

@@ -1,4 +1,7 @@
 <!--幻灯片滚动-->
+<view class="top">
+<text class="top_text">乡乡帮</text>
+</view>
 <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
   <block wx:for="{{swiperImg}}" wx:key='swiper{{index}}'>
     <swiper-item>
@@ -7,17 +10,12 @@
   </block>
 </swiper>
 <!--招聘列表-->
-<view id='jobs-list'>
+<text class="title">工作推荐</text>
+<view class="list" id='jobs-list'>
   <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-    <view class='jobs-ts'>
-    <view>
-    <text class='jobs-title'>职务名称：{{jobs.job_name}}</text>
+    <text class='jobs-title'>{{jobs.job_name}}</text>
     <text class='jobs-salary'>薪资：{{jobs.salary}}</text>
-    </view>
-    <view>
     <text class='jobs-address'>{{jobs.address}}</text>
     <text class='jobs-others'>其他信息：{{jobs.orthers}}</text>
-    </view>
-    </view>
   </view>  
 </view>

@@ -1,55 +1,151 @@
 /**index.wxss**/
+page {
+  background: rgb(229,229,229);
+}  
+/*顶部框图与文字*/
+.top {
+  width: 100vw;
+  height: 176rpx;
+  background: #17C3B2;
+}
+.top_text {
+  position: absolute;
+  width: 186rpx;
+  height: 56rpx;
+  left: 58rpx;
+  top: 92rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 74rpx;
+  text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
+}
 /* 1-1 swiper组件 */
 swiper {
-  height: 400rpx;
+  width: 664rpx;
+  height: 382rpx;
+  margin-left: 44rpx;
+  margin-top: 38rpx; 
+
+  background: #FFFFFF;
+  border-radius: 10px;
 }
 /* 1-2 swiper中的图片 */
 swiper image {
   width: 100%;
   height: 100%;
 }
+/*title 工作推荐 */
+.title {
+  width: 172rpx;
+  height: 70rpx;
+  margin-left: 300rpx;
+  margin-top: 54rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 74rpx;
+  /* or 185% */
+
+
+  color: #000000;
+
+}
 /* 2-1 招聘列表容器 */
-#jobs-list {
-  min-height: 600rpx;
-  padding: 15rpx;
+.list {
+  display: flex;
+  flex-direction: row;
+  margin-left: 24rpx;
+  flex-wrap: wrap;
+  width: 642rpx;
+  align-items: flex-start;
+
+
 }
 /* 2-2 列表项目 */
 .list-item {
   display: flex;
-  flex-direction: row;
-  border-bottom: 1rpx solid gray;
+  flex-direction: column;
+  width: 300rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
 }
-/* 2-3 招聘信息图片 */
+
+/* 2-3 招聘信息图片
 .list-item image{
   width: 230rpx;
   height: 150rpx;
   margin: 10rpx;
-}
+} */
+
 /* 2-4 招聘信息 */
-.jobs-ts{
-  display: flex;
-  flex-direction: column;
-}
+
 .jobs-title{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  align-self: center;
+
+  width: 180rpx;
+  height: 44rpx;
+  margin-left: 90rpx;
+  margin-top: 0rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  /* or 247% */
+  color: #000000;
 }
 .jobs-salary{
-  display: block;
-  color: rgb(18, 174, 221);
-  font-size: 12pt;
+  width: 306rpx;
+  height: 44rpx;
+  margin-left: 38rpx;
+  margin-top: 18rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  /* or 247% */
+  color: #17C3B2;
+
+
 }
 .jobs-address{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  margin-top: 5rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 74rpx;
+  /* or 308% */
+  color: #000000;
 }
 .jobs-others{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  margin-top: 5rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #000000;
 }
