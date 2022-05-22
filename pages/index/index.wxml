@@ -10,7 +10,7 @@
   </block>
 </swiper>
 <!--招聘列表-->
-<text class="title">工作推荐</text>
+<text class="title">正在热招</text>
 <view class="list">
   <view class="list1">
     <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
@@ -23,7 +23,7 @@
       <view class='null'> </view>
     </view>  
   </view>
-  <view class="list1">
+  <view class="list2">
     <view class='list-item' wx:for="{{jobsList2}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
       <text class='jobs-title'>{{jobs.job_name}}</text>
       <text class='jobs-salary'>薪资： {{jobs.salary}}</text>

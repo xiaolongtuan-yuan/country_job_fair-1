@@ -83,7 +83,8 @@ swiper {
 .list {
   display: flex;
   flex-direction: row;
-  margin-left: 24rpx;
+  justify-content: center;
+
   width: 100vw;
   align-items: flex-start;
 
@@ -91,13 +92,18 @@ swiper {
 .list1{
   display: flex;
   flex-direction: column;
+  margin-right: 10rpx;
+}
+.list2{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rpx;
 }
 /* 2-2 列表项目 */
 .list-item {
   display: flex;
   flex-direction: column;
   width: 300rpx;
-  margin-left: 30rpx;
   margin-top: 20rpx;
   float: none;
 
