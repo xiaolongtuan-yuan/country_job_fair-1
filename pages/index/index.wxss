@@ -4,11 +4,14 @@ page {
 }  
 /*顶部框图与文字*/
 .top {
+  position: fixed;
   width: 100vw;
   height: 176rpx;
+  top: 0;
   background: #17C3B2;
+  z-index: 2;
 }
-.top_text {
+.top-text {
   position: absolute;
   width: 186rpx;
   height: 56rpx;
@@ -21,36 +24,16 @@ page {
   font-size: 40rpx;
   line-height: 74rpx;
   text-align: center;
-  /* or 185% */
+
   color: #FFFFFF;
+}
+.content{
+  z-index: 1;
 }
 /* 1-1 swiper组件 */
-.top{
-  width: 100vw;
-  height: 176rpx;
-
-  background: #17C3B2;
-}
-.top-text{
-  width: 196rpx;
-  height: 56rpx;
-  position: absolute;
-
-  left: 58rpx;
-  top: 92rpx;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40rpx;
-  line-height: 56rpx;
-  text-align: center;
-  /* or 185% */
-  color: #FFFFFF;
-}
 swiper {
   margin-left: 44rpx;
-  margin-top: 30rpx;
+  margin-top: 206rpx;
   width: 664rpx;
   height: 382rpx;
   margin-bottom: 20rpx;

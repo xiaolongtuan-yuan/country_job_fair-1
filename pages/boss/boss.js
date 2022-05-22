@@ -31,11 +31,13 @@ Page({
   add_input(){
     console.log("添加输入行")
     var a=this.data.infoList
-    a.push('请输入信息')
-    this.setData({
-      infoList:a
-    })
-    this.set_animations()
+    if(a.length < 4){
+      a.push('请输入信息')
+      this.setData({
+        infoList:a
+      })
+      this.set_animations()
+    }
   },
   set_animations(){
     var index = this.data.infoList.length

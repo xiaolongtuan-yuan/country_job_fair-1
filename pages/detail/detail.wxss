@@ -4,9 +4,11 @@ page {
 }
 /*顶部框图与文字*/
 .top {
+  position: fixed;
   width: 100vw;
   height: 176rpx;
   background: #17C3B2;
+  z-index: 2;
 }
 .top_text {
   position: absolute;
@@ -26,20 +28,27 @@ page {
 }
 
 .all_content {
+  position: absolute;
+  top: 216rpx;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
-.title {
-  width: 266rpx;
-  height: 70rpx;
+.all_content-title{
+  display: flex;
   margin-left: 54rpx;
   margin-top: 40rpx;
 
+  justify-content: space-between;
+}
+.title {
+  width: 266rpx;
+  height: 74rpx;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 46rpx;
-  line-height: 54rpx;
+  line-height: 74rpx;
   /* or 161% */
 
 
@@ -47,12 +56,8 @@ page {
 }
 
 .salary {
-  position: absolute;
-  width: 264rpx;
-  height: 98rpx;
-  left: 496rpx;
-  top: 200rpx;
-
+  height: 74rpx;
+  margin-right: 80rpx;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -168,6 +173,7 @@ page {
   padding-top: 10rpx;
   justify-content: space-between;
   background-color:white;
+  z-index: 2;
 }
 /*简历按钮*/
 .resume {

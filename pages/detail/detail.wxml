@@ -1,11 +1,13 @@
 <!--pages/detail/detail.wxml-->
 <view class="top">
-<text class="top_text">工作详情</text>
+  <text class="top_text">工作详情</text>
 </view>
 
 <view class='all_content'>
-  <text class='title'>{{jobs.job_name}}</text>
-  <view class='salary'>{{jobs.salary}}</view>
+  <view class="all_content-title">
+    <text class='title'>{{jobs.job_name}}</text>
+    <view class='salary'>{{jobs.salary}}</view>
+  </view>
   <text class='job_provider'>职位提供者：{{jobs.company}}</text>
   <text class='job_address'>地点：{{jobs.address}}</text>
   <text class='brief_introduction'><text class='bold'>岗位简介：</text></text>
