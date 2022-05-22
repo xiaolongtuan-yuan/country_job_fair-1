@@ -212,6 +212,11 @@ Page({
       }
     })
   },
+  guangguang(){
+    wx.switchTab({
+      url: '../index/index'
+    })
+  },
   tuichu(){
     wx.removeStorageSync('user')
     wx.removeStorageSync('isboss')
@@ -376,10 +381,6 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     this.set_post()
     console.log("OnShow")

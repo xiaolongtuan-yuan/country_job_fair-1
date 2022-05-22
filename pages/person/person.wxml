@@ -1,58 +1,21 @@
 <!--pages/person/person.wxml-->
-<button wx:if="{{!user}}" bindtap="logup" class="button1">授权登录</button>
+<!-- <button wx:if="{{!user}}" bindtap="logup" class="button1">授权登录</button> -->
+<view wx:if="{{!user}}">
+    <view class="entire">
+        <view class="top"></view>
+        <view class="mediam">
+            <text class="mediam-title">授权登录</text>
+            <text class="mediam-text">请授权头像等信息，以便为您提供更好的服务。</text>
+            <view class="mediam-button">
+                <view class="mediam-button-left" hover-class="mediam-button-left-hover" bindtap="guangguang">随便逛逛</view>
+                <view class="mediam-button-right" hover-class="mediam-button-right-hover" bindtap="logup">去授权</view>
+            </view>
+        </view>
+    </view>
+</view>
 <view wx:else>
     <view class="entire">
-        <!-- <view class = 'top'>
-            <view class="left">
-                <view class = 'name'>{{user.nickName}}</view>
-                <view class="tuichu" bindtap="tuichu">退出登录</view>
-            </view>
-            <view>
-                <image  src="{{user.avatarUrl}}" class='touxiang' />
-            </view>
-        </view> -->
-
         <view wx:if="{{!isboss}}">    
-            <!-- <view class="shujv">
-                <view class="datas">
-                    <view>投递 </view>
-                    <view>{{worker.datas[0]}}</view>
-                </view>
-                <view class="datas">
-                    <view>交流 </view>
-                    <view>{{worker.datas[1]}}</view>
-                </view>
-                <view class="datas">
-                    <view>收藏 </view>
-                    <view>{{worker.datas[2]}}</view>
-                </view>
-            </view>
-
-
-            <view class="yixiang" animation="{{slide_up1}}">意向
-                <view class="yxdidian">
-                    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-                        <view class="picker">
-                        工作地点：{{region[0]}}，{{region[1]}}，{{region[2]}}
-                        </view>
-                    </picker>
-                </view>
-                <view class="yxsalary">
-                    <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-                        <view class="picker">
-                            意向工资：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
-                        </view>
-                    </picker>
-                </view>
-                <view class="yxpost" bindtap="yxpost">意向岗位:
-                    {{posts[post[0]][post[1]]}}
-                </view>
-            </view>
-            <view class = "zxjianli" bindtap = "tojianli" animation="{{slide_up2}}">在线简历</view>
-            <view class = "info" animation="{{slide_up3}}">法律维权</view>
-            <view class = "info" animation="{{slide_up4}}">薪资参考</view>
-            <button class="boss" bindtap = "isboss" animation="{{slide_up5}}">我是老板</button> -->
-            
             <view class="top">
                 <image class="top-left" src="{{user.avatarUrl}}" />
                 <view class="top-right">

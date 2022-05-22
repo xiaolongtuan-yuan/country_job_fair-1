@@ -1,6 +1,6 @@
 /* 调整 */
 .entire{
-    background-color: #E5E5E5;
+    background-color: rgb(245,245,248);
     height: 100vh;
     width: 100vw;
 }
@@ -264,5 +264,77 @@
 }
 .button-gongzuo-havor{
     background-color: white;
+    color: #17C3B2;
+}
+.mediam{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 644rpx;
+    height: 442rpx;
+    left: 60rpx;
+    top: 520rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+    border-radius: 40rpx;
+}
+.mediam-title{
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40rpx;
+    line-height: 74rpx;
+    margin-top: 30rpx;
+}
+.mediam-text{
+
+    width: 526rpx;
+    height: 148rpx;
+
+    margin-top: 30rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 74rpx;
+}
+.mediam-button{
+    display: flex;
+}
+.mediam-button-left{
+    width: 258rpx;
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    background: #DFDEDE;
+    color: #C2C2C2;
+    border-radius: 80rpx;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 40rpx;
+    margin-right: 10rpx;
+}
+.mediam-button-left-hover{
+    background: #C2C2C2;
+    color: #DFDEDE;
+}
+.mediam-button-right{
+    width: 258rpx;
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    background: #17C3B2;
+    color: #FFFFFF;
+    border-radius: 80rpx;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 40rpx;
+    margin-left: 10rpx;
+}
+.mediam-button-right-hover{
+    background: #FFFFFF;
     color: #17C3B2;
 }

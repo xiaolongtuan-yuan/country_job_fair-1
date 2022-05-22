@@ -1,37 +1,57 @@
-
-<view class="top">在线简历</view>
-<view class = "text" >姓名：</view>
-<input type="text" bindinput="input_name" value="{{jianli.info[0]}}"/>
-<view class="photo" >照片
-    <image  wx:if="{{photoID}}" mode="aspectFit" src="{{photoID}}"/>
-    <button type = "default" wx:else bindtap = "photo_upload" >上传</button>
+<view class="top">
+    <view class="top-back">
+        <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
+        <text class="top-back-text">在线简历</text>
+    </view>
 </view>
-
-<view class = "xinbie" >
-    <view>性别：</view>
-    <radio-group bindchange="sexChange">
-        <view>女
+<view class="bottom">
+    <view class="bottom-1">
+        <text class="begin">姓名</text>
+        <input class="answer" type="text" bindinput="input_name" value="{{jianli.info[0]}}"/>
+    </view>
+    <view class="bottom-2">
+        <text class="begin">照片</text>
+        <image  class="bottom-2-add" wx:if="{{photoID}}" mode="aspectFit" src="{{photoID}}"/>
+        <image wx:else bindtap = "photo_upload" src="../../images/add.png" class="bottom-2-add"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin">性别</text>
+        <radio-group bindchange="sexChange" class="sex-group">
+        <view class="answer-2">女
             <radio checked="{{sex}}" value="f"/>
         </view>
-        <view>男
+        <view class="answer-3">男
             <radio checked="{{!sex}}" value="m"/>
         </view>
-        
-    </radio-group>
-</view>
-<view class = "text" >年龄：</view>
-<input type="number" bindinput="input_age" value="{{jianli.info[2]}}"/>
-<picker class="jiaoyv" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" >
+        </radio-group>
+    </view>
+    <view class="bottom-1">
+        <text class="begin">年龄</text>
+        <input class="answer" type="number" bindinput="input_age" value="{{jianli.info[2]}}"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin-2">教育水平</text>
+        <picker class="answer" mode="selector" bindchange="bindPickerChange" value="{{index}}" range="{{array}}" >
             <view class="picker">
-            教育水平：{{array[index]}}
+            {{array[index]}}
             </view>
-</picker>
-<view class = "text" >微信号：</view>
-<input type="number" bindinput="input_wxid" value="{{jianli.info[4]}}"/>
-<view class = "text" >电话：</view>
-<input type="number" bindinput="input_tel" value="{{jianli.info[5]}}"/>
-<view class = "text" >工作经历：</view>
-<input type="text" bindinput="input_workexp" value="{{jianli.info[6]}}" placeholder="没有填无"/>
-<view class = "text" >资格证书：</view>
-<input type="text" bindinput="input_credential" value="{{jianli.info[7]}}" placeholder="没有填无"/>
-<button class="finish" type="primary" bindtap = "upload" >完成</button>
+        </picker>
+    </view>
+    <view class="bottom-1">
+        <text class="begin">手机</text>
+        <input class="answer" type="number" bindinput="input_tel" value="{{jianli.info[5]}}"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin-3">微信号</text>
+        <input class="answer" type="number" bindinput="input_wxid" value="{{jianli.info[4]}}"/>
+    </view>
+    <view class="bottom-3">
+        <text class="begin-2">工作经历</text>
+        <textarea class="answer-4" bindinput="input_workexp" value="{{jianli.info[6]}}" placeholder="没有填无" />
+    </view>
+    <view class="bottom-1">
+        <text class="begin-2">资格证书</text>
+        <input class="answer" type="text" bindinput="input_credential" value="{{jianli.info[7]}}" placeholder="没有填无"/>
+    </view>
+    <view class="button-finish" hover-class="button-finish-hover" bindtap = "upload">完成</view>
+</view>

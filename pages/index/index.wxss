@@ -1,6 +1,6 @@
 /**index.wxss**/
 page {
-  background: rgb(229,229,229);
+  background: rgb(245,245,248);
 }  
 /*顶部框图与文字*/
 .top {
@@ -25,35 +25,57 @@ page {
   color: #FFFFFF;
 }
 /* 1-1 swiper组件 */
+.top{
+  width: 100vw;
+  height: 176rpx;
+
+  background: #17C3B2;
+}
+.top-text{
+  width: 196rpx;
+  height: 56rpx;
+  position: absolute;
+
+  left: 58rpx;
+  top: 92rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
+}
 swiper {
+  margin-left: 44rpx;
+  margin-top: 30rpx;
   width: 664rpx;
   height: 382rpx;
-  margin-left: 44rpx;
-  margin-top: 38rpx; 
+  margin-bottom: 20rpx;
 
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 20rpx;
 }
 /* 1-2 swiper中的图片 */
-swiper image {
+.slide-image{
   width: 100%;
   height: 100%;
+  border-radius: 20rpx;
 }
 /*title 工作推荐 */
 .title {
   width: 172rpx;
   height: 70rpx;
   margin-left: 300rpx;
-  margin-top: 54rpx;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 74rpx;
+  line-height: 70rpx;
   /* or 185% */
-
-
   color: #000000;
 
 }
@@ -61,41 +83,38 @@ swiper image {
 .list {
   display: flex;
   flex-direction: row;
-  margin-left: 24rpx;
-  flex-wrap: wrap;
-  width: 642rpx;
+  justify-content: center;
+
+  width: 100vw;
   align-items: flex-start;
 
-
+}
+.list1{
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rpx;
+}
+.list2{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rpx;
 }
 /* 2-2 列表项目 */
 .list-item {
   display: flex;
   flex-direction: column;
   width: 300rpx;
-  margin-left: 30rpx;
-  margin-top: 30rpx;
+  margin-top: 20rpx;
+  float: none;
 
   background: #FFFFFF;
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
 }
 
-/* 2-3 招聘信息图片
-.list-item image{
-  width: 230rpx;
-  height: 150rpx;
-  margin: 10rpx;
-} */
-
-/* 2-4 招聘信息 */
-
 .jobs-title{
   align-self: center;
-
-  width: 180rpx;
   height: 44rpx;
-  margin-left: 90rpx;
   margin-top: 0rpx;
 
   font-family: 'Inter';
@@ -103,7 +122,6 @@ swiper image {
   font-weight: 700;
   font-size: 30rpx;
   line-height: 74rpx;
-  /* or 247% */
   color: #000000;
 }
 .jobs-salary{
@@ -126,26 +144,29 @@ swiper image {
   width: 248rpx;
   height: 52rpx;
   margin-left: 38rpx;
-  margin-top: 5rpx;
+  margin-top: 10rpx;
+  margin-bottom: 0;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 24rpx;
-  line-height: 74rpx;
+  line-height: 52rpx;
   /* or 308% */
   color: #000000;
 }
 .jobs-others{
+
+}
+.other-item{
   width: 248rpx;
-  height: 52rpx;
+  height: 40rpx;
   margin-left: 38rpx;
-  margin-top: 5rpx;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 24rpx;
-  line-height: 30rpx;
-  color: #000000;
+  line-height: 20rpx;
+  color: #A8A8A8;
 }

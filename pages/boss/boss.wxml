@@ -1,49 +1,58 @@
 <!--pages/boss/boss.wxml-->
+
 <view class="poster" wx:if="{{canvasType}}">
     <view class="mask"></view>
-    <canvas style="position: absolute;margin-top: 5%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 3;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
+    <canvas style="position: absolute;margin-top: 30%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 3;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
     <view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</view>
 </view>
 
-<view class="center">
-    <view class="inputs" animation="{{slide_up1}}">
-        <view class="lebal">岗位名:</view>
-        <input placeholder="不能为空" bindinput="input_job_name"/>
+<view class="top">
+    <view class="top-back">
+        <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
+        <text class="top-back-text">发布招聘</text>
     </view>
-    <view class="inputs" animation="{{slide_up2}}">
-        <view class="lebal">工作单位:</view>
-        <input bindinput="input_company"/>
+</view>
+<view class="bottom">
+    <view class="bottom-1">
+        <text class="begin-3">岗位名</text>
+        <input class="answer" type="text" placeholder="不能为空" bindinput="input_job_name"/>
     </view>
-    <view class="yxdidian" animation="{{slide_up3}}">
+    <view class="bottom-1">
+        <text class="begin-2">工作单位</text>
+        <input class="answer" type="text" bindinput="input_company"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin-2">工作地区</text>
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-            <view class="picker">
-            工作地区：{{region[0]}}，{{region[1]}}，{{region[2]}}
+            <view class="answer">
+            {{region[0]}}，{{region[1]}}，{{region[2]}}
             </view>
         </picker>
     </view>
-    <view class="yxsalary" animation="{{slide_up4}}">
+    <view class="bottom-1">
+        <text class="begin-4">工资/月</text>
         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="picker">
-            工资/月：{{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+            <view class="answer">
+            {{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
             </view>
         </picker>
     </view>
-    <view class="inputs" animation="{{slide_up5}}">
-        <view class="lebal">岗位简介:</view>
-        <input placeholder="最大29字" bindinput="input_intro" data-index="0"/>
+    <view class="bottom-3">
+        <text class="begin-2">岗位简介</text>
+        <textarea class="answer-4" placeholder="最大29字" bindinput="input_intro" data-index="0" />
     </view>
-    <view class="inputs" animation="{{slide_up6}}">
-        <view class="lebal">详细地址:</view>
-        <input placeholder="最大29字" bindinput="input_address" data-index="0"/>
+    <view class="bottom-3">
+        <text class="begin-2">详细地址</text>
+        <textarea class="answer-4" placeholder="最大29字" bindinput="input_address" data-index="0" />
     </view>
     <view wx:for="{{infoList}}">
         <view class="list" animation="{{animationData[index]}}">
-            <view class="lebal">其他:</view>
-            <input bindinput="input_orders" data-index="{{index+1}}"/>
+            <view class="bottom-1">
+                <text class="begin">其他</text>
+                <input class="answer" type="text" bindinput="input_name" value="{{jianli.info[0]}}"/>
+            </view>
         </view>
     </view>
-    <button bindtap = "add_input" animation="{{slide_up7}}">+</button>
-    <button bindtap = "upload" animation="{{slide_up8}}">完成</button>
-    <button bindtap = "drawCanvas2D" animation="{{slide_up8}}">海报</button>
-
+    <view class="button-add" hover-class="button-add-havor" bindtap = "add_input">增加信息</view>
+    <view class="button-finish" hover-class="button-finish-havor" bindtap = "upload">完成</view>
 </view>
