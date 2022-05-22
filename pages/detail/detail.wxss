@@ -155,43 +155,52 @@ page {
   border-bottom: 1rpx solid #DFDEDE;
 }
 .btn {
+  width: 86vw;
+  height: 102rpx;
+  position: fixed;
+  bottom:47rpx;
+  margin-left: 7vw;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  border-top: 0.7px dotted rgb(223,222,222);
+  padding-top: 10rpx;
+  justify-content: space-between;
+  background-color:white;
 }
 /*简历按钮*/
 .resume {
+  /* width: 456rpx; */
   width: 456rpx;
   height: 92rpx;
-  margin-left: 272rpx;
-  margin-top: 28rpx;
-
   background-color: #17C3B2;
   border-radius: 80rpx;
   color: white;
-  padding-top: 14rpx;
-  flex-grow: 2;
+
+  line-height: 92rpx;
+  text-align: center;
 }
 /* 收藏按钮 */
 .favorite{
-  width: 75rpx;
-  height: 150rpx;
-  margin-top: 0rpx;
-  background-color: white;
+  height: 92rpx;
+
+  background-color:white;
   color: #999999;
-  border-radius: 0rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content:space-between;
   font-size: 25rpx;
-  flex-grow: 1;
+
 }
 .is_favorImage {
+
   width: 62rpx;
   height: 60rpx;
 }
 .not_favorImage {
+
   width: 62rpx;
   height: 60rpx;
 }
@@ -199,8 +208,8 @@ page {
   border: 0;
 }
 .chat {
-  width: 150rpx;
-  height: 150rpx;
+  width: 62rpx;
+  height: 92rpx;
   margin-top: 0rpx;
   background-color: white;
   color: #999999;
@@ -208,9 +217,8 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   font-size: 25rpx;
-  flex-grow: 1;
 }
 .chatImage {
   width: 62rpx;
