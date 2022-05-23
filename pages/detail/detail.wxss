@@ -10,6 +10,13 @@ page {
   background: #17C3B2;
   z-index: 2;
 }
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 98rpx;
+  width: 26rpx;
+  height: 42rpx;
+}
 .top_text {
   position: absolute;
   width: 186rpx;
@@ -21,10 +28,11 @@ page {
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 74rpx;
+  line-height: 56rpx;
   text-align: center;
   /* or 185% */
   color: #FFFFFF;
+
 }
 
 .all_content {
@@ -42,7 +50,6 @@ page {
   justify-content: space-between;
 }
 .title {
-  width: 266rpx;
   height: 74rpx;
   font-family: 'Inter';
   font-style: normal;
@@ -50,7 +57,6 @@ page {
   font-size: 46rpx;
   line-height: 74rpx;
   /* or 161% */
-
 
   color: #000000;
 }
@@ -69,11 +75,10 @@ page {
   color: #17C3B2;
 }
 .job_provider {
-  width: 494rpx;
+
   height: 46rpx;
   margin-left: 56rpx;
   margin-top: 0rpx;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -87,16 +92,16 @@ page {
 }
 
 .job_address {
-  width: 656rpx;
+
   height: 46rpx;
   margin-left: 56rpx;
-  margin-top: 0rpx;
-
+  margin-top: 20rpx;
+  
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 30rpx;
-  line-height: 74rpx;
+  line-height: 46rpx;
   /* or 247% */
   padding-bottom: 38rpx;
 
@@ -117,7 +122,6 @@ page {
   font-weight: 400;
   font-size: 30rpx;
   line-height: 74rpx;
-
   /* identical to box height, or 247% */
 
 

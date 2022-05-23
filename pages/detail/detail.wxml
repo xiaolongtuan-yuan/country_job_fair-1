@@ -1,5 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <view class="top">
+  <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
   <text class="top_text">工作详情</text>
 </view>
 
