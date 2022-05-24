@@ -1,11 +1,14 @@
 <!--pages/detail/detail.wxml-->
 <view class="top">
-<text class="top_text">工作详情</text>
+  <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
+  <text class="top_text">工作详情</text>
 </view>
 
 <view class='all_content'>
-  <text class='title'>{{jobs.job_name}}</text>
-  <view class='salary'>{{jobs.salary}}</view>
+  <view class="all_content-title">
+    <text class='title'>{{jobs.job_name}}</text>
+    <view class='salary'>{{jobs.salary}}</view>
+  </view>
   <text class='job_provider'>职位提供者：{{jobs.company}}</text>
   <text class='job_address'>地点：{{jobs.address}}</text>
   <text class='brief_introduction'><text class='bold'>岗位简介：</text></text>
@@ -15,20 +18,20 @@
 </view>
 
 <view class='btn'>
-<button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">
-  <image class='is_favorImage' src='../../images/icons/nothing.png'></image>
-  <text>已收藏</text>
-</button>
-<button class='favorite' wx:else plain bindtap="addFavorites">
-  <image class='not_favorImage' src='../../images/icons/favor.png'> </image>
-  <text>单击收藏</text>
-</button>
-<button class='chat' bindtap="newchat">
-  <image class='chatImage' src='../../images/icons/message_0.png'></image>
-  <text>咨询</text>
-</button>
-<button class='resume' wx:if="{{re_isAdd}}" plain bindtap="deleteSendResume">已提交</button>
-<button class='resume' wx:else plain bindtap="sendResume">提交简历</button>
+  <view class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">
+    <image class='is_favorImage' src='../../images/icons/nothing.png'></image>
+    <text>已收藏</text>
+  </view>
+  <view class='favorite' wx:else plain bindtap="addFavorites">
+    <image class='not_favorImage' src='../../images/icons/favor.png'> </image>
+    <text>收藏</text>
+  </view>
+  <view class='chat' bindtap="newchat">
+    <image class='chatImage' src='../../images/icons/message_0.png'></image>
+    <text>咨询</text>
+  </view>
+  <view class='resume' wx:if="{{re_isAdd}}" plain bindtap="deleteSendResume">已提交</view>
+  <view class='resume' wx:else plain bindtap="sendResume">提交简历</view>
 </view>
 
 

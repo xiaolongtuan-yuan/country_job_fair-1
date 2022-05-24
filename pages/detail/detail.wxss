@@ -4,9 +4,18 @@ page {
 }
 /*顶部框图与文字*/
 .top {
+  position: fixed;
   width: 100vw;
   height: 176rpx;
   background: #17C3B2;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 98rpx;
+  width: 26rpx;
+  height: 42rpx;
 }
 .top_text {
   position: absolute;
@@ -19,40 +28,42 @@ page {
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 74rpx;
+  line-height: 56rpx;
   text-align: center;
   /* or 185% */
   color: #FFFFFF;
+
 }
 
 .all_content {
+  position: absolute;
+  top: 216rpx;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
-.title {
-  width: 266rpx;
-  height: 70rpx;
+.all_content-title{
+  display: flex;
   margin-left: 54rpx;
   margin-top: 40rpx;
 
+  justify-content: space-between;
+}
+.title {
+  height: 74rpx;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 46rpx;
-  line-height: 54rpx;
+  line-height: 74rpx;
   /* or 161% */
-
 
   color: #000000;
 }
 
 .salary {
-  position: absolute;
-  width: 264rpx;
-  height: 98rpx;
-  left: 496rpx;
-  top: 200rpx;
-
+  height: 74rpx;
+  margin-right: 80rpx;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -64,11 +75,10 @@ page {
   color: #17C3B2;
 }
 .job_provider {
-  width: 494rpx;
+
   height: 46rpx;
   margin-left: 56rpx;
   margin-top: 0rpx;
-
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -82,16 +92,16 @@ page {
 }
 
 .job_address {
-  width: 656rpx;
+
   height: 46rpx;
   margin-left: 56rpx;
-  margin-top: 0rpx;
-
+  margin-top: 20rpx;
+  
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 30rpx;
-  line-height: 74rpx;
+  line-height: 46rpx;
   /* or 247% */
   padding-bottom: 38rpx;
 
@@ -112,7 +122,6 @@ page {
   font-weight: 400;
   font-size: 30rpx;
   line-height: 74rpx;
-
   /* identical to box height, or 247% */
 
 
@@ -155,43 +164,53 @@ page {
   border-bottom: 1rpx solid #DFDEDE;
 }
 .btn {
+  width: 86vw;
+  height: 102rpx;
+  position: fixed;
+  bottom:47rpx;
+  margin-left: 7vw;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  border-top: 0.7px dotted rgb(223,222,222);
+  padding-top: 10rpx;
+  justify-content: space-between;
+  background-color:white;
+  z-index: 2;
 }
 /*简历按钮*/
 .resume {
+  /* width: 456rpx; */
   width: 456rpx;
   height: 92rpx;
-  margin-left: 272rpx;
-  margin-top: 28rpx;
-
   background-color: #17C3B2;
   border-radius: 80rpx;
   color: white;
-  padding-top: 14rpx;
-  flex-grow: 2;
+
+  line-height: 92rpx;
+  text-align: center;
 }
 /* 收藏按钮 */
 .favorite{
-  width: 75rpx;
-  height: 150rpx;
-  margin-top: 0rpx;
-  background-color: white;
+  height: 92rpx;
+
+  background-color:white;
   color: #999999;
-  border-radius: 0rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content:space-between;
   font-size: 25rpx;
-  flex-grow: 1;
+
 }
 .is_favorImage {
+
   width: 62rpx;
   height: 60rpx;
 }
 .not_favorImage {
+
   width: 62rpx;
   height: 60rpx;
 }
@@ -199,8 +218,8 @@ page {
   border: 0;
 }
 .chat {
-  width: 150rpx;
-  height: 150rpx;
+  width: 62rpx;
+  height: 92rpx;
   margin-top: 0rpx;
   background-color: white;
   color: #999999;
@@ -208,9 +227,8 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   font-size: 25rpx;
-  flex-grow: 1;
 }
 .chatImage {
   width: 62rpx;

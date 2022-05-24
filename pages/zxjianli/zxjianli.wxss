@@ -1,4 +1,6 @@
-
+page {
+    background-color: white;
+}
 .top{
     width: 100vw;
     height: 278rpx;
@@ -29,7 +31,7 @@
 .bottom{
     position: absolute;
     width: 100vw;
-    height: 700px;
+ 
     left: 0px;
     top: 218rpx;
     display: flex;
