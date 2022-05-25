@@ -19,11 +19,11 @@
 
 <view class='btn'>
   <view class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">
-    <image class='is_favorImage' src='../../images/icons/nothing.png'></image>
+    <image class='is_favorImage' src='../../images/icons/is_favorite.png'></image>
     <text>已收藏</text>
   </view>
   <view class='favorite' wx:else plain bindtap="addFavorites">
-    <image class='not_favorImage' src='../../images/icons/favor.png'> </image>
+    <image class='not_favorImage' src='../../images/icons/no_favorite.png'> </image>
     <text>收藏</text>
   </view>
   <view class='chat' bindtap="newchat">

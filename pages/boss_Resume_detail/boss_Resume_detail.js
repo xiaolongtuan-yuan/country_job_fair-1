@@ -17,33 +17,26 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  
+  async onLoad(options) {
+
     this.setData({jobsId: options.id})
     this.setData({openID: wx.getStorageSync('openID')})
     var that = this
-    db.collection('zxjianli').get()
-    .then(res => {
-      that.setData({resume: res.data})
-    })
-    .catch(err => {
-      console.log('请求失败',err)
-    })  
+    let res1 = await db.collection('zxjianli').get();
+    that.setData({resume: res1.data})
 
-    db.collection('worker').get()
-      .then(res => {
-        console.log('这里',res.data)
-        let result = that.getResume(res.data)
-        that.setData({resume_received: result})
-        console.log('在这里',result);
-      })
-      .catch(err => {
-        console.log('请求失败',err);
-      })  
+    let res2 = await db.collection('worker').get();
+    console.log('这里',res2.data);
+    let result = that.getResume(res2.data);
+    that.setData({resume_received: result});
+    console.log('在这里',result);
 
   },
   getResume: function(workerList) {
     var len = workerList.length;
     var result = [];
+    console.log(this.data.jobsId, this.data.resume);
     for(let i = 0; i < len; i++) {
       let len_1 = workerList[i].worker_sended.length;
       for (let j = 0; j < len_1; j++) {
