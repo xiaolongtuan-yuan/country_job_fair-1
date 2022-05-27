@@ -7,7 +7,7 @@
 <view class='all_content'>
   <view class="all_content-title">
     <text class='title'>{{jobs.job_name}}</text>
-    <view class='salary'>{{jobs.salary}}</view>
+    <view class='salary'>{{jobs.salary[0]+1}}-{{jobs.salary[1]+1}}K</view>
   </view>
   <text class='job_provider'>职位提供者：{{jobs.company}}</text>
   <text class='job_address'>地点：{{jobs.address}}</text>
