@@ -7,7 +7,7 @@ Page({
    */
   data: {
     openID:'',
-    info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]微信号[5]电话[6]工作经历[7]资格证书
+    info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]工作经历[5]资格证书
     photoID:'',
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     index:1,
@@ -90,7 +90,23 @@ Page({
     })
     console.log(this.data.info)
   },
-  input_wxid(e){
+  // input_wxid(e){
+  //   //console.log(e)
+  //   var info = this.data.info
+  //   info[4] = e.detail.value
+  //   this.setData({
+  //     info:info
+  //   })
+  // },
+  // input_tel(e){
+  //   //console.log(e)
+  //   var info = this.data.info
+  //   info[5] = Number(e.detail.value)
+  //   this.setData({
+  //     info:info
+  //   })
+  // },
+  input_workexp(e){
     //console.log(e)
     var info = this.data.info
     info[4] = e.detail.value
@@ -98,26 +114,10 @@ Page({
       info:info
     })
   },
-  input_tel(e){
-    //console.log(e)
-    var info = this.data.info
-    info[5] = Number(e.detail.value)
-    this.setData({
-      info:info
-    })
-  },
-  input_workexp(e){
-    //console.log(e)
-    var info = this.data.info
-    info[6] = e.detail.value
-    this.setData({
-      info:info
-    })
-  },
   input_credential(e){
     //console.log(e)
     var info = this.data.info
-    info[7] = e.detail.value
+    info[5] = e.detail.value
     this.setData({
       info:info
     })

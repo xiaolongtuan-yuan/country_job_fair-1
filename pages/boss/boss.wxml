@@ -2,57 +2,78 @@
 
 <view class="poster" wx:if="{{canvasType}}">
     <view class="mask"></view>
-    <canvas style="position: absolute;margin-top: 30%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 3;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
-    <view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</view>
+    <canvas style="position: absolute;margin-top: 30%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 5;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
+    <cover-view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</cover-view>
 </view>
-
-<view class="top">
-    <view class="top-back">
-        <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
-        <text class="top-back-text">发布招聘</text>
-    </view>
-</view>
-<view class="bottom">
-    <view class="bottom-1">
-        <text class="begin-3">岗位名</text>
-        <input class="answer" type="text" placeholder="不能为空" bindinput="input_job_name"/>
-    </view>
-    <view class="bottom-1">
-        <text class="begin-2">工作单位</text>
-        <input class="answer" type="text" bindinput="input_company"/>
-    </view>
-    <view class="bottom-1">
-        <text class="begin-2">工作地区</text>
-        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-            <view class="answer">
-            {{region[0]}}，{{region[1]}}，{{region[2]}}
-            </view>
-        </picker>
-    </view>
-    <view class="bottom-1">
-        <text class="begin-4">工资/月</text>
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="answer">
-            {{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
-            </view>
-        </picker>
-    </view>
-    <view class="bottom-3">
-        <text class="begin-2">岗位简介</text>
-        <textarea class="answer-4" placeholder="最大29字" bindinput="input_intro" data-index="0" />
-    </view>
-    <view class="bottom-3">
-        <text class="begin-2">详细地址</text>
-        <textarea class="answer-4" placeholder="最大29字" bindinput="input_address" data-index="0" />
-    </view>
-    <view wx:for="{{infoList}}">
-        <view class="list" animation="{{animationData[index]}}">
-            <view class="bottom-1">
-                <text class="begin">其他</text>
-                <input class="answer" type="text" bindinput="input_name" value="{{jianli.info[0]}}"/>
-            </view>
+<view class="input">
+    <view class="top">
+        <view class="top-back">
+            <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
+            <text class="top-back-text">发布招聘</text>
         </view>
     </view>
-    <view class="button-add" hover-class="button-add-havor" bindtap = "add_input">增加信息</view>
-    <view class="button-finish" hover-class="button-finish-havor" bindtap = "upload">完成</view>
+    <view class="bottom">
+        <scroll-view scroll-y="true">
+            <view class="bottom-1">
+                <text class="begin-3">岗位名</text>
+                <view wx:if="{{ismask}}" class="answer"></view>
+                <input wx:else class="answer" type="text" placeholder="不能为空" bindinput="input_job_name"/>
+            </view>
+            <view class="bottom-1">
+                <text class="begin-2">工作单位</text>
+                <view wx:if="{{ismask}}" class="answer"></view>
+                <input wx:else class="answer" type="text" bindinput="input_company"/>
+            </view>
+            <view class="bottom-1">
+                <text class="begin-2">工作地区</text>
+                <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+                    <view class="answer">
+                    {{region[0]}}，{{region[1]}}，{{region[2]}}
+                    </view>
+                </picker>
+            </view>
+            <view class="bottom-3">
+                <text class="begin-2">详细地址</text>
+                <textarea class="answer-4" placeholder="最大29字" bindinput="input_address" data-index="0" />
+            </view>
+            <view class="bottom-1">
+                <text class="begin-4">工资/月</text>
+                <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view class="answer">
+                    {{multiArray[0][multiIndex[0]]}}--{{multiArray[1][multiIndex[1]]}}
+                    </view>
+                </picker>
+            </view>
+            <view class="bottom-3">
+                <text class="begin-2">岗位简介</text>
+                <textarea class="answer-4" placeholder="最大29字" bindinput="input_intro" data-index="0" />
+            </view>
+            <view class="bottom-3">
+                <text class="begin-2">工作详情</text>
+                <textarea class="answer-4" placeholder="没有填‘无’" bindinput="input_introduction" data-index="0" />
+            </view>
+            <view class="bottom-2">
+                <text class="begin-2">任职要求</text>
+                <view wx:if="{{ismask}}" class="answer"></view>
+                <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{0}}"/>
+                <image src="../../images/jia.png" class="bottom-2-image" bindtap = "add_input"/>
+            </view>
+            <view wx:for="{{infoList}}" wx:key="*this">
+                <view class="list" animation="{{animationData[index]}}">
+                    <view class="bottom-2">
+                        <text class="begin-2">任职要求</text>
+                        <view wx:if="{{ismask}}" class="answer"></view>
+                        <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{index+1}}"/>
+                    </view>
+                </view>
+            </view>
+            <view class="bottom-1">
+                        <text class="begin">其他</text>
+                        <view wx:if="{{ismask}}" class="answer"></view>
+                        <input wx:else class="answer" type="text" bindinput="input_others"/>
+                    </view>
+        </scroll-view>
+        <!-- <view class="button-add" hover-class="button-add-havor" bindtap = "add_input">增加信息</view> -->
+        <view class="button-finish" hover-class="button-finish-havor" bindtap = "upload">完成</view>
+    </view>
 </view>
