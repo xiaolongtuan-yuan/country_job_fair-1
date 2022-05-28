@@ -21,64 +21,41 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // this.setData({openID:app.globalData.openID})
-    // console.log(this.data.openID)
+  async onLoad(options) {
     var that = this
-    wx.cloud.database().collection('jobs').get()
-      .then(res => {
-        let id=options.id
-        let result=that.getDetail(id,res.data)
-        if(result.code='200'){
-          that.setData({jobs:result.jobs})
-        }
-      })
-      .catch(err => {
-        console.log('请求失败',err)
-      })  
+    let res1 = await db.collection('jobs').get()
+    let id=options.id
+    let result=that.getDetail(id,res1.data)
+    if(result.code='200'){
+      that.setData({jobs:result.jobs})
+    }
+    console.log("1",that.data.jobs)
     this.setData({openID:wx.getStorageSync('openID')})
-    console.log(this.data.openID)
-    db.collection('worker')
-    .where({
-      _openid:that.data.openID
-    })
-    .get({
-      success(res){
-        console.log("获取成功！",res.data)
-        // console.log(res.data)
-        if(res.data.length >0){
-          var favor = res.data[0].worker_favor
-          console.log(favor)
-          let resume = res.data[0].worker_sended
-          // console.log('111',favor)
-          // console.log(favor)
-          let len = favor.length
-          let re_len = resume.length
-          // console.log(len)
-          // console.log(that.data.jobs)
-          for(let i = 0; i < len; i++) {
-            if(favor[i] == that.data.jobs._id) {
-              that.setData({isAdd:true})
-            }
-          }
-          that.setData({
-            worker_favor: favor,
-          })
-          for(let i = 0; i < re_len; i++) {
-            if(resume[i] == that.data.jobs._id) {
-              that.setData({re_isAdd:true})
-            }
-          }
-          that.setData({
-            worker_sended: resume,
-          })
-          // console.log(111,that.data.worker_favor)
+    console.log("2",this.data.openID)
+    let res2 = await db.collection('worker').where({_openid:that.data.openID}).get()
+    console.log("3",res2.data)
+    if(res2.data.length >0){
+      var favor = res2.data[0].worker_favor
+      let resume = res2.data[0].worker_sended
+      let len = favor.length
+      let re_len = resume.length
+      for(let i = 0; i < len; i++) {
+        if(favor[i] == that.data.jobs._id) {
+          that.setData({isAdd:true})
         }
-      },
-      fail(err){
-        console.log("请求失败",err)
-      },
-    })
+      }
+      that.setData({
+        worker_favor: favor,
+      })
+      for(let i = 0; i < re_len; i++) {
+        if(resume[i] == that.data.jobs._id) {
+          that.setData({re_isAdd:true})
+        }
+      }
+      that.setData({
+        worker_sended: resume,
+      })
+    }
 
 
   },
@@ -98,7 +75,14 @@ Page({
     }
     return msg;
   },
-
+  // 索引
+  indexof: function(arr, val)  {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == val) {
+        return i;
+      }
+    }
+  },
   //添加到收藏夹
   addFavorites: function(options) {
     if (app.globalData.openID.length === 0) {
@@ -107,9 +91,9 @@ Page({
         image: '/images/icons/error.png'
       })
     }else{
-      console.log(this.data.worker_favor)
+      console.log("4",this.data.worker_favor)
       this.data.worker_favor.push(this.data.jobs._id);
-      console.log(this.data.worker_favor)
+      console.log("5",this.data.worker_favor)
       // console.log(favor);  
       this.setData({worker_favor:this.data.worker_favor}); 
       this.setData({ isAdd: true });
@@ -133,7 +117,10 @@ Page({
 },
   //取消收藏
   cancelFavorites: function(options) {
-    this.data.worker_favor.pop();
+    console.log("6",this.data.worker_favor);
+    let index = this.indexof(this.data.worker_favor,this.data.jobs._id);
+    this.data.worker_favor.splice(index, 1);
+    console.log("7",this.data.worker_favor);
     // console.log(this.data.worker_favor)
     this.setData({ isAdd: false });
     var that = this
@@ -177,9 +164,10 @@ Page({
   },
 
   deleteSendResume: function(options) {
-    console.log(this.data.worker_sended);
-    this.data.worker_sended.pop();
-    console.log(this.data.worker_sended);
+    console.log("8",this.data.worker_sended);
+    let index = this.indexof(this.data.worker_sended, this.data.jobs._id);
+    this.data.worker_sended.splice(index,1);
+    console.log("9",this.data.worker_sended);
     this.setData({re_isAdd: false});
     var that = this;
     db.collection('worker')

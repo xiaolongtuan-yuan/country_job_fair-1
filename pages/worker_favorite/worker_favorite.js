@@ -18,6 +18,7 @@ Page({
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
     let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
+    this.unique(res1.data[0].worker_favor)
     that.setData({worker_favor: res1.data[0].worker_favor})
     console.log("1", that.data.worker_favor)
     

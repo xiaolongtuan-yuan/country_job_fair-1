@@ -11,8 +11,8 @@
   </view>
   <text class='job_provider'>职位提供者：{{jobs.company}}</text>
   <text class='job_address'>地点：{{jobs.address}}</text>
-  <text class='brief_introduction'><text class='bold'>岗位简介：</text></text>
-  <text class='require'><text class='bold'>任职要求：</text>要有C1驾照，要求技术熟练，不要资格证，全国户口均可，服从安排，吃苦耐劳。实际开车6个月以上，驾驶技术过关。</text>
+  <text class='brief_introduction'><text class='bold'>岗位简介：</text>{{jobs.b_intro}}</text>
+  <text class='require'><text class='bold'>任职要求：</text>{{jobs.require}}</text>
   <text class='content'><text class='bold'>工作内容：</text>{{jobs.introduction}}</text>
 
 </view>
