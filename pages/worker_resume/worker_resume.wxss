@@ -1,12 +1,13 @@
 /* pages/worker_resume/worker_resume.wxss */
-page {
-  background: white;
-}  
+.resume_sended_list{
+  width: 100vh;
+}
 .top {
   position: fixed;
   width: 100vw;
   height: 10.8vh;
   background: #17C3B2;
+  top: 0;
   z-index: 2;
 }
 .top-back-vector{
@@ -29,26 +30,130 @@ page {
   font-size: 2.5vh;
   line-height: 3.3vh;
   text-align: center;
-  /* or 185% */
+
   color: #FFFFFF;
 
 }
 
 .worker_resume {
   z-index: 1;
-  margin-top: 100rpx;
+  margin-top: 11vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.single_resume {
-  /* Rectangle 24 */
+.worker_resume_item {
   display: flex;
   flex-direction: column;
   width: 642rpx;
-  height: 316rpx;
-  margin-left: 58rpx;
-  margin-top: 36rpx;
-
+  margin-top: 1.5vh;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
+}
+
+.job_top{
+  display: flex;
+  flex-direction: row;
+  height: 4vh;
+  width: 100%;
+  border: none;
+  border-top: #C4C4C4 solid 1px;
+
+  align-items: center;
+  justify-content: space-between;
+}
+.jobs-title{
+  align-self: center;
+  height: 3vh;
+  width: 400rpx;
+  /* background-color: #A8A8A8; */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+}
+.jobs-salary{
+
+  width: 170rpx;
+  height: 3vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+
+  color: #17C3B2;
+}
+.jobs-address{
+  width: 500rpx;
+  height: 52rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  /* or 308% */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
+}
+.jobs-b_intro {
+  width: 500rpx;
+  height: 52rpx;
+
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* or 308% */
+  color: #000000;
+}
+.other-item{
+  width: 500rpx;
+  height: 52rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #A8A8A8;
+}
+.button{
+  height: 4.5vh;
+  width: 200rpx;
+  margin-left: 410rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4.5vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}
+.null{
+  height: 0.5vh;
 }
