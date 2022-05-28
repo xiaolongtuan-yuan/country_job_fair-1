@@ -6,7 +6,7 @@ page {
 .top {
   position: fixed;
   width: 100vw;
-  height: 176rpx;
+  height: 12vh;
   top: 0;
   background: #17C3B2;
   z-index: 2;
@@ -14,16 +14,17 @@ page {
 .top-text {
   position: absolute;
   width: 186rpx;
-  height: 56rpx;
+  height: 4vh;
   left: 58rpx;
-  top: 92rpx;
+  top: 6.2vh;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 40rpx;
-  line-height: 74rpx;
+  font-size: 2.7vh;
+  line-height: 4vh;
   text-align: center;
+  /* or 185% */
 
   color: #FFFFFF;
 }
