@@ -17,38 +17,30 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     this.setData({isboss:wx.getStorageSync('isboss')})
     this.setData({openID:wx.getStorageSync('openID')})
     // this.setData({openID:app.globalData.openID})
     var that = this  
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .get({
-        success(res) {
-          if(res.data.length >0){
-            var worker_sended = res.data[0].worker_sended
-            if(!that.data.isboss){
-              that.setData({worker_resume: worker_sended})
-            }
+    let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
+    if(res1.data.length >0){
+      let worker_sended = res1.data[0].worker_sended
+      if(!that.data.isboss){
+        that.setData({worker_resume: worker_sended})
+      }
+    }
+    console.log("1", that.data.worker_resume)
 
-          }
-        }
-      })
 
-      db.collection('jobs').get()
-      .then(res => {
-        console.log(res.data)
-        let result = that.getjobs(that.data.worker_resume, res.data)
-        that.setData({jobs:result})
-        let result_boss = that.getjobs_had(res.data)
-        that.setData({jobs_had: result_boss})
-      })
-      .catch(err => {
-        console.log('请求失败',err)
-      })  
+    let res2 = await db.collection('jobs').get()
+    console.log("2", res2.data)
+    let result = that.getjobs(that.data.worker_resume, res2.data)
+    that.setData({jobs:result})
+    console.log("3", that.data.jobs)
+
+    let result_boss = that.getjobs_had(res2.data)
+    that.setData({jobs_had: result_boss})
+    console.log("4", that.data.jobs_had)
   },
 
   getjobs: function(jobsId, jobsList) {
