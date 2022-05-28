@@ -14,38 +14,31 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .get({
-        success(res) {
-          that.setData({worker_favor: res.data[0].worker_favor})
+    let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
+    that.setData({worker_favor: res1.data[0].worker_favor})
+    console.log("1", that.data.worker_favor)
+    
+    let res2 = await db.collection('jobs').get()
+    console.log("2", res2.data)
+    var jobs = []
+    let len = res2.data.length
+    let len_1 = that.data.worker_favor.length
+    for(let i = 0; i < len; i++) {
+      for(let j = 0; j < len_1; j++) {
+        if(res2.data[i]._id == that.data.worker_favor[j]) {
+          jobs.push(res2.data[i])
         }
-      })
-
-    db.collection('jobs').get()
-      .then(res => {
-        var jobs = []
-        let len = res.data.length
-        let len_1 = that.data.worker_favor.length
-        for(let i = 0; i < len; i++) {
-          for(let j = 0; j < len_1; j++) {
-            if(res.data[i]._id == that.data.worker_favor[j]) {
-              jobs.push(res.data[i])
-            }
-          }
-        }
-        that.setData({jobs:jobs})
-
-      })
-      .catch(err => {
-        console.log('请求失败',err)
-      })
-      
+      }
+    }
+    that.setData({jobs:this.unique(jobs)})
+    console.log("3", that.data.jobs)
+  },
+  // 数组去重函数
+  unique: function(arr) {
+    return Array.from(new Set(arr))
   },
 
   goToDetail: function(e) {
