@@ -3,29 +3,29 @@ page {
 }
 .top{
     width: 100vw;
-    height: 278rpx;
+    height: 20vh;
     background: #17C3B2;
 }
 .top-back{
     position: absolute;
     left: 40rpx;
-    top: 108rpx;
+    top: 6.5vh;
     display: flex;
     align-items: center;
 }
 .top-back-vector{
     width: 26rpx;
-    height: 42rpx;
+    height: 2.7vh;
 }
 .top-back-text{
     margin-left: 30rpx;
     width: 186rpx;
-    height: 56rpx;
+    height: 3.5vh;
     font-family: 'Inter';
     font-style: normal;
     font-weight: normal;
     font-size: 40rpx;
-    line-height: 56rpx;
+    line-height: 3.5vh;
     color: white;
 }
 .bottom{
@@ -33,7 +33,7 @@ page {
     width: 100vw;
  
     left: 0px;
-    top: 218rpx;
+    top: 13.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,17 +42,17 @@ page {
     border-radius: 80rpx;
 }
 .bottom-1{
-    margin-top: 30rpx;
+    margin-top: 1.88vh;
     width: 642rpx;
-    height: 68rpx;
+    height: 4.2vh;
     border: none;
     display: flex;
     border-bottom: 2rpx solid #DFDEDE;
 }
 .bottom-3{
-    margin-top: 30rpx;
+    margin-top: 2vh;
     width: 642rpx;
-    height: 136rpx;
+    height: 8vh;
     border: none;
     display: flex;
     border-bottom: 2rpx solid #DFDEDE;
@@ -71,13 +71,7 @@ page {
     font-size: 30rpx;
     margin-right: 60rpx;
 }
-.begin-3{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30rpx;
-    margin-right: 90rpx;
-}
+
 .answer{
     color: rgb(168,168,168);
     font-family: 'Inter';
@@ -106,15 +100,14 @@ page {
     font-style: normal;
     font-weight: 400;
     font-size: 30rpx;
-
     width: 460rpx;
-    height: 120rpx;
+    height: 7vh;
 }
 .sex-group{
     display: flex;
 }
 .bottom-2{
-    margin-top: 30rpx;
+    margin-top: 1.9vh;
     width: 642rpx;
     height: 320rpx;
     border: none;
@@ -132,13 +125,13 @@ page {
 .button-finish{
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 5.5vh;
+    line-height: 5.5vh;
     font-size:large;
     background-color: #17C3B2;
     color: white;
     border-radius: 80rpx;
-    margin-top: 30rpx;
+    margin-top: 2.2vh;
 }
 .button-finish-hover{
     background-color: white;

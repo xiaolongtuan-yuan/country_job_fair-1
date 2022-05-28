@@ -1,100 +1,8 @@
-/* pages/boss/boss.wxss */
-/* .center{
-    margin: auto;
-    width: 70%;
+page {
+    background: white;
 }
-input{
-    border-color: black;
-    border-style: dotted;
-}
-.inputs{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.yxdidian{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.yxsalary{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.list{
-    display: flex;
-    opacity: 0;
-}
-button{
-    margin: 10rpx;
-    display: flex;
-    position: relative;
-    top:200px
-}
-
-/* 海报弹窗 */
-/* .poster {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: transparent;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 1;
-}
-.poster .mask{
-    position: absolute;
-    background-color: rgba(0,0,0,0.5);
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-}
-
-
-.saveImage{
-
-    text-align: center;
-    font-size: 45rpx;
-    font-weight: bold;
-    padding-top: 10rpx;
-    height: 100rpx;
-    width:250rpx;
-    border-radius: 30rpx;
-    font-family: inter;
-    color: white;
-    position: absolute;
-    bottom: 70rpx;
-    z-index: 3;
-    height: 80rpx;
-    margin-top: 800rpx;
-    background-color: #17C3B2;
-}
-.saveImage-hover{
-    text-align: center;
-    font-size: 45rpx;
-    font-weight: bold;
-    padding-top: 10rpx;
-    height: 100rpx;
-    width:250rpx;
-    border-radius: 30rpx;
-    font-family: inter;
-    color: #17C3B2;
-    position: absolute;
-    bottom: 70rpx;
-    z-index: 3;
-    height: 80rpx;
-    margin-top: 800rpx;
-    background-color: white;
-} */ 
 .poster {
     position: fixed;
-    left: 0;
-    top: 0;
     height: 100%;
     width: 100%;
     background-color: transparent;
@@ -102,14 +10,14 @@ button{
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    z-index: 1;
+    z-index: 3;
 }
 .poster .mask{
     position: absolute;
     background-color: rgba(0,0,0,0.5);
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 4;
 }
 
 
@@ -124,9 +32,9 @@ button{
     border-radius: 30rpx;
     font-family: inter;
     color: white;
-    position: absolute;
-    bottom: 70rpx;
-    z-index: 3;
+    position: fixed;
+    bottom: 4.3vh;
+    z-index: 6;
     height: 80rpx;
     margin-top: 800rpx;
     background-color: #17C3B2;
@@ -143,33 +51,35 @@ button{
     color: #17C3B2;
     position: absolute;
     bottom: 70rpx;
-    z-index: 3;
+    z-index: 5;
     height: 80rpx;
     margin-top: 800rpx;
     background-color: white;
 }
 
-
+.input{
+    z-index: 0;
+}
 .top{
     width: 100vw;
-    height: 278rpx;
+    height: 20vh;
     background: #17C3B2;
 }
 .top-back{
     position: absolute;
     left: 40rpx;
-    top: 108rpx;
+    top: 6.2vh;
     display: flex;
     align-items: center;
 }
 .top-back-vector{
     width: 26rpx;
-    height: 42rpx;
+    height: 2.5vh;
 }
 .top-back-text{
     margin-left: 30rpx;
     width: 186rpx;
-    height: 56rpx;
+    height: 3.5vh;
     font-family: 'Inter';
     font-style: normal;
     font-weight: normal;
@@ -180,28 +90,33 @@ button{
 .bottom{
     position: absolute;
     width: 100vw;
-    height: 700px;
+    height: 74vh;
     left: 0px;
     top: 218rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    background: #FFFFFF;
+    background-color: white;
     border-radius: 80rpx;
 }
+scroll-view{
+    width: 90%;
+    height: 100%;
+    border-radius: 30rpx;
+}
 .bottom-1{
-    margin-top: 30rpx;
     width: 642rpx;
-    height: 68rpx;
+    height: 5.9vh;
     border: none;
     display: flex;
+    align-items: center;
     border-bottom: 2rpx solid #DFDEDE;
 }
 .bottom-3{
-    margin-top: 30rpx;
+    margin-top: 1.8vh;
     width: 642rpx;
-    height: 100rpx;
+    height: 6.2vh;
     border: none;
     display: flex;
     border-bottom: 2rpx solid #DFDEDE;
@@ -264,27 +179,40 @@ button{
     font-size: 30rpx;
 
     width: 460rpx;
-    height: 85rpx;
-
+    height: 5.2vh;
 }
 .sex-group{
     display: flex;
 }
 .bottom-2{
-    margin-top: 30rpx;
+ 
     width: 642rpx;
-    height: 320rpx;
+    height: 5.9vh;
     border: none;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    /* align-items: center; */
+
     border-bottom: 2rpx solid #DFDEDE;
+
 }
+
+.bottom-2-image{
+    height: 70rpx;
+    width: 70rpx;
+
+}
+/* .bottom-2-image2{
+    height: 80rpx;
+    width: 80rpx;
+    background-color: #118AB2;
+} */
 .list{
     display: flex;
     opacity: 0;
 }
 
-.button-add{
+/* .button-add{
     text-align: center;
     width: 500rpx;
     height: 92rpx;
@@ -294,8 +222,8 @@ button{
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1100rpx;
-}
+    top:66vh;
+} */
 .button-add-havor{
     background-color: white;
     color: #118AB2;
@@ -304,14 +232,14 @@ button{
     vertical-align: middle;
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 5.7vh;
+    line-height: 5.7vh;
     font-size:large;
     background-color: #17C3B2;
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1200rpx;
+    top:75vh;
 }
 .button-finish-havor{
     background-color: white;

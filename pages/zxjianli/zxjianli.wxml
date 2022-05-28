@@ -1,6 +1,6 @@
 <view class="top">
     <view class="top-back">
-        <image bindtap="back" src="../../images/Vector 2.png" class="top-back-vector"/>
+        <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
         <text class="top-back-text">在线简历</text>
     </view>
 </view>
@@ -36,14 +36,6 @@
             {{array[index]}}
             </view>
         </picker>
-    </view>
-    <view class="bottom-1">
-        <text class="begin">手机</text>
-        <input class="answer" type="number" bindinput="input_tel" value="{{jianli.info[5]}}"/>
-    </view>
-    <view class="bottom-1">
-        <text class="begin-3">微信号</text>
-        <input class="answer" type="number" bindinput="input_wxid" value="{{jianli.info[4]}}"/>
     </view>
     <view class="bottom-3">
         <text class="begin-2">工作经历</text>

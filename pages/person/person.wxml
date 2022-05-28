@@ -40,7 +40,7 @@
                             </view>
                         </picker>
                         <!-- <text class="yixiang-region-text2">四川省-广元市-旺苍县</text> -->
-                        <image src="../../images/Vector 1.png" class="yixiang-region-vector"/>
+                        <image src="../../images/Vector1.png" class="yixiang-region-vector"/>
                     </view>
                     <view class="yixiang-region">
                         <text class="yixiang-region-text1">工资</text>
@@ -50,12 +50,12 @@
                             </view>
                         </picker>
                         <!-- <text class="yixiang-region-text2">1k-2k</text> -->
-                        <image src="../../images/Vector 1.png" class="yixiang-region-vector"/>
+                        <image src="../../images/Vector1.png" class="yixiang-region-vector"/>
                     </view>
                     <view class="yixiang-region" bindtap="yxpost">
                         <text class="yixiang-region-text1">岗位</text>
                         <text class="yixiang-region-text2">{{posts[post[0]][post[1]]}}</text>
-                        <image src="../../images/Vector 1.png" class="yixiang-region-vector"/>
+                        <image src="../../images/Vector1.png" class="yixiang-region-vector"/>
                     </view>
 
                 </view>
