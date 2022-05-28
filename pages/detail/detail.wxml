@@ -9,11 +9,12 @@
     <text class='title'>{{jobs.job_name}}</text>
     <view class='salary'>{{jobs.salary[0]+1}}-{{jobs.salary[1]+1}}K</view>
   </view>
-  <text class='job_provider'>职位提供者：{{jobs.company}}</text>
-  <text class='job_address'>地点：{{jobs.address}}</text>
-  <text class='brief_introduction'><text class='bold'>岗位简介：</text>{{jobs.b_intro}}</text>
-  <text class='require'><text class='bold'>任职要求：</text>{{jobs.require}}</text>
-  <text class='content'><text class='bold'>工作内容：</text>{{jobs.introduction}}</text>
+  <text class='job_provider' user-select='true'>职位提供者：{{jobs.company}}</text>
+  <text class='job_address' user-select='true'>地点：{{jobs.address}}</text>
+  <text class='brief_introduction' user-select='true' wx:if="{{jobs.b_intro}}"><text class='bold'>岗位简介：</text>{{jobs.b_intro}}</text>
+  <text class='require_bold' wx:if="{{jobs.require}}">任职要求：</text>
+  <text class='require' user-select='true' wx:for="{{jobs.require}}">{{index+1}}、{{item}}</text>
+  <text class='content' user-select='true'><text class='bold' wx:if="{{jobs.introduction}}">工作内容：</text>{{jobs.introduction}}</text>
 
 </view>
 

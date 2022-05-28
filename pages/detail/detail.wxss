@@ -111,9 +111,25 @@ page {
 .bold {
   font-weight: 700;
 }
+.require_bold{
+  width: 626rpx;
+  height: 100vm;
+  margin-left: 56rpx;
+  margin-top: 26rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  /* or 200% */
+
+
+  color: #000000;
+}
 .brief_introduction {
   width: 626rpx;
-  height: 74rpx;
+ 
   margin-left: 56rpx;
   margin-top: 26rpx;
 
@@ -121,7 +137,7 @@ page {
   font-style: normal;
   font-weight: 400;
   font-size: 30rpx;
-  line-height: 74rpx;
+  line-height: 56rpx;
   /* identical to box height, or 247% */
 
 
@@ -133,7 +149,6 @@ page {
   width: 626rpx;
   height: 100vm;
   margin-left: 56rpx;
-  margin-top: 26rpx;
 
   font-family: 'Inter';
   font-style: normal;
@@ -165,9 +180,9 @@ page {
 }
 .btn {
   width: 86vw;
-  height: 102rpx;
+  height: 9vh;
   position: fixed;
-  bottom:47rpx;
+  bottom:0vh;
   margin-left: 7vw;
   display: flex;
   flex-direction: row;

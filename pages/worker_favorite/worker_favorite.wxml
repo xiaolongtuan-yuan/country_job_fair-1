@@ -23,7 +23,8 @@
           <text class='jobs-title'>{{jobs.job_name}}</text>
           <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
           <text class='jobs-address'>{{jobs.address}}</text>
-          <view class="jobs-others" wx:for="{{jobs.orthers}}" wx:for-item="other">
+          <text class='jobs-b_intro'>{{jobs.b_intro}}</text>
+          <view class="jobs-others" wx:for="{{jobs.others}}" wx:for-item="other">
             <view class='other-item'>{{other}}</view>
           </view>
           <view class='null'> </view>
