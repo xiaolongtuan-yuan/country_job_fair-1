@@ -1,1 +1,54 @@
 /* pages/worker_resume/worker_resume.wxss */
+page {
+  background: white;
+}  
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 186rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+  text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
+
+}
+
+.worker_resume {
+  z-index: 1;
+  margin-top: 100rpx;
+}
+
+.single_resume {
+  /* Rectangle 24 */
+  display: flex;
+  flex-direction: column;
+  width: 642rpx;
+  height: 316rpx;
+  margin-left: 58rpx;
+  margin-top: 36rpx;
+
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+}

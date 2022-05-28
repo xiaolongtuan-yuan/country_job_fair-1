@@ -12,8 +12,10 @@ Page({
     multiIndex: [0, 0],//工资索引
     job_name:'',//工作名字
     intro:'',//岗位介绍
+    introduction:'',//详细介绍
     address:'',//详细地址
-    orthers:[],//‘其他’信息
+    require:[],//任职要求
+    others:[],//‘其他’信息
     Index:0,//用来处理自行添加的输入框的输入问题
     company:'',//公司名称
     animationData:[],//自行添加行动画
@@ -21,7 +23,8 @@ Page({
     canvasType: false,//是否出现海报bool
     ctx:'',//画布上下文
     src:'',//海报背景图片
-    id:''
+    id:'',
+    ismask:false
   },
 
 
@@ -32,11 +35,22 @@ Page({
     console.log("添加输入行")
     var a=this.data.infoList
     a.push('请输入信息')
-    this.setData({
+    this.setData
+    ({
       infoList:a
     })
     this.set_animations()
   },
+  // minus_input(e){
+  //   var a = this.data.infoList
+  //   a.splice(e.target.dataset.index-1,1)
+  //   var b = this.data.require
+  //   b.splice(e.target.dataset.index,1)
+  //   this.setData({
+  //     infoList:a,
+  //     require:b
+  //   })
+  // },
   set_animations(){
     var index = this.data.infoList.length
     var animation = wx.createAnimation({
@@ -104,16 +118,25 @@ Page({
       address:e.detail.value
     })
   },
-  input_orders(e){
+  input_introduction(e){
     this.setData({
-      Index:e.target.dataset.index-1
+      introduction:e.detail.value
     })
-    console.log(this.data.Index)
-    var array = this.data.orthers
-    array[this.data.Index]=e.detail.value
+  },
+  input_require(e){
+    var array = this.data.require
+    array[e.target.dataset.index]=e.detail.value
     this.setData({
-      orthers:array
+      require:array
     })
+  },
+  input_others(e){
+    var array = this.data.others
+    array[0]=e.detail.value
+    this.setData({
+      others:array
+    })
+    // console.log(this.data.others)
   },
   input_company(e){
     this.setData({
@@ -121,27 +144,33 @@ Page({
     })
   },
   upload(){
-    if(this.data.job_name==''){
+    if(!this.data.job_name){
       wx.showToast({
         icon:"error",
         title:"未输入岗位名！"
       })
+      return
     }
     if(this.data.address.length>29){
       wx.showToast({
         icon:"error",
         title:"地址最多29字！"
       })
+      return
     }
     if(this.data.intro.length>29){
       wx.showToast({
         icon:"error",
         title:"简介最多29字！"
       })
+      return
     }
     else{
       wx.showLoading({
         title: '上传招聘中...',
+      })
+      this.setData({
+        ismask:true
       })
       wx.cloud.database().collection('jobs')
       .add({
@@ -150,9 +179,11 @@ Page({
           region:this.data.region,
           job_name:this.data.job_name,
           company:this.data.company,
-          introduction:this.data.intro,
+          b_intro:this.data.intro,
+          introduction:this.data.introduction,
           address:this.data.address,
-          orthers:this.data.orthers
+          require:this.data.require,
+          others:this.data.others
         }
       })
       .then(res=>{
@@ -164,6 +195,9 @@ Page({
         this.drawCanvas2D()
       })
     }
+  },
+  back(){
+    wx.navigateBack()
   },
 
   cancelPoster() {
@@ -365,11 +399,14 @@ Page({
     })
   },
   checkAuthSetting(tempFilePath){//检查用户授权保存图片之相册
+    console.log("保存海报")
     wx.getSetting({
       success:(res)=>{
       	//是否已授权
+        
         if (res.authSetting['scope.writePhotosAlbum']) {
           //已授权直接保存
+          console.log("已授权")
           wx.saveImageToPhotosAlbum({  //保存图片到相册
             filePath: tempFilePath,
             success: function (res) {
@@ -386,6 +423,7 @@ Page({
         }
       	//未授权请求授权
         else if (res.authSetting['scope.writePhotosAlbum'] === undefined) {
+          console.log("正在授权")
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
             success: ()=>{

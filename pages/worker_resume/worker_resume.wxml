@@ -1,14 +1,22 @@
 <!--pages/worker_resume/worker_resume.wxml-->
+<view wx:if="{{isboss}}"class="resume_got_list">
 
-<view wx:if="{{isboss}}"class="resume_sended_list">
-  <text>已收到简历列表</text>
-  <view wx:for="{{jobs_had}}" wx:for-item="jobsList" wx:key="{{jobsList.id}}" bindtap='boss_goToResume' data-id='{{jobsList._id}}'>
-    <view>{{jobsList.address}}————{{jobsList.job_name}}</view>
+</view>
+
+<view wx:else class="resume_sended_list">
+  <view class="top">
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">我的投递</text>
+  </view>
+
+  <view class="worker_resume">
+    <view wx:for="{{jobs}}" wx:for-item="single_resume">
+      <view>{{single_resume.address}}————{{single_resume.job_name}}</view>
+    </view>
   </view>
 </view>
-<view wx:else class="resume_got_list">
-  <text>已发送简历列表</text>
-  <view wx:for="{{jobs}}" wx:for-item="jobsList">
-    <view>{{jobsList.address}}————{{jobsList.job_name}}</view>
-  </view>
-</view>
+
+
+
+
+

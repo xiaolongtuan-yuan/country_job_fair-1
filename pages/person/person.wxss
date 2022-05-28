@@ -1,13 +1,15 @@
 /* 调整 */
+
 .entire{
-    background-color: #E5E5E5;
+    background-color: rgb(245,245,248);
     height: 100vh;
     width: 100vw;
 }
 .top{
     position: absolute;
     background-color: #17C3B2;
-    height: 460rpx;
+    /* height: 460rpx; */
+    height: 31.5vh;
     width: 100%;
     border-bottom-left-radius: 100rpx;
     border-bottom-right-radius: 100rpx;
@@ -17,23 +19,23 @@
     height: 180rpx;
     width: 180rpx;
     border-radius: 90rpx;
-    margin-top: 192rpx;
+    margin-top: 13vh;
     margin-left: 60rpx;
     background-color: white;
 }
 .top-right{
     color: #fff;
-    margin-top: 192rpx;
+    margin-top: 13vh;
     margin-left: 60rpx;
     display: flex;
     flex-direction: column;
 }
 .top-right-name{
-    margin-top: 10rpx;
+    margin-top: 0.5vh;
     font-size: 48rpx;
 }
 .top-right-data{
-    margin-top: 50rpx;
+    margin-top: 3.5vh;
     display: flex;
 }
 .top-right-data-data1{
@@ -50,10 +52,10 @@
 }
 .yixiang{
     position: absolute;
-    top: 492rpx;
+    top: 33.5vh;
     left: 56rpx;
     background-color: #fff;
-    height: 346rpx;
+    height: 23vh;
     width: 640rpx;
     box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
     border-radius: 40rpx;
@@ -69,7 +71,7 @@
 .yixiang-top-left{
 
     width: 10rpx;
-    height: 38rpx;
+    height: 2.7vh;
     
     background: #2996BA;
     border-radius: 4rpx;
@@ -103,10 +105,10 @@
 }
 .gongneng{
     position: absolute;
-    top: 870rpx;
+    top: 58.5vh;
     left: 56rpx;
     background-color: #fff;
-    height: 320rpx;
+    height: 21.5vh;
     width: 640rpx;
     box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
     border-radius: 40rpx;
@@ -123,7 +125,7 @@
 }
 .gongneng-bottom-jianli-image{
     width: 148rpx;
-    height: 158rpx;
+    height: 10.8vh;
 }
 .gongneng-bottom-jianli-txt{
     font-size: 30rpx;
@@ -136,12 +138,12 @@
 }
 .gongneng-middle-falv-image{
     width: 126rpx;
-    height: 120rpx;
-    margin-top: 20rpx;
+    height: 8.2vh;
+    margin-top: 1.35vh;
 }
 .gongneng-middle-falv-txt{
     font-size: 30rpx;
-    margin-top: 19rpx;
+    margin-top: 1.35vh;
 }
 .gongneng-bottom-xinzi{
     display: flex;
@@ -150,24 +152,24 @@
 }
 .gongneng-bottom-xinzi-image{
     width: 132rpx;
-    height: 132rpx;
-    margin-top: 15rpx;
+    height: 9vh;
+    margin-top: 1vh;
 }
 .gongneng-bottom-xinzi-txt{
-    margin-top: 12rpx;
+    margin-top: 0.85vh;
     font-size: 30rpx;
 }
 .button-boss{
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 6.5vh;
+    line-height: 6.5vh;
     font-size:large;
     background-color: #17C3B2;
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1220rpx;
+    top:83.5vh;
 }
 .button-boss-havor{
     background-color: white;
@@ -177,14 +179,14 @@
     vertical-align: middle;
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 6.5vh;
+    line-height: 6.5vh;
     font-size:large;
     background-color: white;
     color: #C2C2C2;
     border-radius: 80rpx;
     position: absolute;
-    top:1344rpx;
+    top:92vh;
 }
 .button-tuichu-havor{
     background-color: #C2C2C2;
@@ -194,7 +196,7 @@
 /* boss */
 .boss{
     position: absolute;
-    top: 508rpx;
+    top: 34.5vh;
     left: 56rpx;
     background-color: #fff;
     height: 150rpx;
@@ -236,14 +238,14 @@
 .button-zhaoping{
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 6.5vh;
+    line-height: 6.5vh;
     font-size:large;
     background-color: #118AB2;
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1220rpx;
+    top:83.5vh;
 }
 .button-zhaoping-havor{
     background-color: white;
@@ -253,16 +255,88 @@
     vertical-align: middle;
     text-align: center;
     width: 500rpx;
-    height: 92rpx;
-    line-height: 92rpx;
+    height: 6.5vh;
+    line-height: 6.5vh;
     font-size:large;
     background-color: #17C3B2;
     color: white;
     border-radius: 80rpx;
     position: absolute;
-    top:1344rpx;
+    top:92vh;
 }
 .button-gongzuo-havor{
     background-color: white;
+    color: #17C3B2;
+}
+.mediam{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 644rpx;
+    height: 442rpx;
+    left: 60rpx;
+    top: 520rpx;
+    background: #FFFFFF;
+    box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+    border-radius: 40rpx;
+}
+.mediam-title{
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40rpx;
+    line-height: 74rpx;
+    margin-top: 30rpx;
+}
+.mediam-text{
+
+    width: 526rpx;
+    height: 148rpx;
+
+    margin-top: 30rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    line-height: 74rpx;
+}
+.mediam-button{
+    display: flex;
+}
+.mediam-button-left{
+    width: 258rpx;
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    background: #DFDEDE;
+    color: #C2C2C2;
+    border-radius: 80rpx;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 40rpx;
+    margin-right: 10rpx;
+}
+.mediam-button-left-hover{
+    background: #C2C2C2;
+    color: #DFDEDE;
+}
+.mediam-button-right{
+    width: 258rpx;
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    background: #17C3B2;
+    color: #FFFFFF;
+    border-radius: 80rpx;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 40rpx;
+    margin-left: 10rpx;
+}
+.mediam-button-right-hover{
+    background: #FFFFFF;
     color: #17C3B2;
 }

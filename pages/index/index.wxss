@@ -1,55 +1,180 @@
 /**index.wxss**/
+page {
+  background: rgb(245,245,248);
+}  
+/*顶部框图与文字*/
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 12vh;
+  top: 0;
+  background: #17C3B2;
+  z-index: 2;
+}
+.top-text {
+  position: absolute;
+  width: 186rpx;
+  height: 4vh;
+  left: 58rpx;
+  top: 6.2vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.7vh;
+  line-height: 4vh;
+  text-align: center;
+  /* or 185% */
+
+  color: #FFFFFF;
+}
+.content{
+  z-index: 1;
+}
 /* 1-1 swiper组件 */
 swiper {
-  height: 400rpx;
+  margin-left: 44rpx;
+  margin-top: 206rpx;
+  width: 664rpx;
+  height: 382rpx;
+  margin-bottom: 20rpx;
+
+  background: #FFFFFF;
+  border-radius: 20rpx;
 }
 /* 1-2 swiper中的图片 */
-swiper image {
+.slide-image{
   width: 100%;
   height: 100%;
+  border-radius: 20rpx;
+}
+/*title 工作推荐 */
+.title {
+  width: 172rpx;
+  height: 70rpx;
+  margin-left: 300rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 70rpx;
+  /* or 185% */
+  color: #000000;
+
 }
 /* 2-1 招聘列表容器 */
-#jobs-list {
-  min-height: 600rpx;
-  padding: 15rpx;
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100vw;
+  align-items: flex-start;
+  margin-bottom: 2vh;
+}
+.list1{
+  display: flex;
+  flex-direction: column;
+  margin-right: 10rpx;
+}
+.list2{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rpx;
 }
 /* 2-2 列表项目 */
 .list-item {
   display: flex;
-  flex-direction: row;
-  border-bottom: 1rpx solid gray;
-}
-/* 2-3 招聘信息图片 */
-.list-item image{
-  width: 230rpx;
-  height: 150rpx;
-  margin: 10rpx;
-}
-/* 2-4 招聘信息 */
-.jobs-ts{
-  display: flex;
   flex-direction: column;
+  width: 300rpx;
+  margin-top: 20rpx;
+  float: none;
+
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
 }
+
 .jobs-title{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  align-self: center;
+  height: 74rpx;
+  margin-top: 0rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
 }
 .jobs-salary{
-  display: block;
-  color: rgb(18, 174, 221);
-  font-size: 12pt;
+  width: 306rpx;
+  height: 44rpx;
+  margin-left: 38rpx;
+  margin-top: 20rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  /* or 247% */
+  color: #17C3B2;
+
+
 }
 .jobs-address{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  /* or 308% */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
 }
-.jobs-others{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+.jobs-b_intro {
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* or 308% */
+  color: #000000;
+}
+.other-item{
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #A8A8A8;
+}
+.null{
+  height: 3vh;
 }

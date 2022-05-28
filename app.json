@@ -1,14 +1,14 @@
 {
   "pages": [
-      "pages/index/index",
       "pages/person/person",
+      "pages/index/index",
       "pages/boss/boss",
       "pages/zxjianli/zxjianli",
       "pages/detail/detail",
       "pages/hangye/hangye",
       "pages/dialog/dialog",
       "pages/messageDetail/messageDetail",
-      "pages/Friends/Friends",
+      "pages/Friends/Friends",  
       "pages/worker_resume/worker_resume",
       "pages/boss_Resume_detail/boss_Resume_detail",
       "pages/worker_favorite/worker_favorite",

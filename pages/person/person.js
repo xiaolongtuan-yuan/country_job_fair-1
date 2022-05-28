@@ -17,7 +17,8 @@ Page({
     multiIndex: [0, 0],
     post_classify:app.globalData.post_classify,
     posts:app.globalData.post,
-    post:[0,0]
+    post:[0,0],
+    datas:[]
   },
 
   /**
@@ -61,7 +62,6 @@ Page({
             data:{
             yx_address: this.data.region,
             yx_salary: this.data.multiIndex,
-            datas:this.data.worker.datas
             }
           })
           .then( x=>{
@@ -100,10 +100,16 @@ Page({
           .get({
             success(res){
               if(res.data.length >0){
+                console.log("测试",res.data)
+                var datas = []
+                datas[0] = res.data[0].worker_favor.length //员工收藏数量
+                datas[1] = res.data[0].worker_sended.length //员工投递数量
+                datas[2] = res.data[0].boss_favor.length //老板收藏数量
                 that.setData({
                   worker:res.data[0],
                   region:res.data[0].yx_address,
-                  multiIndex:res.data[0].yx_salary
+                  multiIndex:res.data[0].yx_salary,
+                  datas: datas
                 })
                 app.globalData.worker = res.data[0]
                 console.log("获取成功！",res.data)
@@ -113,7 +119,6 @@ Page({
                 var worker = {
                   yx_address:['四川省','广元市','旺苍县'],//默认
                   yx_salary:[0,5],
-                  datas:[0,0,0],
                   yx_post:[0,0]
                 }
                 db.collection('worker')
@@ -121,7 +126,6 @@ Page({
                   data:{
                     yx_address:['四川省','广元市','旺苍县'],//默认
                     yx_salary:[0,5],
-                    datas:[0,0,0],
                     yx_post:[0,0],
                     worker_favor:[0],
                     boss_favor:[0],
@@ -196,7 +200,6 @@ Page({
                   data:{
                   yx_address: this.data.region,
                   yx_salary: this.data.multiIndex,
-                  datas:this.data.worker.datas
                   }
                 })
                 .then( x=>{
@@ -221,7 +224,6 @@ Page({
                       data:{
                       yx_address: this.data.region,
                       yx_salary: this.data.multiIndex,
-                      datas:this.data.worker.datas
                       }
                     })
                     .then( x=>{
@@ -233,6 +235,11 @@ Page({
             })
           })
       }
+    })
+  },
+  guangguang(){
+    wx.switchTab({
+      url: '../index/index'
     })
   },
   tuichu(){
@@ -399,31 +406,45 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-    this.set_post()
-    console.log("OnShow")
-    app.slideupshow(this, 'slide_up1', -200, 1)
+    // this.set_post()
+    // console.log("OnShow")
+    // app.slideupshow(this, 'slide_up1', -200, 1)
 
-    setTimeout(function () {
-      app.slideupshow(this, 'slide_up2', -200, 1)
-      setTimeout(function () {
-        app.slideupshow(this, 'slide_up3', -200, 1)
-        setTimeout(function () {
-          app.slideupshow(this, 'slide_up4', -200, 1)
-          setTimeout(function () {
-            app.slideupshow(this, 'slide_up5', -200, 1)
-          }.bind(this), 200)
-        }.bind(this), 100)
-      }.bind(this), 60)
-    }.bind(this), 20)
-    
-    
-    
-    
+    // setTimeout(function () {
+    //   app.slideupshow(this, 'slide_up2', -200, 1)
+    //   setTimeout(function () {
+    //     app.slideupshow(this, 'slide_up3', -200, 1)
+    //     setTimeout(function () {
+    //       app.slideupshow(this, 'slide_up4', -200, 1)
+    //       setTimeout(function () {
+    //         app.slideupshow(this, 'slide_up5', -200, 1)
+    //       }.bind(this), 200)
+    //     }.bind(this), 100)
+    //   }.bind(this), 60)
+    // }.bind(this), 20)
+    var that = this
+    db.collection('worker')
+    .where({
+      _openid:this.data.openID
+    })
+    .get({
+      success(res){
+        console.log("测试",res.data)
+        var datas = []
+        datas[0] = res.data[0].worker_favor.length //员工收藏数量
+        datas[1] = res.data[0].worker_sended.length //员工投递数量
+        datas[2] = res.data[0].boss_favor.length //老板收藏数量
+        that.setData({
+          worker:res.data[0],//更新投递和收藏数据
+          datas: datas
+        })
+        app.globalData.worker = res.data[0]
+      },
+      fail(err){
+        console.log("请求失败",err)
+      }
+    })
   },
 
   /**

@@ -1,43 +1,8 @@
-/* pages/boss/boss.wxss */
-.center{
-    margin: auto;
-    width: 70%;
+page {
+    background: white;
 }
-input{
-    border-color: black;
-    border-style: dotted;
-}
-.inputs{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.yxdidian{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.yxsalary{
-    display: flex;
-    position: relative;
-    top:200px
-}
-.list{
-    display: flex;
-    opacity: 0;
-}
-button{
-    margin: 10rpx;
-    display: flex;
-    position: relative;
-    top:200px
-}
-
-/* 海报弹窗 */
 .poster {
     position: fixed;
-    left: 0;
-    top: 0;
     height: 100%;
     width: 100%;
     background-color: transparent;
@@ -45,22 +10,19 @@ button{
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    z-index: 1;
+    z-index: 3;
 }
 .poster .mask{
     position: absolute;
     background-color: rgba(0,0,0,0.5);
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 4;
 }
 
 
 .saveImage{
-    /* position: absolute;
-    bottom: 1500rpx;
-    width: 80rpx;
-    z-index: 3; */
+
     text-align: center;
     font-size: 45rpx;
     font-weight: bold;
@@ -70,9 +32,9 @@ button{
     border-radius: 30rpx;
     font-family: inter;
     color: white;
-    position: absolute;
-    bottom: 70rpx;
-    z-index: 3;
+    position: fixed;
+    bottom: 4.3vh;
+    z-index: 6;
     height: 80rpx;
     margin-top: 800rpx;
     background-color: #17C3B2;
@@ -89,8 +51,197 @@ button{
     color: #17C3B2;
     position: absolute;
     bottom: 70rpx;
-    z-index: 3;
+    z-index: 5;
     height: 80rpx;
     margin-top: 800rpx;
     background-color: white;
+}
+
+.input{
+    z-index: 0;
+}
+.top{
+    width: 100vw;
+    height: 20vh;
+    background: #17C3B2;
+}
+.top-back{
+    position: absolute;
+    left: 40rpx;
+    top: 6.2vh;
+    display: flex;
+    align-items: center;
+}
+.top-back-vector{
+    width: 26rpx;
+    height: 2.5vh;
+}
+.top-back-text{
+    margin-left: 30rpx;
+    width: 186rpx;
+    height: 3.5vh;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40rpx;
+    line-height: 56rpx;
+    color: white;
+}
+.bottom{
+    position: absolute;
+    width: 100vw;
+    height: 74vh;
+    left: 0px;
+    top: 218rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 80rpx;
+}
+scroll-view{
+    width: 90%;
+    height: 100%;
+    border-radius: 30rpx;
+}
+.bottom-1{
+    width: 642rpx;
+    height: 5.9vh;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.bottom-3{
+    margin-top: 1.8vh;
+    width: 642rpx;
+    height: 6.2vh;
+    border: none;
+    display: flex;
+    border-bottom: 2rpx solid #DFDEDE;
+}
+.begin{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 120rpx;
+}
+.begin-2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 60rpx;
+}
+.begin-3{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 90rpx;
+}
+.begin-4{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-right: 80rpx;
+}
+.answer{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-2{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+}
+.answer-3{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+    margin-left: 40rpx;
+}
+.answer-4{
+    color: rgb(168,168,168);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30rpx;
+
+    width: 460rpx;
+    height: 5.2vh;
+}
+.sex-group{
+    display: flex;
+}
+.bottom-2{
+ 
+    width: 642rpx;
+    height: 5.9vh;
+    border: none;
+    display: flex;
+    align-items: center;
+    /* align-items: center; */
+
+    border-bottom: 2rpx solid #DFDEDE;
+
+}
+
+.bottom-2-image{
+    height: 70rpx;
+    width: 70rpx;
+
+}
+/* .bottom-2-image2{
+    height: 80rpx;
+    width: 80rpx;
+    background-color: #118AB2;
+} */
+.list{
+    display: flex;
+    opacity: 0;
+}
+
+/* .button-add{
+    text-align: center;
+    width: 500rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    font-size:large;
+    background-color: #118AB2;
+    color: white;
+    border-radius: 80rpx;
+    position: absolute;
+    top:66vh;
+} */
+.button-add-havor{
+    background-color: white;
+    color: #118AB2;
+}
+.button-finish{
+    vertical-align: middle;
+    text-align: center;
+    width: 500rpx;
+    height: 5.7vh;
+    line-height: 5.7vh;
+    font-size:large;
+    background-color: #17C3B2;
+    color: white;
+    border-radius: 80rpx;
+    position: absolute;
+    top:75vh;
+}
+.button-finish-havor{
+    background-color: white;
+    color: #17C3B2;
 }

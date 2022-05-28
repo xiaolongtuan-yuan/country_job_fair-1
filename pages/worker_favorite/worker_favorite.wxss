@@ -1,46 +1,159 @@
 /* pages/worker_favorite/worker_favorite.wxss */
 /* 2-1 招聘列表容器 */
-#jobs-list {
-  min-height: 600rpx;
-  padding: 15rpx;
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  z-index: 2;
 }
-/* 2-2 列表项目 */
-.list-item {
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 186rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+  text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
+
+}
+
+.content{
+  position: absolute;
+  top: 11vh;
   display: flex;
   flex-direction: row;
-  border-bottom: 1rpx solid gray;
+  justify-content: center;
+  width: 100vw;
+  align-items: flex-start;
 }
-/* 2-3 招聘信息图片 */
-.list-item image{
-  width: 230rpx;
-  height: 150rpx;
-  margin: 10rpx;
+.list_left{
+  display: flex;
+  width: 300rpx;
+  flex-direction: column;
+  margin-right: 10rpx;
 }
-/* 2-4 招聘信息 */
-.jobs-ts{
+.list_item_left{
   display: flex;
   flex-direction: column;
+  width: 300rpx;
+  float: none;
+  margin-top: 1.5vh;
+
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
 }
+.list_right{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rpx;
+}
+.list_item_right{
+  display: flex;
+  flex-direction: column;
+  width: 300rpx;
+  float: none;
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  margin-top: 1.5vh;
+}
+
+
 .jobs-title{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  align-self: center;
+  height: 74rpx;
+  margin-top: 0rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
 }
 .jobs-salary{
-  display: block;
-  color: rgb(18, 174, 221);
-  font-size: 12pt;
+  width: 306rpx;
+  height: 44rpx;
+  margin-left: 38rpx;
+  margin-top: 20rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  /* or 247% */
+  color: #17C3B2;
+
+
 }
 .jobs-address{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  /* or 308% */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
 }
-.jobs-others{
-  width: 100%;
-  display: block;
-  line-height: 60rpx;
-  font-size: 10pt;
+.jobs-b_intro {
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* or 308% */
+  color: #000000;
+}
+.other-item{
+  width: 248rpx;
+  height: 52rpx;
+  margin-left: 38rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #A8A8A8;
+}
+.null{
+  height: 3vh;
 }

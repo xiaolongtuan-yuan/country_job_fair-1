@@ -1,38 +1,254 @@
 /* pages/detail/detail.wxss */
-.container{
-  padding: 15rpx;
+page {
+  background-color: white;
+}
+/*顶部框图与文字*/
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 186rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
   text-align: center;
+  /* or 185% */
+  color: #FFFFFF;
+
 }
-.title{
-  font-size: 14pt;
-  line-height: 80rpx;
+
+.all_content {
+  position: absolute;
+  top: 216rpx;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
 }
-/*图片*/ /*暂时显示不出来*/
-.poster{ /*原因就是poster后面不能加image*/
-  width: 100%;
+.all_content-title{
+  display: flex;
+  margin-left: 54rpx;
+  margin-top: 40rpx;
+
+  justify-content: space-between;
 }
-/*正文*/
-.job_introduction{
-  text-align: left;
-  font-size: 12pt;
-  line-height: 60rpx;
+.title {
+  height: 74rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46rpx;
+  line-height: 74rpx;
+  /* or 161% */
+
+  color: #000000;
 }
-/*职位提供者*/
-.job_provider{
-  font-size: 12pt;
-  text-align: right;
-  line-height: 30rpx;
-  margin-right: 25rpx;
+
+.salary {
+  height: 74rpx;
+  margin-right: 80rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 60rpx;
+  line-height: 74rpx;
+  /* or 123% */
+
+
+  color: #17C3B2;
+}
+.job_provider {
+
+  height: 46rpx;
+  margin-left: 56rpx;
+  margin-top: 0rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  /* or 247% */
+
+
+  color: #000000;
+
+}
+
+.job_address {
+
+  height: 46rpx;
+  margin-left: 56rpx;
   margin-top: 20rpx;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 46rpx;
+  /* or 247% */
+  padding-bottom: 38rpx;
+
+  color: #000000;
+  border-bottom:1rpx solid #DFDEDE;
 }
-.title{
-  font-size:15pt;
-  text-align: left;
-  margin-left: 10rpx;
+.bold {
+  font-weight: 700;
+}
+.require_bold{
+  width: 626rpx;
+  height: 100vm;
+  margin-left: 56rpx;
+  margin-top: 26rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  /* or 200% */
+
+
+  color: #000000;
+}
+.brief_introduction {
+  width: 626rpx;
+ 
+  margin-left: 56rpx;
+  margin-top: 26rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 56rpx;
+  /* identical to box height, or 247% */
+
+
+  color: #000000;
+
+}
+
+.require {
+  width: 626rpx;
+  height: 100vm;
+  margin-left: 56rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  /* or 200% */
+
+
+  color: #000000;
+}
+
+.content {
+  width: 626rpx;
+  height: 100vw;
+  margin-left: 58rpx;
+  margin-top: 26rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  /* or 200% */
+  color: #000000;
+  
+  padding-bottom: 200rpx;
+  border-bottom: 1rpx solid #DFDEDE;
+}
+.btn {
+  width: 86vw;
+  height: 9vh;
+  position: fixed;
+  bottom:0vh;
+  margin-left: 7vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  border-top: 0.7px solid rgb(223,222,222);
+  padding-top: 10rpx;
+  justify-content: space-between;
+  background-color:white;
+  z-index: 2;
+}
+/*简历按钮*/
+.resume {
+  /* width: 456rpx; */
+  width: 456rpx;
+  height: 92rpx;
+  background-color: #17C3B2;
+  border-radius: 80rpx;
+  color: white;
+
+  line-height: 92rpx;
+  text-align: center;
 }
 /* 收藏按钮 */
 .favorite{
-  width: 250rpx;
-  height: 100rpx;
-  margin: 20rpx auto;
+  height: 92rpx;
+
+  background-color:white;
+  color: #999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-between;
+  font-size: 25rpx;
+
+}
+.is_favorImage {
+
+  width: 62rpx;
+  height: 60rpx;
+}
+.not_favorImage {
+
+  width: 62rpx;
+  height: 60rpx;
+}
+.favorite::after{
+  border: 0;
+}
+.chat {
+  width: 62rpx;
+  height: 92rpx;
+  margin-top: 0rpx;
+  background-color: white;
+  color: #999999;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25rpx;
+}
+.chatImage {
+  width: 62rpx;
+  height: 60rpx;
+}
+.chat::after{
+  border: 0;
 }
