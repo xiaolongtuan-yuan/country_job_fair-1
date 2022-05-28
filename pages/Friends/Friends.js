@@ -2,7 +2,7 @@
 const app = getApp()
 const DB = wx.cloud.database().collection("messagelist")
 const DBU = wx.cloud.database().collection("users")
-
+import { init_TIM,login_TIM,sendMessage_TIM,logout_TIM } from '../../utils/m_tim_init';
 Page({
 
   /**
@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    init_TIM()
   },
 
   /**
@@ -65,51 +65,60 @@ Page({
         })
       }, 1000);
     }else if(this.data.firstload){
-      let timeStamp = Date.parse(new Date())
+      login_TIM(app.globalData.openID)
+      let timeStamp = Date.parse(new Date()) / 1000
       this.setData({
         firstload:false,
-        Friends:app.globalData.Friends
+        Friends:app.globalData.Friends,
+        unread:app.globalData.unread
       })
       
       const _ = wx.cloud.database().command
       for(let i in this.data.Friends){
-        this.setData({
-          unread:this.data.unread.concat({
-            num:0
-          })
-        })
-        console.log(this.data.Friends[i], app.globalData.openid,timeStamp, this.data.unread[i].num)
-        DB.orderBy('timestamp','desc').limit(1).where(_.or([
+
+        console.log(this.data.Friends[i], app.globalData.openID,timeStamp, this.data.unread[this.data.Friends[i].id].num)
+        DB.orderBy('message.time', 'desc').limit(1).where(_.or([
           {
-            timestamp:_.lte(timeStamp),
-            from:app.globalData.openID,
-            to:this.data.Friends[i].id
+            'message.time':_.lte(timeStamp),
+            'message.from':app.globalData.openID,
+            'message.to':this.data.Friends[i].id
           },
           {
-            timestamp:_.lte(timeStamp),
-            from:this.data.Friends[i].id,
-            to:app.globalData.openID
+            'message.time':_.lte(timeStamp),
+            'message.from':this.data.Friends[i].id,
+            'message.to':app.globalData.openID
           }
         ])).get({
           success:res=>{
-            console.log("here")
+            console.log("here", res.data[0])
             if(res.data.length != 0){
-              console.log("bm", res.data[0].content)
+              console.log("bm", res.data[0].message.payload.text)
+              let t_text = res.data[0].message.payload.text
+              t_text = t_text.split('\n', 1)
+              if(t_text[0].length > 10){
+                t_text[0] = t_text[0].substr(0, 10)
+              }
+              console.log('ttext', t_text[0], res.data[0].message.time)
               this.setData({
-                briefMsg:this.data.briefMsg.concat(res.data[0])
+                ['briefMsg.' + this.data.Friends[i].id]:{
+                  timestamp: res.data[0].message.time,
+                  content: t_text[0]
+                }
               })
+              console.log('brimsgg')
+              console.log( this.data.briefMsg)
             }else{
               this.setData({
-                briefMsg:this.data.briefMsg.concat({
-                  timestamp:0,
-                  content:""
-                })
+                ['briefMsg.' + this.data.Friends[i].id]:{
+                  timestamp: 0,
+                  content: ""
+                }
               })
             }
-
+            console.log('brimsg')
             console.log(this.data.briefMsg)
-            console.log(this.data.briefMsg[i].timestamp)
-            var date = new Date(this.data.briefMsg[i].timestamp)
+            console.log(this.data.briefMsg[this.data.Friends[i].id].timestamp)
+            var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
             var Y = date.getFullYear()
             var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
             var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
@@ -129,35 +138,41 @@ Page({
               Second:second,
               ischat:true
             }
-            if(this.data.briefMsg[i].timestamp === 0){
+            if(this.data.briefMsg[this.data.Friends[0].id].timestamp === 0){
               now_date.ischat = false
             }
             console.log("date")
             this.setData({
-              date: this.data.date.concat(now_date)
+              ['date.' + this.data.Friends[i].id]: this.data.date.concat(now_date)
             })
+            DBU.where({
+              _openid:this.data.Friends[i].id
+            }).get({
+              success:res=>{
+                this.setData({
+                  ['FriendsUserInfo.' + this.data.Friends[i].id]:{
+                    nickName:res.data[0].name,
+                    avatar:res.data[0].touxiang
+                  }
+                })
+                console.log("f d",this.data.FriendsUserInfo)
+                this.autoLoadMessage()
+                clearInterval(this.data.id)
+                this.setData({
+                  id:setInterval(this.autoLoadMessage, 5000)
+                })
+              }
+            })
+          },
+          
+          complete: res=>{
+            console.log('complete')
           }
         })
-        DBU.where({
-          _openid:this.data.Friends[i].id
-        }).get({
-          success:res=>{
-            this.setData({
-              FriendsUserInfo:this.data.FriendsUserInfo.concat({
-                nickName:res.data[0].name,
-                avatar:res.data[0].touxiang
-              })
-            })
-            console.log("f d",this.data.FriendsUserInfo)
-          }
-        })
+        
       }
     }
-    this.autoLoadMessage()
-    clearInterval(this.data.id)
-    this.setData({
-      id:setInterval(this.autoLoadMessage, 5000)
-    })
+    
   },
 
   /**
@@ -204,11 +219,73 @@ Page({
    */
   autoLoadMessage:function(e){
     const _ = wx.cloud.database().command
-    var timeStamp = Date.parse(new Date())
+    this.setData({
+      Friends:app.globalData.Friends
+    })
+    for(let i in this.data.Friends){
+      if(this.data.FriendsUserInfo.hasOwnProperty(this.data.Friends[i].id)){
+        continue;
+      }else{
+        DBU.where({
+          _openid:this.data.Friends[i].id
+        }).get({
+          success:res=>{
+            this.setData({
+              ['FriendsUserInfo.' + this.data.Friends[i].id]:{
+                nickName:res.data[0].name,
+                avatar:res.data[0].touxiang
+              }
+            })
+            console.log("f d n",this.data.FriendsUserInfo)
+          }
+        })
+      }
+    }
+
+    var timeStamp = Date.parse(new Date()) / 1000
     console.log("friend auto")
     for(let i in this.data.Friends){
       console.log("tiaojain",this.data.Friends[i].id,app.globalData.openID, this.data.Friends[i].lastread)
-      DB.where(
+      let friend = this.data.Friends[i].id
+      console.log('auto len', app.globalData.MessageDetail, this.data.unread[friend].num)
+      let length = app.globalData.MessageDetail[friend].length
+      if(length != 0){
+        this.setData({
+          ['briefMsg.' + friend]:{
+            timestamp: app.globalData.MessageDetail[friend][length - 1].time,
+            content: app.globalData.MessageDetail[friend][length - 1].payload.text
+          }
+        })
+      }
+      console.log('before date', this.data.briefMsg, this.data.briefMsg[this.data.Friends[i].id])
+      var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
+      var Y = date.getFullYear()
+      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+  
+      var hour = date.getHours()
+      var minute = date.getMinutes()
+      var second = date.getSeconds()
+
+      console.log(Y,M,D,hour,minute,second)
+      console.log("date")
+      var now_date = {
+        Year:Y,
+        Month:M,
+        Day:D,
+        Hour:hour,
+        Minute:minute,
+        Second:second,
+        ischat:true
+      }
+      if(this.data.briefMsg[this.data.Friends[i].id].timestamp === 0){
+        now_date.ischat = false
+      }
+      console.log("date")
+      this.setData({
+        ['date.' + this.data.Friends[i].id]: now_date
+      })
+      /*DB.where(
         {
           from:this.data.Friends[i].id,
           to:app.globalData.openID,
@@ -263,7 +340,7 @@ Page({
         fail:res=>{
           console.log("wrong", res)
         },
-      })
+      })*/
     }
   },
 

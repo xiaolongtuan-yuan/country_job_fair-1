@@ -139,5 +139,6 @@
 }
 
 .scroll-size{
-  max-height: 960rpx;
+  max-height: 1150rpx;
+  margin-top: 100;
 }

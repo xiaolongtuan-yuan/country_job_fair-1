@@ -1,6 +1,7 @@
 // pages/person/person.js
 const db = wx.cloud.database()
 const app = getApp()
+import { init_TIM,login_TIM,sendMessage_TIM,logout_TIM } from '../../utils/m_tim_init';
 Page({
 
   /**
@@ -24,6 +25,7 @@ Page({
    */
   onLoad: function (options) {
     var openid = wx.getStorageSync('openID')
+    console.log('person load')
     if(openid!=''){//缓存中有数据
       this.setData({//加载缓存并检查数据库中数据是否被删除
         user:wx.getStorageSync('user'),
@@ -68,8 +70,28 @@ Page({
         }
         else{
           app.globalData.Friends = res3.data[0].Friends
+
           console.log("init")
           console.log( res3.data[0], app.globalData.Friends)
+          for(let i in app.globalData.Friends){
+            let fri = app.globalData.Friends[i]
+            let unread_t = {
+              num:0,
+              empty:true
+            }
+            if(!app.globalData.unread.hasOwnProperty(fri.id)){
+              app.globalData.unread[fri.id] = unread_t
+            }
+
+            if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
+              app.globalData.MessageDetail[fri.id] = []
+            }
+
+            init_TIM()
+            login_TIM(app.globalData.openID)
+            console.log('unread 1', app.globalData.unread)
+            console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+          }
           var that = this
           db.collection('worker')
           .where({
@@ -183,6 +205,7 @@ Page({
               }      
               else{//user有数据，检查worker
                 app.globalData.Friends = res3.data[0].Friends
+                
                 console.log("init")
                 console.log( res3.data[0], app.globalData.Friends)
                 wx.cloud.database().collection('worker')

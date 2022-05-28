@@ -1,0 +1,32 @@
+{
+  "name": "cos-wx-sdk-v5",
+  "version": "1.1.7",
+  "description": "小程序 SDK for [腾讯云对象存储服务](https://cloud.tencent.com/product/cos)",
+  "main": "demo/lib/cos-wx-sdk-v5.min.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node build.js",
+    "build": "cross-env NODE_ENV=production node build.js",
+    "sts.js": "node server/sts.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/tencentyun/cos-wx-sdk-v5.git"
+  },
+  "author": "carsonxu",
+  "license": "ISC",
+  "dependencies": {
+    "mime": "^2.4.6",
+    "@xmldom/xmldom": "^0.8.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "qcloud-cos-sts": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^3.12.0"
+  }
+}

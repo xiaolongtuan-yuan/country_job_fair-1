@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cos-wx-sdk-v5": "^1.1.7",
+    "tim-js-sdk": "^2.19.1",
+    "tim-upload-plugin": "^1.0.4",
+    "tim-wx-sdk": "^2.19.1"
+  }
+}

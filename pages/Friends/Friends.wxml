@@ -4,16 +4,16 @@
     <image class="nothing-icon" src="/images/icons/nothing.png"/>
   </view>
   <view class="list_item" wx:for="{{Friends}}" wx:key="item.id" bindtap='navigateToMessageDetail' data-id="{{Friends[index].id}}">
-    <image mode="aspectFill" class="item_img" src="{{FriendsUserInfo[index].avatar}}" />
+    <image mode="aspectFill" class="item_img" src="{{FriendsUserInfo[Friends[index].id].avatar}}" />
     <view class="basic_info">
       <view class="row_view">
-        <text class="title" style="margin-right:10rpx;">{{FriendsUserInfo[index].nickName}}</text>
-        <text class="item-unread" wx:if="{{unread[index].num !== 0}}">{{unread[index].num}}</text>
-        <text class="item_time" wx:if="{{date[index].ischat}}">{{date[index].Year}}-{{date[index].Month}}-{{date[index].Day}} {{date[index].Hour}}:{{date[index].Minute}}</text>
-        <text class="item_time" wx:if="{{!date[index].ischat}}">还没有聊过天</text>
+        <text class="title" style="margin-right:10rpx;">{{FriendsUserInfo[Friends[index].id].nickName}}</text>
+        <text class="item-unread" wx:if="{{unread[Friends[index].id].empty}}">{{unread[Friends[index].id].num}}</text>
+        <text class="item_time" wx:if="{{date[Friends[index].id].ischat}}">{{date[Friends[index].id].Year}}-{{date[Friends[index].id].Month}}-{{date[Friends[index].id].Day}} {{date[Friends[index].id].Hour}}:{{date[Friends[index].id].Minute}}</text>
+        <text class="item_time" wx:if="{{!date[Friends[index].id].ischat}}">还没有聊过天</text>
       </view>
       <!--新增最后一条消息-->
-      <text class="subtitle">{{briefMsg[index].content}}</text>
+      <text class="subtitle">{{briefMsg[Friends[index].id].content}}</text>
     </view>
   </view>
 </view>

@@ -1,4 +1,5 @@
 // app.js
+
 App({
     onLaunch() {
         wx.cloud.init({
@@ -6,12 +7,15 @@ App({
         })
       },
     globalData:{//全局变量
+      isInit:false,
       user:'',//用户基本信息(users表):昵称和头像链接
       openID:'',
       Friends:[{
-        id:"oF9n75GH6_sVt1B3y7kbKpXgtuhM",
+        id:"",
         lastread:0
       }],
+      MessageDetail:[],
+      unread:[],
       isboss:false,//是否为boss
       worker:{//员工的基本信息(worker表)：意向地址，意向工资，datas(投递、交流、收藏的数量),意向岗位
         yx_address:['四川省','广元市','旺苍县'],//默认
@@ -107,5 +111,11 @@ App({
       json[param] = animation.export()
       //设置动画
       that.setData(json)
-    }
+    },
+
+    /**
+     * 初始化IM模块
+     */
+    
 })
+

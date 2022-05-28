@@ -1,7 +1,10 @@
 // pages/messageDetail/messageDetail.js
 const app = getApp()
+import TIM from '../../utils/tim-wx-sdk/tim-wx';
+import { genTestUserSig } from '../../utils/GenerateTestUserSig'
 const DB = wx.cloud.database().collection("messagelist")
 const DBU = wx.cloud.database().collection("users")
+import { init_TIM,login_TIM,sendMessage_TIM,logout_TIM } from '../../utils/m_tim_init';
 Page({
 
   /**
@@ -36,9 +39,9 @@ Page({
    * 信息发布时间比较
    */
   compare_msg:function (x, y) {
-    if(x.timestamp < y.timestamp){
+    if(x.time < y.time){
       return -1
-    }else if(x.timestamp > y.timestamp){
+    }else if(x.time > y.time){
       return 1
     }else {
       return 0
@@ -48,6 +51,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    init_TIM()
+    login_TIM(app.globalData.openID)
+    
+
     console.log("chat id", options.target)
     DBU.where({
       _openid:options.target
@@ -63,7 +70,7 @@ Page({
             }
           }
         })
-        let timeStamp = Date.parse(new Date());
+        let timeStamp = Date.parse(new Date()) / 1000;
         this.setData({
           myself:{
             openid:app.globalData.openID,
@@ -75,7 +82,7 @@ Page({
         this.loadMessageBefore()
         clearInterval(this.data.intervalId)
         this.setData({
-          intervalId:setInterval(this.loadMessageNext, 5000),
+          intervalId:setInterval(this.loadMessageNext, 2500),
           topValue: this.data.MessageDetail.data.length * 100   
         })
       }
@@ -96,7 +103,7 @@ Page({
   onShow() {
     clearInterval(this.data.intervalId)
     this.setData({
-      intervalId:setInterval(this.loadMessageNext, 5000)
+      intervalId:setInterval(this.loadMessageNext, 2500)
     })
   },
 
@@ -110,6 +117,7 @@ Page({
         break;
       }
       console.log(app.globalData.Friends[j].id, this.data.targetUser.openid)
+      /*
       if(app.globalData.Friends[j].id == this.data.targetUser.openid){
         let last = this.data.MessageDetail.data.length;
         app.globalData.Friends[j].lastread = this.data.MessageDetail.data[last - 1].timestamp + 1
@@ -121,7 +129,7 @@ Page({
             Friends:app.globalData.Friends
           }
         })
-      }
+      }*/
     }
     clearInterval(this.data.intervalId)
   },
@@ -149,7 +157,10 @@ Page({
         })
       }
     }
+    app.globalData.unread[this.data.targetUser.openid].num = 0
+    app.globalData.unread[this.data.targetUser.openid].empty = true
     clearInterval(this.data.intervalId)
+    wx.navigateBack()
   },
 
   /**
@@ -188,6 +199,12 @@ Page({
    */
   submitRely: function (e) {
     console.log("send msg");
+    sendMessage_TIM(this.data.targetUser.openid, this.data.replyContent)
+    this.loadMessageNext()
+    this.setData({
+      replyContent:""
+    })
+    /*
     let timeStamp = Date.parse(new Date())
     timeStamp = timeStamp
     if(timeStamp - this.data.lastSendTimeStamp <= 3000){
@@ -232,47 +249,54 @@ Page({
       topValue: 100 * this.data.MessageDetail.data.length,
       messageNum:this.data.MessageDetail.data.length
     })
-    
+    */
   },
 
   /**
    * 获取消息
    */
   loadMessageBefore: function (e) {
+    
     let beforeTimeStamp = this.data.lastLoadedBeforeTimeStamp;
     console.log(beforeTimeStamp)
     const _ = wx.cloud.database().command
     DB.where(_.or([
       {
-        timestamp:_.lte(beforeTimeStamp),
-        from:this.data.myself.openid,
-        to:this.data.targetUser.openid
+        'message.time':_.lte(beforeTimeStamp),
+        'message.from':this.data.myself.openid,
+        'message.to':this.data.targetUser.openid
       },
       {
-        timestamp:_.lte(beforeTimeStamp),
-        from:this.data.targetUser.openid,
-        to:this.data.myself.openid
+        'message.time':_.lte(beforeTimeStamp),
+        'message.from':this.data.targetUser.openid,
+        'message.to':this.data.myself.openid
       }
     ])).get({
       success: res=>{
         res.data.sort(this.compare_msg)
         console.log("before suc", res.data.length)
+        let new_msg = []
         if(res.data.length != 0){
           for(let i in res.data){
-            console.log("here last",res.data[i].from)
+            new_msg.push(res.data[i].message)
+            console.log("here last",res.data[i].message.from)
+            /*
             if(res.data[i].from === this.data.myself.openid){
               res.data[i].self = true
             }else{
               res.data[i].self = false
-            }
-            console.log("self", res.data[i].self)
-            if(res.data[i].timestamp < this.data.lastLoadedBeforeTimeStamp){
+            }*/
+            //console.log("self", res.data[i].self)
+            if(res.data[i].message.time < this.data.lastLoadedBeforeTimeStamp){
               this.setData({
-                lastLoadedBeforeTimeStamp: res.data[i].timestamp - 1
+                lastLoadedBeforeTimeStamp: res.data[i].message.time - 1
               })
             }
           }
         }
+        app.globalData.MessageDetail[this.data.targetUser.openid] = new_msg.concat(app.globalData.MessageDetail[this.data.targetUser.openid])
+        this.loadMessageNext()
+        /*
         this.setData({
           MessageDetail:{
             data:res.data.concat(this.data.MessageDetail.data),
@@ -286,7 +310,7 @@ Page({
             topValue:this.data.MessageDetail.data.length * 100,
             firstLoaded:true
           })
-        }
+        }*/
       },
       fail:res=>{
         console.log("fail")
@@ -295,6 +319,16 @@ Page({
   },
 
   loadMessageNext:function (e) {
+    this.setData({
+      MessageDetail:{
+        data:app.globalData.MessageDetail[this.data.targetUser.openid]
+      }
+    })
+    this.setData({
+      topValue: 100 * this.data.MessageDetail.data.length,
+      messageNum:this.data.MessageDetail.data.length
+    })
+    /*
     let nextTimeStamp = this.data.lastLoadedNextTimeStamp 
     const _ = wx.cloud.database().command
     DB.where({
@@ -326,6 +360,9 @@ Page({
           })
         }
       }
-    })  
-  }
+    })  */
+  },
+
+
+
 })
