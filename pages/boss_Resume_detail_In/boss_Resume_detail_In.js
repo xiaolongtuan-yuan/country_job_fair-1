@@ -1,7 +1,8 @@
 // pages/boss_Resume_detail_In/boss_Resume_detail_In.js
 const db = wx.cloud.database()
+const DB = wx.cloud.database().collection("users")
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,6 +12,8 @@ Page({
     isAdd: false,
     boss_favor: [],
     openID: '',
+    //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
+    array:['无','小学','初中','高中','专科','本科','研究生','博士研究生']
   },
 
   /**
@@ -144,5 +147,80 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  newchat:function(e){
+    if (app.globalData.openID.length === 0) {
+      wx.showToast({
+        title: '您未登录~',
+        image: '/images/icons/error.png'
+      })
+    }else{
+      var target = e.currentTarget.dataset.id
+      console.log("b inse",target, e.currentTarget.dataset.id)
+      DB.where({
+        _openid:target
+      }).get({
+        success:res=>{
+          console.log("friends inse", res.data)
+          if(res.data[0].Friends.length === 0){
+            console.log("frid ")
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:app.globalData.openID,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == app.globalData.openID})
+            if(chat.length === 0){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:app.globalData.openID,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
+
+      DB.where({
+        _openid:app.globalData.openID
+      }).get({
+        success:res=>{
+          if(res.data[0].Friends.length === 0){
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:target,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == target})
+            if(chat.length === 0){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:target,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
+      
+      console.log("inse end", target)
+      wx.navigateTo({
+        url: "../messageDetail/messageDetail?target=" + target
+      })  
+    }
   }
 })
