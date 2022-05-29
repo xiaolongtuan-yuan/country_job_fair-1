@@ -33,18 +33,21 @@
 }
 
 .resume_recv {
+  position: absolute;
   z-index: 1;
   margin-top: 11vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: antiquewhite;
 }
 
 .resume_item {
   display: flex;
   flex-direction: row;
   width: 642rpx;
+  height: 20vh;
   margin-top: 1.5vh;
   padding-top: 2vh;
   padding-bottom: 1vh;
@@ -57,34 +60,38 @@
 .item_left {
   display: flex;
   flex-direction: column;
-  width: 10%;
-
+  width: 140rpx;
+  background-color: #17C3B2;
   align-items: center;
+  justify-content: center;
 }
 .item_right {
   display: flex;
   flex-direction: column;
   width: 60%;
   align-items: center;
+  background-color: burlywood;
+  margin-left: 20rpx;
 }
 .photo {
-  height: 180rpx;
-  width: 180rpx;
-  border-radius: 90rpx;
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 70rpx;
   margin-top: 1vh;
   margin-left: 10rpx;
   background-color: white;
 }
 .sexage {
-  display: inline;
-
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3vh;
+  background-color: #17C3B2;
 }
 
 .sex {
-  margin-right: 10rpx;
   height: 3vh;
-  width: 400rpx;
-  /* background-color: #A8A8A8; */
+  background-color: #A8A8A8;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -125,6 +132,9 @@
   text-overflow: ellipsis;
 
   color: #000000;
+}
+.edu-1{
+
 }
 .others {
   width: 500rpx;

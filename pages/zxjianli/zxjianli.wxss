@@ -137,3 +137,6 @@ page {
     background-color: white;
     color: #17C3B2;
 }
+.null{
+    height: 5vh;
+}

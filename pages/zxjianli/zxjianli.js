@@ -7,7 +7,7 @@ Page({
    */
   data: {
     openID:'',
-    info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]工作经历[5]资格证书
+    info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
     photoID:'',
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     index:1,
@@ -35,6 +35,7 @@ Page({
       if(res.data.length>0){
         this.setData({
           jianli: res.data[0],
+          info: res.data[0].info,
           photoID: res.data[0].photo,
           index:res.data[0].info[3],
           exist:true,
@@ -106,7 +107,7 @@ Page({
   //     info:info
   //   })
   // },
-  input_workexp(e){
+  input_school(e){
     //console.log(e)
     var info = this.data.info
     info[4] = e.detail.value
@@ -114,10 +115,33 @@ Page({
       info:info
     })
   },
-  input_credential(e){
+  input_major(e){
     //console.log(e)
     var info = this.data.info
     info[5] = e.detail.value
+    this.setData({
+      info:info
+    })
+  },
+  input_talent(){
+    var info = this.data.info
+    info[6] = e.detail.value
+    this.setData({
+      info:info
+    })
+  },
+  input_workexp(e){
+    //console.log(e)
+    var info = this.data.info
+    info[7] = e.detail.value
+    this.setData({
+      info:info
+    })
+  },
+  input_credential(e){
+    //console.log(e)
+    var info = this.data.info
+    info[8] = e.detail.value
     this.setData({
       info:info
     })
@@ -146,8 +170,9 @@ Page({
   },
   upload(){//上传数据库
     var i = 0
-    for(i;i<8;i++){
+    for(i;i<9;i++){
       if(!this.data.info[i]){
+        console.log("信息",this.data.info)
         wx.showToast({
           title: '信息不能为空',
           icon: 'error'
@@ -197,35 +222,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.app.slideupshow(this, 'slide_up1', -200, 1)
+    // this.app.slideupshow(this, 'slide_up1', -200, 1)
 
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up2', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up3', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up4', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up5', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up6', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up7', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up8', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up9', -200, 1)
-    }.bind(this), 200)
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up10', -200, 1)
-    }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up2', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up3', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up4', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up5', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up6', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up7', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up8', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up9', -200, 1)
+    // }.bind(this), 200)
+    // setTimeout(function () {
+    //   this.app.slideupshow(this, 'slide_up10', -200, 1)
+    // }.bind(this), 200)
   },
 
   /**

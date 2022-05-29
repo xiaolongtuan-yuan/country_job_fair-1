@@ -37,13 +37,26 @@
             </view>
         </picker>
     </view>
+    <view class="bottom-1">
+        <text class="begin-2">毕业院校</text>
+        <input class="answer" type="text" bindinput="input_school" value="{{jianli.info[4]}}" placeholder="没有填无"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin">专业</text>
+        <input class="answer" type="text" bindinput="input_major" value="{{jianli.info[5]}}" placeholder="没有填无"/>
+    </view>
+    <view class="bottom-1">
+        <text class="begin">特长</text>
+        <input class="answer" type="text" bindinput="input_talent" value="{{jianli.info[6]}}" placeholder="没有填无"/>
+    </view>
     <view class="bottom-3">
         <text class="begin-2">工作经历</text>
-        <textarea class="answer-4" bindinput="input_workexp" value="{{jianli.info[6]}}" placeholder="没有填无" />
+        <textarea class="answer-4" bindinput="input_workexp" value="{{jianli.info[7]}}" placeholder="没有填无" />
     </view>
     <view class="bottom-1">
         <text class="begin-2">资格证书</text>
-        <input class="answer" type="text" bindinput="input_credential" value="{{jianli.info[7]}}" placeholder="没有填无"/>
+        <input class="answer" type="text" bindinput="input_credential" value="{{jianli.info[8]}}" placeholder="没有填无"/>
     </view>
     <view class="button-finish" hover-class="button-finish-hover" bindtap = "upload">完成</view>
+    <view class="null"></view>
 </view>
