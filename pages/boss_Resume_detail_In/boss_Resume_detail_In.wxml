@@ -9,18 +9,23 @@
     <view class="right">
       <text class="name">{{worker_detail[0].info[0]}}</text>
       <view class="sexage">
-        <text class="sex">{{worker_detail[0].info[1]}}</text>
+        <text class="sex" wx:if="{{worker_detail[0].info[1] == 'm'}}">男</text>
+        <text class="sex" wx:else>女</text>
         <text class="age">{{worker_detail[0].info[2]}}</text>
       </view>
-      <view class="edu">{{worker_detail[0].info[3]}}</view>
+      <view class="edu">
+        <text class="edu-1">{{array[worker_detail[0].info[3]]}}</text>
+        <text class="edu-2">{{worker_detail[0].info[4]}}</text>
+        <text class="edu-3">{{worker_detail[0].info[5]}}</text>
+      </view>
     </view>
   </view>
 
   <view class="bottom_intro">
-    <text class="bottom_text">手机：{{worker_detail[0].info[5]}}</text>
-    <text class="bottom_text">微信：这里暂时还没信息</text>
-    <text class="bottom_text">资格证书：把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样；</text>
-    <text class="bottom_text">工作经历：xxx</text>
+    <text class="bottom_text">特长：{{worker_detail[0].info[6]}}</text>
+    <text class="bottom_text" wx:if="{{worker_detail[0].info[8] == 'null'}}"></text>
+    <text class="bottom_text" wx:else>资格证书：{{worker_detail[0].info[8]}}</text>
+    <text class="bottom_text">工作经历：{{worker_detail[0].info[7]}}</text>
   </view>
   
 
