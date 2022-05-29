@@ -22,7 +22,7 @@
             <text class="edu-3">{{resume_list.info[5]}}</text>
           </view>
           <text class="talent">{{resume_list.info[6]}}</text>
-          <button class="button" bindtap="goToDetail" data-id="{{resume_list._id}}"></button>
+          <view class="mybutton" bindtap="goToDetail" data-id="{{resume_list._id}}">查看详情</view>
         </view>
     </view>
   </view>

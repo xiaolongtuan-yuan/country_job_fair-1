@@ -40,19 +40,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: antiquewhite;
+
 }
 
 .resume_item {
   display: flex;
   flex-direction: row;
+  align-items:flex-start;
   width: 642rpx;
-  height: 20vh;
+  height: 15vh;
   margin-top: 1.5vh;
   padding-top: 2vh;
   padding-bottom: 1vh;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
@@ -61,72 +62,75 @@
   display: flex;
   flex-direction: column;
   width: 140rpx;
-  background-color: #17C3B2;
+
   align-items: center;
   justify-content: center;
+
 }
 .item_right {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   align-items: center;
-  background-color: burlywood;
+
   margin-left: 20rpx;
 }
 .photo {
   height: 140rpx;
   width: 140rpx;
   border-radius: 70rpx;
-  margin-top: 1vh;
-  margin-left: 10rpx;
   background-color: white;
+}
+.name{
+  height: 3vh;
+  margin-top: 1.4vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
 }
 .sexage {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 3vh;
-  background-color: #17C3B2;
+
 }
 
 .sex {
   height: 3vh;
-  background-color: #A8A8A8;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 30rpx;
+  font-size: 24rpx;
   line-height: 3vh;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
   color: #000000;
 }
 .age {
-  margin-left: 10rpx;
+  margin-left: 20rpx;
   height: 3vh;
-  width: 400rpx;
-  /* background-color: #A8A8A8; */
+
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 30rpx;
+  font-size: 24rpx;
   line-height: 3vh;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
   color: #000000;
 }
 .edu {
-  width: 500rpx;
-  height: 52rpx;
+
+  width: 100%;
+  height: 3vh;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 24rpx;
-  line-height: 52rpx;
-  /* or 308% */
+  line-height: 3vh;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -136,9 +140,15 @@
 .edu-1{
 
 }
-.others {
-  width: 500rpx;
-  height: 52rpx;
+.edu-2{
+  margin-left: 10rpx;
+}
+.edu-3{
+  margin-left: 10rpx;
+}
+.talent{
+  width: 100%;
+  height: 3vh;
 
   /* margin-top: 10rpx; */
 
@@ -146,21 +156,22 @@
   font-style: normal;
   font-weight: 400;
   font-size: 24rpx;
-  line-height: 52rpx;
+  line-height: 3vh;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* or 308% */
-  color: #000000;
+
+  color: #A8A8A8;
 }
 
-.button {
-  height: 4.5vh;
-  width: 200rpx;
-  margin-left: 410rpx;
+.mybutton{
+  height: 4vh;
+  width: 168rpx;
+  margin-top: 1vh;
+  margin-left: 270rpx;
   border-radius: 80rpx;
   text-align: center;
-  line-height: 4.5vh;
+  line-height: 4vh;
   color: white;
   font-weight: 700;
   background-color: #17C3B2;
