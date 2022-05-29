@@ -1,6 +1,25 @@
 <!--pages/worker_resume/worker_resume.wxml-->
 <view wx:if="{{isboss}}"class="resume_got_list">
+  <view class="top">
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">已发布</text>
+  </view>
 
+  <view class="boss_resume">
+    <view wx:for="{{jobs_had}}" wx:for-item="single_resume" class="worker_resume_item">
+        <view class="job_top">
+        <text class='jobs-title'>{{single_resume.job_name}}</text>
+        <text class='jobs-salary'>薪资： {{single_resume.salary[0]+1}},{{single_resume.salary[1]+1}}</text>
+        </view>
+        <text class='jobs-address' wx:if="{{single_resume.address}}">{{single_resume.address}}</text>
+        <text class='jobs-b_intro' wx:if="{{single_resume.b_intro}}">{{single_resume.b_intro}}</text>
+        <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
+          <view class='other-item'>{{other}}</view>
+        </view>
+        <view class="button" bindtap="boss_goToResume" data-id='{{single_resume._id}}'>查看简历</view>
+        <view class='null'> </view>
+    </view>
+  </view>
 </view>
 
 <view wx:else class="resume_sended_list">

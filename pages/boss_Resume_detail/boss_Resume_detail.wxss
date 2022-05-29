@@ -1,1 +1,166 @@
 /* pages/boss_Resume_detail/boss_Resume_detail.wxss */
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  top: 0;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 300rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+  text-align: center;
+
+  color: #FFFFFF;
+
+}
+
+.resume_recv {
+  z-index: 1;
+  margin-top: 11vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume_item {
+  display: flex;
+  flex-direction: row;
+  width: 642rpx;
+  margin-top: 1.5vh;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+}
+.item_left {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  width: 20%;
+  border: none;
+  border-top: #C4C4C4 solid 1px;
+
+  align-items: center;
+  justify-content: space-between;
+}
+.item_right {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  width: 80%;
+  border: none;
+  border-top: #C4C4C4 solid 1px;
+
+  align-items: center;
+  justify-content: space-between;
+}
+.photo {
+  height: 180rpx;
+  width: 180rpx;
+  border-radius: 90rpx;
+  margin-top: 1vh;
+  margin-left: 10rpx;
+  background-color: white;
+}
+.sexage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sex {
+  height: 3vh;
+  width: 400rpx;
+  /* background-color: #A8A8A8; */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+}
+.age {
+  height: 3vh;
+  width: 400rpx;
+  /* background-color: #A8A8A8; */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+}
+.edu {
+  width: 500rpx;
+  height: 52rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  /* or 308% */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
+}
+.others {
+  width: 500rpx;
+  height: 52rpx;
+
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* or 308% */
+  color: #000000;
+}
+
+.button {
+  height: 4.5vh;
+  width: 200rpx;
+  margin-left: 410rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4.5vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}
