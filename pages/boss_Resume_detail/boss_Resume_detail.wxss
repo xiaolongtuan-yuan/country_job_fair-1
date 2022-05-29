@@ -57,24 +57,15 @@
 .item_left {
   display: flex;
   flex-direction: column;
-  height: 20vh;
-  width: 20%;
-  border: none;
-  border-top: #C4C4C4 solid 1px;
+  width: 10%;
 
   align-items: center;
-  justify-content: space-between;
 }
 .item_right {
   display: flex;
   flex-direction: column;
-  height: 20vh;
-  width: 80%;
-  border: none;
-  border-top: #C4C4C4 solid 1px;
-
+  width: 60%;
   align-items: center;
-  justify-content: space-between;
 }
 .photo {
   height: 180rpx;
@@ -85,19 +76,18 @@
   background-color: white;
 }
 .sexage {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  display: inline;
+
 }
 
 .sex {
+  margin-right: 10rpx;
   height: 3vh;
   width: 400rpx;
   /* background-color: #A8A8A8; */
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 30rpx;
   line-height: 3vh;
   white-space: nowrap;
@@ -106,6 +96,7 @@
   color: #000000;
 }
 .age {
+  margin-left: 10rpx;
   height: 3vh;
   width: 400rpx;
   /* background-color: #A8A8A8; */

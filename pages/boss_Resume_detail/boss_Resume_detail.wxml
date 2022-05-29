@@ -7,7 +7,7 @@
 <view class="resume_recv">
     <view wx:for="{{resume_received}}" wx:for-item="resume_list" class="resume_item">
         <view class="item_left">
-          <!-- <image calss="photo" src="{{resume_list.photo}}"></image> -->
+          <image calss="photo" src="{{resume_list.photo}}"></image>
           <text class="name">{{resume_list.info[0]}}</text>
         </view>
         <view class="item_right">
@@ -17,7 +17,7 @@
           </view>
           <text class="edu">{{resume_list.info[3]}}</text>
           <text class="others">{{resume_list.info[7]}}</text>
-          <button class="button"></button>
+          <button class="button" bindtap="goToDetail" data-id="{{resume_list._id}}"></button>
         </view>
     </view>
   </view>

@@ -39,7 +39,7 @@
         <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
           <view class='other-item'>{{other}}</view>
         </view>
-        <view class="button">立即沟通</view>
+        <view class="button" bindtap="newchat" data-id="{{single_resume._openid}}">立即沟通</view>
         <view class='null'> </view>
     </view>
   </view>
