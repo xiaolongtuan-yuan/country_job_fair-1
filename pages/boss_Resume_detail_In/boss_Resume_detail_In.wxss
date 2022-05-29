@@ -1,1 +1,193 @@
 /* pages/boss_Resume_detail_In/boss_Resume_detail_In.wxss */
+page {
+  background-color: white;
+}
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  top: 0;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 300rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+  text-align: center;
+
+  color: #FFFFFF;
+
+}
+
+.worker_detail {
+  
+}
+
+.top_intro {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+
+  margin-left: 2%;
+  padding-bottom: 2vh;
+  border-bottom: #C4C4C4 solid 1px;
+}
+.head {
+  height: 180rpx;
+  width: 180rpx;
+  border-radius: 90rpx;
+  margin-top: 13vh;
+  margin-left: 60rpx;
+  background-color: white;
+}
+.right {
+  margin-left: 26rpx;
+  display: flex;
+  flex-direction: column;
+
+}
+.name {
+  width: 266rpx;
+  height: 70rpx;
+  margin-left: 26rpx;
+  margin-top: 13vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46rpx;
+  line-height: 74rpx;
+  /* or 161% */
+
+
+  color: #000000;
+}
+.sexage {
+  margin-top: -2rpx;
+  margin-left: 26rpx;
+  display: inline;
+  width: 248rpx;
+  height: 52rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 37px;
+  /* or 308% */
+
+
+color: #000000;
+}
+.sex {
+  margin-right: 1vw;
+}
+.age {
+  margin-left: 0vw;
+}
+
+.edu {
+  margin-top: 0rpx;
+  margin-left: 26rpx;
+  width: 248rpx;
+  height: 52rpx;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 37px;
+  /* or 308% */
+
+
+  color: #000000;
+}
+.bottom_intro {
+  margin-top: 3vh;
+  margin-left: 60rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom_text {
+  width: 90%;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  /* or 247% */
+
+
+  color: #000000;
+}
+.bottom_button {
+  width: 86vw;
+  height: 9vh;
+  position: fixed;
+  bottom:0vh;
+  margin-left: 7vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  border-top: 0.7px solid rgb(223,222,222);
+  padding-top: 10rpx;
+  justify-content: space-between;
+  background-color:white;
+  z-index: 2;
+}
+
+.favorite{
+  height: 92rpx;
+  width: 200rpx;
+  background-color:white;
+  color: #999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-between;
+  font-size: 25rpx;
+
+}
+.is_favorImage {
+
+  width: 62rpx;
+  height: 60rpx;
+}
+.not_favorImage {
+
+  width: 62rpx;
+  height: 60rpx;
+}
+.favorite::after{
+  border: 0;
+}
+.chat {
+  height: 4.5vh;
+  width: 400rpx;
+  margin-left: 10rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4.5vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}

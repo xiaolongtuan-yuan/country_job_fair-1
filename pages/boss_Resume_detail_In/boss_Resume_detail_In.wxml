@@ -1,12 +1,38 @@
 <!--pages/boss_Resume_detail_In/boss_Resume_detail_In.wxml-->
+<view class="top">
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">简历详情</text>
+</view>
 <view class="worker_detail">
-  <text>简历详情信息</text>
-  <view>姓名：{{worker_detail[0].info[0]}}</view>
-  <view>性别：{{worker_detail[0].info[1]}}</view>
-  <view>年龄：{{worker_detail[0].info[2]}}</view>
-  <view>学历：{{worker_detail[0].info[3]}}</view>
-  <view>电话：{{worker_detail[0].info[5]}}</view>
-  <view>等等......</view> 
-  <button class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">已收藏</button>
-  <button class='favorite' wx:else plain bindtap="addFavorites">单击收藏</button>
+  <view class="top_intro">
+    <image class="head" src="{{worker_detail[0].photo}}" ></image>
+    <view class="right">
+      <text class="name">{{worker_detail[0].info[0]}}</text>
+      <view class="sexage">
+        <text class="sex">{{worker_detail[0].info[1]}}</text>
+        <text class="age">{{worker_detail[0].info[2]}}</text>
+      </view>
+      <view class="edu">{{worker_detail[0].info[3]}}</view>
+    </view>
+  </view>
+
+  <view class="bottom_intro">
+    <text class="bottom_text">手机：{{worker_detail[0].info[5]}}</text>
+    <text class="bottom_text">微信：这里暂时还没信息</text>
+    <text class="bottom_text">资格证书：把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样，把这一段话弄下来看看换行的效果怎么样；</text>
+    <text class="bottom_text">工作经历：xxx</text>
+  </view>
+  
+
+  <view class="bottom_button">
+    <view class='favorite' wx:if="{{isAdd}}" plain bindtap="cancelFavorites">
+      <image class='is_favorImage' src='../../images/icons/is_favorite.png'></image>
+      <text>已收藏</text>
+    </view>
+    <view class='favorite' wx:else plain bindtap="addFavorites">
+      <image class='not_favorImage' src='../../images/icons/no_favorite.png'> </image>
+      <text>单击收藏</text>
+    </view>
+    <view class="chat" bindtap="newchat" data-id="{{worker_detail[0]._openid}}">立即沟通</view>
+  </view>
 </view>
