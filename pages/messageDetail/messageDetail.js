@@ -194,6 +194,9 @@ Page({
     console.log("yes", this.data.replyContent);
   },
 
+  back(){
+    wx.navigateBack()
+  },
   /**
    * 发送消息
    */
@@ -319,15 +322,18 @@ Page({
   },
 
   loadMessageNext:function (e) {
+    let length = this.data.MessageDetail.data.length
     this.setData({
       MessageDetail:{
         data:app.globalData.MessageDetail[this.data.targetUser.openid]
       }
     })
-    this.setData({
-      topValue: 100 * this.data.MessageDetail.data.length,
-      messageNum:this.data.MessageDetail.data.length
-    })
+    if(length != this.data.MessageDetail.data.length){
+      this.setData({
+        topValue: 100 * this.data.MessageDetail.data.length,
+        messageNum:this.data.MessageDetail.data.length
+      })
+    }
     /*
     let nextTimeStamp = this.data.lastLoadedNextTimeStamp 
     const _ = wx.cloud.database().command
@@ -362,7 +368,4 @@ Page({
       }
     })  */
   },
-
-
-
 })

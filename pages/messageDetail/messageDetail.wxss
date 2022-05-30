@@ -29,6 +29,33 @@
   word-break: break-all;
   text-align: left;
 }
+.top{
+  width: 100vw;
+  height: 13vh;
+  background: #17C3B2;
+}
+.top-back{
+  position: absolute;
+  left: 40rpx;
+  top: 6.5vh;
+  display: flex;
+  align-items: center;
+}
+.top-back-vector{
+  width: 26rpx;
+  height: 2.7vh;
+}
+.top-back-text{
+  margin-left: 30rpx;
+  width: 186rpx;
+  height: 3.5vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40rpx;
+  line-height: 3.5vh;
+  color: white;
+}
 
 .area {
   width: 60%;

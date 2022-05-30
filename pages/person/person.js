@@ -67,11 +67,34 @@ Page({
           .then( x=>{
             console.log('worker添加成功',x)
           })
+          app.globalData.Friends = res3.data[0].Friends
+
+          console.log("everything init")
+          console.log( res3.data[0], app.globalData.Friends)
+          for(let i in app.globalData.Friends){
+            let fri = app.globalData.Friends[i]
+            let unread_t = {
+              num:0,
+              empty:true
+            }
+            if(!app.globalData.unread.hasOwnProperty(fri.id)){
+              app.globalData.unread[fri.id] = unread_t
+            }
+
+            if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
+              app.globalData.MessageDetail[fri.id] = []
+            }
+
+            init_TIM()
+            login_TIM(app.globalData.openID)
+            console.log('unread 1', app.globalData.unread)
+            console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+          }
         }
         else{
           app.globalData.Friends = res3.data[0].Friends
 
-          console.log("init")
+          console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
           for(let i in app.globalData.Friends){
             let fri = app.globalData.Friends[i]
@@ -208,7 +231,25 @@ Page({
               }      
               else{//user有数据，检查worker
                 app.globalData.Friends = res3.data[0].Friends
-                
+                for(let i in app.globalData.Friends){
+                  let fri = app.globalData.Friends[i]
+                  let unread_t = {
+                    num:0,
+                    empty:true
+                  }
+                  if(!app.globalData.unread.hasOwnProperty(fri.id)){
+                    app.globalData.unread[fri.id] = unread_t
+                  }
+      
+                  if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
+                    app.globalData.MessageDetail[fri.id] = []
+                  }
+      
+                  init_TIM()
+                  login_TIM(app.globalData.openID)
+                  console.log('unread 1', app.globalData.unread)
+                  console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+                }
                 console.log("init")
                 console.log( res3.data[0], app.globalData.Friends)
                 wx.cloud.database().collection('worker')

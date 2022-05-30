@@ -50,6 +50,9 @@
   padding-right: 20rpx;
 }
 
+.contain{
+  margin-top: 176rpx;
+}
 /*管理列表*/
 
 .list_item {
@@ -138,6 +141,34 @@
   border-radius: 14rpx;
   position: absolute;
   right: 20rpx;
+}
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 12vh;
+  top: 0;
+  background: #17C3B2;
+  z-index: 2;
+}
+.top-text {
+  position: absolute;
+  width: 186rpx;
+  height: 4vh;
+  left: 58rpx;
+  top: 6.2vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.7vh;
+  line-height: 4vh;
+  text-align: center;
+  /* or 185% */
+
+  color: #FFFFFF;
+}
+.content{
+  z-index: 1;
 }
 
 .item_time {

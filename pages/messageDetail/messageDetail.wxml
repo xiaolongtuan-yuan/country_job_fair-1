@@ -1,4 +1,10 @@
 <!--pages/messageDetail/messageDetail.wxml-->
+<view class="top">
+    <view class="top-back">
+        <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+        <text class="top-back-text"></text>
+    </view>
+</view>
 <scroll-view bindscrolltoupper="onMsgRefresh" id="dialogList" scroll-y="{{true}}" scroll-with-animation="{{true}}" class="scroll-size" scroll-top="{{topValue}}">
   <view wx:for="{{MessageDetail.data}}" wx:key="item.payload.text">
     <view wx:if="{{item.from != myself.openid}}" class="left-box">

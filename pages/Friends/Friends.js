@@ -220,7 +220,8 @@ Page({
   autoLoadMessage:function(e){
     const _ = wx.cloud.database().command
     this.setData({
-      Friends:app.globalData.Friends
+      Friends:app.globalData.Friends,
+      unread:app.globalData.unread
     })
     for(let i in this.data.Friends){
       if(this.data.FriendsUserInfo.hasOwnProperty(this.data.Friends[i].id)){
