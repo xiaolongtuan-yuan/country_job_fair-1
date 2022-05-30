@@ -9,9 +9,10 @@
         <view wx:if="{{index%2==0}}" class='list_item_left'>
           <text class='jobs-title'>{{jobs.job_name}}</text>
           <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address'>{{jobs.address}}</text>
-          <view class="jobs-others" wx:for="{{jobs.orthers}}" wx:for-item="other">
-            <view class='other-item'>{{other}}</view>
+          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+          <view wx:for="{{jobs.others}}" wx:for-item="other">
+            <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
           </view>
           <view class='null'> </view>
         </view>
@@ -22,10 +23,10 @@
         <view wx:if="{{index%2==1}}" class='list_item_right'>
           <text class='jobs-title'>{{jobs.job_name}}</text>
           <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address'>{{jobs.address}}</text>
-          <text class='jobs-b_intro'>{{jobs.b_intro}}</text>
-          <view class="jobs-others" wx:for="{{jobs.others}}" wx:for-item="other">
-            <view class='other-item'>{{other}}</view>
+          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+          <view wx:for="{{jobs.others}}" wx:for-item="other">
+            <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
           </view>
           <view class='null'> </view>
         </view>

@@ -148,7 +148,7 @@ swiper {
   height: 52rpx;
   margin-left: 38rpx;
   /* margin-top: 10rpx; */
-
+  
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -177,4 +177,5 @@ swiper {
 }
 .null{
   height: 3vh;
+
 }

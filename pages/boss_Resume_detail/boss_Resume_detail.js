@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
+    array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     jobsId: '',
     openID: '',
     resume_received: [],
@@ -58,7 +60,9 @@ Page({
       url: '../boss_Resume_detail_In/boss_Resume_detail_In?id='+id
     })
   },
-
+  back(){
+    wx.navigateBack()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

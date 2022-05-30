@@ -1,1 +1,178 @@
 /* pages/boss_Resume_detail/boss_Resume_detail.wxss */
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  top: 0;
+  z-index: 2;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 300rpx;
+  height: 3.3vh;
+  left: 58rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+  text-align: center;
+
+  color: #FFFFFF;
+
+}
+
+.resume_recv {
+  position: absolute;
+  z-index: 1;
+  margin-top: 11vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.resume_item {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  width: 642rpx;
+  height: 15vh;
+  margin-top: 1.5vh;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+}
+.item_left {
+  display: flex;
+  flex-direction: column;
+  width: 140rpx;
+
+  align-items: center;
+  justify-content: center;
+
+}
+.item_right {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+
+  margin-left: 20rpx;
+}
+.photo {
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 70rpx;
+  background-color: white;
+}
+.name{
+  height: 3vh;
+  margin-top: 1.4vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+}
+.sexage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3vh;
+
+}
+
+.sex {
+  height: 3vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  color: #000000;
+}
+.age {
+  margin-left: 20rpx;
+  height: 3vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  color: #000000;
+}
+.edu {
+
+  width: 100%;
+  height: 3vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
+}
+.edu-1{
+
+}
+.edu-2{
+  margin-left: 10rpx;
+}
+.edu-3{
+  margin-left: 10rpx;
+}
+.talent{
+  width: 100%;
+  height: 3vh;
+
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #A8A8A8;
+}
+
+.mybutton{
+  height: 4vh;
+  width: 168rpx;
+  margin-top: 1vh;
+  margin-left: 270rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}
