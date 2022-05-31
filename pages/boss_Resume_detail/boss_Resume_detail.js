@@ -26,6 +26,7 @@ Page({
     this.setData({openID: wx.getStorageSync('openID')})
     var that = this
     let res1 = await db.collection('zxjianli').get();
+    console.log("1", res1.data)
     that.setData({resume: res1.data})
 
     let res2 = await db.collection('worker').get();
@@ -59,6 +60,9 @@ Page({
     wx.navigateTo({
       url: '../boss_Resume_detail_In/boss_Resume_detail_In?id='+id
     })
+  },
+  back(){
+    wx.navigateBack()
   },
   back(){
     wx.navigateBack()
