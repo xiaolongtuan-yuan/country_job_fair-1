@@ -151,6 +151,27 @@ Page({
       })
       return
     }
+    if(!this.data.intro){
+      wx.showToast({
+        icon:"error",
+        title:"未输入简介！"
+      })
+      return
+    }
+    if(!this.data.address){
+      wx.showToast({
+        icon:"error",
+        title:"未输入详细地址！"
+      })
+      return
+    }
+    if(!this.data.company){
+      wx.showToast({
+        icon:"error",
+        title:"未输入工作单位！"
+      })
+      return
+    }
     if(this.data.address.length>29){
       wx.showToast({
         icon:"error",
@@ -213,7 +234,7 @@ Page({
     var line_interval = 25
     var line_num = 0
     var ecli_begin = 188
-    var ecli_interval = 27
+    var ecli_interval = 30
     this.setData({
       canvasType:true
     })
@@ -240,9 +261,9 @@ Page({
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 1.png', 180, 100, 420/rpx); 
-      await this.drawImageByLoad(canvas, ctx, '../../images/2.png', 150, 90, 55/rpx);
-      await this.drawImageByLoad(canvas, ctx, '../../images/1.png', 210, 30, 45/rpx);
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%201.png?sign=c66b63c13b496220d41d7fdcc62a8bb8&t=1654067765', 190, 100, 420/rpx); 
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/2.png?sign=52287dc8dd1ca21aba673d7498b1ec0f&t=1654067814', 150, 90, 55/rpx);
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/1.png?sign=a59ad97342f3cf3b6c97537d03b52978&t=1654067798', 210, 30, 45/rpx);
 
       ctx.fillStyle = '#000';
       ctx.font = `bolder 25px inter`;
@@ -250,12 +271,12 @@ Page({
       ctx.fillText(`${this.data.job_name}`, 30, 160);
 
       ctx.font = `normal 15px inter`;
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       ctx.fillText(`工作单位：${this.data.company}`, 25, text_begin+(text_num++)*text_interval);
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       ctx.fillText(`工作区域：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 25, text_begin+(text_num++)*text_interval);
       
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       var str = this.data.address
       if(str.length <= 12){
         ctx.fillText(`工作地点：${str}`, 25, text_begin+(text_num++)*text_interval);
@@ -271,10 +292,10 @@ Page({
         ctx.fillText(`${str}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
       }
 
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx);
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx);
       ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
       
-      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (text_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
       var str = this.data.intro
       if(str.length <= 12){
         ctx.fillText(`工作简介：${str}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);

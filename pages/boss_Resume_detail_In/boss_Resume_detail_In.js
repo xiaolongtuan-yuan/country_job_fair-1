@@ -19,41 +19,34 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     let id = options.id
-    console.log(id)
+    console.log("id", id)
     this.setData({worker_OpId:id})
     var that = this
-    db.collection('zxjianli')
-      .where({
-        _openid: that.data.worker_OpId
-      })
-      .get({
-        success(res) {
-          that.setData({worker_detail: res.data})
-        }
-      })
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .get({
-        success(res) {
-          console.log('res.data',res.data)
-          var len = res.data[0].boss_favor.length
-          for(let i = 0; i < len; i++) {
-            if(res.data[0].boss_favor[i] == that.data.worker_OpId){
-              that.setData({isAdd: true})
-            }
-          }
+    let res1 = await db.collection('zxjianli').where({_id: that.data.worker_OpId}).get()
+    console.log("0", res1.data)
+    that.setData({worker_detail: res1.data})
+    let res2 = await db.collection('worker').where({_openid: that.data.openID}).get()
+    console.log('1',res2.data)
+    that.setData({boss_favor: res2.data[0].boss_favor})
+    console.log("2", that.data.boss_favor)
+    var len = res2.data[0].boss_favor.length
+    for(let i = 0; i < len; i++) {
+      if(res2.data[0].boss_favor[i] == that.data.worker_OpId){
+        that.setData({isAdd: true})
+      }
+    }
 
-        },
-        fail(err){
-          console.log("请求失败",err)
-        },
-      })
-
+  },
+  // 索引
+  indexof: function(arr, val)  {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == val) {
+        return i;
+      }
+    }
   },
   //添加到收藏夹
   addFavorites: function(options) {
@@ -79,7 +72,9 @@ Page({
 },
   //取消收藏
   cancelFavorites: function(options) {
-    this.data.boss_favor.pop();
+    let index = this.indexof(this.data.boss_favor,this.data.worker_OpId);
+    this.data.boss_favor.splice(index, 1);
+    console.log("4", this.data.boss_favor)
     // console.log(this.data.worker_favor)
     this.setData({ isAdd: false });
     var that = this
@@ -98,6 +93,10 @@ Page({
       .catch(res =>{
         console.log('修改失败', res)
       })
+  },
+  
+  back(){
+    wx.navigateBack()
   },
 
   /**

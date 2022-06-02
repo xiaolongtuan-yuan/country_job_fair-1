@@ -9,6 +9,8 @@ Page({
     openID: '',
     boss_favor: [],
     resumes: [],
+    //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
+    array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
 
 
   },
@@ -16,39 +18,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .get({
-        success(res) {
-          that.setData({boss_favor: res.data[0].boss_favor})
-        }
-      })
+    let res1 = await db.collection('worker').where({ _openid: that.data.openID}).get()
+    that.setData({boss_favor: res1.data[0].boss_favor})
+    console.log("1", that.data.boss_favor)
 
-    db.collection('zxjianli').get()
-      .then(res => {
-        console.log(res.data)
-        var resumes = []
-        let len = res.data.length
-        let len_1 = that.data.boss_favor.length
-        for(let i = 0; i < len; i++) {
-          for(let j = 0; j < len_1; j++) {
-            if(res.data[i]._openid == that.data.boss_favor[j]) {
-              resumes.push(res.data[i])
-            }
-          }
+    let res2 = await db.collection('zxjianli').get()
+    console.log("2", res2.data)
+    var resumes = []
+    let len = res2.data.length
+    let len_1 = that.data.boss_favor.length
+    for(let i = 0; i < len; i++) {
+      for(let j = 0; j < len_1; j++) {
+        if(res2.data[i]._id == that.data.boss_favor[j]) {
+          resumes.push(res2.data[i])
         }
-        that.setData({resumes:resumes})
-        console.log(that.data.resumes)
-
-      })
-      .catch(err => {
-        console.log('请求失败',err)
-      })
+      }
+    }
+    that.setData({resumes:resumes})
+    console.log("3", that.data.resumes)
   },
   goToDetail: function(e) {
     let id=e.currentTarget.dataset.id;
@@ -57,6 +47,9 @@ Page({
     })
   },
 
+  back(){
+    wx.navigateBack()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

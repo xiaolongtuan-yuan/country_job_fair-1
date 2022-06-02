@@ -7,11 +7,11 @@ Page({
    */
   data: {
     openID:'',
-    info:[],//[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
+    info:[,'f',,1,,,,,],//[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
     photoID:'',
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     index:1,
-    sex:'',
+    sex:true,
     jianli:'',
     exist:false,
     _id:''
@@ -43,7 +43,7 @@ Page({
         })
         if(res.data[0].info[1]=='m'){
           this.setData({
-            sex:true
+            sex:false
           })
         }
         else{
@@ -58,7 +58,7 @@ Page({
     wx.navigateBack()
   },
   sexChange(e){
-    //console.log(e)
+    console.log(e)
     var info = this.data.info
     info[1] = e.detail.value
     this.setData({
@@ -123,7 +123,7 @@ Page({
       info:info
     })
   },
-  input_talent(){
+  input_talent(e){
     var info = this.data.info
     info[6] = e.detail.value
     this.setData({

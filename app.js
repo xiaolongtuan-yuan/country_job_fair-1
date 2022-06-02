@@ -1,5 +1,6 @@
 // app.js
-
+const width = wx.getSystemInfoSync().windowWidth//系统宽度
+const topx = width / 750 //rpx转px系数
 App({
     onLaunch() {
         wx.cloud.init({
@@ -98,13 +99,14 @@ App({
       that.setData(json)
     },
   
-    //向右滑动渐入渐出
-    sliderightshow: function (that, param, px, opacity) {
+    //向右滑动
+    sliderightshow: function (that, param, rpx) {
       var animation = wx.createAnimation({
         duration: 800,
         timingFunction: 'ease',
       });
-      animation.translateX(px).opacity(opacity).step()
+      var px = rpx*topx
+      animation.translateX(px).step()
       //将param转换为key
       var json = '{"' + param + '":""}'
       json = JSON.parse(json);

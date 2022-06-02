@@ -30,6 +30,11 @@ page {
 }
 .content{
   z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  top: 11.8vh;
 }
 /* 1-1 swiper组件 */
 swiper {
@@ -48,29 +53,98 @@ swiper {
   height: 100%;
   border-radius: 20rpx;
 }
+.cont-swiper{
+  height: auto;
+}
+
+.cont-swiper-item2{
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
 /*title 工作推荐 */
 .title {
-  width: 172rpx;
-  height: 70rpx;
-  margin-left: 300rpx;
-
+  display: flex;
+  flex-direction: row;
+  margin-left: 200rpx;
+}
+.title-boss-active{
+  width: 180rpx;
+  height: 5.5vh;
+  text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 70rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #FFFFFF;
+  background-color: #17C3B2;
+}
+.title-boss{
+  width: 180rpx;
+  height: 5.5vh;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
   /* or 185% */
   color: #000000;
 
 }
+.title-resume{
+  width: 180rpx;
+  height: 5.5;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #000000;
+  /* background-color: #fff; */
+}
+.title-resume-active{
+  width: 180rpx;
+  height: 5.5;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #FFFFFF;
+  background-color: #17C3B2;
+}
+.all-list{
+  width: 1500rpx;
+  display: flex;
+  flex-direction: row;
+  top: 6vh;
+  position: absolute;
+}
 /* 2-1 招聘列表容器 */
-.list {
+.list{
   display: flex;
   flex-direction: row;
   justify-content: center;
 
   width: 100vw;
   align-items: flex-start;
+
   margin-bottom: 2vh;
 }
 .list1{
@@ -162,20 +236,170 @@ swiper {
 }
 .other-item{
   width: 248rpx;
-  height: 52rpx;
+  height: 30rpx;
   margin-left: 38rpx;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 24rpx;
-  line-height: 52rpx;
+  font-size: 20rpx;
+  line-height: 30rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #A8A8A8;
+  
 }
+
 .null{
   height: 3vh;
 
+}
+/* 简历部分 */
+.list-resume {
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+
+.resume_item {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  width: 642rpx;
+  height: 15vh;
+  margin-top: 20rpx;
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  background: #FFFFFF;
+  box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  width: 642rpx;
+  height: 15vh;
+  background-color: #FFFFFF;
+}
+.item_left {
+  display: flex;
+  flex-direction: column;
+  width: 140rpx;
+
+  align-items: center;
+  justify-content: center;
+
+}
+.item_right {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+
+  margin-left: 20rpx;
+}
+.photo {
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 70rpx;
+  background-color: white;
+}
+.name{
+  height: 3vh;
+  margin-top: 1.4vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 3vh;
+}
+.sexage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3vh;
+
+}
+
+.sex {
+  height: 3vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  color: #000000;
+}
+.age {
+  margin-left: 20rpx;
+  height: 3vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  color: #000000;
+}
+.edu {
+
+  width: 100%;
+  height: 3vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #000000;
+}
+.edu-1{
+
+}
+.edu-2{
+  margin-left: 10rpx;
+}
+.edu-3{
+  margin-left: 10rpx;
+}
+.talent{
+  width: 100%;
+  height: 3vh;
+
+  /* margin-top: 10rpx; */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24rpx;
+  line-height: 3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: #A8A8A8;
+}
+
+.mybutton{
+  height: 4vh;
+  width: 168rpx;
+  margin-top: 1vh;
+  margin-left: 270rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
 }
