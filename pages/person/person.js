@@ -80,20 +80,17 @@ Page({
             if(!app.globalData.unread.hasOwnProperty(fri.id)){
               app.globalData.unread[fri.id] = unread_t
             }
-
             if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
               app.globalData.MessageDetail[fri.id] = []
             }
-
             init_TIM()
             login_TIM(app.globalData.openID)
-            console.log('unread 1', app.globalData.unread)
-            console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+            //console.log('unread 1', app.globalData.unread)
+            //console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
           }
         }
         else{
           app.globalData.Friends = res3.data[0].Friends
-
           console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
           for(let i in app.globalData.Friends){
@@ -105,15 +102,13 @@ Page({
             if(!app.globalData.unread.hasOwnProperty(fri.id)){
               app.globalData.unread[fri.id] = unread_t
             }
-
             if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
               app.globalData.MessageDetail[fri.id] = []
             }
-
             init_TIM()
             login_TIM(app.globalData.openID)
-            console.log('unread 1', app.globalData.unread)
-            console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+            //console.log('unread 1', app.globalData.unread)
+            //console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
           }
           var that = this
           db.collection('worker')
@@ -175,6 +170,7 @@ Page({
       success: (res) => {
         console.log("点击登录")
         console.log(res)
+        app.globalData.user = res.userInfo
         this.setData({
           user:res.userInfo,
           isboss:false
@@ -240,15 +236,13 @@ Page({
                   if(!app.globalData.unread.hasOwnProperty(fri.id)){
                     app.globalData.unread[fri.id] = unread_t
                   }
-      
                   if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
                     app.globalData.MessageDetail[fri.id] = []
                   }
-      
                   init_TIM()
                   login_TIM(app.globalData.openID)
-                  console.log('unread 1', app.globalData.unread)
-                  console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
+                  //console.log('unread 1', app.globalData.unread)
+                  //console.log('next', fri, app.globalData.MessageDetail, app.globalData.MessageDetail[fri.id], app.globalData.MessageDetail[fri.id].length)
                 }
                 console.log("init")
                 console.log( res3.data[0], app.globalData.Friends)

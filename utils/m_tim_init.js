@@ -31,12 +31,12 @@ function init_TIM() {//初始化im实时聊天
     // event.name - TIM.EVENT.SDK_READY
     // 修改个人标配资料
     console.log("sdk ready")
-    let promise = tim.updateMyProfile({
-      nick: app.globalData.user.nickName,
-      avatar: app.globalData.user.avatarUrl,
-      gender: TIM.TYPES.GENDER_MALE,
-      allowType: TIM.TYPES.ALLOW_TYPE_ALLOW_ANY
-    });
+    //let promise = tim.updateMyProfile({
+   //   nick: app.globalData.user.nickName,
+     // avatar: app.globalData.user.avatarUrl,
+     // gender: TIM.TYPES.GENDER_MALE,
+      //allowType: TIM.TYPES.ALLOW_TYPE_ALLOW_ANY
+    //});
   });
 
   tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
@@ -168,7 +168,6 @@ function sendMessage_TIM( sendTo , msg ) {
   }
   // 发送消息
   console.log('im sd', sendTo, msg)
-  let nowtime = Date.parse(new Date())
   let message = tim.createTextMessage({
     to: sendTo,
     conversationType: TIM.TYPES.CONV_C2C,

@@ -1,11 +1,15 @@
 <!--pages/messageDetail/messageDetail.wxml-->
+
 <view class="top">
+  
     <view class="top-back">
         <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
-        <text class="top-back-text"></text>
+        <text class="top-back-text">{{targetUser.userInfo.nickName}}</text>
     </view>
+    
 </view>
-<scroll-view bindscrolltoupper="onMsgRefresh" id="dialogList" scroll-y="{{true}}" scroll-with-animation="{{true}}" class="scroll-size" scroll-top="{{topValue}}">
+
+<scroll-view bindscrolltoupper="onMsgRefresh" id="dialogList" scroll-y="{{true}}" scroll-with-animation="{{true}}" class="scroll-size" scroll-top="{{topValue}}" refresher-enabled="true" refresher-threshold="80" refresher-triggered="{{refreshing}}">
   <view wx:for="{{MessageDetail.data}}" wx:key="item.payload.text">
     <view wx:if="{{item.from != myself.openid}}" class="left-box">
       <image class="ava" src="{{targetUser.userInfo.avatarUrl}}"></image>

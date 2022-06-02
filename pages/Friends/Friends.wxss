@@ -51,7 +51,7 @@
 }
 
 .contain{
-  margin-top: 176rpx;
+  margin-top: 13vh;
 }
 /*管理列表*/
 
@@ -137,7 +137,7 @@
   margin-top: 90rpx;
   padding: 7rpx 14rpx;
   font-size: 24rpx;
-  color: #fff;
+  color: #f5f4f5;
   border-radius: 14rpx;
   position: absolute;
   right: 20rpx;

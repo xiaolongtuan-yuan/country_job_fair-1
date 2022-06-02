@@ -32,7 +32,8 @@ Page({
     intervalId:0,
     topValue:100,
     messageNum:0,
-    firstLoaded:false
+    firstLoaded:false,
+    refreshing:false
   },
 
   /**
@@ -53,40 +54,39 @@ Page({
   onLoad(options) {
     init_TIM()
     login_TIM(app.globalData.openID)
-    
-
-    console.log("chat id", options.target)
-    DBU.where({
-      _openid:options.target
-    }).get({
-      success:res=>{
-        console.log("onload", res.data)
-        this.setData({
-          targetUser:{
-            openid:options.target,
-            userInfo:{
-              nickName:res.data[0].name,
-              avatarUrl:res.data[0].touxiang
+      console.log("chat id", options.target)
+      DBU.where({
+        _openid:options.target
+      }).get({
+        success:res=>{
+          console.log("onload", res.data)
+          this.setData({
+            targetUser:{
+              openid:options.target,
+              userInfo:{
+                nickName:res.data[0].name,
+                avatarUrl:res.data[0].touxiang
+              }
             }
-          }
-        })
-        let timeStamp = Date.parse(new Date()) / 1000;
-        this.setData({
-          myself:{
-            openid:app.globalData.openID,
-            userInfo:app.globalData.user
-          },
-          lastLoadedBeforeTimeStamp:timeStamp,
-          lastLoadedNextTimeStamp:timeStamp
-        })
-        this.loadMessageBefore()
-        clearInterval(this.data.intervalId)
-        this.setData({
-          intervalId:setInterval(this.loadMessageNext, 2500),
-          topValue: this.data.MessageDetail.data.length * 100   
-        })
-      }
-    })
+          })
+          let timeStamp = Date.parse(new Date()) / 1000;
+          this.setData({
+            myself:{
+              openid:app.globalData.openID,
+              userInfo:app.globalData.user
+            },
+            lastLoadedBeforeTimeStamp:timeStamp,
+            lastLoadedNextTimeStamp:timeStamp
+          })
+          console.log('msgd init', this.data.myself)
+          this.loadMessageBefore()
+          //clearInterval(this.data.intervalId)
+          //this.setData({
+            //intervalId:setInterval(this.loadMessageNext, 2500),
+           // topValue: this.data.MessageDetail.data.length * 100,
+          //})
+        }
+      })
     
   },
 
@@ -159,6 +159,7 @@ Page({
     }
     app.globalData.unread[this.data.targetUser.openid].num = 0
     app.globalData.unread[this.data.targetUser.openid].empty = true
+    app.globalData.MessageDetail[this.data.targetUser.openid] = []
     clearInterval(this.data.intervalId)
     wx.navigateBack()
   },
@@ -191,7 +192,7 @@ Page({
     this.setData({
       replyContent: e.detail.value
     })
-    console.log("yes", this.data.replyContent);
+    // console.log("yes", this.data.replyContent);
   },
 
   back(){
@@ -201,7 +202,6 @@ Page({
    * 发送消息
    */
   submitRely: function (e) {
-    console.log("send msg");
     sendMessage_TIM(this.data.targetUser.openid, this.data.replyContent)
     this.loadMessageNext()
     this.setData({
@@ -258,12 +258,14 @@ Page({
   /**
    * 获取消息
    */
-  loadMessageBefore: function (e) {
-    
+  onMsgRefresh:function(e){
+    this.setData({
+      refreshing:true
+    })
     let beforeTimeStamp = this.data.lastLoadedBeforeTimeStamp;
     console.log(beforeTimeStamp)
     const _ = wx.cloud.database().command
-    DB.where(_.or([
+    DB.orderBy('message.time','desc').where(_.or([
       {
         'message.time':_.lte(beforeTimeStamp),
         'message.from':this.data.myself.openid,
@@ -277,23 +279,64 @@ Page({
     ])).get({
       success: res=>{
         res.data.sort(this.compare_msg)
-        console.log("before suc", res.data.length)
+        res.data = res.data.reverse()
         let new_msg = []
         if(res.data.length != 0){
           for(let i in res.data){
+
             new_msg.push(res.data[i].message)
-            console.log("here last",res.data[i].message.from)
-            /*
-            if(res.data[i].from === this.data.myself.openid){
-              res.data[i].self = true
-            }else{
-              res.data[i].self = false
-            }*/
-            //console.log("self", res.data[i].self)
+            // console.log("here last",res.data[i].message.from)
             if(res.data[i].message.time < this.data.lastLoadedBeforeTimeStamp){
               this.setData({
                 lastLoadedBeforeTimeStamp: res.data[i].message.time - 1
               })
+              console.log(res.data[i].message.time, this.data.lastLoadedBeforeTimeStamp)
+            }
+          }
+        }
+        app.globalData.MessageDetail[this.data.targetUser.openid] = new_msg.concat(app.globalData.MessageDetail[this.data.targetUser.openid])
+        this.setData({
+          MessageDetail:{
+            data:new_msg.concat(this.data.MessageDetail.data)
+          },
+          refreshing:false
+        })
+      },
+      fail:res=>{
+        console.log("fail")
+      }
+    })
+  },
+  loadMessageBefore: function (e) {
+    
+    let beforeTimeStamp = this.data.lastLoadedBeforeTimeStamp;
+    console.log(beforeTimeStamp)
+    const _ = wx.cloud.database().command
+    DB.orderBy('message.time','desc').where(_.or([
+      {
+        'message.time':_.lte(beforeTimeStamp),
+        'message.from':this.data.myself.openid,
+        'message.to':this.data.targetUser.openid
+      },
+      {
+        'message.time':_.lte(beforeTimeStamp),
+        'message.from':this.data.targetUser.openid,
+        'message.to':this.data.myself.openid
+      }
+    ])).get({
+      success: res=>{
+        res.data.sort(this.compare_msg)
+        res.data = res.data.reverse()
+        let new_msg = []
+        if(res.data.length != 0){
+          for(let i in res.data){
+            new_msg.push(res.data[i].message)
+            // console.log("here last",res.data[i].message.from)
+            if(res.data[i].message.time < this.data.lastLoadedBeforeTimeStamp){
+              this.setData({
+                lastLoadedBeforeTimeStamp: res.data[i].message.time - 1
+              })
+              console.log(res.data[i].message.time, this.data.lastLoadedBeforeTimeStamp)
             }
           }
         }
@@ -322,7 +365,7 @@ Page({
   },
 
   loadMessageNext:function (e) {
-    let length = this.data.MessageDetail.data.length
+    let length = this.data.messageNum
     this.setData({
       MessageDetail:{
         data:app.globalData.MessageDetail[this.data.targetUser.openid]

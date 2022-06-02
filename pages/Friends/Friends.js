@@ -64,7 +64,7 @@ Page({
           complete: function(res) {},
         })
       }, 1000);
-    }else if(this.data.firstload){
+    }else {
       login_TIM(app.globalData.openID)
       let timeStamp = Date.parse(new Date()) / 1000
       this.setData({
@@ -123,8 +123,9 @@ Page({
             var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
             var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   
-            var hour = date.getHours()
-            var minute = date.getMinutes()
+            console.log('in date',date.getMinutes())
+            var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
+            var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
             var second = date.getSeconds()
 
             console.log(Y,M,D,hour,minute,second)
@@ -141,7 +142,6 @@ Page({
             if(this.data.briefMsg[this.data.Friends[0].id].timestamp === 0){
               now_date.ischat = false
             }
-            console.log("date")
             this.setData({
               ['date.' + this.data.Friends[i].id]: this.data.date.concat(now_date)
             })
@@ -157,10 +157,8 @@ Page({
                 })
                 console.log("f d",this.data.FriendsUserInfo)
                 this.autoLoadMessage()
-                clearInterval(this.data.id)
-                this.setData({
-                  id:setInterval(this.autoLoadMessage, 5000)
-                })
+                console.log('开始循环---------------------------------------')
+                
               }
             })
           },
@@ -171,6 +169,11 @@ Page({
         })
         
       }
+      this.autoLoadMessage()
+      clearInterval(this.data.id)
+      this.setData({
+        id:setInterval(this.autoLoadMessage, 5000)
+      })
     }
     
   },
@@ -264,8 +267,8 @@ Page({
       var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
       var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
   
-      var hour = date.getHours()
-      var minute = date.getMinutes()
+      var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
+      var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
       var second = date.getSeconds()
 
       console.log(Y,M,D,hour,minute,second)
@@ -351,6 +354,7 @@ Page({
   navigateToMessageDetail:function (e) {
     var id = e.currentTarget.dataset.id
     console.log("friend id",id)
+    console.log(app.globalData.openID)
     wx.navigateTo({
       url: "../messageDetail/messageDetail?target=" + id
     })
