@@ -270,7 +270,7 @@ Page({
             })
           }else{
             var chat = res.data[0].Friends.find((e)=>{return e.id == app.globalData.openID})
-            if(chat.length === 0){
+            if(chat == undefined){
               DB.doc(res.data[0]._id).update({
                 data:{
                   Friends:res.data[0].Friends.concat({
@@ -299,7 +299,7 @@ Page({
             })
           }else{
             var chat = res.data[0].Friends.find((e)=>{return e.id == target})
-            if(chat.length === 0){
+            if(chat == undefined){
               DB.doc(res.data[0]._id).update({
                 data:{
                   Friends:res.data[0].Friends.concat({

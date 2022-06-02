@@ -14,14 +14,14 @@
     <view wx:if="{{item.from != myself.openid}}" class="left-box">
       <image class="ava" src="{{targetUser.userInfo.avatarUrl}}"></image>
       <view class="details">
-        <text class="username">{{targetUser.userInfo.nickName}}</text>
+        <text class="usernamel">{{targetUser.userInfo.nickName}}</text>
         <text class="content">{{item.payload.text}}</text>
       </view>
    </view>
 
    <view wx:if="{{item.from == myself.openid}}" class="right-box">
     <view class="details">
-      <text class="username">{{myself.userInfo.nickName}}</text>
+      <text class="usernamer">{{myself.userInfo.nickName}}</text>
       <text class="content">{{item.payload.text}}</text> 
     </view>
     <image class="ava" src="{{myself.userInfo.avatarUrl}}"></image>

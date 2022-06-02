@@ -45,13 +45,13 @@ function init_TIM() {//初始化im实时聊天
       if(app.globalData.MessageDetail.hasOwnProperty(event.data[i].from)){
         app.globalData.MessageDetail[event.data[i].from].push(event.data[i])
         ++app.globalData.unread[event.data[i].from].num
-        app.globalData.unread[event.data[i].from].empty = false
+        // app.globalData.unread[event.data[i].from].empty = false
       }else{
         app.globalData.MessageDetail[event.data[i].from] = []
         app.globalData.unread[event.data[i].from].num = 0
         app.globalData.MessageDetail[event.data[i].from].push(event.data[i])
         ++app.globalData.unread[event.data[i].from].num
-        app.globalData.unread[event.data[i].from].empty = false
+        // app.globalData.unread[event.data[i].from].empty = false
       }
     }
     // 收到推送的单聊、群聊、群提示、群系统通知的新消息，可通过遍历 event.data 获取消息列表数据并渲染到页面

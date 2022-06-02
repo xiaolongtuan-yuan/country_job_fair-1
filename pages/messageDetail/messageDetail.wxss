@@ -13,12 +13,18 @@
   max-width: 70%;
 }
 
-.username {
+.usernamer {
   color: gray;
   font-size: 28rpx;
+  text-align: right;
   margin: auto 20rpx;
 }
-
+.usernamel {
+  color: gray;
+  font-size: 28rpx;
+  text-align: left;
+  margin: auto 20rpx;
+} 
 .content {
   margin-top: 10rpx;
   font-size: 32rpx;
