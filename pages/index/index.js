@@ -56,6 +56,7 @@ Page({
         that.data.resumeList.push(zxjianli[i])
       }
     }
+    that.setData({resumeList: that.data.resumeList})
     console.log("5", that.data.resumeList)
       
   },

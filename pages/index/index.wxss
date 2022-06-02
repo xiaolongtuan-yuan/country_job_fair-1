@@ -259,7 +259,6 @@ swiper {
 .list-resume {
   position: absolute;
   z-index: 1;
-  margin-top: 11vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -272,7 +271,7 @@ swiper {
   align-items:flex-start;
   width: 642rpx;
   height: 15vh;
-  margin-top: 20vh;
+  margin-top: 20rpx;
   padding-top: 2vh;
   padding-bottom: 1vh;
   padding-left: 15rpx;
