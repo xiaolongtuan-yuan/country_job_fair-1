@@ -76,7 +76,7 @@ Page({
       const _ = wx.cloud.database().command
       for(let i in this.data.Friends){
 
-        console.log(this.data.Friends[i], app.globalData.openID,timeStamp, this.data.unread[this.data.Friends[i].id].num)
+        console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
         DB.orderBy('message.time', 'desc').limit(1).where(_.or([
           {
             'message.time':_.lte(timeStamp),
