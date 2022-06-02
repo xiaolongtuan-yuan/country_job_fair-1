@@ -61,9 +61,7 @@ Page({
       url: '../boss_Resume_detail_In/boss_Resume_detail_In?id='+id
     })
   },
-  back(){
-    wx.navigateBack()
-  },
+
   back(){
     wx.navigateBack()
   },
