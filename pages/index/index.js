@@ -17,12 +17,14 @@ Page({
     }],
     jianli: [],
     resumeList: [], // 最终的简历列表
+    isboss:false,
     mode:true //true是展示招聘信息,false时展示简历
   },
    /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    this.setData({isboss:wx.getStorageSync('isboss')})
     this.app = getApp()
     console.log('当前用户地区',this.app.globalData.worker.yx_address)
     let res1 = await wx.cloud.database().collection('jobs').where({region:this.app.globalData.worker.yx_address}).get()

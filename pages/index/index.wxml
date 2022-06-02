@@ -43,26 +43,28 @@
         </view>  
       </view>
     </view>
-
-    <view class="list-resume">
-      <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item">
-        <view class="item_left">
-          <image mode="aspectFill" class="photo" src="{{resume_list.photo}}"></image>
-          <text class="name">{{resume_list.info[0]}}</text>
-        </view>
-        <view class="item_right">
-          <view class="sexage">
-            <text class="sex" wx:if="{{resume_list.info[1] == 'm'}}">男</text>
-            <text class="sex" wx:else>女</text>
-            <text class="age">{{resume_list.info[2]}}</text>
+    
+    <view class="list">
+      <view class="list-resume">
+        <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item">
+          <view class="item_left">
+            <image mode="aspectFill" class="photo" src="{{resume_list.photo}}"></image>
+            <text class="name">{{resume_list.info[0]}}</text>
           </view>
-          <view class="edu">
-            <text class="edu-1">{{array[resume_list.info[3]]}}</text>
-            <text class="edu-2">{{resume_list.info[4]}}</text>
-            <text class="edu-3">{{resume_list.info[5]}}</text>
+          <view class="item_right">
+            <view class="sexage">
+              <text class="sex" wx:if="{{resume_list.info[1] == 'm'}}">男</text>
+              <text class="sex" wx:else>女</text>
+              <text class="age">{{resume_list.info[2]}}</text>
+            </view>
+            <view class="edu">
+              <text class="edu-1">{{array[resume_list.info[3]]}}</text>
+              <text class="edu-2">{{resume_list.info[4]}}</text>
+              <text class="edu-3">{{resume_list.info[5]}}</text>
+            </view>
+            <text class="talent">{{resume_list.info[6]}}</text>
+            <view class="mybutton" bindtap="goToResume" data-id="{{resume_list._id}}">查看详情</view>
           </view>
-          <text class="talent">{{resume_list.info[6]}}</text>
-          <view class="mybutton" bindtap="goToResume" data-id="{{resume_list._id}}">查看详情</view>
         </view>
       </view>
     </view>

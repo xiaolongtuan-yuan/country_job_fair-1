@@ -250,9 +250,7 @@ swiper {
   color: #A8A8A8;
   
 }
-.list-resume{
-  background-color: #A8A8A8;
-}
+
 .null{
   height: 3vh;
 
