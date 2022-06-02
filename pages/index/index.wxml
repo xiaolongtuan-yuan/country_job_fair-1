@@ -45,10 +45,8 @@
     </view>
     
     <view class="list">
-      <view class="list-resume">nihao
-        <view >hi{{jobsList[0]}}
-        </view>
-        <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item">hai
+      <view class="list-resume">
+        <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item">
           <view class="item_left">
             <image mode="aspectFill" class="photo" src="{{resume_list.photo}}"></image>
             <text class="name">{{resume_list.info[0]}}</text>
