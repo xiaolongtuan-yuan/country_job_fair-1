@@ -260,13 +260,16 @@ swiper {
   position: absolute;
   z-index: 1;
   width: 100vw;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #A8A8A8;
+  margin-bottom: 2vh;
 }
 
 .resume_item {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   align-items:flex-start;
   width: 642rpx;
@@ -278,7 +281,10 @@ swiper {
   padding-right: 15rpx;
   background: #FFFFFF;
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
-  border-radius: 20rpx;
+  border-radius: 20rpx; */
+  width: 642rpx;
+  height: 15vh;
+  background-color: #FFFFFF;
 }
 .item_left {
   display: flex;
