@@ -30,6 +30,11 @@ page {
 }
 .content{
   z-index: 1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  top: 11.8vh;
 }
 /* 1-1 swiper组件 */
 swiper {
@@ -48,29 +53,98 @@ swiper {
   height: 100%;
   border-radius: 20rpx;
 }
+.cont-swiper{
+  height: auto;
+}
+
+.cont-swiper-item2{
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
 /*title 工作推荐 */
 .title {
-  width: 172rpx;
-  height: 70rpx;
-  margin-left: 300rpx;
-
+  display: flex;
+  flex-direction: row;
+  margin-left: 200rpx;
+}
+.title-boss-active{
+  width: 180rpx;
+  height: 5.5vh;
+  text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 70rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #FFFFFF;
+  background-color: #17C3B2;
+}
+.title-boss{
+  width: 180rpx;
+  height: 5.5vh;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
   /* or 185% */
   color: #000000;
 
 }
+.title-resume{
+  width: 180rpx;
+  height: 5.5;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #000000;
+  /* background-color: #fff; */
+}
+.title-resume-active{
+  width: 180rpx;
+  height: 5.5;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 5.5vh;
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+  /* or 185% */
+  color: #FFFFFF;
+  background-color: #17C3B2;
+}
+.all-list{
+  width: 1500rpx;
+  display: flex;
+  flex-direction: row;
+  top: 6vh;
+  position: absolute;
+}
 /* 2-1 招聘列表容器 */
-.list {
+.list{
   display: flex;
   flex-direction: row;
   justify-content: center;
 
   width: 100vw;
   align-items: flex-start;
+
   margin-bottom: 2vh;
 }
 .list1{
@@ -162,18 +236,22 @@ swiper {
 }
 .other-item{
   width: 248rpx;
-  height: 52rpx;
+  height: 30rpx;
   margin-left: 38rpx;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 24rpx;
-  line-height: 52rpx;
+  font-size: 20rpx;
+  line-height: 30rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #A8A8A8;
+  
+}
+.list-resume{
+  background-color: #A8A8A8;
 }
 .null{
   height: 3vh;
