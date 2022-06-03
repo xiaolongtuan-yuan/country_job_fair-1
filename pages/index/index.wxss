@@ -270,9 +270,9 @@ swiper {
 .resume_item {
   display: flex;
   flex-direction: row;
-  align-items:flex-start;
+  align-items:center;
   width: 642rpx;
-  height: 15vh;
+  height: 13vh;
   margin-top: 20rpx;
   padding-top: 2vh;
   padding-bottom: 1vh;
@@ -282,14 +282,12 @@ swiper {
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
   width: 642rpx;
-  height: 15vh;
   background-color: #FFFFFF;
 }
 .item_left {
   display: flex;
   flex-direction: column;
   width: 140rpx;
-
   align-items: center;
   justify-content: center;
 
@@ -298,7 +296,7 @@ swiper {
   display: flex;
   flex-direction: column;
   width: 80%;
-  align-items: center;
+  align-items:flex-start;
 
   margin-left: 20rpx;
 }
@@ -310,7 +308,7 @@ swiper {
 }
 .name{
   height: 3vh;
-  margin-top: 1.4vh;
+
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -318,6 +316,7 @@ swiper {
   line-height: 3vh;
 }
 .sexage {
+  margin-top: 1vh;
   display: flex;
   flex-direction: row;
   width: 100%;

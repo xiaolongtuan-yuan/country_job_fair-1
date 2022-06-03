@@ -66,6 +66,10 @@
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
 }
+.worker_resume_item_content{
+  display: flex;
+  flex-direction: column;
+}
 
 .job_top{
   display: flex;
@@ -155,13 +159,34 @@
 .button{
   height: 4.5vh;
   width: 200rpx;
-  margin-left: 410rpx;
+
   border-radius: 80rpx;
   text-align: center;
   line-height: 4.5vh;
   color: white;
   font-weight: 700;
   background-color: #17C3B2;
+}
+.button2{
+  height: 4.5vh;
+  width: 200rpx;
+  margin-left: 440rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4.5vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}
+.delete_resume{
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+}
+.delete{
+  height: 70rpx;
+  width: 70rpx;
+  margin-right: 30rpx;
 }
 .null{
   height: 0.5vh;

@@ -77,6 +77,43 @@ Page({
   back(){
     wx.navigateBack()
   },
+  goToDetail: function(e) {
+    let id=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../detail/detail?id='+id
+    })
+  },
+  delete_job(e){
+    let id=e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '确认删除招聘信息！',
+      content: '删除后将失去所有信息',
+      success (res) {
+        if (res.confirm) {
+          db.collection('jobs')
+          .doc(id)
+          .remove()
+          .then(res => {
+            wx.showToast({
+              title:'删除成功',
+              icon:'success',
+              duration:2000
+            })
+          })
+          .catch(res=>{
+            wx.showToast({
+              title:'删除失败，请联系客服',
+              icon:'error',
+              duration:2000
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    db.collection('')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
