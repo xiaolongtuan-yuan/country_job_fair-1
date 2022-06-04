@@ -1,5 +1,6 @@
 // pages/boss_favorite/boss_favorite.js
 const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
@@ -25,17 +26,14 @@ Page({
     that.setData({boss_favor: res1.data[0].boss_favor})
     console.log("1", that.data.boss_favor)
 
-    let res2 = await db.collection('zxjianli').get()
+    let res2 = await db.collection('zxjianli').where({
+      _id : _.in(that.data.boss_favor)
+    }).get()
     console.log("2", res2.data)
-    var resumes = []
     let len = res2.data.length
-    let len_1 = that.data.boss_favor.length
+    let resumes = []
     for(let i = 0; i < len; i++) {
-      for(let j = 0; j < len_1; j++) {
-        if(res2.data[i]._id == that.data.boss_favor[j]) {
-          resumes.push(res2.data[i])
-        }
-      }
+      resumes.push(res2.data[i])
     }
     that.setData({resumes:resumes})
     console.log("3", that.data.resumes)

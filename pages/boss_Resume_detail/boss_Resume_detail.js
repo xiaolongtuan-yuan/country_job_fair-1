@@ -1,5 +1,6 @@
 // pages/boss_Resume_detail/boss_Resume_detail.js
 const db = wx.cloud.database()
+const _ = db.command
 const app = getApp()
 Page({
 
@@ -25,35 +26,33 @@ Page({
     this.setData({jobsId: options.id})
     this.setData({openID: wx.getStorageSync('openID')})
     var that = this
-    let res1 = await db.collection('zxjianli').get();
-    console.log("1", res1.data)
-    that.setData({resume: res1.data})
+    let res1 = await db.collection('worker').get(); // 这里实在不好弄
+    console.log("res1.data",res1.data)
+    let result = that.getResume(res1.data);
+    console.log("1", result)
 
-    let res2 = await db.collection('worker').get();
-    console.log('这里',res2.data);
-    let result = that.getResume(res2.data);
-    that.setData({resume_received: result});
-    console.log('在这里',result);
+    let res2 = await db.collection('zxjianli').where({
+      _openid : _.in(result)
+    }).get()
+    let len = res2.data.length;
+    let resume = []
+    for(let i = 0; i < len; i++) {
+      resume.push(res2.data[i])
+    }
+    that.setData({resume_received: resume});
+    console.log("2", this.data.resume_received)
+    
 
   },
   getResume: function(workerList) {
     var len = workerList.length;
     var result = [];
-    console.log(this.data.jobsId, this.data.resume);
     for(let i = 0; i < len; i++) {
-      let len_1 = workerList[i].worker_sended.length;
-      for (let j = 0; j < len_1; j++) {
-        if (workerList[i].worker_sended[j] == this.data.jobsId) {
-          let len_2 = this.data.resume.length;
-          for (let k = 0; k < len_2; k++) {
-            if (workerList[i]._openid == this.data.resume[k]._openid) {
-              result.push(this.data.resume[k]);
-            }
+      if (workerList[i].worker_sended.indexOf(this.data.jobsId) != -1) {
+            result.push(workerList[i]._openid);
           }
-        }
       }
-    }
-    return result;
+      return result;
   },
   goToDetail: function(e) {
     let id=e.currentTarget.dataset.id;

@@ -2,6 +2,7 @@
 const db = wx.cloud.database()
 const DB = wx.cloud.database().collection("users")
 const app = getApp()
+const _ = db.command
 Page({
 
   /**
@@ -28,45 +29,24 @@ Page({
       let worker_sended = res1.data[0].worker_sended
       if(!that.data.isboss){
         that.setData({worker_resume: worker_sended})
+        console.log("1", that.data.worker_resume)
       }
     }
-    console.log("1", that.data.worker_resume)
 
-
-    let res2 = await db.collection('jobs').get()
+    let res2 = await db.collection('jobs').where({
+      _id : _.in(that.data.worker_resume)
+    }).get()
     console.log("2", res2.data)
-    let result = that.getjobs(that.data.worker_resume, res2.data)
-    that.setData({jobs:result})
+    that.setData({jobs:res2.data})
     console.log("3", that.data.jobs)
 
-    let result_boss = that.getjobs_had(res2.data)
-    that.setData({jobs_had: result_boss})
+    let res3 = await db.collection('jobs').where({
+      _openid : _.eq(that.data.openID)
+    }).get()
+    that.setData({jobs_had: res3.data})
     console.log("4", that.data.jobs_had)
   },
-
-  getjobs: function(jobsId, jobsList) {
-    var len = jobsId.length;
-    var size = jobsList.length;
-    let jobs = [];
-    for(let i = 0; i < len; i++) {
-      for(let j = 0; j < size; j++) {
-        if(jobsId[i] == jobsList[j]._id) {
-          jobs.push(jobsList[j])
-        }
-      }
-    }
-    return jobs;
-  },
-  getjobs_had: function(jobsList) {
-    let len = jobsList.length;
-    let jobs_had = [];
-    for(let i = 0; i < len; i++) {
-      if(jobsList[i]._openid == this.data.openID) {
-        jobs_had.push(jobsList[i]);
-      }
-    }
-    return jobs_had;
-  },
+  
   boss_goToResume: function(e) {
     let id=e.currentTarget.dataset.id;
     console.log('ID',e.currentTarget.dataset.id);
