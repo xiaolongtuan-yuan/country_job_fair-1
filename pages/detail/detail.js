@@ -2,6 +2,7 @@
 const db = wx.cloud.database()
 const DB = wx.cloud.database().collection("users")
 const app = getApp()
+const _ = db.command
 Page({
 
   /**
@@ -23,12 +24,10 @@ Page({
    */
   async onLoad(options) {
     var that = this
-    let res1 = await db.collection('jobs').get()
-    let id=options.id
-    let result=that.getDetail(id,res1.data)
-    if(result.code='200'){
-      that.setData({jobs:result.jobs})
-    }
+    let res1 = await db.collection('jobs').where({
+      _id: _.eq(options.id)
+    }).get()
+    that.setData({jobs: res1.data[0]})
     console.log("1",that.data.jobs)
     this.setData({openID:wx.getStorageSync('openID')})
     console.log("2",this.data.openID)
@@ -37,20 +36,16 @@ Page({
     if(res2.data.length >0){
       var favor = res2.data[0].worker_favor
       let resume = res2.data[0].worker_sended
-      let len = favor.length
-      let re_len = resume.length
-      for(let i = 0; i < len; i++) {
-        if(favor[i] == that.data.jobs._id) {
-          that.setData({isAdd:true})
-        }
+      console.log("4", resume)
+      if(favor.indexOf(that.data.jobs._id) != -1) {
+        that.setData({isAdd:true})
       }
       that.setData({
         worker_favor: favor,
       })
-      for(let i = 0; i < re_len; i++) {
-        if(resume[i] == that.data.jobs._id) {
-          that.setData({re_isAdd:true})
-        }
+
+      if(resume.indexOf(that.data.jobs._id) != -1) {
+        that.setData({re_isAdd:true})
       }
       that.setData({
         worker_sended: resume,
@@ -58,22 +53,6 @@ Page({
     }
 
 
-  },
-  //获取详情信息
-  getDetail: function(job_id, jobsList) {
-    console.log(jobsList)
-    let msg={
-      code: '404',
-      jobs: {}
-    };
-    for (var i=0; i<jobsList.length; i++) {
-      if (job_id==jobsList[i]._id) {
-        msg.code='200';
-        msg.jobs=jobsList[i];
-        break;
-      }
-    }
-    return msg;
   },
   // 索引
   indexof: function(arr, val)  {
@@ -92,7 +71,9 @@ Page({
       })
     }else{
       console.log("4",this.data.worker_favor)
-      this.data.worker_favor.push(this.data.jobs._id);
+      if (this.data.worker_sended.indexOf(this.data.jobs._id) == -1) {
+        this.data.worker_favor.push(this.data.jobs._id);
+      }
       console.log("5",this.data.worker_favor)
       // console.log(favor);  
       this.setData({worker_favor:this.data.worker_favor}); 

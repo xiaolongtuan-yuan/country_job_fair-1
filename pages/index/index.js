@@ -1,6 +1,6 @@
 // index.js
 const db = wx.cloud.database()
-
+const _ = db.command
 Page({
   data: {
     //滑动幻灯片素材
@@ -40,23 +40,24 @@ Page({
 
     // 简历筛选
     var that = this
-    let res2 = await db.collection('worker').where({yx_address: that.app.globalData.worker.yx_address}).get()
+    let res2 = await db.collection('worker').where({
+      yx_address: that.app.globalData.worker.yx_address,
+      _openid: _.not(_.eq(that.app.globalData.openID))
+    }).get()
     console.log("1", res2.data)
-    for(let i = 0; i < res2.data.length; i++) {
-      console.log("2", res2.data[i])
-      if (res2.data[i]._openid != that.app.globalData.openID) {
-        that.data.jianli.push(res2.data[i]._openid)
-      }
+    for (let i = 0; i < res2.data.length; i++) {
+      that.data.jianli.push(res2.data[i]._openid)
     }
     console.log("3", that.data.jianli)
+    that.setData({jianli:that.data.jianli})
 
-    let res3 = await db.collection('zxjianli').get()
+    let res3 = await db.collection('zxjianli').where({
+      _openid: _.in(that.data.jianli)
+    }).get()
     let zxjianli = res3.data
     console.log("4", zxjianli)
     for(let i = 0; i < zxjianli.length; i++) {
-      if (that.data.jianli.indexOf(zxjianli[i]._openid) != -1) {
         that.data.resumeList.push(zxjianli[i])
-      }
     }
     that.setData({resumeList: that.data.resumeList})
     console.log("5", that.data.resumeList)
