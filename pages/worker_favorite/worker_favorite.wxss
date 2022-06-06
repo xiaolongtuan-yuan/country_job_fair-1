@@ -29,7 +29,6 @@
   text-align: center;
   /* or 185% */
   color: #FFFFFF;
-
 }
 
 .content{

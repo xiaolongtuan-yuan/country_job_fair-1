@@ -28,7 +28,7 @@
     <text>收藏</text>
   </view>
   <view class='chat' bindtap="newchat">
-    <image class='chatImage' src='../../images/messages.png'></image>
+    <image class='chatImage' src='../../images/xiaoxi.png'></image>
     <text>咨询</text>
   </view>
   <view class='resume' wx:if="{{re_isAdd}}" plain bindtap="deleteSendResume">已提交</view>

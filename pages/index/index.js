@@ -50,7 +50,7 @@ Page({
     }
     console.log("3", that.data.jianli)
     that.setData({jianli:that.data.jianli})
-
+    console.log("4用到的简历",this.data.jianli)
     let res3 = await db.collection('zxjianli').where({
       _openid: _.in(that.data.jianli)
     }).get()

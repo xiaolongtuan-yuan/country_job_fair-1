@@ -380,6 +380,11 @@ Page({
       url: '../zxjianli/zxjianli'
     })
   },
+  tofalv(){
+    wx.navigateTo({
+      url: '../falv/falv'
+    })
+  },
   isboss(){
     if(!this.data.isboss){
       this.setData({
