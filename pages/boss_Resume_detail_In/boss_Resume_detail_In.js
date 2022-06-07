@@ -13,7 +13,8 @@ Page({
     boss_favor: [],
     openID: '',
     //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
-    array:['无','小学','初中','高中','专科','本科','研究生','博士研究生']
+    array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
+    favor_id: ''
   },
 
   /**
@@ -28,15 +29,14 @@ Page({
     let res1 = await db.collection('zxjianli').where({_id: that.data.worker_OpId}).get()
     console.log("0", res1.data)
     that.setData({worker_detail: res1.data})
-    let res2 = await db.collection('worker').where({_openid: that.data.openID}).get()
+    let res2 = await db.collection('bfavorite').where({
+      openid: that.data.openID,
+      favor_resumeId: that.data.worker_OpId
+    }).get()
     console.log('1',res2.data)
-    that.setData({boss_favor: res2.data[0].boss_favor})
-    console.log("2", that.data.boss_favor)
-    var len = res2.data[0].boss_favor.length
-    for(let i = 0; i < len; i++) {
-      if(res2.data[0].boss_favor[i] == that.data.worker_OpId){
-        that.setData({isAdd: true})
-      }
+    if (res2.data.length != 0) {
+      that.setData({isAdd: true})
+      that.setData({favor_id:res2.data[0]._id})
     }
 
   },
@@ -50,48 +50,34 @@ Page({
   },
   //添加到收藏夹
   addFavorites: function(options) {
-    this.data.boss_favor.push(this.data.worker_OpId);
-    this.setData({boss_favor:this.data.boss_favor}); 
     this.setData({ isAdd: true });
     var that = this
-    db.collection('worker')
-      .where({
-        _openid:this.data.openID
-      })
-      .update({
-        data: {
-          boss_favor: that.data.boss_favor
-        }
-      })
-      .then(res => {
-        console.log('修改成功', res)
-      })
-      .catch(res =>{
-        console.log('修改失败', res)
-      })
+    db.collection('bfavorite')
+    .add({
+      data: {
+        openid: that.data.openID,
+        favor_resumeId: that.data.worker_OpId
+      }
+    })
+    .then(res => {
+      console.log('添加成功', res)
+    })
+    .catch(res =>{
+      console.log('添加失败', res)
+    })
 },
   //取消收藏
   cancelFavorites: function(options) {
-    let index = this.indexof(this.data.boss_favor,this.data.worker_OpId);
-    this.data.boss_favor.splice(index, 1);
-    console.log("4", this.data.boss_favor)
-    // console.log(this.data.worker_favor)
     this.setData({ isAdd: false });
     var that = this
-    db.collection('worker')
-      .where({
-        _openid:this.data.openID
-      })
-      .update({
-        data: {
-          boss_favor: that.data.boss_favor
-        }
-      })
+    db.collection('bfavorite')
+      .doc(that.data.favor_id)
+      .remove()
       .then(res => {
-        console.log('修改成功', res)
+        console.log('删除成功', res)
       })
       .catch(res =>{
-        console.log('修改失败', res)
+        console.log('删除失败', res)
       })
   },
   

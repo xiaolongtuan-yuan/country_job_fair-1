@@ -69,6 +69,29 @@ Page({
           })
           app.globalData.Friends = res3.data[0].Friends
 
+          // // 下面三条连续的语句分别是创建员工收藏，老板收藏，员工已投简历
+          // wx.cloud.database().collection('wfavorite')
+          // .add({
+          //   data:{
+          //     openid: this.data.openID,
+          //     worker_favor: []
+          //   }
+          // })
+          // wx.cloud.database().collection('bfavorite')
+          // .add({
+          //   data:{
+          //     openid: this.data.openID,
+          //     boss_favor: []
+          //   }
+          // })
+          // wx.cloud.database().collection('wresume')
+          // .add({
+          //   data:{
+          //     openid: this.data.openID,
+          //     worker_sended: []
+          //   }
+          // })
+
           console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
           for(let i in app.globalData.Friends){

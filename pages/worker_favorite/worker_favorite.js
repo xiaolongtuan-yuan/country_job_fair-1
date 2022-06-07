@@ -18,9 +18,14 @@ Page({
   async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
-    let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
-    this.unique(res1.data[0].worker_favor)
-    that.setData({worker_favor: res1.data[0].worker_favor})
+    console.log("0", that.data.openID)
+    let res1 = await db.collection('wfavorite').where({openid: that.data.openID}).get()
+    let favor = [];
+    for (let i = 0; i < res1.data.length; i++) {
+      favor.push(res1.data[i].favor_jobsId);
+    }
+    this.unique(favor) // 以防万一
+    that.setData({worker_favor: favor})
     console.log("1", that.data.worker_favor)
     
     let res2 = await db.collection('jobs').where({
