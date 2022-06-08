@@ -1,9 +1,9 @@
+
 <view class="top">
-    <view class="top-back">
-        <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
-        <text class="top-back-text">在线简历</text>
-    </view>
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">在线简历</text>
 </view>
+
 <view class="bottom">
     <view class="bottom-1">
         <text class="begin">姓名</text>

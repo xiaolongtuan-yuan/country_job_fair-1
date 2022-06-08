@@ -1,12 +1,7 @@
 <!--pages/messageDetail/messageDetail.wxml-->
-
 <view class="top">
-  
-    <view class="top-back">
-        <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
-        <text class="top-back-text">{{targetUser.userInfo.nickName}}</text>
-    </view>
-    
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">{{targetUser.userInfo.nickName}}</text>
 </view>
 
 <scroll-view bindscrolltoupper="onMsgRefresh" id="dialogList" scroll-y="{{true}}" scroll-with-animation="{{true}}" class="scroll-size" scroll-top="{{topValue}}" refresher-enabled="true" refresher-threshold="80" refresher-triggered="{{refreshing}}">

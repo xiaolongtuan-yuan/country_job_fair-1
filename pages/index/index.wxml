@@ -12,8 +12,8 @@
   </swiper> -->
   <!--招聘列表-->
   <view class="title">
-    <view class="title-boss{{mode ? '-active':''}}" bindtap="changemode" data-mode='boss'>正在热招</view>
-    <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>正在求职</view>
+    <view class="title-boss{{mode ? '-active':''}}" bindtap="changemode" data-mode='boss'>招聘</view>
+    <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>求职</view>
   </view>
   
   <view class="all-list" animation="{{slide_up1}}" wx:if="{{jobsList.length!=0 && resumeList.length!=0}}">
