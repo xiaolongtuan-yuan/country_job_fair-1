@@ -40,7 +40,7 @@
 }
 
 .nothing-icon {
-  margin-top: 20%;
+  margin-top: 40%;
   height: 128rpx;
   width: 128rpx;
 }

@@ -15,7 +15,7 @@ Page({
     date:[],
     unread:[],
     id:"",
-    firstload:true
+    firstload:true,
   },
 
   /**
@@ -51,6 +51,15 @@ Page({
   onShow() {
     //登录判断
     if (app.globalData.openID.length === 0) {
+      this.setData({
+        Friends:[],
+        briefMsg:[],
+        FriendsUserInfo:[],
+        date:[],
+        unread:[],
+        id:"",
+        firstload:true
+      })
       wx.showToast({
         title: '您未登录~',
         image: '/images/icons/error.png'
