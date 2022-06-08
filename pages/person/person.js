@@ -24,10 +24,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+   onLoad: function (options) {
+    console.log("调用onload,user=",this.data.user)
     var openid = wx.getStorageSync('openID')
     console.log('person load')
     if(openid!=''){//缓存中有数据
+      console.log("调用onload1")
       this.setData({//加载缓存并检查数据库中数据是否被删除
         user:wx.getStorageSync('user'),
         openID:openid,
@@ -280,11 +282,50 @@ Page({
   tuichu(){
     wx.removeStorageSync('user')
     wx.removeStorageSync('isboss')
-    wx.removeStorageSync('post')
-    wx.showToast({
-      title:"退出成功"
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_profile')
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_conversationMap')
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_groupMap')
+    var that = this
+    wx.removeStorage({
+      key: 'openID',
+      success (res) {
+        app.globalData.isInit=false
+        app.globalData.user=''
+        app.globalData.openID=''
+        app.globalData.Friends=[{
+                                id:"",
+                                lastread:0
+                              }]
+        app.globalData.MessageDetail=[]
+        app.globalData.unread=[]
+        app.globalData.isboss=false
+        app.globalData.worker={
+                                yx_address:['四川省','广元市','旺苍县'],//默认
+                                yx_salary:[0,5],
+                                datas:[0,0,0],
+                                yx_post:[0,0]
+                              }
+        that.setData({
+          user:app.globalData.user,
+          openID:app.globalData.openID,
+          isboss:app.globalData.isboss,
+          worker:app.globalData.worker,
+          region: ['四川省', '广元市', '旺苍县'],//意向工作地点
+          multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
+          multiIndex: [0, 0],
+          post_classify:app.globalData.post_classify,
+          posts:app.globalData.post,
+          post:[0,0],
+          datas:[]
+        })
+        wx.showToast({
+          title:"退出成功"
+        })
+    
+        that.onLoad()
+      }
     })
-    this.onLoad()
+    
   },
   bindRegionChange: function (e) {
     console.log('picker发送选择改变,携带值为', e.detail.value)

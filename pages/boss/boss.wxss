@@ -20,6 +20,14 @@ page {
     z-index: 4;
 }
 
+.loading{
+    width: 100vw;
+    height: 70vh;
+    z-index: 5;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .saveImage{
 

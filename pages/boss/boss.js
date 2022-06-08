@@ -24,7 +24,8 @@ Page({
     ctx:'',//画布上下文
     src:'',//海报背景图片
     id:'',
-    ismask:false
+    ismask:false,
+    loading:false  // true是出现加在动画
   },
 
 
@@ -187,11 +188,9 @@ Page({
       return
     }
     else{
-      wx.showLoading({
-        title: '上传招聘中...',
-      })
       this.setData({
-        ismask:true
+        ismask:true,
+        loading:true
       })
       wx.cloud.database().collection('jobs')
       .add({
@@ -209,7 +208,6 @@ Page({
       })
       .then(res=>{
         console.log('招聘发布成功',res)
-        wx.hideLoading()
         this.setData({
           id:res._id
         })
@@ -228,6 +226,9 @@ Page({
   },//退出海报
 
   drawCanvas2D() {
+    this.setData({
+      loading:false
+    })
     var text_interval = 30
     var text_num = 0
     var text_begin = 200
@@ -316,8 +317,6 @@ Page({
       ctx.fillText('扫描下方二维码了解详情', 130, 420);
       await this.getQrCode()
       await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 200/rpx, 430/rpx,100/rpx)
-      
-      
       //   await this.photo()
     //   var src = this.data.src
 

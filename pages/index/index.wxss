@@ -33,7 +33,7 @@ page {
   position: absolute;
   display: flex;
   flex-direction: column;
-
+  
   top: 11.8vh;
 }
 /* 1-1 swiper组件 */

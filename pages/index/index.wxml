@@ -16,7 +16,7 @@
     <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>正在求职</view>
   </view>
   
-  <view class="all-list" animation="{{slide_up1}}">
+  <view class="all-list" animation="{{slide_up1}}" wx:if="{{jobsList.length!=0 && resumeList.length!=0}}">
     <view class="list">
       <view class="list1">
         <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
@@ -67,5 +67,8 @@
         </view>
       </view>
     </view>
+  </view>
+  <view class="loading" wx:else>
+    <view class="loader-container"> <view class="loader one"></view></view>
   </view>
 </view>

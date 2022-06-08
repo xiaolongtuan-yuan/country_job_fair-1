@@ -58,7 +58,7 @@ Page({
       setTimeout(function() {
         // 返回
         wx.switchTab({
-          url: '/pages/index/index',
+          url: '/pages/person/person',
           success: function(res) {},
           fail: function(res) {},
           complete: function(res) {},
@@ -175,7 +175,6 @@ Page({
         id:setInterval(this.autoLoadMessage, 5000)
       })
     }
-    
   },
 
   /**
