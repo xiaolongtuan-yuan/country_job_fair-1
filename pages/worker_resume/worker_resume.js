@@ -24,14 +24,18 @@ Page({
     this.setData({openID:wx.getStorageSync('openID')})
     // this.setData({openID:app.globalData.openID})
     var that = this  
-    let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
-    if(res1.data.length >0){
-      let worker_sended = res1.data[0].worker_sended
-      if(!that.data.isboss){
-        that.setData({worker_resume: worker_sended})
-        console.log("1", that.data.worker_resume)
-      }
+    let res1 = await db.collection('wresume').where({openid: that.data.openID}).get()
+    console.log("1", res1.data)
+    let worker_sended = [];
+    for (let i = 0; i < res1.data.length; i++) {
+      worker_sended.push(res1.data[i].resume_sendedId)
     }
+    console.log("11",worker_sended)
+    if(!that.data.isboss){
+      that.setData({worker_resume: worker_sended})
+      console.log("1", that.data.worker_resume)
+    }
+    
 
     let res2 = await db.collection('jobs').where({
       _id : _.in(that.data.worker_resume)

@@ -26,18 +26,16 @@ Page({
     this.setData({jobsId: options.id})
     this.setData({openID: wx.getStorageSync('openID')})
     var that = this
-    let res1 = await db.collection('worker').get(); // 这里实在不好弄
-    console.log("res1.data",res1.data)
-    let result = that.getResume(res1.data);
-    console.log("1", result)
-
-    let res2 = await db.collection('zxjianli').where({
-      _openid : _.in(result)
+    let res1 = await db.collection('wresume').where({
+      resume_sendedId: that.data.jobsId
     }).get()
-    let len = res2.data.length;
-    let resume = []
-    for(let i = 0; i < len; i++) {
-      resume.push(res2.data[i])
+    console.log("1", res1.data)
+    let resume = [];
+    for (let i = 0; i < res1.data.length; i++) {
+      let res2 = await db.collection('zxjianli').where({
+        _openid: res1.data[i].openid
+      }).get()
+      resume.push(res2.data[0]);
     }
     that.setData({resume_received: resume});
     console.log("2", this.data.resume_received)

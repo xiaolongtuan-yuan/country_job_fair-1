@@ -16,8 +16,8 @@ Page({
     isAdd: false,
     re_isAdd: false,
     openID: app.globalData.openID,
-    worker_favor: [],
-    worker_sended: [],
+    favor_id:"",
+    resume_id:"",
   },
   /**
    * 生命周期函数--监听页面加载
@@ -31,36 +31,28 @@ Page({
     console.log("1",that.data.jobs)
     this.setData({openID:wx.getStorageSync('openID')})
     console.log("2",this.data.openID)
-    let res2 = await db.collection('worker').where({_openid:that.data.openID}).get()
+    let res2 = await db.collection('wfavorite').where({
+      openid:that.data.openID,
+      favor_jobsId: options.id
+    }).get()
     console.log("3",res2.data)
-    if(res2.data.length >0){
-      var favor = res2.data[0].worker_favor
-      let resume = res2.data[0].worker_sended
-      console.log("4", resume)
-      if(favor.indexOf(that.data.jobs._id) != -1) {
-        that.setData({isAdd:true})
-      }
-      that.setData({
-        worker_favor: favor,
-      })
-
-      if(resume.indexOf(that.data.jobs._id) != -1) {
-        that.setData({re_isAdd:true})
-      }
-      that.setData({
-        worker_sended: resume,
-      })
+    if (res2.data.length != 0) {
+      that.setData({isAdd:true})
+      console.log("11", res2.data[0]._id)
+      that.setData({favor_id:res2.data[0]._id})
     }
-
-
-  },
-  // 索引
-  indexof: function(arr, val)  {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] == val) {
-        return i;
-      }
+    console.log("11",that.data.favor_id)
+    
+    let res3 = await db.collection('wresume').where({
+      openid:that.data.openID,
+      resume_sendedId: options.id
+    }).get()
+    if (res3.data.length != 0) {
+      that.setData({re_isAdd:true})
+      console.log("22", res3.data[0]._id)
+      that.setData({resume_id:res3.data[0]._id})
     }
+    console.log("22",that.data.resume_id)
   },
   //添加到收藏夹
   addFavorites: function(options) {
@@ -70,101 +62,68 @@ Page({
         image: '/images/icons/error.png'
       })
     }else{
-      console.log("4",this.data.worker_favor)
-      if (this.data.worker_sended.indexOf(this.data.jobs._id) == -1) {
-        this.data.worker_favor.push(this.data.jobs._id);
-      }
-      console.log("5",this.data.worker_favor)
-      // console.log(favor);  
-      this.setData({worker_favor:this.data.worker_favor}); 
       this.setData({ isAdd: true });
       var that = this
-      db.collection('worker')
-      .where({
-        _openid:this.data.openID
-      })
-      .update({
+      db.collection('wfavorite')
+      .add({
         data: {
-          worker_favor: that.data.worker_favor
+          openid: that.data.openID,
+          favor_jobsId: that.data.jobs._id
         }
       })
       .then(res => {
-        console.log('修改成功', res)
+        console.log('添加成功', res)
       })
       .catch(res =>{
-        console.log('修改失败', res)
+        console.log('添加失败', res)
       })
     }
 },
   //取消收藏
   cancelFavorites: function(options) {
-    console.log("6",this.data.worker_favor);
-    let index = this.indexof(this.data.worker_favor,this.data.jobs._id);
-    this.data.worker_favor.splice(index, 1);
-    console.log("7",this.data.worker_favor);
-    // console.log(this.data.worker_favor)
     this.setData({ isAdd: false });
     var that = this
-    db.collection('worker')
-      .where({
-        _openid:this.data.openID
-      })
-      .update({
-        data: {
-          worker_favor: that.data.worker_favor
-        }
-      })
+    db.collection('wfavorite')
+      .doc(that.data.favor_id)
+      .remove()
       .then(res => {
-        console.log('修改成功', res)
+        console.log('删除成功', res)
       })
       .catch(res =>{
-        console.log('修改失败', res)
+        console.log('删除失败', res)
       })
   },
   
   sendResume: function(options) {
-    this.data.worker_sended.push(this.data.jobs._id);
-    this.setData({re_isAdd: true});
-    var that = this;
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .update({
+    this.setData({ re_isAdd: true });
+      var that = this
+      db.collection('wresume')
+      .add({
         data: {
-          worker_sended: that.data.worker_sended
+          openid: that.data.openID,
+          resume_sendedId: that.data.jobs._id
         }
       })
-      .then(res =>{
-        console.log("修改成功", res)
+      .then(res => {
+        console.log('添加成功', res)
       })
       .catch(res =>{
-        console.log("修改失败", res)
+        console.log('添加失败', res)
       })
 
   },
 
   deleteSendResume: function(options) {
-    console.log("8",this.data.worker_sended);
-    let index = this.indexof(this.data.worker_sended, this.data.jobs._id);
-    this.data.worker_sended.splice(index,1);
-    console.log("9",this.data.worker_sended);
-    this.setData({re_isAdd: false});
-    var that = this;
-    db.collection('worker')
-      .where({
-        _openid: that.data.openID
-      })
-      .update({
-        data: {
-          worker_sended: that.data.worker_sended
-        }
-      })
-      .then(res =>{
-        console.log("修改成功", res)
+    this.setData({ re_isAdd: false });
+    var that = this
+    db.collection('wresume')
+      .doc(that.data.resume_id)
+      .remove()
+      .then(res => {
+        console.log('删除成功', res)
       })
       .catch(res =>{
-        console.log("修改失败", res)
+        console.log('删除失败', res)
       })
   },
   
