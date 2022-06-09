@@ -110,5 +110,31 @@ Page({
       .catch(err => {
         console.log('请求失败',err)
       })
+
+      db.collection('worker').where({
+        yx_address: this.app.globalData.worker.yx_address,
+        _openid: _.not(_.eq(this.app.globalData.openID))
+      }).get()
+      .then(res2 => {
+        for (let i = 0; i < res2.data.length; i++) {
+          this.data.jianli.push(res2.data[i]._openid)
+        }
+        this.setData({jianli:this.data.jianli})
+        console.log("4用到的简历",this.data.jianli)
+
+        db.collection('zxjianli').where({
+          _openid: _.in(this.data.jianli)
+        }).get()
+        .then(res3 => {
+          let zxjianli = res3.data
+          console.log("4", zxjianli)
+          for(let i = 0; i < zxjianli.length; i++) {
+            this.data.resumeList.push(zxjianli[i])
+          }
+          this.setData({resumeList: this.data.resumeList})
+        })
+      })
+      
+      
   }
 })
