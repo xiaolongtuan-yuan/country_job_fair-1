@@ -18,11 +18,15 @@ Page({
     openID: app.globalData.openID,
     favor_id:"",
     resume_id:"",
+    posts:app.globalData.post,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    this.setData({
+      posts:app.globalData.post
+    })
     var that = this
     let res1 = await db.collection('jobs').where({
       _id: _.eq(options.id)
@@ -72,7 +76,19 @@ Page({
         }
       })
       .then(res => {
-        console.log('添加成功', res)
+        app.globalData.worker.datas[1] += 1
+        db.collection('worker')
+        .where({
+          _openid:app.globalData.openID
+        })
+        .update({
+          data:{
+            datas:app.globalData.worker.datas
+          }
+        })
+        .then(res2=>{
+          console.log('收藏成功')
+        })
       })
       .catch(res =>{
         console.log('添加失败', res)
@@ -87,7 +103,19 @@ Page({
       .doc(that.data.favor_id)
       .remove()
       .then(res => {
-        console.log('删除成功', res)
+        app.globalData.worker.datas[1] -= 1
+        db.collection('worker')
+        .where({
+          _openid:app.globalData.openID
+        })
+        .update({
+          data:{
+            datas:app.globalData.worker.datas
+          }
+        })
+        .then(res2=>{
+          console.log('取消收藏成功')
+        })
       })
       .catch(res =>{
         console.log('删除失败', res)
@@ -105,7 +133,19 @@ Page({
         }
       })
       .then(res => {
-        console.log('添加成功', res)
+        app.globalData.worker.datas[0] += 1
+        db.collection('worker')
+        .where({
+          _openid:app.globalData.openID
+        })
+        .update({
+          data:{
+            datas:app.globalData.worker.datas
+          }
+        })
+        .then(res2=>{
+          console.log('投递成功')
+        })
       })
       .catch(res =>{
         console.log('添加失败', res)
@@ -120,11 +160,23 @@ Page({
       .doc(that.data.resume_id)
       .remove()
       .then(res => {
-        console.log('删除成功', res)
+        app.globalData.worker.datas[0] -= 1
+        db.collection('worker')
+        .where({
+          _openid:app.globalData.openID
+        })
+        .update({
+          data:{
+            datas:app.globalData.worker.datas
+          }
+        })
+        .then(res2=>{
+          console.log('取消投递成功')
+        })
       })
       .catch(res =>{
         console.log('删除失败', res)
-      })
+    })
   },
   
   back(){

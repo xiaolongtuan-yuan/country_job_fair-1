@@ -16,7 +16,7 @@ Page({
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
     multiIndex: [0, 0],
     post_classify:app.globalData.post_classify,
-    posts:app.globalData.post,
+    posts:app.globalData.post, //这是用于显示的所有职业列表
     post:[0,0],
     datas:[]
   },
@@ -64,35 +64,14 @@ Page({
             data:{
             yx_address: this.data.region,
             yx_salary: this.data.multiIndex,
+            datas:[0,0,0],
+            yx_salary:[0,0]
             }
           })
           .then( x=>{
             console.log('worker添加成功',x)
           })
           app.globalData.Friends = res3.data[0].Friends
-
-          // // 下面三条连续的语句分别是创建员工收藏，老板收藏，员工已投简历
-          // wx.cloud.database().collection('wfavorite')
-          // .add({
-          //   data:{
-          //     openid: this.data.openID,
-          //     worker_favor: []
-          //   }
-          // })
-          // wx.cloud.database().collection('bfavorite')
-          // .add({
-          //   data:{
-          //     openid: this.data.openID,
-          //     boss_favor: []
-          //   }
-          // })
-          // wx.cloud.database().collection('wresume')
-          // .add({
-          //   data:{
-          //     openid: this.data.openID,
-          //     worker_sended: []
-          //   }
-          // })
 
           console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
@@ -144,15 +123,11 @@ Page({
             success(res){
               if(res.data.length >0){
                 console.log("测试",res.data)
-                var datas = []
-                datas[0] = res.data[0].worker_favor.length //员工收藏数量
-                datas[1] = res.data[0].worker_sended.length //员工投递数量
-                datas[2] = res.data[0].boss_favor.length //老板收藏数量
                 that.setData({
                   worker:res.data[0],
                   region:res.data[0].yx_address,
                   multiIndex:res.data[0].yx_salary,
-                  datas: datas
+                  datas: res.data[0].datas
                 })
                 app.globalData.worker = res.data[0]
                 console.log("获取成功！",res.data)
@@ -305,6 +280,7 @@ Page({
   tuichu(){
     wx.removeStorageSync('user')
     wx.removeStorageSync('isboss')
+    wx.removeStorageSync('post')
     wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_profile')
     wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_conversationMap')
     wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_groupMap')
@@ -328,6 +304,7 @@ Page({
                                 datas:[0,0,0],
                                 yx_post:[0,0]
                               }
+        app.globalData.job_post=[0,0]
         that.setData({
           user:app.globalData.user,
           openID:app.globalData.openID,
@@ -414,7 +391,7 @@ Page({
   },
   yxpost(){
     wx.navigateTo({
-      url: '../hangye/hangye'
+      url: '../hangye/hangye?mode=1'
     })
   },
   set_post(){//意向岗位添加到数据库和全局变量中
@@ -424,7 +401,6 @@ Page({
       post:post
     })
 
-    app.globalData.worker.yx_post = post
     this.setData({
       worker:app.globalData.worker
     })
@@ -527,27 +503,12 @@ Page({
     //     }.bind(this), 100)
     //   }.bind(this), 60)
     // }.bind(this), 20)
-    var that = this
-    db.collection('worker')
-    .where({
-      _openid:this.data.openID
-    })
-    .get({
-      success(res){
-        console.log("测试",res.data)
-        var datas = []
-        datas[0] = res.data[0].worker_favor.length //员工收藏数量
-        datas[1] = res.data[0].worker_sended.length //员工投递数量
-        datas[2] = res.data[0].boss_favor.length //老板收藏数量
-        that.setData({
-          worker:res.data[0],//更新投递和收藏数据
-          datas: datas
-        })
-        app.globalData.worker = res.data[0]
-      },
-      fail(err){
-        console.log("请求失败",err)
-      }
+    this.set_post()
+    this.set_datas()
+  },
+  set_datas(){
+    this.setData({
+      datas:app.globalData.worker.datas
     })
   },
 

@@ -24,6 +24,8 @@ App({
         datas:[0,0,0],
         yx_post:[0,0]
       },
+      worker_post:[0,0],
+      job_post:[0,0],
       post_classify:['技工/普工',
       '农/林/牧/渔',
       '机械/汽车',

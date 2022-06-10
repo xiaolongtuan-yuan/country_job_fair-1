@@ -44,7 +44,7 @@ page {
   color: #17C3B2;
 }
 .job_provider {
-
+  width: 626rpx;
   height: 46rpx;
   margin-left: 56rpx;
   margin-top: 0rpx;
@@ -61,7 +61,7 @@ page {
 }
 
 .job_address {
-
+  width: 626rpx;
   height: 46rpx;
   margin-left: 56rpx;
   margin-top: 20rpx;
@@ -73,7 +73,7 @@ page {
   line-height: 46rpx;
   /* or 247% */
   padding-bottom: 38rpx;
-
+  
   color: #000000;
   border-bottom:1rpx solid #DFDEDE;
 }

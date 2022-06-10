@@ -10,6 +10,8 @@
     <view class='salary'>{{jobs.salary[0]+1}}-{{jobs.salary[1]+1}}K</view>
   </view>
   <text class='job_provider' user-select='true'>职位提供者：{{jobs.company}}</text>
+  <text class='job_provider' user-select='true'>地区：{{jobs.region[0]}}-{{jobs.region[1]}}-{{jobs.region[2]}}</text>
+  <text class='job_provider' user-select='true' wx:if="{{jobs.job_post}}">类型：{{posts[jobs.job_post[0]][jobs.job_post[1]]}}</text>
   <text class='job_address' user-select='true'>地点：{{jobs.address}}</text>
   <text class='brief_introduction' user-select='true' wx:if="{{jobs.b_intro}}"><text class='bold'>岗位简介：</text>{{jobs.b_intro}}</text>
   <text class='require_bold' wx:if="{{jobs.require}}">任职要求：</text>

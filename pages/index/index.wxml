@@ -16,30 +16,34 @@
     <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>求职</view>
   </view>
   
-  <view class="all-list" animation="{{slide_up1}}" wx:if="{{jobsList.length!=0 && resumeList.length!=0}}">
+  <view class="all-list" animation="{{slide_up1}}" wx:if="{{!loading}}">
     <view class="list">
       <view class="list1">
-        <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-          <text class='jobs-title'>{{jobs.job_name}}</text>
-          <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
-          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
-          <view wx:for="{{jobs.others}}" wx:for-item="other">
-            <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
+        <view wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+          <view class='list-item' wx:if="{{index%2==0}}">
+            <text class='jobs-title'>{{jobs.job_name}}</text>
+            <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
+            <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+            <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+            <view wx:for="{{jobs.others}}" wx:for-item="other">
+              <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
+            </view>
+            <view class='null'> </view>
           </view>
-          <view class='null'> </view>
         </view>  
       </view>
       <view class="list2">
-        <view class='list-item' wx:for="{{jobsList2}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-          <text class='jobs-title'>{{jobs.job_name}}</text>
-          <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
-          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
-          <view wx:for="{{jobs.require}}" wx:for-item="other">
-            <view class='other-item' >{{other}}</view>
+        <view wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+          <view class='list-item' wx:if="{{index%2==1}}">
+            <text class='jobs-title'>{{jobs.job_name}}</text>
+            <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
+            <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+            <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+            <view wx:for="{{jobs.require}}" wx:for-item="other">
+              <view class='other-item' >{{other}}</view>
+            </view>
+            <view class='null'> </view>
           </view>
-          <view class='null'> </view>
         </view>  
       </view>
     </view>

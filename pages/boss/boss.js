@@ -2,6 +2,7 @@
 const height = wx.getSystemInfoSync().windowHeight//系统高度
 const width = wx.getSystemInfoSync().windowWidth//系统宽度
 const rpx = width / 750 //rpx转px系数
+const app = getApp()
 
 Page({
 
@@ -11,6 +12,8 @@ Page({
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
     multiIndex: [0, 0],//工资索引
     job_name:'',//工作名字
+    posts:app.globalData.post,//工作类型
+    job_post:[0,0],
     intro:'',//岗位介绍
     introduction:'',//详细介绍
     address:'',//详细地址
@@ -30,7 +33,7 @@ Page({
 
 
   onLoad: function (options) {
-    this.app = getApp()
+  
   },
   add_input(){
     console.log("添加输入行")
@@ -203,7 +206,8 @@ Page({
           introduction:this.data.introduction,
           address:this.data.address,
           require:this.data.require,
-          others:this.data.others
+          others:this.data.others,
+          job_post:this.data.job_post
         }
       })
       .then(res=>{
@@ -217,6 +221,11 @@ Page({
   },
   back(){
     wx.navigateBack()
+  },
+  yxpost(){
+    wx.navigateTo({
+      url: '../hangye/hangye?mode=2'
+    })
   },
 
   cancelPoster() {
@@ -317,31 +326,6 @@ Page({
       ctx.fillText('扫描下方二维码了解详情', 130, 420);
       await this.getQrCode()
       await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 200/rpx, 430/rpx,100/rpx)
-      //   await this.photo()
-    //   var src = this.data.src
-
-    //   await this.getQrCode()
-
-    //   await this.drawImageByLoad(canvas, ctx, src, 0, 0, 550/rpx);
-      
-    //   ctx.fillStyle = '#fff';
-    //   this.setFontSizeByFont(ctx, 50 * rpx);
-
-    //   this.setFontSizeByFont(ctx, 30 * rpx);
-    //   
-    //   ctx.fillText(`工作单位：${this.data.company}`, 30, 100);
-    //   ctx.fillText(`地区：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 30, 125);
-    //   ctx.fillText(`工作单位：${this.data.address}`, 30, 150);
-    //   ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 30, 175);
- 
-    //   var i = 0;
-    //   for(i=0;i<this.data.orthers.length;i++){
-    //     ctx.fillText(`${this.data.orthers[i]}`, 30, 200+i*30);
-    //   }
-
-    //   await this.drawImageByLoad(canvas, ctx, `${wx.env.USER_DATA_PATH}/test.jpg`, 100/rpx, 400/rpx,100/rpx)
-    //   this.setFontSizeByFont(ctx, 25 * rpx);
-    //   ctx.fillText('扫描二维码进入小程序查看详情', 60, 520);
        this.myCanvas = canvas
      })
 
@@ -508,32 +492,9 @@ Page({
   },
 
   onShow: function () {
-    this.app.slideupshow(this, 'slide_up1', -200, 1)
-
-    setTimeout(function () {
-      this.app.slideupshow(this, 'slide_up2', -200, 1)
-      setTimeout(function () {
-        this.app.slideupshow(this, 'slide_up3', -200, 1)
-        setTimeout(function () {
-          this.app.slideupshow(this, 'slide_up4', -200, 1)
-          setTimeout(function () {
-            this.app.slideupshow(this, 'slide_up5', -200, 1)
-            setTimeout(function () {
-              this.app.slideupshow(this, 'slide_up6', -200, 1)
-              setTimeout(function () {
-                this.app.slideupshow(this, 'slide_up7', -200, 1)
-                setTimeout(function () {
-                  this.app.slideupshow(this, 'slide_up8', -200, 1)
-                  setTimeout(function () {
-                    this.app.slideupshow(this, 'slide_up9', -200, 1)
-                  }.bind(this), 200)
-                }.bind(this), 160)
-              }.bind(this), 120)
-            }.bind(this), 80)
-          }.bind(this), 40)
-        }.bind(this), 30)
-      }.bind(this), 20)
-    }.bind(this), 10)  
+     this.setData({
+       job_post:app.globalData.job_post
+     })
   },
 
   onHide: function () {

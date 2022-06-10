@@ -9,6 +9,8 @@ Page({
   data: {
     worker_OpId: '',
     worker_detail: [],
+    worker:'',
+    posts:[],
     isAdd: false,
     boss_favor: [],
     openID: '',
@@ -21,14 +23,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    this.setData({openID:wx.getStorageSync('openID')})
+    this.setData({
+      openID:wx.getStorageSync('openID'),
+      posts:app.globalData.post
+    })
     let id = options.id
     console.log("id", id)
     this.setData({worker_OpId:id})
     var that = this
     let res1 = await db.collection('zxjianli').where({_id: that.data.worker_OpId}).get()
-    console.log("0", res1.data)
-    that.setData({worker_detail: res1.data})
+    let res3 = await db.collection('worker').where({_openid:res1.data[0]._openid}).get()
+    console.log("0", res3.data)
+    that.setData({
+      worker_detail: res1.data,//这里存档是数组，注意使用时要加上[0]
+      worker:res3.data[0]
+    })
     let res2 = await db.collection('bfavorite').where({
       openid: that.data.openID,
       favor_resumeId: that.data.worker_OpId
