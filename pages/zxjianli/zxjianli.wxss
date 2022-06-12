@@ -54,6 +54,8 @@ page {
     font-style: normal;
     font-weight: 400;
     font-size: 30rpx;
+    width: 450rpx;
+
 }
 .answer-2{
     color: rgb(168,168,168);
