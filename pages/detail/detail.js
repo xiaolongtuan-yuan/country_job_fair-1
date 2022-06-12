@@ -76,7 +76,7 @@ Page({
         }
       })
       .then(res => {
-        app.globalData.worker.datas[1] += 1
+        app.globalData.worker.datas[1]++
         db.collection('worker')
         .where({
           _openid:app.globalData.openID
@@ -103,7 +103,7 @@ Page({
       .doc(that.data.favor_id)
       .remove()
       .then(res => {
-        app.globalData.worker.datas[1] -= 1
+        app.globalData.worker.datas[1]--
         db.collection('worker')
         .where({
           _openid:app.globalData.openID
@@ -133,7 +133,7 @@ Page({
         }
       })
       .then(res => {
-        app.globalData.worker.datas[0] += 1
+        app.globalData.worker.datas[0]++
         db.collection('worker')
         .where({
           _openid:app.globalData.openID
@@ -160,7 +160,7 @@ Page({
       .doc(that.data.resume_id)
       .remove()
       .then(res => {
-        app.globalData.worker.datas[0] -= 1
+        app.globalData.worker.datas[0]--
         db.collection('worker')
         .where({
           _openid:app.globalData.openID

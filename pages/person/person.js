@@ -1,5 +1,6 @@
 // pages/person/person.js
 const db = wx.cloud.database()
+const DB = wx.cloud.database().collection("users")
 const app = getApp()
 import { init_TIM,login_TIM,sendMessage_TIM,logout_TIM } from '../../utils/m_tim_init';
 Page({
@@ -487,22 +488,6 @@ Page({
 
   },
   onShow: function () {
-    // this.set_post()
-    // console.log("OnShow")
-    // app.slideupshow(this, 'slide_up1', -200, 1)
-
-    // setTimeout(function () {
-    //   app.slideupshow(this, 'slide_up2', -200, 1)
-    //   setTimeout(function () {
-    //     app.slideupshow(this, 'slide_up3', -200, 1)
-    //     setTimeout(function () {
-    //       app.slideupshow(this, 'slide_up4', -200, 1)
-    //       setTimeout(function () {
-    //         app.slideupshow(this, 'slide_up5', -200, 1)
-    //       }.bind(this), 200)
-    //     }.bind(this), 100)
-    //   }.bind(this), 60)
-    // }.bind(this), 20)
     this.set_post()
     this.set_datas()
   },
@@ -510,6 +495,93 @@ Page({
     this.setData({
       datas:app.globalData.worker.datas
     })
+  },
+  newchat:function(e){
+    if (app.globalData.openID.length === 0) {
+      wx.showToast({
+        title: '您未登录~',
+        image: '/images/icons/error.png'
+      })
+    }else{
+      var target = "oF9n75GH6_sVt1B3y7kbKpXgtuhM"
+      console.log("b inse",target, "oF9n75GH6_sVt1B3y7kbKpXgtuhM")
+      DB.where({
+        _openid:target
+      }).get({
+        success:res=>{
+          console.log("friends inse", res.data)
+          if(res.data[0].Friends.length === 0){
+            console.log("frid ")
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:app.globalData.openID,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            console.log('add fri t')
+            var chat = res.data[0].Friends.find((e)=>{return e.id == app.globalData.openID})
+            console.log('chat', chat)
+            if(chat == undefined){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:app.globalData.openID,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
+
+      DB.where({
+        _openid:app.globalData.openID
+      }).get({
+        success:res=>{
+          if(res.data[0].Friends.length === 0){
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:target,
+                  lastread:0
+                }]
+              }
+            }).then(res=>{
+              app.globalData.Friends.push({
+                id:target,
+                lastread:0
+              })
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == target})
+            if(chat == undefined){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:target,
+                    lastread:0
+                  })
+                }
+              }).then(res=>{
+                app.globalData.Friends.push({
+                  id:target,
+                  lastread:0
+                })
+              })
+            }
+          }
+        }
+      })
+      
+      console.log("inse end", target)
+      wx.navigateTo({
+        url: "../messageDetail/messageDetail?target=" + target
+      })  
+    }
   },
 
   /**
