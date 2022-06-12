@@ -153,8 +153,8 @@
   justify-content:flex-end;
 }
 .delete{
-  height: 70rpx;
-  width: 70rpx;
+  height: 50rpx;
+  width: 50rpx;
   margin-right: 30rpx;
 }
 .null{
