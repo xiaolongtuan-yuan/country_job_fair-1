@@ -1,5 +1,6 @@
 // pages/zxjianli/zxjianli.js
 const db = wx.cloud.database()
+
 Page({
 
   /**
@@ -189,7 +190,9 @@ Page({
       .update({
         data:{
           info:this.data.info,
-          photo:this.data.photoID
+          photo:this.data.photoID,
+          education:this.data.index,
+          yx_salary:this.app.globalData.worker.yx_salary
         }
       })
       .then(
@@ -202,7 +205,9 @@ Page({
       .add({
         data:{
           info:this.data.info,
-          photo:this.data.photoID
+          photo:this.data.photoID,
+          education:this.data.index,
+          yx_salary:this.app.globalData.worker.yx_salary
         }
       })
       .then(

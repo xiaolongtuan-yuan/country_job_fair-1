@@ -19,6 +19,8 @@ Page({
     post_classify:app.globalData.post_classify,
     posts:app.globalData.post, //这是用于显示的所有职业列表
     post:[0,0],
+    yx_post1:0,
+    yx_post2:0,
     datas:[]
   },
 
@@ -128,7 +130,10 @@ Page({
                   worker:res.data[0],
                   region:res.data[0].yx_address,
                   multiIndex:res.data[0].yx_salary,
-                  datas: res.data[0].datas
+                  datas: res.data[0].datas,
+                  post:res.data[0].yx_post,
+                  yx_post1:res.data[0].yx_post1,
+                  yx_post2:res.data[0].yx_post2,
                 })
                 app.globalData.worker = res.data[0]
                 console.log("获取成功！",res.data)
@@ -138,7 +143,9 @@ Page({
                 var worker = {
                   yx_address:['四川省','广元市','旺苍县'],//默认
                   yx_salary:[0,5],
-                  yx_post:[0,0]
+                  yx_post:[0,0],
+                  yx_post1:0,
+                  yx_post2:0
                 }
                 db.collection('worker')
                 .add({
@@ -149,7 +156,8 @@ Page({
                     worker_favor:[0],
                     boss_favor:[0],
                     worker_sended:[0],
-
+                    yx_post1:0,
+                    yx_post2:0
                   }
                 })
                 app.globalData.worker = worker
@@ -303,7 +311,9 @@ Page({
                                 yx_address:['四川省','广元市','旺苍县'],//默认
                                 yx_salary:[0,5],
                                 datas:[0,0,0],
-                                yx_post:[0,0]
+                                yx_post:[0,0],
+                                yx_post1:0,
+                                yx_post2:0
                               }
         app.globalData.job_post=[0,0]
         that.setData({
@@ -317,6 +327,8 @@ Page({
           post_classify:app.globalData.post_classify,
           posts:app.globalData.post,
           post:[0,0],
+          yx_post1:0,
+          yx_post2:0,
           datas:[]
         })
         wx.showToast({
@@ -399,7 +411,9 @@ Page({
     var post = wx.getStorageSync('post')
     
     this.setData({
-      post:post
+      post:post,
+      yx_post1:post[0],
+      yx_post2:post[1]
     })
 
     this.setData({
@@ -411,7 +425,9 @@ Page({
     })
     .update({
       data:{
-        yx_post:post
+        yx_post:post,
+        yx_post1:post[0],
+        yx_post2:post[1]
       }
     })
   },
