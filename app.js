@@ -20,8 +20,12 @@ App({
         yx_address:['四川省','广元市','旺苍县'],//默认
         yx_salary:[0,5],
         datas:[0,0,0],
-        yx_post:[0,0]
+        yx_post:[0,0],
+        yx_post1:0,
+        yx_post2:0
       },
+      worker_post:[0,0],
+      job_post:[0,0],
       post_classify:['技工/普工',
       '农/林/牧/渔',
       '机械/汽车',

@@ -35,35 +35,6 @@
   word-break: break-all;
   text-align: left;
 }
-.top{
-  width: 100vw;
-  height: 13vh;
-  z-index: 100;
-  background: #17C3B2;
-}
-.top-back{
-  position: absolute;
-  left: 3vw;
-  top: 6.5vh;
-  display: flex;
-  align-items: center;
-}
-.top-back-vector{
-  width: 26rpx;
-  height: 2.7vh;
-}
-.top-back-text{
-  margin-left: 2vw;
-  width: 100vw;
-  height: 3.5vh;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 2.5vh;
-  line-height: 3.5vh;
-  justify-content:center;
-  color: white;
-}
 
 .area {
   width: 60%;
@@ -174,7 +145,8 @@
 }
 
 .scroll-size{
-  max-height: 75vh;
+  max-height: 90vh;
   margin-bottom: 10vh;
   z-index: 0;
+
 }

@@ -20,6 +20,14 @@ page {
     z-index: 4;
 }
 
+.loading{
+    width: 100vw;
+    height: 70vh;
+    z-index: 5;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .saveImage{
 
@@ -60,33 +68,7 @@ page {
 .input{
     z-index: 0;
 }
-.top{
-    width: 100vw;
-    height: 20vh;
-    background: #17C3B2;
-}
-.top-back{
-    position: absolute;
-    left: 40rpx;
-    top: 6.2vh;
-    display: flex;
-    align-items: center;
-}
-.top-back-vector{
-    width: 26rpx;
-    height: 2.5vh;
-}
-.top-back-text{
-    margin-left: 30rpx;
-    width: 186rpx;
-    height: 3.5vh;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40rpx;
-    line-height: 56rpx;
-    color: white;
-}
+
 .bottom{
     position: absolute;
     width: 100vw;

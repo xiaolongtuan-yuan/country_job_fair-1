@@ -21,8 +21,8 @@
                 <view class="top-right">
                     <text class="top-right-name">{{user.nickName}}</text>
                     <view class="top-right-data">
-                        <text class="top-right-data-data1" bindtap="goToworker_resume">投递{{datas[1]}}</text>
-                        <text class="top-right-data-data2" bindtap="goToworker_favorite">收藏{{datas[0]}}</text>
+                        <text class="top-right-data-data1" bindtap="goToworker_resume">我的投递</text>
+                        <text class="top-right-data-data2" bindtap="goToworker_favorite">收藏 {{datas[1]}}</text>
                     </view>
                 </view>
             </view>
@@ -66,16 +66,16 @@
                     </view>
                     <view class="gongneng-bottom">
                         <view class="gongneng-bottom-jianli" bindtap = "tojianli">
-                            <image class="gongneng-bottom-jianli-image" src="../../images/jianli.png"/>
+                            <image mode="aspectFit" class="gongneng-bottom-jianli-image" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/jianli.png?sign=b3504d0b4ca835a352aeeb4ad562fda7&t=1654481027"/>
                             <text class="gongneng-bottom-jianli-txt">在线简历</text>
                         </view>
-                        <view class="gongneng-middle-falv">
-                            <image class="gongneng-middle-falv-image" src="../../images/falv.png"/>
-                            <text class="gongneng-middle-falv-txt">法律咨询</text>
+                        <view class="gongneng-middle-falv" bindtap = "tofalv">
+                            <image mode="aspectFit" class="gongneng-middle-falv-image" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv.png?sign=cf11800641cd348f76613757565ff76a&t=1654481010"/>
+                            <text class="gongneng-middle-falv-txt">法律维权</text>
                         </view>
-                        <view class="gongneng-bottom-xinzi">
-                            <image class="gongneng-bottom-xinzi-image" src="../../images/xinzi.png"/>
-                            <text class="gongneng-bottom-xinzi-txt">薪资参考</text>
+                        <view class="gongneng-bottom-xinzi" bindtap="newchat">
+                            <image mode="aspectFit" class="gongneng-bottom-xinzi-image" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/kefu.png?sign=e445c41313fb16ad533a2c884683ca7d&t=1654480753"/>
+                            <text class="gongneng-bottom-xinzi-txt">联系客服</text>
                         </view>
                     </view>
                 </view>
@@ -91,7 +91,7 @@
                     <text class="top-right-name">{{user.nickName}}</text>
                     <view class="top-right-data">
                         <text class="top-right-data-data1" bindtap="goToworker_resume">已发布</text>
-                        <text class="top-right-data-data2" bindtap="goToboss_favorite">收藏{{datas[2]}}</text>
+                        <text class="top-right-data-data2" bindtap="goToboss_favorite">收藏 {{datas[2]}}</text>
                     </view>
                 </view>
             </view>

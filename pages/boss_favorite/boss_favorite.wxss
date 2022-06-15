@@ -1,36 +1,4 @@
 /* pages/boss_favorite/boss_favorite.wxss */
-.top {
-  position: fixed;
-  width: 100vw;
-  height: 10.8vh;
-  background: #17C3B2;
-  top: 0;
-  z-index: 2;
-}
-.top-back-vector{
-  position: absolute;
-  left: 30rpx;
-  top: 6vh;
-  width: 26rpx;
-  height: 2.6vh;
-}
-.top_text {
-  position: absolute;
-  width: 300rpx;
-  height: 3.3vh;
-  left: 58rpx;
-  top: 5.7vh;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2.5vh;
-  line-height: 3.3vh;
-  text-align: center;
-
-  color: #FFFFFF;
-
-}
 
 .resume_recv {
   position: absolute;

@@ -6,17 +6,23 @@
   </view>
 
   <view class="boss_resume">
-    <view wx:for="{{jobs_had}}" wx:for-item="single_resume" class="worker_resume_item">
-        <view class="job_top">
-        <text class='jobs-title'>{{single_resume.job_name}}</text>
-        <text class='jobs-salary'>薪资： {{single_resume.salary[0]+1}},{{single_resume.salary[1]+1}}</text>
+    <view wx:for="{{jobs_had}}" wx:for-item="single_resume" class="worker_resume_item" >
+        <view class="worker_resume_item_content" bindtap='goToDetail' data-id='{{single_resume._id}}'> 
+          <view class="job_top">
+            <text class='jobs-title'>{{single_resume.job_name}}</text>
+            <text class='jobs-salary'>薪资： {{single_resume.salary[0]+1}},{{single_resume.salary[1]+1}}</text>
+          </view>
+          <text class='jobs-address' wx:if="{{single_resume.address}}">{{single_resume.address}}</text>
+          <text class='jobs-b_intro' wx:if="{{single_resume.b_intro}}">{{single_resume.b_intro}}</text>
+          <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
+            <view class='other-item'>{{other}}</view>
+          </view>
+        </view> 
+        <view class="delete_resume">
+          <image src="../../images/delete.png" class="delete" bindtap='delete_job' data-id='{{single_resume._id}}'/>
+          <view class="button" bindtap="boss_goToResume" data-id='{{single_resume._id}}'>查看简历</view>
+          
         </view>
-        <text class='jobs-address' wx:if="{{single_resume.address}}">{{single_resume.address}}</text>
-        <text class='jobs-b_intro' wx:if="{{single_resume.b_intro}}">{{single_resume.b_intro}}</text>
-        <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
-          <view class='other-item'>{{other}}</view>
-        </view>
-        <view class="button" bindtap="boss_goToResume" data-id='{{single_resume._id}}'>查看简历</view>
         <view class='null'> </view>
     </view>
   </view>
@@ -30,16 +36,18 @@
 
   <view class="worker_resume">
     <view wx:for="{{jobs}}" wx:for-item="single_resume" class="worker_resume_item">
-        <view class="job_top">
-        <text class='jobs-title'>{{single_resume.job_name}}</text>
-        <text class='jobs-salary'>薪资： {{single_resume.salary[0]+1}},{{single_resume.salary[1]+1}}</text>
+        <view class="worker_resume_item_content" bindtap='goToDetail' data-id='{{single_resume._id}}'>
+          <view class="job_top">
+          <text class='jobs-title'>{{single_resume.job_name}}</text>
+          <text class='jobs-salary'>薪资： {{single_resume.salary[0]+1}},{{single_resume.salary[1]+1}}</text>
+          </view>
+          <text class='jobs-address' wx:if="{{single_resume.address}}">{{single_resume.address}}</text>
+          <text class='jobs-b_intro' wx:if="{{single_resume.b_intro}}">{{single_resume.b_intro}}</text>
+          <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
+            <view class='other-item'>{{other}}</view>
+          </view>
         </view>
-        <text class='jobs-address' wx:if="{{single_resume.address}}">{{single_resume.address}}</text>
-        <text class='jobs-b_intro' wx:if="{{single_resume.b_intro}}">{{single_resume.b_intro}}</text>
-        <view class="jobs-others" wx:for="{{single_resume.others}}" wx:for-item="other">
-          <view class='other-item'>{{other}}</view>
-        </view>
-        <view class="button" bindtap="newchat" data-id="{{single_resume._openid}}">立即沟通</view>
+        <view class="button2" bindtap="newchat" data-id="{{single_resume._openid}}">立即沟通</view>
         <view class='null'> </view>
     </view>
   </view>

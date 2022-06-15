@@ -1,0 +1,83 @@
+<!--pages/falv/falv.wxml-->
+<view class="top">
+    <image bindtap="back" src="../../images/Vector2.png" class="top-back-vector"/>
+    <text class="top_text">法律维权</text>
+</view>
+<view class="falv_all">
+    <image class="banner" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/banner.png?sign=289303208e5f6eadbe2b644fe9c921f2&t=1654482829" />
+    <view class="text1">求职Q&A</view>
+    <view class="index1">01</view>
+    <view class="question2"></view>
+    <view class="question1">用人单位不签劳动合同是否合法？</view>
+    <view class="answer1">
+        <view class="answer-content1">不合法</view>
+        <view class="answer-content2">《中华人民共和国劳动法》第十六条：劳动合同是劳动者与用人单位确立劳动关系、明确双方权利和义务的协议。建立劳动关系应该订立劳动合同。《中华人民共和国劳动法》第十九条也明确规定劳动合同应当以书面形式订立。</view>
+        <image class="answer-image1" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/445.jpg?sign=8c8d102d72b7a0c72d9de47e318bce32&t=1654484110"></image>
+        <view class="null"></view>
+    </view> 
+
+    <view class="index1">02</view>
+    <view class="question2"></view>
+    <view class="question1">劳动者本人是否需要交纳工伤保险？</view>
+    <view class="answer1">
+        <view class="answer-content1">不需要</view>
+        <view class="answer-content2">《社会保险法》第三十三条：职工应当参加工伤保险，由用人单位缴纳工伤保险费，职工不缴纳工伤保险费。</view>
+        <image class="answer-image1" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/448.jpg?sign=301b3a52763d5e8dbc76ed507307ab57&t=1654484847"></image>
+        <view class="null"></view>
+    </view>
+
+    <view class="index1">03</view>
+    <view class="question2"></view>
+    <view class="question1">劳动者的试用期和试用期待遇是多少？</view>
+    <view class="answer1">
+        <view class="answer-content1">劳动者的试用期最长不得超过六个月</view>
+        <view class="answer-content2">《中华人民共和国劳动法》第二十一条：劳动合同可以约定试用期。试用期不得超过六月。</view>
+        <view class="answer-content2">《劳动合同法》第十九条：劳动合同期限三个月以上不满一年的，试用期不得超过一个月；劳动合同期限一年以上不满三年的，试用期不得超过二个月；三年以上固定期限和无固定期限的劳动合同，试用期不得超过六个月。</view>
+        <view class="answer-content2">《劳动合同法》第二十条：劳动者在试用期的工资不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十，并不得低于用人单位所在地的最低工资标准。</view>
+        <image class="answer-image1" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/451.jpg?sign=d444aa2c7c5542c65601c6bc04009e47&t=1654486721"></image>
+        <view class="null"></view>
+    </view>
+
+    <view class="index1">04</view>
+    <view class="question2-2"></view>
+    <view class="question1-2">用人单位违反《中华人民共和国劳动法》，可以索要赔偿吗？？</view>
+    <view class="answer1">
+        <view class="answer-content1">可以</view>
+        <view class="answer-content2">《中华人民共和国劳动法》第九十一条：用人单位有下列侵害劳动者合法权益情形之一的，由劳动行政部门责令支付劳动者的工资报酬、经济补偿，并可以责令支付赔偿金：</view>
+        <view class="answer-content2">（一）克扣或者无故拖欠劳动者工资的；</view>
+        <view class="answer-content2">（二）拒不支付劳动者延长工作时间工资报酬的；</view>
+        <view class="answer-content2">（三）低于当地最低工资标准支付劳动者工资的；</view>
+        <view class="answer-content2">（四）解除劳动合同后，未依照本法规定给予劳动者经济补偿的。</view>
+        <image class="answer-image1" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/454.jpg?sign=8cc593b60e5d66f64362fb2badd6c4fd&t=1654487217"></image>
+        <view class="null"></view>
+    </view>
+    
+    <view class="index1">05</view>
+    <view class="question2"></view>
+    <view class="question1">劳动者可以提出解除劳动合同吗？</view>
+    <view class="answer1">
+        <view class="answer-content1">可以</view>
+        <view class="answer-content2">1. 劳动者和用人单位协商一致可以解除合同。</view>
+        <view class="answer-content2">2. 劳动者也可以单方面解除劳动合同，但应当提前30日以书面形式告知用人单位，无需征得用人单位同意。</view>
+        <view class="answer-content2">3.《中华人民共和国劳动法》第三十二条规定，有下列情形之一的，劳动者可以随时通知用人单位解除劳动合同：</view>
+        <view class="answer-content2"> （一）在试用期内的；</view>
+        <view class="answer-content2"> （二）用人单位以暴力、威胁或者非法限制人身自由的手段强迫劳动的；</view>
+        <view class="answer-content2"> （三）用人单位未按照劳动合同约定支付劳动报酬或者提供劳动条件的。</view>
+        <image class="answer-image1" src="cloud://cloud1-5gynw2ctad593524.636c-cloud1-5gynw2ctad593524-1311444493/images/falv_images/460.jpg"></image>
+        <view class="null"></view>
+    </view>
+
+    <view class="index1">06</view>
+    <view class="question2"></view>
+    <view class="question1">劳动者如何维护自己的合法权益？</view>
+    <view class="answer1">
+        <view class="answer-content1">有五种方法可以维护自己的合法权益</view>
+        <view class="answer-content2">1. 协商。劳动争议发生后，劳动者可与用人单位自行协商，达成新的协议或者有过错的一方改正错误，消除争议。</view>
+        <view class="answer-content2">2. 调解。劳动者可以向本单位的人民调解委员会提出申请，请求调解，或到本地所在矛调中心申请调解，用人民调解的方法来化解劳资纠纷。</view>
+        <view class="answer-content2">3. 投诉。劳动者可以向当地劳动监察部门投诉。如果劳动者实际工作地点与被投诉用人单位主要经营机构(如其主要营业地或者主要办事机构)都在本市但不在同一区县的，劳动者也可以到用人单位主要经营机构所在地的区县劳动监察部门投诉。</view>
+        <view class="answer-content2">4. 仲裁。仲裁是处理劳动争议的必经程序。劳动者申请劳动争议仲裁，应自劳动争议发生之日起６０日内向劳动争议仲裁委员会提出书面申请。</view>
+        <view class="answer-content2">5. 诉讼。劳动争议当事人对仲裁裁决不服的，可在收到仲裁裁决书之日起１５日内向人民法院起诉。但需注意，未经劳动争议仲裁委员会仲裁的劳动争议案件，法院不予受理。</view>
+        <image class="answer-image1" src="https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/falv_images/465.jpg?sign=464bc3e39db4468efbb5bdb1b83c8ace&t=1654496686"></image>
+        <view class="null"></view>
+    </view>
+</view> 

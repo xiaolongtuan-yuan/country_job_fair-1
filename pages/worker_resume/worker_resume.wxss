@@ -2,38 +2,7 @@
 .resume_sended_list{
   width: 100vh;
 }
-.top {
-  position: fixed;
-  width: 100vw;
-  height: 10.8vh;
-  background: #17C3B2;
-  top: 0;
-  z-index: 2;
-}
-.top-back-vector{
-  position: absolute;
-  left: 30rpx;
-  top: 6vh;
-  width: 26rpx;
-  height: 2.6vh;
-}
-.top_text {
-  position: absolute;
-  width: 186rpx;
-  height: 3.3vh;
-  left: 58rpx;
-  top: 5.7vh;
 
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 2.5vh;
-  line-height: 3.3vh;
-  text-align: center;
-
-  color: #FFFFFF;
-
-}
 
 .worker_resume {
   z-index: 1;
@@ -65,6 +34,10 @@
   background: #FFFFFF;
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
+}
+.worker_resume_item_content{
+  display: flex;
+  flex-direction: column;
 }
 
 .job_top{
@@ -155,13 +128,34 @@
 .button{
   height: 4.5vh;
   width: 200rpx;
-  margin-left: 410rpx;
+
   border-radius: 80rpx;
   text-align: center;
   line-height: 4.5vh;
   color: white;
   font-weight: 700;
   background-color: #17C3B2;
+}
+.button2{
+  height: 4.5vh;
+  width: 200rpx;
+  margin-left: 440rpx;
+  border-radius: 80rpx;
+  text-align: center;
+  line-height: 4.5vh;
+  color: white;
+  font-weight: 700;
+  background-color: #17C3B2;
+}
+.delete_resume{
+  display: flex;
+  align-items: center;
+  justify-content:flex-end;
+}
+.delete{
+  height: 50rpx;
+  width: 50rpx;
+  margin-right: 30rpx;
 }
 .null{
   height: 0.5vh;

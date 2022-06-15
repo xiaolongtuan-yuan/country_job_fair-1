@@ -2,3 +2,71 @@
 page {
   background-color: rgb(245,245,248);
 }
+
+/*顶部框图与文字*/
+.top {
+  position: fixed;
+  width: 100vw;
+  height: 10.8vh;
+  background: #17C3B2;
+  z-index: 10;
+  top: 0;
+}
+.top-back-vector{
+  position: absolute;
+  left: 30rpx;
+  top: 6vh;
+  width: 26rpx;
+  height: 2.6vh;
+}
+.top_text {
+  position: absolute;
+  width: 240rpx;
+  height: 3.3vh;
+  left: 80rpx;
+  top: 5.7vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5vh;
+  line-height: 3.3vh;
+
+  /* or 185% */
+  color: #FFFFFF;
+
+}
+
+.loading{
+  width: 100vw;
+  height: 70vh;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader-container {  
+  height: 150px;  
+  width: 200px;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;
+}
+.loader {  
+  width: 50px;  
+  height: 50px;}
+.one {  
+  background-color: #17C3B2;  
+  border-radius: 50%;  
+  animation: loader1Animation 1s ease-in-out infinite;  margin-top: 50px;}
+.one:before {  
+  content: "";  
+  position: absolute;  
+  top: 5px;  
+  left: 19px;  
+  width: 12px;  
+  height: 12px;  
+  border-radius: 50%;  
+  background-color: #fff;}
+@keyframes 
+loader1Animation {  0% {    transform: rotate(0deg);  }  100% {    transform: rotate(360deg);  }}

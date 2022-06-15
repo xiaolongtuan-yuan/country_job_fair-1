@@ -1,5 +1,6 @@
 // pages/worker_favorite/worker_favorite.js
 const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
@@ -17,22 +18,24 @@ Page({
   async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
-    let res1 = await db.collection('worker').where({_openid: that.data.openID}).get()
-    this.unique(res1.data[0].worker_favor)
-    that.setData({worker_favor: res1.data[0].worker_favor})
+    console.log("0", that.data.openID)
+    let res1 = await db.collection('wfavorite').where({openid: that.data.openID}).get()
+    let favor = [];
+    for (let i = 0; i < res1.data.length; i++) {
+      favor.push(res1.data[i].favor_jobsId);
+    }
+    this.unique(favor) // 以防万一
+    that.setData({worker_favor: favor})
     console.log("1", that.data.worker_favor)
     
-    let res2 = await db.collection('jobs').get()
+    let res2 = await db.collection('jobs').where({
+      _id : _.in(that.data.worker_favor)
+    }).get()
     console.log("2", res2.data)
     var jobs = []
     let len = res2.data.length
-    let len_1 = that.data.worker_favor.length
     for(let i = 0; i < len; i++) {
-      for(let j = 0; j < len_1; j++) {
-        if(res2.data[i]._id == that.data.worker_favor[j]) {
-          jobs.push(res2.data[i])
-        }
-      }
+      jobs.push(res2.data[i])
     }
     that.setData({jobs:this.unique(jobs)})
     console.log("3", that.data.jobs)

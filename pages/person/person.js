@@ -1,5 +1,6 @@
 // pages/person/person.js
 const db = wx.cloud.database()
+const DB = wx.cloud.database().collection("users")
 const app = getApp()
 import { init_TIM,login_TIM,sendMessage_TIM,logout_TIM } from '../../utils/m_tim_init';
 Page({
@@ -16,18 +17,22 @@ Page({
     multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
     multiIndex: [0, 0],
     post_classify:app.globalData.post_classify,
-    posts:app.globalData.post,
+    posts:app.globalData.post, //这是用于显示的所有职业列表
     post:[0,0],
+    yx_post1:0,
+    yx_post2:0,
     datas:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+   onLoad: function (options) {
+    console.log("调用onload,user=",this.data.user)
     var openid = wx.getStorageSync('openID')
     console.log('person load')
     if(openid!=''){//缓存中有数据
+      console.log("调用onload1")
       this.setData({//加载缓存并检查数据库中数据是否被删除
         user:wx.getStorageSync('user'),
         openID:openid,
@@ -62,6 +67,8 @@ Page({
             data:{
             yx_address: this.data.region,
             yx_salary: this.data.multiIndex,
+            datas:[0,0,0],
+            yx_salary:[0,0]
             }
           })
           .then( x=>{
@@ -113,15 +120,14 @@ Page({
             success(res){
               if(res.data.length >0){
                 console.log("测试",res.data)
-                var datas = []
-                datas[0] = res.data[0].worker_favor.length //员工收藏数量
-                datas[1] = res.data[0].worker_sended.length //员工投递数量
-                datas[2] = res.data[0].boss_favor.length //老板收藏数量
                 that.setData({
                   worker:res.data[0],
                   region:res.data[0].yx_address,
                   multiIndex:res.data[0].yx_salary,
-                  datas: datas
+                  datas: res.data[0].datas,
+                  post:res.data[0].yx_post,
+                  yx_post1:res.data[0].yx_post1,
+                  yx_post2:res.data[0].yx_post2,
                 })
                 app.globalData.worker = res.data[0]
                 console.log("获取成功！",res.data)
@@ -131,7 +137,9 @@ Page({
                 var worker = {
                   yx_address:['四川省','广元市','旺苍县'],//默认
                   yx_salary:[0,5],
-                  yx_post:[0,0]
+                  yx_post:[0,0],
+                  yx_post1:0,
+                  yx_post2:0
                 }
                 db.collection('worker')
                 .add({
@@ -142,7 +150,8 @@ Page({
                     worker_favor:[0],
                     boss_favor:[0],
                     worker_sended:[0],
-
+                    yx_post1:0,
+                    yx_post2:0
                   }
                 })
                 app.globalData.worker = worker
@@ -290,10 +299,55 @@ Page({
     wx.removeStorageSync('user')
     wx.removeStorageSync('isboss')
     wx.removeStorageSync('post')
-    wx.showToast({
-      title:"退出成功"
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_profile')
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_conversationMap')
+    wx.removeStorageSync('TIM_1400680058_oF9n75GH6_sVt1B3y7kbKpXgtuhM_groupMap')
+    var that = this
+    wx.removeStorage({
+      key: 'openID',
+      success (res) {
+        app.globalData.isInit=false
+        app.globalData.user=''
+        app.globalData.openID=''
+        app.globalData.Friends=[{
+                                id:"",
+                                lastread:0
+                              }]
+        app.globalData.MessageDetail=[]
+        app.globalData.unread=[]
+        app.globalData.isboss=false
+        app.globalData.worker={
+                                yx_address:['四川省','广元市','旺苍县'],//默认
+                                yx_salary:[0,5],
+                                datas:[0,0,0],
+                                yx_post:[0,0],
+                                yx_post1:0,
+                                yx_post2:0
+                              }
+        app.globalData.job_post=[0,0]
+        that.setData({
+          user:app.globalData.user,
+          openID:app.globalData.openID,
+          isboss:app.globalData.isboss,
+          worker:app.globalData.worker,
+          region: ['四川省', '广元市', '旺苍县'],//意向工作地点
+          multiArray: [['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k'], ['1k', '2k', '3k', '4k', '5k', '6k', '7k', '8k', '9k', '10k', '11k', '12k', '13k', '14k', '15k', '16k', '17k', '18k', '19k', '20k']],
+          multiIndex: [0, 0],
+          post_classify:app.globalData.post_classify,
+          posts:app.globalData.post,
+          post:[0,0],
+          yx_post1:0,
+          yx_post2:0,
+          datas:[]
+        })
+        wx.showToast({
+          title:"退出成功"
+        })
+    
+        that.onLoad()
+      }
     })
-    this.onLoad()
+    
   },
   bindRegionChange: function (e) {
     console.log('picker发送选择改变,携带值为', e.detail.value)
@@ -320,7 +374,7 @@ Page({
     this.setData({
       multiIndex: e.detail.value
     })
-    app.globalData.worker.yx_salary = e.detail.value
+    app.globalData.worker.yx_salary = e.detail.value  
     this.setData({
       worker:app.globalData.worker
     })
@@ -359,17 +413,18 @@ Page({
   },
   yxpost(){
     wx.navigateTo({
-      url: '../hangye/hangye'
+      url: '../hangye/hangye?mode=1'
     })
   },
   set_post(){//意向岗位添加到数据库和全局变量中
     var post = wx.getStorageSync('post')
     
     this.setData({
-      post:post
+      post:post,
+      yx_post1:post[0],
+      yx_post2:post[1]
     })
 
-    app.globalData.worker.yx_post = post
     this.setData({
       worker:app.globalData.worker
     })
@@ -379,7 +434,9 @@ Page({
     })
     .update({
       data:{
-        yx_post:post
+        yx_post:post,
+        yx_post1:post[0],
+        yx_post2:post[1]
       }
     })
   },
@@ -387,6 +444,11 @@ Page({
     // console.log("跳转")
     wx.navigateTo({  
       url: '../zxjianli/zxjianli'
+    })
+  },
+  tofalv(){
+    wx.navigateTo({
+      url: '../falv/falv'
     })
   },
   isboss(){
@@ -451,44 +513,100 @@ Page({
 
   },
   onShow: function () {
-    // this.set_post()
-    // console.log("OnShow")
-    // app.slideupshow(this, 'slide_up1', -200, 1)
+    this.set_post()
+    this.set_datas()
+  },
+  set_datas(){
+    this.setData({
+      datas:app.globalData.worker.datas
+    })
+  },
+  newchat:function(e){
+    if (app.globalData.openID.length === 0) {
+      wx.showToast({
+        title: '您未登录~',
+        image: '/images/icons/error.png'
+      })
+    }else{
+      var target = "oF9n75GH6_sVt1B3y7kbKpXgtuhM"
+      console.log("b inse",target, "oF9n75GH6_sVt1B3y7kbKpXgtuhM")
+      DB.where({
+        _openid:target
+      }).get({
+        success:res=>{
+          console.log("friends inse", res.data)
+          if(res.data[0].Friends.length === 0){
+            console.log("frid ")
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:app.globalData.openID,
+                  lastread:0
+                }]
+              }
+            })
+          }else{
+            console.log('add fri t')
+            var chat = res.data[0].Friends.find((e)=>{return e.id == app.globalData.openID})
+            console.log('chat', chat)
+            if(chat == undefined){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:app.globalData.openID,
+                    lastread:0
+                  })
+                }
+              })
+            }
+          }
+        }
+      })
 
-    // setTimeout(function () {
-    //   app.slideupshow(this, 'slide_up2', -200, 1)
-    //   setTimeout(function () {
-    //     app.slideupshow(this, 'slide_up3', -200, 1)
-    //     setTimeout(function () {
-    //       app.slideupshow(this, 'slide_up4', -200, 1)
-    //       setTimeout(function () {
-    //         app.slideupshow(this, 'slide_up5', -200, 1)
-    //       }.bind(this), 200)
-    //     }.bind(this), 100)
-    //   }.bind(this), 60)
-    // }.bind(this), 20)
-    var that = this
-    db.collection('worker')
-    .where({
-      _openid:this.data.openID
-    })
-    .get({
-      success(res){
-        console.log("测试",res.data)
-        var datas = []
-        datas[0] = res.data[0].worker_favor.length //员工收藏数量
-        datas[1] = res.data[0].worker_sended.length //员工投递数量
-        datas[2] = res.data[0].boss_favor.length //老板收藏数量
-        that.setData({
-          worker:res.data[0],//更新投递和收藏数据
-          datas: datas
-        })
-        app.globalData.worker = res.data[0]
-      },
-      fail(err){
-        console.log("请求失败",err)
-      }
-    })
+      DB.where({
+        _openid:app.globalData.openID
+      }).get({
+        success:res=>{
+          if(res.data[0].Friends.length === 0){
+            DB.doc(res.data[0]._id).update({
+              data:{
+                Friends:[{
+                  id:target,
+                  lastread:0
+                }]
+              }
+            }).then(res=>{
+              app.globalData.Friends.push({
+                id:target,
+                lastread:0
+              })
+            })
+          }else{
+            var chat = res.data[0].Friends.find((e)=>{return e.id == target})
+            if(chat == undefined){
+              DB.doc(res.data[0]._id).update({
+                data:{
+                  Friends:res.data[0].Friends.concat({
+                    id:target,
+                    lastread:0
+                  })
+                }
+              }).then(res=>{
+                app.globalData.Friends.push({
+                  id:target,
+                  lastread:0
+                })
+              })
+            }
+          }
+        }
+      })
+      
+      console.log("inse end", target)
+      wx.navigateTo({
+        url: "../messageDetail/messageDetail?target=" + target
+      })  
+    }
   },
 
   /**

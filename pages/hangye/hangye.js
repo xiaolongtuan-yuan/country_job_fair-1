@@ -16,7 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log('传参',options)
+    if(options.mode == '1'){
+      this.mode = true  //true表示从person进入，false表示从boss进入
+    }
+    else{
+      this.mode = false
+    }
   },
   switch_classify(e){
     this.setData({
@@ -32,7 +38,14 @@ Page({
   },
   back(){
     var post=[this.data.str,this.data.choosed]
-    wx.setStorageSync('post',post)
+    console.log('选择结束',post)
+    if(this.mode){
+      wx.setStorageSync('post',post)
+      app.globalData.worker.yx_post = post
+    }
+    else{
+      app.globalData.job_post = post
+    }
     wx.navigateBack()
   },
   /**

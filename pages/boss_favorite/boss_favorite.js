@@ -1,5 +1,6 @@
 // pages/boss_favorite/boss_favorite.js
 const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
@@ -21,21 +22,13 @@ Page({
   async onLoad(options) {
     this.setData({openID:wx.getStorageSync('openID')})
     var that = this
-    let res1 = await db.collection('worker').where({ _openid: that.data.openID}).get()
-    that.setData({boss_favor: res1.data[0].boss_favor})
-    console.log("1", that.data.boss_favor)
-
-    let res2 = await db.collection('zxjianli').get()
-    console.log("2", res2.data)
-    var resumes = []
-    let len = res2.data.length
-    let len_1 = that.data.boss_favor.length
-    for(let i = 0; i < len; i++) {
-      for(let j = 0; j < len_1; j++) {
-        if(res2.data[i]._id == that.data.boss_favor[j]) {
-          resumes.push(res2.data[i])
-        }
-      }
+    let res1 = await db.collection('bfavorite').where({ openid: that.data.openID}).get()
+    let resumes = []
+    for (let i = 0; i < res1.data.length; i++) {
+      let res2 = await db.collection('zxjianli').where({
+        _id : res1.data[i].favor_resumeId
+      }).get()
+      resumes.push(res2.data[0])
     }
     that.setData({resumes:resumes})
     console.log("3", that.data.resumes)

@@ -9,7 +9,7 @@ page {
   height: 12vh;
   top: 0;
   background: #17C3B2;
-  z-index: 2;
+  z-index: 10;
 }
 .top-text {
   position: absolute;
@@ -33,7 +33,7 @@ page {
   position: absolute;
   display: flex;
   flex-direction: column;
-
+  
   top: 11.8vh;
 }
 /* 1-1 swiper组件 */
@@ -65,75 +65,83 @@ swiper {
 
 /*title 工作推荐 */
 .title {
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  margin-left: 200rpx;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
 }
 .title-boss-active{
-  width: 180rpx;
-  height: 5.5vh;
+  height: 6vh;
+  width: 240rpx;
+  line-height: 6vh;
+
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 5.5vh;
-  border-bottom-left-radius: 15rpx;
-  border-bottom-right-radius: 15rpx;
+  border-radius: 40rpx;
+
   /* or 185% */
   color: #FFFFFF;
   background-color: #17C3B2;
+  z-index: 2;
 }
 .title-boss{
-  width: 180rpx;
-  height: 5.5vh;
+  height: 6vh;
+  width: 240rpx;
+  line-height: 6vh;
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 5.5vh;
-  border-bottom-left-radius: 15rpx;
-  border-bottom-right-radius: 15rpx;
+
+  border-radius: 40rpx;
   /* or 185% */
   color: #000000;
-
+  background-color: #FFFFFF;
 }
 .title-resume{
-  width: 180rpx;
-  height: 5.5;
+  height: 6vh;
+  width: 240rpx;
+  line-height: 6vh;
+  margin-left: -60rpx;
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 5.5vh;
-  border-bottom-left-radius: 15rpx;
-  border-bottom-right-radius: 15rpx;
+
+  border-radius: 40rpx;
   /* or 185% */
   color: #000000;
-  /* background-color: #fff; */
+  background-color: #FFFFFF;
 }
 .title-resume-active{
-  width: 180rpx;
-  height: 5.5;
+  height: 6vh;
+  width: 240rpx;
+  line-height: 6vh;
+  margin-left: -60rpx;
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 40rpx;
-  line-height: 5.5vh;
-  border-bottom-left-radius: 15rpx;
-  border-bottom-right-radius: 15rpx;
+  border-radius: 40rpx;
   /* or 185% */
   color: #FFFFFF;
   background-color: #17C3B2;
+  z-index: 2;
 }
+
 .all-list{
   width: 1500rpx;
   display: flex;
   flex-direction: row;
-  top: 6vh;
+  top: 10vh;
   position: absolute;
 }
 /* 2-1 招聘列表容器 */
@@ -255,24 +263,54 @@ swiper {
   height: 3vh;
 
 }
+
 /* 简历部分 */
 .list-resume {
-  position: absolute;
+
   z-index: 1;
   width: 100vw;
-  height: 50vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2vh;
 }
+.shaixuan{
+  position: fixed;
+  top: 80vh;
+  left: 500rpx;
+  z-index:8;
+  width: 250rpx;
+  height: 90rpx;
+  background-color: #17C3B2;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.shaixuan-image{
+  height: 60rpx;
+  width: 60rpx;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+}
+.shaixuan-text{
+  height: 90rpx;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35rpx;
+  line-height: 90rpx;
+}
+
 
 .resume_item {
   display: flex;
   flex-direction: row;
-  align-items:flex-start;
+  align-items:center;
   width: 642rpx;
-  height: 15vh;
+  height: 13vh;
   margin-top: 20rpx;
   padding-top: 2vh;
   padding-bottom: 1vh;
@@ -282,14 +320,12 @@ swiper {
   box-shadow: 0rpx 8rpx 8rpx rgba(255, 255, 255, 0.1);
   border-radius: 20rpx;
   width: 642rpx;
-  height: 15vh;
   background-color: #FFFFFF;
 }
 .item_left {
   display: flex;
   flex-direction: column;
   width: 140rpx;
-
   align-items: center;
   justify-content: center;
 
@@ -298,7 +334,7 @@ swiper {
   display: flex;
   flex-direction: column;
   width: 80%;
-  align-items: center;
+  align-items:flex-start;
 
   margin-left: 20rpx;
 }
@@ -310,7 +346,7 @@ swiper {
 }
 .name{
   height: 3vh;
-  margin-top: 1.4vh;
+
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -318,6 +354,7 @@ swiper {
   line-height: 3vh;
 }
 .sexage {
+  margin-top: 1vh;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -402,4 +439,8 @@ swiper {
   color: white;
   font-weight: 700;
   background-color: #17C3B2;
+}
+.loading-box{
+  display: flex;
+  width: 200vw;
 }

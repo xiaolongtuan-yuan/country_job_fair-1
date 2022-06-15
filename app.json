@@ -13,7 +13,8 @@
       "pages/boss_Resume_detail/boss_Resume_detail",
       "pages/worker_favorite/worker_favorite",
       "pages/boss_favorite/boss_favorite",
-      "pages/boss_Resume_detail_In/boss_Resume_detail_In"
+      "pages/boss_Resume_detail_In/boss_Resume_detail_In",
+      "pages/falv/falv"
   ],
   "window": {
       "navigationStyle": "custom"
@@ -29,8 +30,8 @@
       {
         "pagePath": "pages/Friends/Friends",
         "text": "消息",
-        "iconPath": "images/messages.png",
-        "selectedIconPath":"images/messages2.png"
+        "iconPath": "images/xiaoxi.png",
+        "selectedIconPath":"images/xiaoxi1.png"
       },
       {
         "pagePath": "pages/person/person",

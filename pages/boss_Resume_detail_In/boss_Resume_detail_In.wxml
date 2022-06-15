@@ -22,6 +22,9 @@
   </view>
 
   <view class="bottom_intro">
+    <text class="bottom_text">地区：{{worker.yx_address[0]}}-{{worker.yx_address[1]}}-{{worker.yx_address[2]}}</text>
+    <text class="bottom_text">期望工作：{{posts[worker.yx_post[0]][worker.yx_post[1]]}}</text>
+    <text class="bottom_text">期望薪资：{{worker.yx_salary[0]+1}}k-{{worker.yx_salary[1]+1}}k</text>
     <text class="bottom_text">特长：{{worker_detail[0].info[6]}}</text>
     <text class="bottom_text" wx:if="{{worker_detail[0].info[8] == 'null'}}"></text>
     <text class="bottom_text" wx:else>资格证书：{{worker_detail[0].info[8]}}</text>

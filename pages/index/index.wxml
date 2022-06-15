@@ -12,46 +12,59 @@
   </swiper> -->
   <!--招聘列表-->
   <view class="title">
-    <view class="title-boss{{mode ? '-active':''}}" bindtap="changemode" data-mode='boss'>正在热招</view>
-    <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>正在求职</view>
+    <view class="title-boss{{mode ? '-active':''}}" bindtap="changemode" data-mode='boss'>招聘</view>
+    <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>求职</view>
   </view>
+  <picker wx:if="{{!mode}}" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view  class="shaixuan" bindtap="shaixuan">
+      <image src="../../images/shaixuan.png" class="shaixuan-image" />
+      <view class="shaixuan-text">筛选简历</view>
+    </view>
+  </picker>
   
   <view class="all-list" animation="{{slide_up1}}">
-    <view class="list">
+    <view class="list" wx:if="{{!loading}}">
       <view class="list1">
-        <view class='list-item' wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-          <text class='jobs-title'>{{jobs.job_name}}</text>
-          <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
-          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
-          <view wx:for="{{jobs.others}}" wx:for-item="other">
-            <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
+        <view wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+          <view class='list-item' wx:if="{{index%2==0}}">
+            <text class='jobs-title'>{{jobs.job_name}}</text>
+            <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
+            <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+            <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+            <view wx:for="{{jobs.others}}" wx:for-item="other">
+              <view class='other-item' wx:if="{{other}} != ''">{{other}}</view>
+            </view>
+            <view class='null'> </view>
           </view>
-          <view class='null'> </view>
         </view>  
       </view>
       <view class="list2">
-        <view class='list-item' wx:for="{{jobsList2}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
-          <text class='jobs-title'>{{jobs.job_name}}</text>
-          <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
-          <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
-          <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
-          <view wx:for="{{jobs.require}}" wx:for-item="other">
-            <view class='other-item' >{{other}}</view>
+        <view wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
+          <view class='list-item' wx:if="{{index%2==1}}">
+            <text class='jobs-title'>{{jobs.job_name}}</text>
+            <text class='jobs-salary'>薪资： {{jobs.salary[0]+1}},{{jobs.salary[1]+1}}</text>
+            <text class='jobs-address' wx:if="{{jobs.address}}">{{jobs.address}}</text>
+            <text class='jobs-b_intro' wx:if="{{jobs.b_intro}}">{{jobs.b_intro}}</text>
+            <view wx:for="{{jobs.require}}" wx:for-item="other">
+              <view class='other-item' >{{other}}</view>
+            </view>
+            <view class='null'> </view>
           </view>
-          <view class='null'> </view>
         </view>  
       </view>
     </view>
+    <view class="loading" wx:else>
+      <view class="loader-container"> <view class="loader one"></view></view>
+    </view>
     
-    <view class="list">
+    <view class="list" wx:if="{{!loading2}}">
       <view class="list-resume">
-        <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item">
+        <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item" bindtap="goToResume" data-id="{{resume_list._id}}">
           <view class="item_left">
             <image mode="aspectFill" class="photo" src="{{resume_list.photo}}"></image>
-            <text class="name">{{resume_list.info[0]}}</text>
           </view>
           <view class="item_right">
+            <text class="name">{{resume_list.info[0]}}</text>
             <view class="sexage">
               <text class="sex" wx:if="{{resume_list.info[1] == 'm'}}">男</text>
               <text class="sex" wx:else>女</text>
@@ -62,11 +75,18 @@
               <text class="edu-2">{{resume_list.info[4]}}</text>
               <text class="edu-3">{{resume_list.info[5]}}</text>
             </view>
-            <text class="talent">{{resume_list.info[6]}}</text>
-            <view class="mybutton" bindtap="goToResume" data-id="{{resume_list._id}}">查看详情</view>
+            <text class="talent" wx:if="{{resume_list.info[6]}}">{{resume_list.info[6]}}</text>
           </view>
         </view>
       </view>
     </view>
+    <view class="loading" wx:else>
+      <view class="loader-container"> <view class="loader one"></view></view>
+    </view>
   </view>
+  <!-- <view wx:if="{{loading}}" class="loading-box">
+    
+    
+  </view> -->
+  
 </view>
