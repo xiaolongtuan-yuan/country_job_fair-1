@@ -68,17 +68,14 @@ Page({
             console.log('worker添加成功',x)
           })
           app.globalData.Friends = res3.data[0].Friends
+          this.loadFriends()
 
           console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
           for(let i in app.globalData.Friends){
             let fri = app.globalData.Friends[i]
-            let unread_t = {
-              num:0,
-              empty:true
-            }
             if(!app.globalData.unread.hasOwnProperty(fri.id)){
-              app.globalData.unread[fri.id] = unread_t
+              app.globalData.unread[fri.id] = 0
             }
             if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
               app.globalData.MessageDetail[fri.id] = []
@@ -91,16 +88,13 @@ Page({
         }
         else{
           app.globalData.Friends = res3.data[0].Friends
+          this.loadFriends()
           console.log("everything init")
           console.log( res3.data[0], app.globalData.Friends)
           for(let i in app.globalData.Friends){
             let fri = app.globalData.Friends[i]
-            let unread_t = {
-              num:0,
-              empty:true
-            }
             if(!app.globalData.unread.hasOwnProperty(fri.id)){
-              app.globalData.unread[fri.id] = unread_t
+              app.globalData.unread[fri.id] = 0
             }
             if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
               app.globalData.MessageDetail[fri.id] = []
@@ -163,6 +157,24 @@ Page({
     }
     console.log("全局变量",app.globalData)
   },
+
+  loadFriends(){
+    console.log('loads app userinfo-----------------------------------------------')
+    for(let i in app.globalData.Friends){
+      db.collection("users").where({
+        _openid:app.globalData.Friends[i].id
+      }).get({
+        success:res=>{
+          console.log('loads res', res)
+          app.globalData.FriendsUserinfo[app.globalData.Friends[i]] = {
+            nickName:res.data[0].name,
+            avatar:res.data[0].touxiang
+          }
+        }
+      })
+    }
+  },
+
   logup(options) {
     console.log("点击登录")
     wx.getUserProfile({
@@ -227,14 +239,11 @@ Page({
               }      
               else{//user有数据，检查worker
                 app.globalData.Friends = res3.data[0].Friends
+                this.loadFriends()
                 for(let i in app.globalData.Friends){
                   let fri = app.globalData.Friends[i]
-                  let unread_t = {
-                    num:0,
-                    empty:true
-                  }
                   if(!app.globalData.unread.hasOwnProperty(fri.id)){
-                    app.globalData.unread[fri.id] = unread_t
+                    app.globalData.unread[fri.id] = 0
                   }
                   if(!app.globalData.MessageDetail.hasOwnProperty(fri.id)){
                     app.globalData.MessageDetail[fri.id] = []

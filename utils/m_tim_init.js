@@ -43,14 +43,16 @@ function init_TIM() {//初始化im实时聊天
     console.log('收到消息');
     for(let i in event.data){
       if(app.globalData.MessageDetail.hasOwnProperty(event.data[i].from)){
+        console.log('recv msg  has friend')
         app.globalData.MessageDetail[event.data[i].from].push(event.data[i])
-        ++app.globalData.unread[event.data[i].from].num
+        app.globalData.unread[event.data[i].from] += 1
         // app.globalData.unread[event.data[i].from].empty = false
       }else{
+        console.log('recv msg no friend')
         app.globalData.MessageDetail[event.data[i].from] = []
-        app.globalData.unread[event.data[i].from].num = 0
+        app.globalData.unread[event.data[i].from] = 0
         app.globalData.MessageDetail[event.data[i].from].push(event.data[i])
-        ++app.globalData.unread[event.data[i].from].num
+        app.globalData.unread[event.data[i].from] += 1
         // app.globalData.unread[event.data[i].from].empty = false
       }
     }

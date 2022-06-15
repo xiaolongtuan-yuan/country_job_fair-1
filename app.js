@@ -15,6 +15,7 @@ App({
         id:"",
         lastread:0
       }],
+      FriendsUserinfo:[],
       MessageDetail:[],
       unread:[],
       isboss:false,//是否为boss

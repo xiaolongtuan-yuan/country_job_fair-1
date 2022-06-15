@@ -2,7 +2,7 @@
 
 <view class="poster" wx:if="{{canvasType}}">
     <view class="mask"></view>
-    <canvas style="position: absolute;margin-top: 30%;height: 550px;width: 300px;background-color: white;border-radius: 20rpx;z-index: 5;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
+    <canvas style="position: absolute;margin-top: 30%;height: 70vh;width:80vw;background-color: white;border-radius: 20rpx;z-index: 5;" id="myCanvas" canvas-id="myCanvas" type="2d"/>
     <cover-view class="saveImage" hover-class="saveImage-hover" bindtap="saveImage">保存图片</cover-view>
 </view>
 <view class="input">
