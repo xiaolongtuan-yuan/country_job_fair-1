@@ -353,7 +353,7 @@ Page({
     this.setData({
       multiIndex: e.detail.value
     })
-    app.globalData.worker.yx_salary = e.detail.value
+    app.globalData.worker.yx_salary = e.detail.value  
     this.setData({
       worker:app.globalData.worker
     })

@@ -263,17 +263,47 @@ swiper {
   height: 3vh;
 
 }
+
 /* 简历部分 */
 .list-resume {
-  position: absolute;
+
   z-index: 1;
   width: 100vw;
-  height: 50vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2vh;
 }
+.shaixuan{
+  position: fixed;
+  top: 80vh;
+  left: 500rpx;
+  z-index:8;
+  width: 250rpx;
+  height: 90rpx;
+  background-color: #17C3B2;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.shaixuan-image{
+  height: 60rpx;
+  width: 60rpx;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+}
+.shaixuan-text{
+  height: 90rpx;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35rpx;
+  line-height: 90rpx;
+}
+
 
 .resume_item {
   display: flex;
@@ -409,4 +439,8 @@ swiper {
   color: white;
   font-weight: 700;
   background-color: #17C3B2;
+}
+.loading-box{
+  display: flex;
+  width: 200vw;
 }

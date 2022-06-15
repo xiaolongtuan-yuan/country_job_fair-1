@@ -15,9 +15,15 @@
     <view class="title-boss{{mode ? '-active':''}}" bindtap="changemode" data-mode='boss'>招聘</view>
     <view class="title-resume{{mode ? '':'-active'}}" bindtap="changemode" data-mode='resume'>求职</view>
   </view>
+  <picker wx:if="{{!mode}}" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view  class="shaixuan" bindtap="shaixuan">
+      <image src="../../images/shaixuan.png" class="shaixuan-image" />
+      <view class="shaixuan-text">筛选简历</view>
+    </view>
+  </picker>
   
-  <view class="all-list" animation="{{slide_up1}}" wx:if="{{!loading}}">
-    <view class="list">
+  <view class="all-list" animation="{{slide_up1}}">
+    <view class="list" wx:if="{{!loading}}">
       <view class="list1">
         <view wx:for="{{jobsList}}" wx:for-item="jobs" wx:key="{{jobs.id}}" bindtap='goToDetail' data-id='{{jobs._id}}'>
           <view class='list-item' wx:if="{{index%2==0}}">
@@ -47,8 +53,11 @@
         </view>  
       </view>
     </view>
+    <view class="loading" wx:else>
+      <view class="loader-container"> <view class="loader one"></view></view>
+    </view>
     
-    <view class="list">
+    <view class="list" wx:if="{{!loading2}}">
       <view class="list-resume">
         <view wx:for="{{resumeList}}" wx:for-item="resume_list" class="resume_item" bindtap="goToResume" data-id="{{resume_list._id}}">
           <view class="item_left">
@@ -71,8 +80,13 @@
         </view>
       </view>
     </view>
+    <view class="loading" wx:else>
+      <view class="loader-container"> <view class="loader one"></view></view>
+    </view>
   </view>
-  <view class="loading" wx:else>
-    <view class="loader-container"> <view class="loader one"></view></view>
-  </view>
+  <!-- <view wx:if="{{loading}}" class="loading-box">
+    
+    
+  </view> -->
+  
 </view>
