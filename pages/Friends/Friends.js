@@ -67,9 +67,9 @@ Page({
     }else {
       login_TIM(app.globalData.openID)
       let timeStamp = Date.parse(new Date()) / 1000
-      console.log('app fri info -----------------------------------------')
-      console.log(this.data.unread)
-      console.log(app.globalData.unread)
+      //console.log('app fri info -----------------------------------------')
+      //console.log(this.data.unread)
+      //console.log(app.globalData.unread)
       if(this.data.firstload){
         this.setData({
           firstload:false,
@@ -78,13 +78,16 @@ Page({
         })
         this.loadUnread()
       }
-      console.log('app fri info 2-----------------------------------------')
-      console.log(this.data.unread)
-      console.log(app.globalData.unread)
+      //console.log('app fri info 2-----------------------------------------')
+      //console.log(this.data.unread)
+      //console.log(app.globalData.unread)
       //console.log( app.globalData.FriendsUserinfo)
       
       const _ = wx.cloud.database().command
       for(let i in this.data.Friends){
+        if(this.data.Friends[i].id == ""){
+          break;
+        }
         //console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
         DB.where(_.or([
           {
@@ -94,16 +97,16 @@ Page({
           }
         ])).count().then(res=>{
           //.log('count',res)
-          console.log('app fri info 3-----------------------------------------')
-          console.log(this.data.unread)
-          console.log(app.globalData.unread)
+          ///console.log('app fri info 3-----------------------------------------')
+          ///console.log(this.data.unread)
+          //console.log(app.globalData.unread)
           app.globalData.unread[this.data.Friends[i].id] = res.total
           this.setData({
             ['unread.'+this.data.Friends[i].id]:res.total
           }) 
-          console.log('app fri info 4-----------------------------------------')
-          console.log(this.data.unread)
-          console.log(app.globalData.unread)
+          ///console.log('app fri info 4-----------------------------------------')
+         /// console.log(this.data.unread)
+          ///console.log(app.globalData.unread)
         })
         DB.orderBy('message.time', 'desc').limit(1).where(_.or([
           {
@@ -123,7 +126,7 @@ Page({
               //console.log("bm", res.data[0].message.payload.text)
               let t_text = res.data[0].message.payload.text
               t_text = t_text.split('\n', 1)
-              if(t_text[0].length > 10){
+              if(t_text[0].length > 20){
                 t_text[0] = t_text[0].substr(0, 10) + '...'
               }
               //console.log('ttext', t_text[0], res.data[0].message.time)
@@ -219,14 +222,14 @@ Page({
    */
   autoLoadMessage:function(e){
     const _ = wx.cloud.database().command
-    console.log("auto msg loadfri-----------------------------")
-    console.log(this.data.unread)
-    console.log(app.globalData.unread)
+    //console.log("auto msg loadfri-----------------------------")
+    //console.log(this.data.unread)
+    //console.log(app.globalData.unread)
     this.setData({
       Friends:app.globalData.Friends,
     })
     this.loadUnread()
-    console.log('unread', this.data.unread)
+    //console.log('unread', this.data.unread)
     for(let i in this.data.Friends){
       if(this.data.FriendsUserInfo.hasOwnProperty(this.data.Friends[i].id)){
         continue;
@@ -254,10 +257,16 @@ Page({
      //  console.log('auto len', app.globalData.MessageDetail, this.data.unread[friend].num)
       let length = app.globalData.MessageDetail[friend].length
       if(length != 0){
+        var t_text = app.globalData.MessageDetail[friend][length - 1].payload.text
+        t_text = t_text.split('\n', 1)
+        if(t_text[0].length > 20){
+          t_text[0] = t_text[0].substr(0, 10) + '...'
+        }
+
         this.setData({
           ['briefMsg.' + friend]:{
             timestamp: app.globalData.MessageDetail[friend][length - 1].time,
-            content: app.globalData.MessageDetail[friend][length - 1].payload.text
+            content: t_text[0]
           }
         })
       }

@@ -49,10 +49,15 @@ function init_TIM() {//初始化im实时聊天
         // app.globalData.unread[event.data[i].from].empty = false
       }else{
         console.log('recv msg no friend')
+        app.globalData.Friends.concat({
+          id:event.data[i].from,
+          lastread:0
+        })
         app.globalData.MessageDetail[event.data[i].from] = []
         app.globalData.unread[event.data[i].from] = 0
         app.globalData.MessageDetail[event.data[i].from].push(event.data[i])
         app.globalData.unread[event.data[i].from] += 1
+        console.log(app.globalData.Friends)
         // app.globalData.unread[event.data[i].from].empty = false
       }
     }
