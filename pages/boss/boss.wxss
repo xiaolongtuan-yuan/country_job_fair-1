@@ -137,6 +137,8 @@ scroll-view{
     font-style: normal;
     font-weight: 400;
     font-size: 30rpx;
+    width: 440rpx;
+
 }
 .answer-2{
     color: rgb(168,168,168);
@@ -144,6 +146,7 @@ scroll-view{
     font-style: normal;
     font-weight: 400;
     font-size: 30rpx;
+    width: 390rpx;
 }
 .answer-3{
     color: rgb(168,168,168);

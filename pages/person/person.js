@@ -124,8 +124,9 @@ Page({
           })
           .get({
             success(res){
+              console.log("测试",res.data)
               if(res.data.length >0){
-                console.log("测试",res.data)
+                
                 that.setData({
                   worker:res.data[0],
                   region:res.data[0].yx_address,
@@ -274,6 +275,19 @@ Page({
                       console.log('worker添加成功',x)
                     })
                   }
+                  else{
+                    this.setData({
+                      worker:res4.data[0],
+                      region:res4.data[0].yx_address,
+                      multiIndex:res4.data[0].yx_salary,
+                      datas: res4.data[0].datas,
+                      post:res4.data[0].yx_post,
+                      yx_post1:res4.data[0].yx_post1,
+                      yx_post2:res4.data[0].yx_post2,
+                    })
+                    app.globalData.worker = res4.data[0]
+                    console.log("获取成功！",res4.data)
+                  }
                 })
               }
             })
@@ -408,7 +422,7 @@ Page({
     })
   },
   set_post(){//意向岗位添加到数据库和全局变量中
-    var post = wx.getStorageSync('post')
+    var post = app.globalData.worker.yx_post
     
     this.setData({
       post:post,
@@ -419,17 +433,7 @@ Page({
     this.setData({
       worker:app.globalData.worker
     })
-    db.collection('worker')
-    .where({
-      _openid:this.data.openID
-    })
-    .update({
-      data:{
-        yx_post:post,
-        yx_post1:post[0],
-        yx_post2:post[1]
-      }
-    })
+    
   },
   tojianli(){
     // console.log("跳转")

@@ -113,11 +113,13 @@ Page({
     })
   },
   input_intro(e){
+    console.log('简介',e.detail.value)
     this.setData({
       intro:e.detail.value
     })
   },
   input_address(e){
+    console.log('地址',e.detail.value)
     this.setData({
       address:e.detail.value
     })
@@ -148,6 +150,17 @@ Page({
     })
   },
   upload(){
+    console.log('目前输入',
+    this.data.multiIndex,
+    this.data.region,
+    this.data.job_name,
+    this.data.company,
+    this.data.intro,
+    this.data.introduction,
+    this.data.address,
+    this.data.require,
+    this.data.others,
+    this.data.job_post)
     if(!this.data.job_name){
       wx.showToast({
         icon:"error",
@@ -235,6 +248,7 @@ Page({
   },//退出海报
 
   drawCanvas2D() {
+    console.log('开始绘制海报')
     this.setData({
       loading:false
     })
@@ -254,7 +268,7 @@ Page({
     .select('#myCanvas')
     .fields({ node: true, size: true })
     .exec(async (res) => {
-      // console.log(33, res);
+      console.log("捕获画布成功");
       const canvas = res[0].node;
       this.canvas = canvas;
       let ctx = canvas.getContext('2d');

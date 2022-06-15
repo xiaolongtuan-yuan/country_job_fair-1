@@ -61,7 +61,7 @@
             <view class="bottom-2">
                 <text class="begin-2">任职要求</text>
                 <view wx:if="{{ismask}}" class="answer"></view>
-                <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{0}}"/>
+                <input wx:else class="answer-2" type="text" bindinput="input_require" data-index="{{0}}"/>
                 <image src="../../images/jia.png" class="bottom-2-image" bindtap = "add_input"/>
             </view>
             <view wx:for="{{infoList}}" wx:key="*this">
