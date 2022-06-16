@@ -1,5 +1,6 @@
 // pages/hangye/hangye.js
 const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -42,6 +43,18 @@ Page({
     if(this.mode){
       wx.setStorageSync('post',post)
       app.globalData.worker.yx_post = post
+      
+      db.collection('worker')
+      .where({
+        _openid:this.data.openID
+      })
+      .update({
+        data:{
+          yx_post:post,
+          yx_post1:post[0],
+          yx_post2:post[1]
+        }
+      })
     }
     else{
       app.globalData.job_post = post

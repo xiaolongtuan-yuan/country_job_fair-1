@@ -3,7 +3,14 @@ const height = wx.getSystemInfoSync().windowHeight//系统高度
 const width = wx.getSystemInfoSync().windowWidth//系统宽度
 const rpx = width / 750 //rpx转px系数
 const app = getApp()
-
+const options = {
+  duration: 600000, //指定录音的时长，单位 ms，最大为10分钟（600000），默认为1分钟（60000）
+  sampleRate: 16000, //采样率
+  numberOfChannels: 1, //录音通道数
+  encodeBitRate: 96000, //编码码率
+  format: 'mp3', //音频格式，有效值 aac/mp3
+  frameSize: 50, //指定帧大小，单位 KB
+}
 Page({
 
   data: {
@@ -28,13 +35,106 @@ Page({
     src:'',//海报背景图片
     id:'',
     ismask:false,
-    loading:false  // true是出现加在动画
+    loading:false,  // true是出现加在动画
+    recorderID:'',
+    recorder_begin:1,
+    recorder_play:1,
+    openRecordingdis: "block",//录音图片的不同
+    shutRecordingdis: "none",//录音图片的不同
+    recordingTimeqwe:0,//录音计时
   },
 
 
   onLoad: function (options) {
   
   },
+  recordingTimer:function(){
+    var that = this;
+    //将计时器赋值给setInter
+    this.setInter = setInterval(
+     function () {
+      var time = that.data.recordingTimeqwe + 1;
+      that.setData({
+       recordingTimeqwe: time
+      })
+     }
+     , 1000); 
+   },
+   begin(){
+    var that = this
+    wx.getSetting({
+      success:(res)=>{
+      	//是否已授权
+        
+        if (res.authSetting['scope.record']) {
+          //已授权直接保存
+          console.log("已授权麦克风")
+          that.recorderManager = wx.getRecorderManager()
+          that.recorderManager.start(options)
+          that.recorderManager.onStart(() => {
+            console.log('。。。开始录音。。。')
+            that.setData({
+              recordingTimeqwe:0,
+              recorder_begin:2
+            })
+            that.recordingTimer()
+          });
+          //错误回调
+          that.recorderManager.onError((res) => {
+            console.log(res);
+          })
+        
+        }
+        else if (res.authSetting['scope.record'] === undefined) {
+          console.log("正在授权")
+          wx.authorize({
+            scope: 'scope.record',
+            success: ()=>{
+              //授权麦克风成功
+              console.log("授权成功！")
+              return
+            }
+          })
+        }
+      }
+    })
+  },
+  end(){//这里没有上传云存储
+    this.recorderManager.stop();
+    this.recorderManager.onStop((res) => {
+      console.log('。。停止录音。。', res.tempFilePath)
+      this.tempFilePath = res.tempFilePath;
+      //结束录音计时 
+      clearInterval(this.setInter)
+      console.log("录音时长",this.data.recordingTimeqwe)
+      this.setData({
+        recorder_begin:1
+      })
+    })
+  },
+  //播放录音
+  playClick() {
+    console.log("开始播放",this.tempFilePath)
+    var audio = wx.createInnerAudioContext();
+    audio.src = this.tempFilePath;
+    audio.autoplay = true;
+  },
+  async recorder_upload(filePath){
+    var timestamp = (new Date()).valueOf();//新建日期对象并变成时间戳
+    var path = "recorder/"+timestamp+".mp3"
+    var that = this
+    await wx.cloud.uploadFile({
+      cloudPath: path,
+      filePath: filePath,     
+    })
+    .then(res2=>{
+      that.setData({
+        recorderID:res2.fileID
+      })
+      console.log('录音上传成功！',that.data.recorderID)
+    })
+  },
+
   add_input(){
     console.log("添加输入行")
     var a=this.data.infoList
@@ -113,11 +213,13 @@ Page({
     })
   },
   input_intro(e){
+    console.log('简介',e.detail.value)
     this.setData({
       intro:e.detail.value
     })
   },
   input_address(e){
+    console.log('地址',e.detail.value)
     this.setData({
       address:e.detail.value
     })
@@ -147,7 +249,20 @@ Page({
       company:e.detail.value
     })
   },
-  upload(){
+  async upload(){
+    await this.recorder_upload(this.tempFilePath)
+    console.log('目前输入',
+    this.data.multiIndex,
+    this.data.region,
+    this.data.job_name,
+    this.data.company,
+    this.data.intro,
+    this.data.introduction,
+    this.data.address,
+    this.data.require,
+    this.data.others,
+    this.data.job_post,
+    this.data.recorderID)
     if(!this.data.job_name){
       wx.showToast({
         icon:"error",
@@ -207,7 +322,8 @@ Page({
           address:this.data.address,
           require:this.data.require,
           others:this.data.others,
-          job_post:this.data.job_post
+          job_post:this.data.job_post,
+          recorder:this.data.recorderID
         }
       })
       .then(res=>{
@@ -235,6 +351,7 @@ Page({
   },//退出海报
 
   drawCanvas2D() {
+    console.log('开始绘制海报')
     this.setData({
       loading:false
     })
@@ -254,7 +371,7 @@ Page({
     .select('#myCanvas')
     .fields({ node: true, size: true })
     .exec(async (res) => {
-      // console.log(33, res);
+      console.log("捕获画布成功");
       const canvas = res[0].node;
       this.canvas = canvas;
       let ctx = canvas.getContext('2d');
@@ -271,9 +388,9 @@ Page({
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%201.png?sign=c66b63c13b496220d41d7fdcc62a8bb8&t=1654067765', 190, 100, 420/rpx); 
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/2.png?sign=52287dc8dd1ca21aba673d7498b1ec0f&t=1654067814', 150, 90, 55/rpx);
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/1.png?sign=a59ad97342f3cf3b6c97537d03b52978&t=1654067798', 210, 30, 45/rpx);
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 1.png', 190, 100, 420/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/2.png', 150, 90, 55/rpx);
+      await this.drawImageByLoad(canvas, ctx, '../../images/1.png', 210, 30, 45/rpx);
 
       ctx.fillStyle = '#000';
       ctx.font = `bolder 25px inter`;
@@ -281,12 +398,12 @@ Page({
       ctx.fillText(`${this.data.job_name}`, 30, 160);
 
       ctx.font = `normal 15px inter`;
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       ctx.fillText(`工作单位：${this.data.company}`, 25, text_begin+(text_num++)*text_interval);
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       ctx.fillText(`工作区域：${this.data.region[0]}-${this.data.region[1]}-${this.data.region[2]}`, 25, text_begin+(text_num++)*text_interval);
       
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval)/rpx, 13/rpx); 
       var str = this.data.address
       if(str.length <= 12){
         ctx.fillText(`工作地点：${str}`, 25, text_begin+(text_num++)*text_interval);
@@ -302,10 +419,10 @@ Page({
         ctx.fillText(`${str}`, 25, text_begin+(text_num)*text_interval+line_interval*(line_num++));
       }
 
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx);
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx);
       ctx.fillText(`工资：${this.data.multiArray[0][this.data.multiIndex[0]]}-${this.data.multiArray[1][this.data.multiIndex[1]]}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);
       
-      await this.drawImageByLoad(canvas, ctx, 'https://636c-cloud1-5gynw2ctad593524-1311444493.tcb.qcloud.la/images/Ellipse%202.png?sign=fd297efac2b5b91f8296a856eb3bd1cb&t=1654067975', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
+      await this.drawImageByLoad(canvas, ctx, '../../images/Ellipse 2.png', 5, (ecli_begin+(text_num)*ecli_interval+line_interval*line_num)/rpx, 13/rpx); 
       var str = this.data.intro
       if(str.length <= 12){
         ctx.fillText(`工作简介：${str}`, 25, text_begin+(text_num++)*text_interval+line_interval*line_num);

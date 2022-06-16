@@ -24,7 +24,7 @@
             <view class="bottom-1">
                 <text class="begin-2">工作单位</text>
                 <view wx:if="{{ismask}}" class="answer"></view>
-                <input wx:else class="answer" type="text" bindinput="input_company"/>
+                <input wx:else class="answer" type="text" bindinput="input_company" placeholder="非企业填‘个人’"/>
             </view>
             <view class="bottom-1">
                 <text class="begin-2">工作地区</text>
@@ -61,7 +61,7 @@
             <view class="bottom-2">
                 <text class="begin-2">任职要求</text>
                 <view wx:if="{{ismask}}" class="answer"></view>
-                <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{0}}"/>
+                <input wx:else class="answer-2" type="text" bindinput="input_require" data-index="{{0}}" placeholder="没有填‘无’"/>
                 <image src="../../images/jia.png" class="bottom-2-image" bindtap = "add_input"/>
             </view>
             <view wx:for="{{infoList}}" wx:key="*this">
@@ -69,15 +69,29 @@
                     <view class="bottom-2">
                         <text class="begin-2">任职要求</text>
                         <view wx:if="{{ismask}}" class="answer"></view>
-                        <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{index+1}}"/>
+                        <input wx:else class="answer" type="text" bindinput="input_require" data-index="{{index+1}}" placeholder="没有填‘无’"/>
                     </view>
                 </view>
             </view>
             <view class="bottom-1">
-                        <text class="begin">其他</text>
-                        <view wx:if="{{ismask}}" class="answer"></view>
-                        <input wx:else class="answer" type="text" bindinput="input_others"/>
-                    </view>
+                <text class="begin">其他</text>
+                <view wx:if="{{ismask}}" class="answer"></view>
+                <input wx:else class="answer" type="text" bindinput="input_others" placeholder="没有填‘无’"/>
+            </view>
+            <view class="recorder">
+            <view class="recorder-top">
+                <image src="../../images/recorder{{recorder_begin}}.png" class="recorder_begin_image"/>
+                <view class="recorder_begin_text" bindtouchstart="begin" bindtouchend="end" hover-class="recorder_begin_text_hover">按住录音</view>
+            </view>
+            <view class="recorder-bottom" bindtap="playClick">
+                <image src="../../images/Group21.png" class="recorder_play_image"/>
+                <image src="../../images/Group22.png" class="recorder_play_image2"/>
+                <view class="recorder_play_text">{{recordingTimeqwe}}s</view>
+            </view>
+        
+
+    </view>
+
         </scroll-view>
         <!-- <view class="button-add" hover-class="button-add-havor" bindtap = "add_input">增加信息</view> -->
         <view class="button-finish" hover-class="button-finish-havor" bindtap = "upload">完成</view>

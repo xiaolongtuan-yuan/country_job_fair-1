@@ -1,5 +1,14 @@
 // pages/zxjianli/zxjianli.js
 const db = wx.cloud.database()
+const app = getApp()
+const options = {
+  duration: 600000, //指定录音的时长，单位 ms，最大为10分钟（600000），默认为1分钟（60000）
+  sampleRate: 16000, //采样率
+  numberOfChannels: 1, //录音通道数
+  encodeBitRate: 96000, //编码码率
+  format: 'mp3', //音频格式，有效值 aac/mp3
+  frameSize: 50, //指定帧大小，单位 KB
+}
 
 Page({
 
@@ -15,7 +24,13 @@ Page({
     sex:true,
     jianli:'',
     exist:false,
-    _id:''
+    _id:'',
+    recorderID:'',
+    recorder_begin:1,
+    recorder_play:1,
+    openRecordingdis: "block",//录音图片的不同
+    shutRecordingdis: "none",//录音图片的不同
+    recordingTimeqwe:0,//录音计时
   },
 
   /**
@@ -34,10 +49,12 @@ Page({
     .then(res=>{
       console.log('已存在简历数',res.data)
       if(res.data.length>0){
+        this.tempFilePath = res.data[0].recorder
         this.setData({
           jianli: res.data[0],
           info: res.data[0].info,
           photoID: res.data[0].photo,
+          recorderID:res.data[0].recorder,
           index:res.data[0].info[3],
           exist:true,
           _id:res.data[0]._id
@@ -53,6 +70,93 @@ Page({
           })
         }
       }
+    })
+  },
+  recordingTimer:function(){
+    var that = this;
+    //将计时器赋值给setInter
+    this.setInter = setInterval(
+     function () {
+      var time = that.data.recordingTimeqwe + 1;
+      that.setData({
+       recordingTimeqwe: time
+      })
+     }
+     , 1000); 
+   },
+   begin(){
+    var that = this
+    wx.getSetting({
+      success:(res)=>{
+      	//是否已授权
+        
+        if (res.authSetting['scope.record']) {
+          //已授权直接保存
+          console.log("已授权麦克风")
+          that.recorderManager = wx.getRecorderManager()
+          that.recorderManager.start(options)
+          that.recorderManager.onStart(() => {
+            console.log('。。。开始录音。。。')
+            that.setData({
+              recordingTimeqwe:0,
+              recorder_begin:2
+            })
+            that.recordingTimer()
+          });
+          //错误回调
+          that.recorderManager.onError((res) => {
+            console.log(res);
+          })
+        
+        }
+        else if (res.authSetting['scope.record'] === undefined) {
+          console.log("正在授权")
+          wx.authorize({
+            scope: 'scope.record',
+            success: ()=>{
+              //授权麦克风成功
+              console.log("授权成功！")
+              return
+            }
+          })
+        }
+      }
+    })
+  },
+  end(){
+    this.recorderManager.stop();
+    this.recorderManager.onStop((res) => {
+      console.log('。。停止录音。。', res.tempFilePath)
+      this.tempFilePath = res.tempFilePath;
+      //结束录音计时 
+      clearInterval(this.setInter)
+      console.log("录音时长",this.data.recordingTimeqwe)
+      this.setData({
+        recorder_begin:1
+      })
+      this.recorder_upload(res.tempFilePath)
+    })
+  },
+  //播放录音
+  playClick() {
+    console.log("开始播放",this.tempFilePath)
+    var audio = wx.createInnerAudioContext();
+    audio.src = this.tempFilePath;
+    audio.autoplay = true;
+  },
+  recorder_upload(filePath){
+    var path = "recorder/"+this.data.info[0]+".mp3"
+    var that = this
+    wx.cloud.uploadFile({
+      cloudPath: path,
+      filePath: filePath,
+      success:res2=>{
+        that.setData({
+          recorderID:res2.fileID
+        })
+        console.log('录音上传成功！',that.data.recorderID)
+      },
+      fail:console.log("上传失败")
     })
   },
   back(){
@@ -149,6 +253,7 @@ Page({
   },
   photo_upload(){
     var path = this.data.info[0] + '.png'
+    var that = this
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'],
@@ -160,7 +265,7 @@ Page({
           filePath: tempFilePaths[0],
           success:res2=>{
             //console.log(res2)
-            this.setData({
+            that.setData({
               photoID:res2.fileID
             })
           },
@@ -184,6 +289,11 @@ Page({
     wx.showLoading({
       title: '上传中...',
     })
+    console.log("要上传的资源",this.data.info,
+    this.data.photoID,
+    this.data.index,
+    this.app.globalData.worker.yx_salary,
+    this.data.recorderID)
     if(this.data.exist){
       db.collection('zxjianli')
       .doc(this.data._id)
@@ -192,7 +302,8 @@ Page({
           info:this.data.info,
           photo:this.data.photoID,
           education:this.data.index,
-          yx_salary:this.app.globalData.worker.yx_salary
+          yx_salary:this.app.globalData.worker.yx_salary,
+          recorder:this.data.recorderID
         }
       })
       .then(
@@ -201,13 +312,19 @@ Page({
       )
     }
     else{
+      console.log("要上传的资源",this.data.info,
+      this.data.photoID,
+      this.data.index,
+      this.app.globalData.worker.yx_salary,
+      this.data.recorderID)
       db.collection('zxjianli')
       .add({
         data:{
           info:this.data.info,
           photo:this.data.photoID,
           education:this.data.index,
-          yx_salary:this.app.globalData.worker.yx_salary
+          yx_salary:this.app.globalData.worker.yx_salary,
+          recorder:this.data.recorderID
         }
       })
       .then(

@@ -13,6 +13,11 @@
   <text class='job_provider' user-select='true'>地区：{{jobs.region[0]}}-{{jobs.region[1]}}-{{jobs.region[2]}}</text>
   <text class='job_provider' user-select='true' wx:if="{{jobs.job_post}}">类型：{{posts[jobs.job_post[0]][jobs.job_post[1]]}}</text>
   <text class='job_address' user-select='true'>地点：{{jobs.address}}</text>
+  <view class="recorder-bottom" bindtap="playClick" wx:if="{{recorderID}}">
+      <image src="../../images/Group21.png" class="recorder_play_image"/>
+      <image src="../../images/Group22.png" class="recorder_play_image2"/>
+      <view class="recorder_play_text"></view>
+  </view>
   <text class='brief_introduction' user-select='true' wx:if="{{jobs.b_intro}}"><text class='bold'>岗位简介：</text>{{jobs.b_intro}}</text>
   <text class='require_bold' wx:if="{{jobs.require}}">任职要求：</text>
   <text class='require' user-select='true' wx:for="{{jobs.require}}">{{index+1}}、{{item}}</text>

@@ -4,20 +4,27 @@
     <text class="top_text">简历详情</text>
 </view>
 <view class="worker_detail">
-  <view class="top_intro">
-    <image mode="aspectFill" class="head" src="{{worker_detail[0].photo}}" ></image>
-    <view class="right">
-      <text class="name">{{worker_detail[0].info[0]}}</text>
-      <view class="sexage">
-        <text class="sex" wx:if="{{worker_detail[0].info[1] == 'm'}}">男</text>
-        <text class="sex" wx:else>女</text>
-        <text class="age">{{worker_detail[0].info[2]}}</text>
+  <view class="top_intro-big">
+    <view class="top_intro">
+      <image mode="aspectFill" class="head" src="{{worker_detail[0].photo}}" ></image>
+      <view class="right">
+        <text class="name">{{worker_detail[0].info[0]}}</text>
+        <view class="sexage">
+          <text class="sex" wx:if="{{worker_detail[0].info[1] == 'm'}}">男</text>
+          <text class="sex" wx:else>女</text>
+          <text class="age">{{worker_detail[0].info[2]}}</text>
+        </view>
+        <view class="edu">
+          <text class="edu-1">{{array[worker_detail[0].info[3]]}}</text>
+          <text class="edu-2">{{worker_detail[0].info[4]}}</text>
+          <text class="edu-3">{{worker_detail[0].info[5]}}</text>
+        </view>
       </view>
-      <view class="edu">
-        <text class="edu-1">{{array[worker_detail[0].info[3]]}}</text>
-        <text class="edu-2">{{worker_detail[0].info[4]}}</text>
-        <text class="edu-3">{{worker_detail[0].info[5]}}</text>
-      </view>
+    </view>
+    <view class="recorder-bottom" bindtap="playClick" wx:if="{{recorderID}}">
+        <image src="../../images/Group21.png" class="recorder_play_image"/>
+        <image src="../../images/Group22.png" class="recorder_play_image2"/>
+        <view class="recorder_play_text"></view>
     </view>
   </view>
 
