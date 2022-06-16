@@ -17,13 +17,36 @@ Page({
     recorderID:'',
     //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
-    favor_id: ''
+    favor_id: '',
+    recorder_play:1, //另一个是三
+    playing:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    this.tempFilePath = ''
+    this.audio = wx.createInnerAudioContext();
+    this.audio.onPlay(res=>{
+      console.log("正在播放")
+      this.setData({
+        playing:true
+      })
+    })
+    this.audio.onEnded(res=>{
+      console.log("播放结束")
+      this.setData({
+        playing:false,
+        recorder_play:1
+      })
+    })
+    this.audio.onError(res=>{
+      console.log("播放异常")
+      this.setData({
+        playing:false
+      })
+    })
     this.setData({
       openID:wx.getStorageSync('openID'),
       posts:app.globalData.post
@@ -41,6 +64,7 @@ Page({
       worker:res3.data[0],
       recorderID:res1.data[0].recorder
     })
+    this.audio.src = this.data.recorderID;
     let res2 = await db.collection('bfavorite').where({
       openid: that.data.openID,
       favor_resumeId: that.data.worker_OpId
@@ -53,10 +77,20 @@ Page({
 
   },
   playClick() {
-    console.log("开始播放",this.data.recorderID)
-    var audio = wx.createInnerAudioContext();
-    audio.src = this.data.recorderID;
-    audio.autoplay = true;
+    if(this.data.playing){
+      this.audio.pause()
+      this.setData({
+        playing:false,
+        recorder_play:1
+      })
+    }
+    else{
+      this.audio.play()
+      this.setData({
+        playing:true,
+        recorder_play:3
+      })
+    }
   },
   // 索引
   indexof: function(arr, val)  {
@@ -100,6 +134,8 @@ Page({
   },
   
   back(){
+    console.log("退出页面")
+    this.audio.stop()
     wx.navigateBack()
   },
 

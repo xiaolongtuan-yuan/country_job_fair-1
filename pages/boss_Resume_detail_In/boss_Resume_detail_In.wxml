@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="recorder-bottom" bindtap="playClick" wx:if="{{recorderID}}">
-        <image src="../../images/Group21.png" class="recorder_play_image"/>
+        <image src="../../images/Group2{{recorder_play}}.png" class="recorder_play_image"/>
         <image src="../../images/Group22.png" class="recorder_play_image2"/>
         <view class="recorder_play_text"></view>
     </view>
