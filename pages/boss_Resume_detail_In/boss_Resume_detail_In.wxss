@@ -11,11 +11,47 @@ page {
 .top_intro {
   display: flex;
   flex-direction: row;
+}
+.top_intro-big{
+  display: flex;
+  flex-direction: column;
   width: 95%;
 
   margin-left: 2%;
   padding-bottom: 2vh;
   border-bottom: #C4C4C4 solid 1px;
+}
+.recorder-bottom{
+  width: 478rpx;
+  height: 74rpx;
+  margin-top: 30rpx;
+  margin-left: 50rpx;
+  display: flex;
+  align-items: center;
+  background: #17C3B2;
+  border-radius: 20rpx;
+}
+.recorder_play_image{
+  height: 74rpx;
+  width: 74rpx;
+
+}
+.recorder_play_image2{
+  height: 65rpx;
+  width: 340rpx;
+
+}
+.recorder_play_text{
+  width: 30rpx;
+  height: 74rpx;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 74rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  color: #FFFFFF;
 }
 .head {
   height: 180rpx;

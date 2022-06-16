@@ -3,7 +3,14 @@ const height = wx.getSystemInfoSync().windowHeight//系统高度
 const width = wx.getSystemInfoSync().windowWidth//系统宽度
 const rpx = width / 750 //rpx转px系数
 const app = getApp()
-
+const options = {
+  duration: 600000, //指定录音的时长，单位 ms，最大为10分钟（600000），默认为1分钟（60000）
+  sampleRate: 16000, //采样率
+  numberOfChannels: 1, //录音通道数
+  encodeBitRate: 96000, //编码码率
+  format: 'mp3', //音频格式，有效值 aac/mp3
+  frameSize: 50, //指定帧大小，单位 KB
+}
 Page({
 
   data: {
@@ -28,13 +35,106 @@ Page({
     src:'',//海报背景图片
     id:'',
     ismask:false,
-    loading:false  // true是出现加在动画
+    loading:false,  // true是出现加在动画
+    recorderID:'',
+    recorder_begin:1,
+    recorder_play:1,
+    openRecordingdis: "block",//录音图片的不同
+    shutRecordingdis: "none",//录音图片的不同
+    recordingTimeqwe:0,//录音计时
   },
 
 
   onLoad: function (options) {
   
   },
+  recordingTimer:function(){
+    var that = this;
+    //将计时器赋值给setInter
+    this.setInter = setInterval(
+     function () {
+      var time = that.data.recordingTimeqwe + 1;
+      that.setData({
+       recordingTimeqwe: time
+      })
+     }
+     , 1000); 
+   },
+   begin(){
+    var that = this
+    wx.getSetting({
+      success:(res)=>{
+      	//是否已授权
+        
+        if (res.authSetting['scope.record']) {
+          //已授权直接保存
+          console.log("已授权麦克风")
+          that.recorderManager = wx.getRecorderManager()
+          that.recorderManager.start(options)
+          that.recorderManager.onStart(() => {
+            console.log('。。。开始录音。。。')
+            that.setData({
+              recordingTimeqwe:0,
+              recorder_begin:2
+            })
+            that.recordingTimer()
+          });
+          //错误回调
+          that.recorderManager.onError((res) => {
+            console.log(res);
+          })
+        
+        }
+        else if (res.authSetting['scope.record'] === undefined) {
+          console.log("正在授权")
+          wx.authorize({
+            scope: 'scope.record',
+            success: ()=>{
+              //授权麦克风成功
+              console.log("授权成功！")
+              return
+            }
+          })
+        }
+      }
+    })
+  },
+  end(){//这里没有上传云存储
+    this.recorderManager.stop();
+    this.recorderManager.onStop((res) => {
+      console.log('。。停止录音。。', res.tempFilePath)
+      this.tempFilePath = res.tempFilePath;
+      //结束录音计时 
+      clearInterval(this.setInter)
+      console.log("录音时长",this.data.recordingTimeqwe)
+      this.setData({
+        recorder_begin:1
+      })
+    })
+  },
+  //播放录音
+  playClick() {
+    console.log("开始播放",this.tempFilePath)
+    var audio = wx.createInnerAudioContext();
+    audio.src = this.tempFilePath;
+    audio.autoplay = true;
+  },
+  async recorder_upload(filePath){
+    var timestamp = (new Date()).valueOf();//新建日期对象并变成时间戳
+    var path = "recorder/"+timestamp+".mp3"
+    var that = this
+    await wx.cloud.uploadFile({
+      cloudPath: path,
+      filePath: filePath,     
+    })
+    .then(res2=>{
+      that.setData({
+        recorderID:res2.fileID
+      })
+      console.log('录音上传成功！',that.data.recorderID)
+    })
+  },
+
   add_input(){
     console.log("添加输入行")
     var a=this.data.infoList
@@ -149,7 +249,8 @@ Page({
       company:e.detail.value
     })
   },
-  upload(){
+  async upload(){
+    await this.recorder_upload(this.tempFilePath)
     console.log('目前输入',
     this.data.multiIndex,
     this.data.region,
@@ -160,7 +261,8 @@ Page({
     this.data.address,
     this.data.require,
     this.data.others,
-    this.data.job_post)
+    this.data.job_post,
+    this.data.recorderID)
     if(!this.data.job_name){
       wx.showToast({
         icon:"error",
@@ -220,7 +322,8 @@ Page({
           address:this.data.address,
           require:this.data.require,
           others:this.data.others,
-          job_post:this.data.job_post
+          job_post:this.data.job_post,
+          recorder:this.data.recorderID
         }
       })
       .then(res=>{

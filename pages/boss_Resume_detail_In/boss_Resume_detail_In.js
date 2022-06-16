@@ -14,6 +14,7 @@ Page({
     isAdd: false,
     boss_favor: [],
     openID: '',
+    recorderID:'',
     //[0]姓名[1]性别[2]年龄[3]教育水平[4]毕业院校[5]专业[6]特长[7]工作经历[8]资格证书
     array:['无','小学','初中','高中','专科','本科','研究生','博士研究生'],
     favor_id: ''
@@ -32,11 +33,13 @@ Page({
     this.setData({worker_OpId:id})
     var that = this
     let res1 = await db.collection('zxjianli').where({_id: that.data.worker_OpId}).get()
+
     let res3 = await db.collection('worker').where({_openid:res1.data[0]._openid}).get()
     console.log("0", res3.data)
     that.setData({
       worker_detail: res1.data,//这里存档是数组，注意使用时要加上[0]
-      worker:res3.data[0]
+      worker:res3.data[0],
+      recorderID:res1.data[0].recorder
     })
     let res2 = await db.collection('bfavorite').where({
       openid: that.data.openID,
@@ -48,6 +51,12 @@ Page({
       that.setData({favor_id:res2.data[0]._id})
     }
 
+  },
+  playClick() {
+    console.log("开始播放",this.data.recorderID)
+    var audio = wx.createInnerAudioContext();
+    audio.src = this.data.recorderID;
+    audio.autoplay = true;
   },
   // 索引
   indexof: function(arr, val)  {

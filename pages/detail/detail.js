@@ -16,6 +16,7 @@ Page({
     isAdd: false,
     re_isAdd: false,
     openID: app.globalData.openID,
+    recorderID:'',
     favor_id:"",
     resume_id:"",
     posts:app.globalData.post,
@@ -31,7 +32,10 @@ Page({
     let res1 = await db.collection('jobs').where({
       _id: _.eq(options.id)
     }).get()
-    that.setData({jobs: res1.data[0]})
+    that.setData({
+      jobs: res1.data[0],
+      recorderID:res1.data[0].recorder
+    })
     console.log("1",that.data.jobs)
     this.setData({openID:wx.getStorageSync('openID')})
     console.log("2",this.data.openID)
@@ -94,6 +98,12 @@ Page({
         console.log('添加失败', res)
       })
     }
+},
+playClick() {
+  console.log("开始播放",this.data.recorderID)
+  var audio = wx.createInnerAudioContext();
+  audio.src = this.data.recorderID;
+  audio.autoplay = true;
 },
   //取消收藏
   cancelFavorites: function(options) {

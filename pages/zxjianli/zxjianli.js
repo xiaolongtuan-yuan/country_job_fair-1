@@ -85,21 +85,43 @@ Page({
      , 1000); 
    },
    begin(){
-    this.recorderManager = wx.getRecorderManager()
     var that = this
-    this.recorderManager.start(options)
-    this.recorderManager.onStart(() => {
-      console.log('。。。开始录音。。。')
-      this.setData({
-        recordingTimeqwe:0,
-        recorder_begin:2
-      })
-      this.recordingTimer()
-     });
-     //错误回调
-     this.recorderManager.onError((res) => {
-      console.log(res);
-     })
+    wx.getSetting({
+      success:(res)=>{
+      	//是否已授权
+        
+        if (res.authSetting['scope.record']) {
+          //已授权直接保存
+          console.log("已授权麦克风")
+          that.recorderManager = wx.getRecorderManager()
+          that.recorderManager.start(options)
+          that.recorderManager.onStart(() => {
+            console.log('。。。开始录音。。。')
+            that.setData({
+              recordingTimeqwe:0,
+              recorder_begin:2
+            })
+            that.recordingTimer()
+          });
+          //错误回调
+          that.recorderManager.onError((res) => {
+            console.log(res);
+          })
+        
+        }
+        else if (res.authSetting['scope.record'] === undefined) {
+          console.log("正在授权")
+          wx.authorize({
+            scope: 'scope.record',
+            success: ()=>{
+              //授权麦克风成功
+              console.log("授权成功！")
+              return
+            }
+          })
+        }
+      }
+    })
   },
   end(){
     this.recorderManager.stop();
@@ -132,7 +154,6 @@ Page({
         that.setData({
           recorderID:res2.fileID
         })
-        that.tempFilePath = res2.fileID
         console.log('录音上传成功！',that.data.recorderID)
       },
       fail:console.log("上传失败")

@@ -230,3 +230,70 @@ scroll-view{
     background-color: white;
     color: #17C3B2;
 }
+.recorder{
+    margin-top: 1.5vh;
+    width: 642rpx;
+    height: 14vh;
+    border: none;
+    display: flex;
+    flex-direction: column;
+
+}
+.recorder-top{
+    height: 80rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+.recorder_begin_image{
+    height: 80rpx;
+    width: 80rpx;
+    margin-right: 40rpx;
+}
+.recorder_begin_text{
+    width: 348rpx;
+    height: 70rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 70rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    background-color: #F5F5F7;
+}
+.recorder_begin_text_hover{
+    background-color: #FFFFFF;
+}
+.recorder-bottom{
+    width: 478rpx;
+    height: 74rpx;
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+    background: #17C3B2;
+    border-radius: 20rpx;
+}
+.recorder_play_image{
+    height: 74rpx;
+    width: 74rpx;
+
+}
+.recorder_play_image2{
+    height: 65rpx;
+    width: 340rpx;
+
+}
+.recorder_play_text{
+    width: 30rpx;
+    height: 74rpx;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 74rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    color: #FFFFFF;
+}
