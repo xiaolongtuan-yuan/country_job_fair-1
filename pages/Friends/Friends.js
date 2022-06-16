@@ -16,6 +16,7 @@ Page({
     unread:[],
     id:"",
     firstload:true,
+    loading:false
   },
 
   /**
@@ -48,7 +49,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
+  async onShow() {
     //登录判断
     if (app.globalData.openID.length === 0) {
       this.setData({
@@ -80,103 +81,109 @@ Page({
       //console.log(this.data.unread)
       //console.log(app.globalData.unread)
       if(this.data.firstload){
+        
         this.setData({
           firstload:false,
+          loading:true,
           Friends:app.globalData.Friends,
           FriendsUserInfo:app.globalData.FriendsUserinfo,
         })
         this.loadUnread()
+        const _ = wx.cloud.database().command
+        for(let i in this.data.Friends){
+          if(this.data.Friends[i].id == ""){
+            break;
+          }
+          //console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
+          await DB.where(_.or([
+            {
+              'message.time':_.gte(timeStamp),
+              'message.from':this.data.Friends[i].id,
+              'message.to':app.globalData.openID
+            }
+          ])).count().then(res=>{
+            //.log('count',res)
+            ///console.log('app fri info 3-----------------------------------------')
+            ///console.log(this.data.unread)
+            //console.log(app.globalData.unread)
+            app.globalData.unread[this.data.Friends[i].id] = res.total
+            this.setData({
+              ['unread.'+this.data.Friends[i].id]:res.total
+            }) 
+            ///console.log('app fri info 4-----------------------------------------')
+          /// console.log(this.data.unread)
+            ///console.log(app.globalData.unread)
+          })
+          await DB.orderBy('message.time', 'desc').limit(1).where(_.or([
+            {
+              'message.time':_.lte(timeStamp),
+              'message.from':app.globalData.openID,
+              'message.to':this.data.Friends[i].id
+            },
+            {
+              'message.time':_.lte(timeStamp),
+              'message.from':this.data.Friends[i].id,
+              'message.to':app.globalData.openID
+            }
+          ])).get({
+            success:res=>{
+              //.log("here", res.data[0])
+              if(res.data.length != 0){
+                //console.log("bm", res.data[0].message.payload.text)
+                let t_text = res.data[0].message.payload.text
+                t_text = t_text.split('\n', 1)
+                if(t_text[0].length > 20){
+                  t_text[0] = t_text[0].substr(0, 10) + '...'
+                }
+                //console.log('ttext', t_text[0], res.data[0].message.time)
+                this.setData({
+                  ['briefMsg.' + this.data.Friends[i].id]:{
+                    timestamp: res.data[0].message.time,
+                    content: t_text[0]
+                  }
+                })
+                //console.log('brimsgg')
+                //console.log( this.data.briefMsg)
+              }else{
+                this.setData({
+                  ['briefMsg.' + this.data.Friends[i].id]:{
+                    timestamp: 0,
+                    content: ""
+                  }
+                })
+              }
+              //console.log('brimsg')
+              //console.log(this.data.briefMsg)
+            // console.log(this.data.briefMsg[this.data.Friends[i].id].timestamp)
+              var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
+              var now_date = this.dateTrans(date)
+        
+              if(this.data.briefMsg[this.data.Friends[0].id].timestamp === 0){
+                now_date.ischat = false
+              }
+              this.setData({
+                ['date.' + this.data.Friends[i].id]:now_date
+              })
+              //console.log()
+              
+            },
+            
+            complete: res=>{
+              //console.log('complete')
+            }
+          })
+          
+        }
+        this.setData({
+          loading:false
+        })
       }
       //console.log('app fri info 2-----------------------------------------')
       //console.log(this.data.unread)
       //console.log(app.globalData.unread)
       //console.log( app.globalData.FriendsUserinfo)
       
-      const _ = wx.cloud.database().command
-      for(let i in this.data.Friends){
-        if(this.data.Friends[i].id == ""){
-          break;
-        }
-        //console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
-        DB.where(_.or([
-          {
-            'message.time':_.gte(timeStamp),
-            'message.from':this.data.Friends[i].id,
-            'message.to':app.globalData.openID
-          }
-        ])).count().then(res=>{
-          //.log('count',res)
-          ///console.log('app fri info 3-----------------------------------------')
-          ///console.log(this.data.unread)
-          //console.log(app.globalData.unread)
-          app.globalData.unread[this.data.Friends[i].id] = res.total
-          this.setData({
-            ['unread.'+this.data.Friends[i].id]:res.total
-          }) 
-          ///console.log('app fri info 4-----------------------------------------')
-         /// console.log(this.data.unread)
-          ///console.log(app.globalData.unread)
-        })
-        DB.orderBy('message.time', 'desc').limit(1).where(_.or([
-          {
-            'message.time':_.lte(timeStamp),
-            'message.from':app.globalData.openID,
-            'message.to':this.data.Friends[i].id
-          },
-          {
-            'message.time':_.lte(timeStamp),
-            'message.from':this.data.Friends[i].id,
-            'message.to':app.globalData.openID
-          }
-        ])).get({
-          success:res=>{
-            //.log("here", res.data[0])
-            if(res.data.length != 0){
-              //console.log("bm", res.data[0].message.payload.text)
-              let t_text = res.data[0].message.payload.text
-              t_text = t_text.split('\n', 1)
-              if(t_text[0].length > 20){
-                t_text[0] = t_text[0].substr(0, 10) + '...'
-              }
-              //console.log('ttext', t_text[0], res.data[0].message.time)
-              this.setData({
-                ['briefMsg.' + this.data.Friends[i].id]:{
-                  timestamp: res.data[0].message.time,
-                  content: t_text[0]
-                }
-              })
-              //console.log('brimsgg')
-              //console.log( this.data.briefMsg)
-            }else{
-              this.setData({
-                ['briefMsg.' + this.data.Friends[i].id]:{
-                  timestamp: 0,
-                  content: ""
-                }
-              })
-            }
-            //console.log('brimsg')
-            //console.log(this.data.briefMsg)
-           // console.log(this.data.briefMsg[this.data.Friends[i].id].timestamp)
-            var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
-            var now_date = this.dateTrans(date)
-       
-            if(this.data.briefMsg[this.data.Friends[0].id].timestamp === 0){
-              now_date.ischat = false
-            }
-            this.setData({
-              ['date.' + this.data.Friends[i].id]:now_date
-            })
-            //console.log()
-            
-          },
-          
-          complete: res=>{
-            //console.log('complete')
-          }
-        })
-        
-      }
+      
 
       this.autoLoadMessage()
       clearInterval(this.data.id)
