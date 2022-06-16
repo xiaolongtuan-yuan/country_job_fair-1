@@ -104,9 +104,9 @@
 .comment_bottom {
   background: #fff;
   position: fixed;
-  left: 64rpx;
-  bottom: 40rpx;
-  width: 600rpx;
+  left: 9vw;
+  bottom: 2.5vh;
+  width: 80vw;
   z-index: 9999;
   padding: 10rpx;
   box-shadow: 0 5px 5px 0 rgba(154, 160, 185, 0.05), 0 5px 30px 0 rgba(166, 173, 201, 0.22);

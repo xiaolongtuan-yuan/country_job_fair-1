@@ -11,10 +11,8 @@ App({
       isInit:false,
       user:'',//用户基本信息(users表):昵称和头像链接
       openID:'',
-      Friends:[{
-        id:"",
-        lastread:0
-      }],
+      Friends:[],
+      FriendsUserinfo:[],
       MessageDetail:[],
       unread:[],
       isboss:false,//是否为boss

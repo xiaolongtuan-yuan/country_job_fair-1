@@ -76,16 +76,47 @@ Page({
     }else {
       login_TIM(app.globalData.openID)
       let timeStamp = Date.parse(new Date()) / 1000
-      this.setData({
-        firstload:false,
-        Friends:app.globalData.Friends,
-        unread:app.globalData.unread
-      })
+      //console.log('app fri info -----------------------------------------')
+      //console.log(this.data.unread)
+      //console.log(app.globalData.unread)
+      if(this.data.firstload){
+        this.setData({
+          firstload:false,
+          Friends:app.globalData.Friends,
+          FriendsUserInfo:app.globalData.FriendsUserinfo,
+        })
+        this.loadUnread()
+      }
+      //console.log('app fri info 2-----------------------------------------')
+      //console.log(this.data.unread)
+      //console.log(app.globalData.unread)
+      //console.log( app.globalData.FriendsUserinfo)
       
       const _ = wx.cloud.database().command
       for(let i in this.data.Friends){
-
-        console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
+        if(this.data.Friends[i].id == ""){
+          break;
+        }
+        //console.log(this.data.Friends[i], app.globalData.openID, timeStamp, this.data.unread[this.data.Friends[i].id].num)
+        DB.where(_.or([
+          {
+            'message.time':_.gte(timeStamp),
+            'message.from':this.data.Friends[i].id,
+            'message.to':app.globalData.openID
+          }
+        ])).count().then(res=>{
+          //.log('count',res)
+          ///console.log('app fri info 3-----------------------------------------')
+          ///console.log(this.data.unread)
+          //console.log(app.globalData.unread)
+          app.globalData.unread[this.data.Friends[i].id] = res.total
+          this.setData({
+            ['unread.'+this.data.Friends[i].id]:res.total
+          }) 
+          ///console.log('app fri info 4-----------------------------------------')
+         /// console.log(this.data.unread)
+          ///console.log(app.globalData.unread)
+        })
         DB.orderBy('message.time', 'desc').limit(1).where(_.or([
           {
             'message.time':_.lte(timeStamp),
@@ -99,23 +130,23 @@ Page({
           }
         ])).get({
           success:res=>{
-            console.log("here", res.data[0])
+            //.log("here", res.data[0])
             if(res.data.length != 0){
-              console.log("bm", res.data[0].message.payload.text)
+              //console.log("bm", res.data[0].message.payload.text)
               let t_text = res.data[0].message.payload.text
               t_text = t_text.split('\n', 1)
-              if(t_text[0].length > 10){
-                t_text[0] = t_text[0].substr(0, 10)
+              if(t_text[0].length > 20){
+                t_text[0] = t_text[0].substr(0, 10) + '...'
               }
-              console.log('ttext', t_text[0], res.data[0].message.time)
+              //console.log('ttext', t_text[0], res.data[0].message.time)
               this.setData({
                 ['briefMsg.' + this.data.Friends[i].id]:{
                   timestamp: res.data[0].message.time,
                   content: t_text[0]
                 }
               })
-              console.log('brimsgg')
-              console.log( this.data.briefMsg)
+              //console.log('brimsgg')
+              //console.log( this.data.briefMsg)
             }else{
               this.setData({
                 ['briefMsg.' + this.data.Friends[i].id]:{
@@ -124,60 +155,29 @@ Page({
                 }
               })
             }
-            console.log('brimsg')
-            console.log(this.data.briefMsg)
-            console.log(this.data.briefMsg[this.data.Friends[i].id].timestamp)
+            //console.log('brimsg')
+            //console.log(this.data.briefMsg)
+           // console.log(this.data.briefMsg[this.data.Friends[i].id].timestamp)
             var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
-            var Y = date.getFullYear()
-            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-            var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  
-            console.log('in date',date.getMinutes())
-            var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
-            var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-            var second = date.getSeconds()
-
-            console.log(Y,M,D,hour,minute,second)
-            console.log("date")
-            var now_date = {
-              Year:Y,
-              Month:M,
-              Day:D,
-              Hour:hour,
-              Minute:minute,
-              Second:second,
-              ischat:true
-            }
+            var now_date = this.dateTrans(date)
+       
             if(this.data.briefMsg[this.data.Friends[0].id].timestamp === 0){
               now_date.ischat = false
             }
             this.setData({
-              ['date.' + this.data.Friends[i].id]: this.data.date.concat(now_date)
+              ['date.' + this.data.Friends[i].id]:now_date
             })
-            DBU.where({
-              _openid:this.data.Friends[i].id
-            }).get({
-              success:res=>{
-                this.setData({
-                  ['FriendsUserInfo.' + this.data.Friends[i].id]:{
-                    nickName:res.data[0].name,
-                    avatar:res.data[0].touxiang
-                  }
-                })
-                console.log("f d",this.data.FriendsUserInfo)
-                this.autoLoadMessage()
-                console.log('开始循环---------------------------------------')
-                
-              }
-            })
+            //console.log()
+            
           },
           
           complete: res=>{
-            console.log('complete')
+            //console.log('complete')
           }
         })
         
       }
+
       this.autoLoadMessage()
       clearInterval(this.data.id)
       this.setData({
@@ -230,10 +230,14 @@ Page({
    */
   autoLoadMessage:function(e){
     const _ = wx.cloud.database().command
+    //console.log("auto msg loadfri-----------------------------")
+    //console.log(this.data.unread)
+    //console.log(app.globalData.unread)
     this.setData({
       Friends:app.globalData.Friends,
-      unread:app.globalData.unread
     })
+    this.loadUnread()
+    //console.log('unread', this.data.unread)
     for(let i in this.data.Friends){
       if(this.data.FriendsUserInfo.hasOwnProperty(this.data.Friends[i].id)){
         continue;
@@ -248,111 +252,47 @@ Page({
                 avatar:res.data[0].touxiang
               }
             })
-            console.log("f d n",this.data.FriendsUserInfo)
+            //console.log("f d n",this.data.FriendsUserInfo)
           }
         })
       }
     }
 
     var timeStamp = Date.parse(new Date()) / 1000
-    console.log("friend auto")
     for(let i in this.data.Friends){
-      console.log("tiaojain",this.data.Friends[i].id,app.globalData.openID, this.data.Friends[i].lastread)
+      // console.log("tiaojain",this.data.Friends[i].id,app.globalData.openID, this.data.Friends[i].lastread)
       let friend = this.data.Friends[i].id
-      console.log('auto len', app.globalData.MessageDetail, this.data.unread[friend].num)
+     //  console.log('auto len', app.globalData.MessageDetail, this.data.unread[friend].num)
       let length = app.globalData.MessageDetail[friend].length
       if(length != 0){
+        var t_text = app.globalData.MessageDetail[friend][length - 1].payload.text
+        t_text = t_text.split('\n', 1)
+        if(t_text[0].length > 20){
+          t_text[0] = t_text[0].substr(0, 10) + '...'
+        }
+
         this.setData({
           ['briefMsg.' + friend]:{
             timestamp: app.globalData.MessageDetail[friend][length - 1].time,
-            content: app.globalData.MessageDetail[friend][length - 1].payload.text
+            content: t_text[0]
           }
         })
       }
-      console.log('before date', this.data.briefMsg, this.data.briefMsg[this.data.Friends[i].id])
-      var date = new Date(this.data.briefMsg[this.data.Friends[i].id].timestamp * 1000)
-      var Y = date.getFullYear()
-      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  
-      var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
-      var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-      var second = date.getSeconds()
-
-      console.log(Y,M,D,hour,minute,second)
-      console.log("date")
-      var now_date = {
-        Year:Y,
-        Month:M,
-        Day:D,
-        Hour:hour,
-        Minute:minute,
-        Second:second,
-        ischat:true
-      }
-      if(this.data.briefMsg[this.data.Friends[i].id].timestamp === 0){
-        now_date.ischat = false
-      }
-      console.log("date")
-      this.setData({
-        ['date.' + this.data.Friends[i].id]: now_date
-      })
-      /*DB.where(
-        {
-          from:this.data.Friends[i].id,
-          to:app.globalData.openID,
-          timestamp:_.gte(this.data.Friends[i].lastread)
+      //console.log('before date')
+      //console.log(this.data.briefMsg)
+      //console.log(this.data.briefMsg[friend])
+      if(this.data.briefMsg[friend] != undefined){
+        var date = new Date(this.data.briefMsg[friend].timestamp * 1000)
+        var now_date = this.dateTrans(date)
+        
+        if(this.data.briefMsg[this.data.Friends[i].id].timestamp === 0){
+          now_date.ischat = false
         }
-      ).count({
-        success:res=>{
-          console.log("se unreadnum", res)
-          let unreadnum = res.total
-          DB.orderBy('timestamp','desc').limit(1).where(_.or([
-            {
-              from:this.data.Friends[i].id,
-              to:app.globalData.openID,
-              timestamp:_.lte(timeStamp)
-            },
-            {
-              from:app.globalData.openID,
-              to:this.data.Friends[i].id,
-              timestamp:_.lte(timeStamp)
-            }
-          ])).get({
-            success:res2=>{
-              if(res2.data.length != 0){
-                this.setData({
-                  ['unread['+i+'].num']:unreadnum,
-                  ['briefMsg['+i+']']:res2.data[0]
-                })
-                var date = new Date(this.data.briefMsg[i].timestamp)
-                var Y = date.getFullYear()
-                var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-                var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-          
-                var hour = date.getHours()
-                var minute = date.getMinutes()
-                var second = date.getSeconds()
-                var now_date = {
-                  Year:Y,
-                  Month:M,
-                  Day:D,
-                  Hour:hour,
-                  Minute:minute,
-                  Second:second,
-                  ischat:true
-                }
-                this.setData({
-                  ['date['+i+']']:now_date
-                })
-              }
-            }
-          })
-        },
-        fail:res=>{
-          console.log("wrong", res)
-        },
-      })*/
+        //console.log("date")
+        this.setData({
+          ['date.' + this.data.Friends[i].id]: now_date
+        })
+      }
     }
   },
 
@@ -366,5 +306,37 @@ Page({
     wx.navigateTo({
       url: "../messageDetail/messageDetail?target=" + id
     })
+  },
+
+  loadUnread(){
+    for(let i in this.data.Friends){
+      let friend = this.data.Friends[i].id
+      this.setData({
+        ['unread.'+ friend]:app.globalData.unread[friend]
+      })
+    }
+  },
+
+  dateTrans(date){
+    var Y = date.getFullYear()
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+    var hour = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
+    var minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+    var second = date.getSeconds()
+
+    //.log(Y,M,D,hour,minute,second)
+    //console.log("date")
+    var now_date = {
+      Year:Y,
+      Month:M,
+      Day:D,
+      Hour:hour,
+      Minute:minute,
+      Second:second,
+      ischat:true
+    }
+    return now_date
   }
 })
+

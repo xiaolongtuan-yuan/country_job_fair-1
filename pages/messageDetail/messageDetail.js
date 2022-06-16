@@ -54,7 +54,7 @@ Page({
   onLoad(options) {
     init_TIM()
     login_TIM(app.globalData.openID)
-      console.log("chat id", options.target)
+      //console.log("chat id", options.target)
       DBU.where({
         _openid:options.target
       }).get({
@@ -79,7 +79,20 @@ Page({
             lastLoadedNextTimeStamp:timeStamp
           })
           console.log('msgd init', this.data.myself)
-          this.loadMessageBefore()
+          console.log(app.globalData.MessageDetail[this.data.targetUser.openid])
+          if(app.globalData.MessageDetail[this.data.targetUser.openid].length != 0){
+            //let len = app.globalData.MessageDetail[this.data.targetUser.openid].length
+            this.setData({
+              lastLoadedBeforeTimeStamp:app.globalData.MessageDetail[this.data.targetUser.openid][0].time - 1
+            })
+            this.setData({
+              MessageDetail:{
+                data:app.globalData.MessageDetail[this.data.targetUser.openid]
+              }
+            })
+          }else{
+            this.loadMessageBefore()
+          }
           //clearInterval(this.data.intervalId)
           //this.setData({
             //intervalId:setInterval(this.loadMessageNext, 2500),
@@ -146,7 +159,7 @@ Page({
       console.log(app.globalData.Friends[j].id, this.data.targetUser.openid)
       if(app.globalData.Friends[j].id == this.data.targetUser.openid){
         let last = this.data.MessageDetail.data.length;
-        app.globalData.Friends[j].lastread = this.data.MessageDetail.data[last - 1].timestamp + 1
+        app.globalData.Friends[j].lastread = this.data.MessageDetail.data[last - 1].time + 1
         console.log("f det",app.globalData.Friends[j])
         DBU.where({
           _openid:app.globalData.openID
@@ -155,11 +168,13 @@ Page({
             Friends:app.globalData.Friends
           }
         })
+        break;
       }
     }
-    app.globalData.unread[this.data.targetUser.openid].num = 0
-    app.globalData.unread[this.data.targetUser.openid].empty = true
-    app.globalData.MessageDetail[this.data.targetUser.openid] = []
+    console.log('clr unread', app.globalData.unread[this.data.targetUser.openid])
+    app.globalData.unread[this.data.targetUser.openid] = 0
+    //app.globalData.unread[this.data.targetUser.openid].empty = true
+    // app.globalData.MessageDetail[this.data.targetUser.openid] = []
     clearInterval(this.data.intervalId)
     wx.navigateBack()
   },
@@ -278,8 +293,8 @@ Page({
       }
     ])).get({
       success: res=>{
-        res.data.sort(this.compare_msg)
-        res.data = res.data.reverse()
+        //res.data.sort(this.compare_msg)
+        //res.data = res.data.reverse()
         let new_msg = []
         if(res.data.length != 0){
           for(let i in res.data){
@@ -293,6 +308,7 @@ Page({
               console.log(res.data[i].message.time, this.data.lastLoadedBeforeTimeStamp)
             }
           }
+          new_msg.reverse()
         }
         app.globalData.MessageDetail[this.data.targetUser.openid] = new_msg.concat(app.globalData.MessageDetail[this.data.targetUser.openid])
         this.setData({
@@ -307,10 +323,11 @@ Page({
       }
     })
   },
+
   loadMessageBefore: function (e) {
     
     let beforeTimeStamp = this.data.lastLoadedBeforeTimeStamp;
-    console.log(beforeTimeStamp)
+    // console.log(beforeTimeStamp)
     const _ = wx.cloud.database().command
     DB.orderBy('message.time','desc').where(_.or([
       {
@@ -325,7 +342,7 @@ Page({
       }
     ])).get({
       success: res=>{
-        res.data.sort(this.compare_msg)
+        //res.data.sort(this.compare_msg)
         res.data = res.data.reverse()
         let new_msg = []
         if(res.data.length != 0){
@@ -336,11 +353,13 @@ Page({
               this.setData({
                 lastLoadedBeforeTimeStamp: res.data[i].message.time - 1
               })
-              console.log(res.data[i].message.time, this.data.lastLoadedBeforeTimeStamp)
+              //console.log(res.data[i].message.time, this.data.lastLoadedBeforeTimeStamp)
             }
           }
         }
+        console.log('load msg to app')
         app.globalData.MessageDetail[this.data.targetUser.openid] = new_msg.concat(app.globalData.MessageDetail[this.data.targetUser.openid])
+        console.log(app.globalData.MessageDetail[this.data.targetUser.openid])
         this.loadMessageNext()
         /*
         this.setData({
