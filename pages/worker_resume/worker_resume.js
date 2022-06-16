@@ -67,6 +67,7 @@ Page({
       url: '../detail/detail?id='+id
     })
   },
+  
   delete_job(e){
     let id=e.currentTarget.dataset.id;
     wx.showModal({
