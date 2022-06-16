@@ -5,7 +5,7 @@
 
 <view class="content" wx:if="{{!loading}}">
   <view class="nothing-box" wx:if="{{Friends.length === 0}}">
-    <image class="nothing-icon" src="/images/icons/nothing.png"/>
+   <!-- <image class="nothing-icon" src="/images/icons/error.png"/>-->
   </view>
   <view class="contain">
     <view class="list_item" wx:for="{{Friends}}" wx:key="item.id" bindtap='navigateToMessageDetail' data-id="{{Friends[index].id}}">
