@@ -3,11 +3,11 @@
   <text class="top-text">消息列表</text>
 </view>
 
-<view class="content" wx:if="{{!loading}}">
+<view class="content" >
   <view class="nothing-box" wx:if="{{Friends.length === 0}}">
    <!-- <image class="nothing-icon" src="/images/icons/error.png"/>-->
   </view>
-  <view class="contain">
+  <view class="contain" wx:if="{{!loading}}">
     <view class="list_item" wx:for="{{Friends}}" wx:key="item.id" bindtap='navigateToMessageDetail' data-id="{{Friends[index].id}}">
       <image mode="aspectFill" class="item_img" src="{{FriendsUserInfo[Friends[index].id].avatar}}" />
       <view class="basic_info">
@@ -22,8 +22,8 @@
       </view>
     </view>
   </view>
-</view>
-<view class="loading" wx:if="{{loading}}">
-  <view class="loader-container"> <view class="loader one"></view></view>
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loader-container"> <view class="loader one"></view></view>
+  </view>
 </view>
 

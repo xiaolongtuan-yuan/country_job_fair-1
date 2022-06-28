@@ -169,6 +169,8 @@
 }
 .content{
   z-index: 1;
+  width: 100vw;
+  height: 85vh;
 }
 
 .item_time {
@@ -177,33 +179,6 @@
   margin-top: 10rpx;
   position: absolute;
   right: 20rpx;
-}
-
-/*加载部分*/
-
-.loading_view {
-  margin-top: 20rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 60rpx;
-}
-
-.loading {
-  margin-right: 10rpx;
-  width: 45rpx;
-  height: 45rpx;
-  animation: animation 1s linear infinite;
-}
-
-@keyframes animation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(1turn);
-  }
 }
 
 .subtext {
@@ -236,11 +211,10 @@
   border-radius: 42rpx;
 }
 
-
 .loading{
   width: 100vw;
   height: 70vh;
-
+  margin-top: 20vh;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -249,7 +223,7 @@
   height: 150px;  
   width: 200px;  
   display: flex;  
-  justify-content: center;  
+  justify-content: baseline;  
   align-items: center;
 }
 .loader {  
@@ -258,7 +232,7 @@
 .one {  
   background-color: #17C3B2;  
   border-radius: 50%;  
-  animation: loader1Animation 3s ease-in-out infinite;  margin-top: 0px;}
+  animation: loader1Animation 1s ease-in-out infinite;  margin-top: 50px;}
 .one:before {  
   content: "";  
   position: absolute;  
