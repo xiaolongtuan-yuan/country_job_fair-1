@@ -56,7 +56,7 @@ Page({
     this.setData({worker_OpId:id})
     var that = this
     let res1 = await db.collection('zxjianli').where({_id: that.data.worker_OpId}).get()
-
+    console.log('当前简历',res1.data[0])
     let res3 = await db.collection('worker').where({_openid:res1.data[0]._openid}).get()
     console.log("0", res3.data)
     that.setData({

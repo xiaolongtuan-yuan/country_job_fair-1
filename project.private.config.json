@@ -88,6 +88,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/boss_Resume_detail_In/boss_Resume_detail_In",
+          "query": "\"0ab5303b62a9a6330979a9f457dd0ce1\"",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
