@@ -258,7 +258,7 @@
 .one {  
   background-color: #17C3B2;  
   border-radius: 50%;  
-  animation: loader1Animation 7s ease-in-out infinite;  margin-top: 35px;}
+  animation: loader1Animation 3s ease-in-out infinite;  margin-top: 0px;}
 .one:before {  
   content: "";  
   position: absolute;  
