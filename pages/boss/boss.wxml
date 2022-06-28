@@ -81,10 +81,10 @@
             <view class="recorder">
             <view class="recorder-top">
                 <image src="../../images/recorder{{recorder_begin}}.png" class="recorder_begin_image"/>
-                <view class="recorder_begin_text" bindtouchstart="begin" bindtouchend="end" hover-class="recorder_begin_text_hover">按住录音</view>
+                <view class="recorder_begin_text" bindtouchstart="begin" bindtouchend="end" hover-class="recorder_begin_text_hover">长按录音</view>
             </view>
             <view class="recorder-bottom" bindtap="playClick">
-                <image src="../../images/Group21.png" class="recorder_play_image"/>
+                <image src="../../images/Group2{{recorder_play}}.png" class="recorder_play_image"/>
                 <image src="../../images/Group22.png" class="recorder_play_image2"/>
                 <view class="recorder_play_text">{{recordingTimeqwe}}s</view>
             </view>

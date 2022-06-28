@@ -27,16 +27,38 @@ Page({
     _id:'',
     recorderID:'',
     recorder_begin:1,
-    recorder_play:1,
+    recorder_play:1, //另一个是三
     openRecordingdis: "block",//录音图片的不同
     shutRecordingdis: "none",//录音图片的不同
     recordingTimeqwe:0,//录音计时
+    playing:false, //标记是否为暂停状态
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.tempFilePath = ''
+    this.audio = wx.createInnerAudioContext();
+    this.audio.onPlay(res=>{
+      console.log("正在播放")
+      this.setData({
+        playing:true
+      })
+    })
+    this.audio.onEnded(res=>{
+      console.log("播放结束")
+      this.setData({
+        playing:false,
+        recorder_play:1
+      })
+    })
+    this.audio.onError(res=>{
+      console.log("播放异常")
+      this.setData({
+        playing:false
+      })
+    })
     this.app = getApp()
     this.setData({
       openID:this.app.globalData.openID
@@ -50,6 +72,7 @@ Page({
       console.log('已存在简历数',res.data)
       if(res.data.length>0){
         this.tempFilePath = res.data[0].recorder
+        this.audio.src = this.tempFilePath
         this.setData({
           jianli: res.data[0],
           info: res.data[0].info,
@@ -92,15 +115,16 @@ Page({
         
         if (res.authSetting['scope.record']) {
           //已授权直接保存
+          that.setData({
+            recordingTimeqwe:0,
+            recorder_begin:2
+          })
           console.log("已授权麦克风")
           that.recorderManager = wx.getRecorderManager()
           that.recorderManager.start(options)
           that.recorderManager.onStart(() => {
             console.log('。。。开始录音。。。')
-            that.setData({
-              recordingTimeqwe:0,
-              recorder_begin:2
-            })
+            
             that.recordingTimer()
           });
           //错误回调
@@ -126,23 +150,35 @@ Page({
   end(){
     this.recorderManager.stop();
     this.recorderManager.onStop((res) => {
-      console.log('。。停止录音。。', res.tempFilePath)
-      this.tempFilePath = res.tempFilePath;
-      //结束录音计时 
-      clearInterval(this.setInter)
-      console.log("录音时长",this.data.recordingTimeqwe)
       this.setData({
         recorder_begin:1
       })
+      console.log('。。停止录音。。', res.tempFilePath)
+      this.tempFilePath = res.tempFilePath;
+      this.audio.src = this.tempFilePath;
+      //结束录音计时 
+      clearInterval(this.setInter)
+      console.log("录音时长",this.data.recordingTimeqwe)
+      
       this.recorder_upload(res.tempFilePath)
     })
   },
   //播放录音
   playClick() {
-    console.log("开始播放",this.tempFilePath)
-    var audio = wx.createInnerAudioContext();
-    audio.src = this.tempFilePath;
-    audio.autoplay = true;
+    if(this.data.playing){
+      this.audio.pause()
+      this.setData({
+        playing:false,
+        recorder_play:1
+      })
+    }
+    else{
+      this.audio.play()
+      this.setData({
+        playing:true,
+        recorder_play:3
+      })
+    }
   },
   recorder_upload(filePath){
     var path = "recorder/"+this.data.info[0]+".mp3"
@@ -160,6 +196,8 @@ Page({
     })
   },
   back(){
+    console.log("退出页面")
+    this.audio.stop()
     wx.navigateBack()
   },
   sexChange(e){

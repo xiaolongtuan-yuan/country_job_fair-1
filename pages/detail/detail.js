@@ -20,11 +20,34 @@ Page({
     favor_id:"",
     resume_id:"",
     posts:app.globalData.post,
+    recorder_play:1, //另一个是三
+    playing:false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    this.tempFilePath = ''
+    this.audio = wx.createInnerAudioContext();
+    this.audio.onPlay(res=>{
+      console.log("正在播放")
+      this.setData({
+        playing:true
+      })
+    })
+    this.audio.onEnded(res=>{
+      console.log("播放结束")
+      this.setData({
+        playing:false,
+        recorder_play:1
+      })
+    })
+    this.audio.onError(res=>{
+      console.log("播放异常")
+      this.setData({
+        playing:false
+      })
+    })
     this.setData({
       posts:app.globalData.post
     })
@@ -36,6 +59,7 @@ Page({
       jobs: res1.data[0],
       recorderID:res1.data[0].recorder
     })
+    this.audio.src = this.data.recorderID;
     console.log("1",that.data.jobs)
     this.setData({openID:wx.getStorageSync('openID')})
     console.log("2",this.data.openID)
@@ -100,10 +124,20 @@ Page({
     }
 },
 playClick() {
-  console.log("开始播放",this.data.recorderID)
-  var audio = wx.createInnerAudioContext();
-  audio.src = this.data.recorderID;
-  audio.autoplay = true;
+  if(this.data.playing){
+    this.audio.pause()
+    this.setData({
+      playing:false,
+      recorder_play:1
+    })
+  }
+  else{
+    this.audio.play()
+    this.setData({
+      playing:true,
+      recorder_play:3
+    })
+  }
 },
   //取消收藏
   cancelFavorites: function(options) {
@@ -190,6 +224,8 @@ playClick() {
   },
   
   back(){
+    console.log("退出页面")
+    this.audio.stop()
     wx.navigateBack()
   },
 
